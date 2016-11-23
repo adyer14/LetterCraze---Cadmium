@@ -19,6 +19,9 @@ public class LevelSelectPanel extends JPanel {
 	}
 	
 	public void enable() {
+		for (int levNum = 1; levNum <= 15; levNum++) {
+			
+		}
 		
 	}
 
