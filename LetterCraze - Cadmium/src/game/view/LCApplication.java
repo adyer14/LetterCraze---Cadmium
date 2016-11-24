@@ -1,15 +1,19 @@
 package game.view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import java.awt.BorderLayout;
 
 public class LCApplication extends JFrame {
 
-	private JPanel contentPane;
+	/**
+	 * Keep Eclipse happy
+	 */
+	private static final long serialVersionUID = 4242171863344367254L;
+	
+	private LevelSelectPanel lsp;
+	private LevelPanel lp;
 
 	/**
 	 * Launch the application.
@@ -31,12 +35,18 @@ public class LCApplication extends JFrame {
 	 * Create the frame.
 	 */
 	public LCApplication() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+		super();
+
+		setBounds(250, 80, 816, 589);
+		setTitle("LetterCraze");
+		
+		//lp = new LevelPanel();
+		//add (lp);
+		lsp = new LevelSelectPanel();
+		getContentPane().add (lsp);
+		//lp.setVisible(false);
+		//lsp.setVisible(true);
+		lsp.update();
 	}
 
 }
