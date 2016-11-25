@@ -21,8 +21,8 @@ public class ExitLevelController extends MouseAdapter {
 	
 	@Override
 	public void MousePressed(MouseEvent me){
-		MainMenuPanel.visible(true);
-		LevelCreatorPanel.visible(false);
+		MainMenuPanel.setVisible(true);
+		LevelCreatorPanel.setVisible(false);
 		
 		//????????????
 	}
