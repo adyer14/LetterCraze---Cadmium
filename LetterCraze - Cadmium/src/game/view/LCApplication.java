@@ -1,9 +1,7 @@
 package game.view;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-import java.awt.BorderLayout;
 
 public class LCApplication extends JFrame {
 
@@ -19,9 +17,25 @@ public class LCApplication extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		SplashScreenWindow splashWindow = new SplashScreenWindow();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					splashWindow.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		try {
+		    Thread.sleep(100);
+		} catch (InterruptedException e) {
+		    e.printStackTrace();
+		}
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					splashWindow.setVisible(false);
 					LCApplication frame = new LCApplication();
 					frame.setVisible(true);
 				} catch (Exception e) {
@@ -29,6 +43,7 @@ public class LCApplication extends JFrame {
 				}
 			}
 		});
+		
 	}
 
 	/**
@@ -40,13 +55,15 @@ public class LCApplication extends JFrame {
 		setBounds(250, 80, 816, 589);
 		setTitle("LetterCraze");
 		
-		//lp = new LevelPanel();
-		//add (lp);
 		lsp = new LevelSelectPanel();
 		getContentPane().add (lsp);
-		//lp.setVisible(false);
-		//lsp.setVisible(true);
-		lsp.update();
+		lsp.setVisible(false);
+		
+		lp = new LevelPanel();
+		getContentPane().add(lp);
+		lp.setVisible(true);
+		
+
 	}
 
 }

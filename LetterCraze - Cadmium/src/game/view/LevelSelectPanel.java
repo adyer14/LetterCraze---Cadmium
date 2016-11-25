@@ -2,6 +2,8 @@ package game.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,9 +24,12 @@ public class LevelSelectPanel extends JPanel {
 	JButton lightningButton[] = new JButton[6];
 	JButton themeButton[] = new JButton[6];
 	
-	JLabel puzzStarLabel[] = new JLabel[6];
-	JLabel lightStarLabel[] = new JLabel[6];
+	JLabel puzzleStarLabel[] = new JLabel[6];
+	JLabel lightningStarLabel[] = new JLabel[6];
 	JLabel themeStarLabel[] = new JLabel[6];
+	
+	Map<String, JButton> levelButtons = new HashMap<String, JButton>();
+	Map<String, JLabel> levelStarLabels = new HashMap<String, JLabel>();
 	
 	int buttWidth = 54;
 	int buttHeight = 80;
@@ -34,11 +39,12 @@ public class LevelSelectPanel extends JPanel {
 	int typeDist = 42;
 	int buttonDist = 275;
 	int starWidth = 26;
+	
 	/**
 	 * Create the panel.
 	 */
 	public LevelSelectPanel() {
-		setBounds(10, 10, 800, 550);
+		setBounds(0, 0, 800, 550);
 		setBackground(new Color(230, 230, 250));
 		setLayout(null);
 		initTitles();
@@ -46,21 +52,24 @@ public class LevelSelectPanel extends JPanel {
 		initStars();
 	}
 	
-	public void initButtons() {
+	public void initButtons() {	
 		for (int puzzNum = 1; puzzNum <= 5; puzzNum++) {
 			puzzleButton[puzzNum] = new JButton("");
 			puzzleButton[puzzNum].setIcon(new ImageIcon(LevelSelectPanel.class.getResource("/images/" + puzzNum + "level.png")));
 			puzzleButton[puzzNum].setBounds(buttonDist + ((puzzNum-1)*100), puzzHeight, buttWidth, buttHeight);
 			if (puzzNum > 1)
 				puzzleButton[puzzNum].setEnabled(false);
+			levelButtons.put("puzzleButton" + puzzNum, puzzleButton[puzzNum]);
 			add(puzzleButton[puzzNum]);
 		}
+		
 		for (int litNum = 1; litNum <= 5; litNum++) {
 			lightningButton[litNum] = new JButton("");
 			lightningButton[litNum].setIcon(new ImageIcon(LevelSelectPanel.class.getResource("/images/" + litNum + "level.png")));
 			lightningButton[litNum].setBounds(buttonDist + ((litNum-1)*100), lightHeight, buttWidth, buttHeight);
 			if (litNum > 1)
 				lightningButton[litNum].setEnabled(false);
+			levelButtons.put("lightningButton" + litNum, lightningButton[litNum]);
 			add(lightningButton[litNum]);
 		}
 		for (int thmNum = 1; thmNum <= 5; thmNum++) {
@@ -69,29 +78,32 @@ public class LevelSelectPanel extends JPanel {
 			themeButton[thmNum].setBounds(buttonDist + ((thmNum-1)*100), themeHeight, buttWidth, buttHeight);
 			if (thmNum > 1)
 				themeButton[thmNum].setEnabled(false);
+			levelButtons.put("themeButton" + thmNum, themeButton[thmNum]);
 			add(themeButton[thmNum]);
 		}
 	}
 	
 	public void initStars() {
 		for (int puzzNum = 1; puzzNum <= 5; puzzNum++) {
-			puzzStarLabel[puzzNum] = new JLabel("");
+			puzzleStarLabel[puzzNum] = new JLabel("");
 			if (puzzNum == 1)
-				puzzStarLabel[puzzNum].setIcon(new ImageIcon(LevelSelectPanel.class.getResource("/images/0Stars.png")));
+				puzzleStarLabel[puzzNum].setIcon(new ImageIcon(LevelSelectPanel.class.getResource("/images/0Stars.png")));
 			else
-				puzzStarLabel[puzzNum].setIcon(new ImageIcon(LevelSelectPanel.class.getResource("/images/lockedStars.png")));
-			puzzStarLabel[puzzNum].setBounds(buttonDist + ((puzzNum-1)*100) + buttWidth, puzzHeight, starWidth, buttHeight);
-			add(puzzStarLabel[puzzNum]);
+				puzzleStarLabel[puzzNum].setIcon(new ImageIcon(LevelSelectPanel.class.getResource("/images/lockedStars.png")));
+			puzzleStarLabel[puzzNum].setBounds(buttonDist + ((puzzNum-1)*100) + buttWidth, puzzHeight, starWidth, buttHeight);
+			levelStarLabels.put("puzzleStarLabel" + puzzNum, puzzleStarLabel[puzzNum]);
+			add(puzzleStarLabel[puzzNum]);
 		}
 		
 		for (int litNum = 1; litNum <= 5; litNum++) {
-			lightStarLabel[litNum] = new JLabel("");
+			lightningStarLabel[litNum] = new JLabel("");
 			if (litNum == 1)
-				lightStarLabel[litNum].setIcon(new ImageIcon(LevelSelectPanel.class.getResource("/images/0Stars.png")));
+				lightningStarLabel[litNum].setIcon(new ImageIcon(LevelSelectPanel.class.getResource("/images/0Stars.png")));
 			else
-				lightStarLabel[litNum].setIcon(new ImageIcon(LevelSelectPanel.class.getResource("/images/lockedStars.png")));
-			lightStarLabel[litNum].setBounds(buttonDist + ((litNum-1)*100) + buttWidth, lightHeight, starWidth, buttHeight);
-			add(lightStarLabel[litNum]);
+				lightningStarLabel[litNum].setIcon(new ImageIcon(LevelSelectPanel.class.getResource("/images/lockedStars.png")));
+			lightningStarLabel[litNum].setBounds(buttonDist + ((litNum-1)*100) + buttWidth, lightHeight, starWidth, buttHeight);
+			levelStarLabels.put("lightningStarLabel" + litNum, lightningStarLabel[litNum]);
+			add(lightningStarLabel[litNum]);
 		}
 		
 		for (int thmNum = 1; thmNum <= 5; thmNum++) {
@@ -101,6 +113,7 @@ public class LevelSelectPanel extends JPanel {
 			else
 				themeStarLabel[thmNum].setIcon(new ImageIcon(LevelSelectPanel.class.getResource("/images/lockedStars.png")));
 			themeStarLabel[thmNum].setBounds(buttonDist + ((thmNum-1)*100) + buttWidth, themeHeight, starWidth, buttHeight);
+			levelStarLabels.put("themeStarLabel" + thmNum, themeStarLabel[thmNum]);
 			add(themeStarLabel[thmNum]);
 		}
 	}
@@ -136,29 +149,30 @@ public class LevelSelectPanel extends JPanel {
 		
 	}
 	
-	public void update(){//Level level) {
-		int nextLevNum = 1; //Level.levNum + 1;
-		int currentLevNum = 2; //Level.levNum;
+	/**
+	 * TODO update this method with actual Level attributes instead of constants
+	 */
+	public void updateStars(){//Level level) {
+		int levNum = 1; //Level.levNum; 
 		
-		//if (level.getName().startsWith("puzzle")) {
-		JButton nextButton = puzzleButton[nextLevNum];
-		JLabel nextStarLabel = puzzStarLabel[nextLevNum];
-		/*}
-		else if (level.getName().startsWith("lightning")) {
-			JButton nextButton = lightButton[nextLevNum];
-			JLabel nextStarLabel = lightStarLabel[nextLevNum];
-		}
-		else {
-			JButton nextButton = themeButton[nextLevNum];
-			JLabel nextStarLabel = themeStarLabel[nextLevNum];
-		}
+		String starLabelName = "lightning" + "StarLabel" + levNum; //Level.levType + "StarLabel" + currentLevNum;
+		JLabel starLabel = levelStarLabels.get(starLabelName);
+		starLabel.setIcon(new ImageIcon(LevelSelectPanel.class.getResource("/images/" + 2 + "Stars.png")));//Level.maxStarsAchieved + "Stars.png")));	
+	}
+	
+	/**
+	 * TODO update this method with actual Level attributes instead of constants
+	 */
+	public void unlockNext(){//Level level) {
+		int nextLevNum = 3; //Level.levNum + 1;
 		
-		if (level.isUnlocked && currentLevNum < 6) {
-			nextbutton.setEnabled(true);
-			nextStarLabel.setIcon(new ImageIcon(LevelSelectPanel.class.getResource("/images/0Stars.png")));
-		}
-		//currentButton.setIcon(new ImageIcon(LevelSelectPanel.class.getResource("/images/" + Level.maxStarsAchieved + "level.png")));
-		*/
-		}
+		String nextButtonName = "lightning" + "Button" + nextLevNum; //Level.levType + "Button" + currentLevNum;
+		JButton nextButton = levelButtons.get(nextButtonName);
+		nextButton.setEnabled(true);
+		
+		String nextLabelName = "lightning" + "StarLabel" + nextLevNum; //Level.levType + "StarLabel" + currentLevNum;
+		JLabel nextStarLabel = levelStarLabels.get(nextLabelName);
+		nextStarLabel.setIcon(new ImageIcon(LevelSelectPanel.class.getResource("/images/0Stars.png")));
+	}
 
 }
