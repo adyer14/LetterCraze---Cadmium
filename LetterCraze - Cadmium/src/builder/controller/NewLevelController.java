@@ -17,7 +17,9 @@ public class NewLevelController extends MouseAdapter {
 	}
 	
 	@Override
-	public void MousePressed(MouseEvent me){
-		//impl
+	public void MouseClicked(MouseEvent me){
+		levelCreatorPanel.visible(true);
+		MainMenuPanel.visible(false);
+		//????????????????
 	}
 }
