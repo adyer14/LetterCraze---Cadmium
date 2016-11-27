@@ -2,30 +2,37 @@ package game.view;
 
 import java.awt.Color;
 import java.awt.Font;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
+import javax.swing.JTextPane;
+import javax.swing.JScrollPane;
 
 public class LevelPanel extends JPanel {
-	// TODO make an update function for changing variables
+	// TODO create and include BoardPanel and constraintPanel()
+	// TODO create abstract methods for setting level name, constraint panel name, constraint source, 
+	// TODO actually just update everything with Level when Level exists functionally
 	/**
 	 * Keep Eclipse happy
 	 */
 	private static final long serialVersionUID = 5365285961036238341L;
 
 	private JLabel highScoreLabel;
+	private int highScore;
 	private JLabel scoreLabel;
-	private JTextArea wordsTextArea;
+	private JTextPane wordsTextPane;
+	private JLabel starLabel;
+	
 	
 	/**
 	 * Create the panel.
 	 */
 	public LevelPanel() {
-		setLayout(null);
 		setBounds(0, 0, 800, 550);
 		setBackground(new Color(230, 230, 250));
 
@@ -34,16 +41,22 @@ public class LevelPanel extends JPanel {
 		initHighScore();
 		initScore();
 		initWords();
+		initStars();
 	}
-	
+	/**
+	 * TODO update iniTitle with actual Level model references
+	 */
 	public void initTitle() {
+		String levType = "lightning";//Level.getLevType();
+		int levNum = 6; //Level.getLevNum();
+		setLayout(null);
 		JPanel titlePanel = new JPanel();
 		titlePanel.setBounds(0, 0, 800, 110);
 		titlePanel.setBackground(new Color(119, 136, 153));
 		titlePanel.setLayout(null);
 		add(titlePanel);
 		
-		JLabel titleLabel = new JLabel("LEVEL 1");
+		JLabel titleLabel = new JLabel(levType.toUpperCase() + " " + levNum);
 		titleLabel.setForeground(Color.BLACK);
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setBounds(0, 0, 800, 110);
@@ -58,17 +71,22 @@ public class LevelPanel extends JPanel {
 
 	public void initButtons() {
 		JButton resetButton = new JButton("");
-		resetButton.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/reset.png")));
 		resetButton.setBounds(615, 215, 101, 42);
+		resetButton.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/reset.png")));
 		add(resetButton);
 		
 		JButton undoButton = new JButton("");
-		undoButton.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/undo.png")));
 		undoButton.setBounds(615, 272, 101, 42);
+		undoButton.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/undo.png")));
 		add(undoButton);
 	}
 	
+	/**
+	 * TODO update initHighScore with actual Level model references
+	 */
 	public void initHighScore() {
+		highScore = 0;//Level.getHighScore();
+		
 		JPanel highScorePanel = new JPanel();
 		highScorePanel.setBounds(48, 143, 184, 77);
 		highScorePanel.setBackground(new Color(176, 196, 222));
@@ -82,15 +100,18 @@ public class LevelPanel extends JPanel {
 		HSLabel.setFont(new Font("OCR A Extended", Font.BOLD, 25));
 		highScorePanel.add(HSLabel);
 		
-		highScoreLabel = new JLabel(Integer.toString(0));
+		highScoreLabel = new JLabel(Integer.toString(highScore));
 		highScoreLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		highScoreLabel.setForeground(Color.BLACK);
 		highScoreLabel.setFont(new Font("OCR A Extended", Font.BOLD, 25));
 		highScoreLabel.setBounds(0, 35, 184, 37);
 		highScorePanel.add(highScoreLabel);
 	}
-	
+	/**
+	 * TODO update initScore with actual Level model references
+	 */
 	public void initScore() {
+		
 		JPanel scorePanel = new JPanel();
 		scorePanel.setBounds(615, 438, 101, 77);
 		scorePanel.setBackground(new Color(176, 196, 222));
@@ -126,12 +147,49 @@ public class LevelPanel extends JPanel {
 		WLabel.setFont(new Font("OCR A Extended", Font.BOLD, 25));
 		wordsPanel.add(WLabel);
 		
-		//TODO make this textarea scrollable
-		wordsTextArea = new JTextArea();
-		wordsTextArea.setColumns(2);
-		wordsTextArea.setBounds(10, 41, 164, 230);
-		wordsTextArea.setBackground(new Color(176, 196, 222));
-		wordsPanel.add(wordsTextArea);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBorder(null);
+		scrollPane.setBounds(21, 52, 142, 208);
+		wordsPanel.add(scrollPane);
 		
+		wordsTextPane = new JTextPane();
+		wordsTextPane.setEditable(false);
+		wordsTextPane.setFont(new Font("OCR A Extended", Font.PLAIN, 17));
+		wordsTextPane.setBackground(new Color(176, 196, 222));
+		StyledDocument doc = wordsTextPane.getStyledDocument();
+		SimpleAttributeSet center = new SimpleAttributeSet();
+		StyleConstants.setAlignment(center, StyleConstants.ALIGN_CENTER);
+		doc.setParagraphAttributes(0, doc.getLength(), center, false);
+		wordsTextPane.setText("");
+		scrollPane.setViewportView(wordsTextPane);
+		
+	}
+
+	public void initStars() {
+		starLabel = new JLabel();
+		starLabel.setBounds(574, 138, 183, 62);
+		starLabel.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/0GameStars.png")));
+		add(starLabel);
+	}
+	
+	public void updateHighScore() {
+		highScore = 5; //Level.getHighScore();
+		highScoreLabel.setText(Integer.toString(highScore));
+	}
+	public void updateScore() {
+		int score = 5; //Level.getScore();
+		scoreLabel.setText(Integer.toString(score));
+	}
+	public void updateWords() {
+		String wordListString = "";
+		String wordList[] = {"this", "is", "a", "series", "of", "example", "words"};//Level.getWordList();
+		for (int numWords = 0; numWords < wordList.length; numWords++) {
+			wordListString = wordListString + wordList[numWords] + "\n";
+		}
+		wordsTextPane.setText(wordListString);
+	}
+	public void updateStars() {
+		int maxStarsAchieved = 2;//Level.getMaxStarsAchieved();
+		starLabel.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/" + maxStarsAchieved + "GameStars.png")));
 	}
 }
