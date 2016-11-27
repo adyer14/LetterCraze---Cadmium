@@ -14,6 +14,7 @@ public class SplashScreenWindow extends JFrame {
 	 * Keep Eclipse happy
 	 */
 	private static final long serialVersionUID = 4354316776291662994L;
+	
 	private JPanel contentPane;
 
 	/**
