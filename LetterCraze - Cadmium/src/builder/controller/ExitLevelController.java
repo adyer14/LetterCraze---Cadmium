@@ -7,15 +7,15 @@ import builder.view.*;
 //import builder.model.*;
 
 public class ExitLevelController extends MouseAdapter {
-	Level level;
+	//Level level;
 	LevelCreatorPanel levelCreatorView;
-	MainMenu mainMenu;
+	//MainMenu mainMenu;
 	MainMenuPanel mainMenuView;
 	
-	public ExitLevelController(Level lvl, LevelCreatorPanel lcv, MainMenu mm, MainMenuPanel mmv){
-		this.level = lvl;
+	public ExitLevelController(/*Level lvl,*/ LevelCreatorPanel lcv, /*MainMenu mm,*/ MainMenuPanel mmv){
+		//this.level = lvl; 
 		this.levelCreatorView = lcv;
-		this.mainMenu = mm;
+		//this.mainMenu = mm;
 		this.mainMenuView = mmv;
 	}
 	
