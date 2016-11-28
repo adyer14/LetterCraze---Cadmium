@@ -3,6 +3,8 @@ package builder.view;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 
+import game.view.LevelPanel;
+
 public class BuilderApplication extends JFrame {
 	
 	/**
@@ -10,6 +12,9 @@ public class BuilderApplication extends JFrame {
 	 */
 	private static final long serialVersionUID = 7707913344008839015L;
 
+	private MainMenuPanel mmp;
+	private LevelCreatorPanel lcp;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -52,7 +57,14 @@ public class BuilderApplication extends JFrame {
 		setBounds(250, 80, 816, 589);
 		setTitle("Builder");
 		
-
+		mmp = new MainMenuPanel();
+		getContentPane().add(mmp);
+		mmp.setVisible(false);
+		
+		lcp = new LevelCreatorPanel();
+		getContentPane().add(lcp);
+		lcp.setVisible(true);
+		
 	}
 
 }
