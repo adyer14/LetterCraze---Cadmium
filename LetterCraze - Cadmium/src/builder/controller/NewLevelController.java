@@ -3,6 +3,9 @@ package builder.controller;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import builder.view.*;
+//import builder.model.*;
+
 public class NewLevelController extends MouseAdapter {
 	Level level;
 	LevelCreatorPanel levelCreatorView;
@@ -16,10 +19,12 @@ public class NewLevelController extends MouseAdapter {
 		this.mainMenuView = mmv;
 	}
 	
-	@Override
 	public void MouseClicked(MouseEvent me){
-		levelCreatorPanel.setVisible(true);
-		MainMenuPanel.setVisible(false);
-		//????????????????
+	
+		mainMenuView.setVisible(false);
+		mainMenuView.invalidate();
+		
+		levelCreatorView.setVisible(true);
+		levelCreatorView.validate();
 	}
 }

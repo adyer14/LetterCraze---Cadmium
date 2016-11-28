@@ -4,7 +4,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import builder.view.*;
-import builder.model.*;
+//import builder.model.*;
 
 public class ExitLevelController extends MouseAdapter {
 	Level level;
@@ -19,12 +19,13 @@ public class ExitLevelController extends MouseAdapter {
 		this.mainMenuView = mmv;
 	}
 	
-	@Override
 	public void MousePressed(MouseEvent me){
-		MainMenuPanel.setVisible(true);
-		LevelCreatorPanel.setVisible(false);
 		
-		//????????????
+		levelCreatorView.setVisible(false);
+		levelCreatorView.invalidate();
+		
+		mainMenuView.setVisible(true);
+		mainMenuView.validate();
 	}
 
 }
