@@ -3,8 +3,6 @@ package builder.view;
 import java.awt.EventQueue;
 import javax.swing.JFrame;
 
-import game.view.LevelPanel;
-
 public class BuilderApplication extends JFrame {
 	
 	/**
