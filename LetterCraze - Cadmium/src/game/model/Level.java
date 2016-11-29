@@ -1,5 +1,9 @@
 package game.model;
 
+import java.util.*;
+
+import javax.swing.JButton;
+
 public class Level {
 	
 	Board board;
@@ -14,7 +18,7 @@ public class Level {
 	Word currentWord;
 	Word [] wordList = new Word [20];
 	Dictionary dictionary;
-	int [] letterFrequencies = new int [25];
+	HashMap<String, Integer> letterFrequencies = new HashMap<String, Integer>();
 	
 	public Level (int starVal [], Board board, int levelNumber) {
 		this.board = board;
