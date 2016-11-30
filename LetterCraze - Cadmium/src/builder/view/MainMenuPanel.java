@@ -1,13 +1,18 @@
 package builder.view;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+
+import builder.controller.NewLevelController;
 
 public class MainMenuPanel extends JPanel {
 
@@ -16,18 +21,30 @@ public class MainMenuPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = 6797683652563023292L;
 	
-	JButton newLevelButton;
-	JButton loadLevelButton;
-	JButton deleteLevelButton;
+	private JButton newLevelButton;
+	private JButton loadLevelButton;
+	private JButton deleteLevelButton;
+	private JPanel contentPane;
 
 	/**
 	 * Create the panel.
 	 */
-	public MainMenuPanel() {
+	public MainMenuPanel(JPanel panel) {
+		contentPane = panel;
 		setBounds(0, 0, 800, 550);
 		setBackground(new Color(230, 230, 250));
 		setLayout(null);
 		
+		initComponents();
+		initControllers();
+		
+	}
+	
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+	
+	public void initComponents() {
 		JPanel titlePanel = new JPanel();
 		titlePanel.setBounds(0, 0, 800, 160);
 		titlePanel.setBackground(new Color(119, 136, 153));
@@ -66,4 +83,8 @@ public class MainMenuPanel extends JPanel {
 		add(deleteLevelButton);
 	}
 
+	public void initControllers() {
+		NewLevelController nlcontrol = new NewLevelController(this);
+		newLevelButton.addActionListener(nlcontrol);
+	}
 }
