@@ -10,7 +10,8 @@ import javax.swing.SwingConstants;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
-
+import game.controller.ExitLevelController;
+import game.model.Level;
 import game.model.Model;
 
 import javax.swing.JTextPane;
@@ -31,14 +32,19 @@ public class LevelPanel extends JPanel {
 	private JLabel scoreLabel;
 	private JTextPane wordsTextPane;
 	private JLabel starLabel;
-	Model m;
+	private JPanel contentPane;
+	private JButton resetButton;
+	private JButton undoButton;
+	private JButton backButton;
+	private Level model;
 	
 	
 	/**
 	 * Create the panel.
 	 */
-	public LevelPanel(Model model) {
-		this.m = model;
+	public LevelPanel(/*Level level,*/ JPanel panel) {
+		contentPane = panel;
+		//this.model = level;
 		setBounds(0, 0, 800, 550);
 		setBackground(new Color(230, 230, 250));
 
@@ -48,6 +54,7 @@ public class LevelPanel extends JPanel {
 		initScore();
 		initWords();
 		initStars();
+		initControllers();
 	}
 	/**
 	 * TODO update iniTitle with actual Level model references
@@ -70,7 +77,7 @@ public class LevelPanel extends JPanel {
 		titlePanel.add(titleLabel);
 		
 		//TODO: change backbutton
-		JButton backButton = new JButton("");
+		backButton = new JButton("");
 		backButton.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/backButton.png")));
 		backButton.setBounds(20, 22, 66, 66);
 		titlePanel.add(backButton);
@@ -78,12 +85,12 @@ public class LevelPanel extends JPanel {
 
 	public void initButtons() {
 		//TODO change reset and undo buttons
-		JButton resetButton = new JButton("");
+		resetButton = new JButton("");
 		resetButton.setBounds(615, 215, 101, 42);
 		resetButton.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/reset.png")));
 		add(resetButton);
 		
-		JButton undoButton = new JButton("");
+		undoButton = new JButton("");
 		undoButton.setBounds(615, 272, 101, 42);
 		undoButton.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/undo.png")));
 		add(undoButton);
@@ -174,6 +181,17 @@ public class LevelPanel extends JPanel {
 		starLabel.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/0GameStars.png")));
 		add(starLabel);
 	}
+	
+	public void initControllers() {
+		ExitLevelController elcontrol = new ExitLevelController(model, this);
+		backButton.addActionListener(elcontrol);
+	}
+	
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+	
+	
 	
 	public void updateHighScore() {
 		highScore = 5; //Level.getHighScore();
