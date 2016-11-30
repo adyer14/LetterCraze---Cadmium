@@ -16,6 +16,7 @@ import javax.swing.JScrollPane;
 public class LevelPanel extends JPanel {
 	// TODO create and include BoardPanel and constraintPanel()
 	// TODO create abstract methods for setting level name, constraint panel name, constraint source, 
+	// TODO (LATER) make those update functions into one refresh probably
 	// TODO actually just update everything with Level when Level exists functionally
 	/**
 	 * Keep Eclipse happy
@@ -63,6 +64,7 @@ public class LevelPanel extends JPanel {
 		titleLabel.setFont(new Font("OCR A Extended", Font.BOLD, 60));
 		titlePanel.add(titleLabel);
 		
+		//TODO: change backbutton
 		JButton backButton = new JButton("");
 		backButton.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/backButton.png")));
 		backButton.setBounds(20, 22, 66, 66);
@@ -70,6 +72,7 @@ public class LevelPanel extends JPanel {
 	}
 
 	public void initButtons() {
+		//TODO change reset and undo buttons
 		JButton resetButton = new JButton("");
 		resetButton.setBounds(615, 215, 101, 42);
 		resetButton.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/reset.png")));
@@ -81,9 +84,6 @@ public class LevelPanel extends JPanel {
 		add(undoButton);
 	}
 	
-	/**
-	 * TODO update initHighScore with actual Level model references
-	 */
 	public void initHighScore() {
 		highScore = 0;//Level.getHighScore();
 		
@@ -107,9 +107,7 @@ public class LevelPanel extends JPanel {
 		highScoreLabel.setBounds(0, 35, 184, 37);
 		highScorePanel.add(highScoreLabel);
 	}
-	/**
-	 * TODO update initScore with actual Level model references
-	 */
+
 	public void initScore() {
 		
 		JPanel scorePanel = new JPanel();
