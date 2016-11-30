@@ -22,29 +22,29 @@ import game.view.LCApplication;
 import game.view.LevelPanel;
 import game.view.LevelSelectPanel;
 
-public class LevelSelectController extends MouseAdapter {
-	
-	LCApplication app;
+public class LevelSelectController implements ActionListener {
+
 	Model m;
-	LevelSelectPanel lvlSlctPnl;
-	JButton source;
+	LevelSelectPanel lsp;
+	String lvlType;
+	int lvlNum;
 	
-	public LevelSelectController(Model model, LevelSelectPanel lsp, LCApplication app) {
+	public LevelSelectController(Model model, LevelSelectPanel levelSelectPanel, String levType, int levNum) {
 		this.m = model;
-		this.lvlSlctPnl = lsp;
-		this.app = app;
+		this.lsp = levelSelectPanel;
+		this.lvlType = levType;
+		this.lvlNum = levNum;
 	}
 
 	public void actionPerformed(ActionEvent e) {
-
 		
-		JPanel contentPane = lvlSlctPnl.getContentPane();
+		JPanel contentPane = lsp.getContentPane();
         CardLayout cardLayout = (CardLayout) contentPane.getLayout();
         cardLayout.next(contentPane);
 		
 		//It was not getting through to the logic in the open level function
 		//I don't think the board gets added
-		Board puz = new Board();
+		//Board puz = new Board();
 /*
 		int[] stars = {1,2,3};
 		PuzzleLevel level = new PuzzleLevel(stars , puz, 1);
