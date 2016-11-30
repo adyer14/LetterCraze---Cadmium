@@ -17,4 +17,19 @@ public class Level {
 		
 	}
 	
+	public boolean resetLevel(){
+		return false;
+	}
+	
+	public boolean saveLevel(){
+		return false;
+	}
+	
+	public void setThemeWords(ArrayList<String> words){
+		
+	}
+	
+	public boolean addThemeWordTiles(String tw, Board b){
+		return false;
+	}
 }

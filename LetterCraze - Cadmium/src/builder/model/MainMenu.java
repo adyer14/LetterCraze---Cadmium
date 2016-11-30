@@ -9,4 +9,16 @@ public class MainMenu {
 	public MainMenu(){
 		
 	}
+	
+	public boolean deleteLevel(){
+		return false;
+	}
+	
+	public boolean loadLevel(){
+		return false;
+	}
+	
+	public boolean newLevel(){
+		return false;
+	}
 }
