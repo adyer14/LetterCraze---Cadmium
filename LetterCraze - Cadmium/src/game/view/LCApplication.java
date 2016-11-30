@@ -2,6 +2,9 @@ package game.view;
 
 import javax.swing.JFrame;
 
+import game.model.Level;
+import game.model.LevelSelect;
+import game.model.Model;
 import game.view.SplashScreenWindow;
 
 public class LCApplication extends JFrame {
@@ -10,17 +13,17 @@ public class LCApplication extends JFrame {
 	 * Keep Eclipse happy
 	 */
 	private static final long serialVersionUID = 4242171863344367254L;
-	
-	private LevelSelectPanel lsp;
-	private LevelPanel lp;
+
+	Model m;
+	LevelSelectPanel lsp;
 	
 	/**
 	 * Create the frame.
 	 */
-	public LCApplication() {
+	public LCApplication(Model m) {
 		super();
 		
-		//____________________________________________________
+		this.m = m;
 		
 		SplashScreenWindow splashWindow = new SplashScreenWindow();
 
@@ -40,13 +43,9 @@ public class LCApplication extends JFrame {
 		setBounds(250, 80, 816, 589);
 		setTitle("LetterCraze");
 		
-		lsp = new LevelSelectPanel();
+		lsp = new LevelSelectPanel(this.m, this);
 		getContentPane().add(lsp);
 		lsp.setVisible(true);
-		
-//		lcp = new LevelCreatorPanel();
-//		getContentPane().add(lcp);
-//		lcp.setVisible(true);
 	
 		
 		//_____________________________________________________

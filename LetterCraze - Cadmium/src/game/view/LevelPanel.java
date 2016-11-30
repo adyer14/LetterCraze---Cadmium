@@ -10,6 +10,9 @@ import javax.swing.SwingConstants;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+
+import game.model.Model;
+
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
 
@@ -28,12 +31,14 @@ public class LevelPanel extends JPanel {
 	private JLabel scoreLabel;
 	private JTextPane wordsTextPane;
 	private JLabel starLabel;
+	Model m;
 	
 	
 	/**
 	 * Create the panel.
 	 */
-	public LevelPanel() {
+	public LevelPanel(Model model) {
+		this.m = model;
 		setBounds(0, 0, 800, 550);
 		setBackground(new Color(230, 230, 250));
 
@@ -48,7 +53,7 @@ public class LevelPanel extends JPanel {
 	 * TODO update iniTitle with actual Level model references
 	 */
 	public void initTitle() {
-		String levType = "lightning";//Level.getLevType();
+		String levType = "Puzzle";//Level.getLevType();
 		int levNum = 6; //Level.getLevNum();
 		setLayout(null);
 		JPanel titlePanel = new JPanel();

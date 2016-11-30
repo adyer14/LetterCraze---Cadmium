@@ -2,20 +2,38 @@ package game.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.*;
+import java.awt.event.*;
 
 import javax.swing.JButton;
 
 import game.model.Board;
+import game.model.LevelSelect;
 import game.model.LightningLevel;
+import game.model.Model;
 import game.model.PuzzleLevel;
 import game.model.ThemeLevel;
+import game.view.LCApplication;
+import game.view.LevelPanel;
+import game.view.LevelSelectPanel;
 
-public class LevelSelectController implements ActionListener {
+public class LevelSelectController extends MouseAdapter {
+	
+	LCApplication app;
+	Model m;
+	LevelSelectPanel lvlSlctPnl;
+	JButton source;
+	
+	public LevelSelectController(Model model, LevelSelectPanel lsp, LCApplication app) {
+		this.m = model;
+		this.lvlSlctPnl = lsp;
+		this.app = app;
+	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-	    JButton source = (JButton) e.getSource();
+	    source = (JButton) e.getSource();
 	    String buttonName = source.getName();
 	    openLevel(buttonName);
 	}
@@ -48,8 +66,11 @@ public class LevelSelectController implements ActionListener {
 		}
 		if (type == "p"){
 			PuzzleLevel level = new PuzzleLevel(stars , puz, 1);
-			//init level
-			//show level
+			LevelPanel levelpanel = new LevelPanel(m);
+			this.app.getContentPane().add(levelpanel);
+			lvlSlctPnl.setVisible(false);
+			levelpanel.setVisible(true);
+			
 			}
 
 		else if (type == "l"){
