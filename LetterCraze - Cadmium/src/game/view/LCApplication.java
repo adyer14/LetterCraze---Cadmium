@@ -1,6 +1,10 @@
 package game.view;
 
+import java.awt.EventQueue;
+
 import javax.swing.JFrame;
+
+import builder.view.SplashScreenWindow;
 
 public class LCApplication extends JFrame {
 
@@ -11,6 +15,38 @@ public class LCApplication extends JFrame {
 	
 	private LevelSelectPanel lsp;
 	private LevelPanel lp;
+	
+	
+	public static void main(String[] args) {
+		SplashScreenWindow splashWindow = new SplashScreenWindow();
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					splashWindow.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		try {
+		    Thread.sleep(1000);
+		} catch (InterruptedException e) {
+		    e.printStackTrace();
+		}
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					splashWindow.setVisible(false);
+					LCApplication frame = new LCApplication();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		
+	}
+
 
 	/**
 	 * Create the frame.
