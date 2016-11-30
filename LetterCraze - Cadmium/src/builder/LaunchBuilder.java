@@ -1,42 +1,14 @@
 package builder;
 
-import java.awt.EventQueue;
+import javax.swing.*;
 
-import builder.view.BuilderApplication;
-import builder.view.SplashScreenWindow;
+import builder.view.*;
 
 public class LaunchBuilder {
-
-	
-	public static void main(String[] args){
+	public static void main(String[] args) {
 		
-		SplashScreenWindow splashWindow = new SplashScreenWindow();
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					splashWindow.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		try {
-		    Thread.sleep(100);
-		} catch (InterruptedException e) {
-		    e.printStackTrace();
-		}
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					splashWindow.setVisible(false);
-					BuilderApplication frame = new BuilderApplication();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		
-		
+		BuilderApplication app = new BuilderApplication();
+		app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		app.setVisible(true);
 	}
 }
