@@ -29,6 +29,7 @@ public class BuilderApplication extends JFrame {
 
 		try {
 			Thread.sleep(1000);
+			splashWindow.setVisible(false);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
