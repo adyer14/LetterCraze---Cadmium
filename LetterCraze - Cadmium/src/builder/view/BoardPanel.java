@@ -20,18 +20,23 @@ public class BoardPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public BoardPanel() {
-		setBounds(273, 203, 254, 254);
+		setBounds(0, 0, 254, 254);
 		setBackground(new Color(119, 136, 153));
 		setLayout(null);
 		setBorder(new LineBorder(new Color(176, 196, 222), 6));
 
-		
+		boolean dark = true;
 		for (int i = 0; i <= 5; i++) {
+			dark = !dark;
 			for (int j = 0; j <= 5; j++) {
+				dark = !dark;
 				squareButton[i][j] = new JToggleButton("");
-				squareButton[i][j].setSelectedIcon(new ImageIcon(BoardPanel.class.getResource("/images/squareSelectedLight.png")));
 				squareButton[i][j].setIcon(new ImageIcon(BoardPanel.class.getResource("/images/squareUnselected.png")));
 				squareButton[i][j].setBounds((j*40) + 7, (i*40) + 7, 40, 40);
+				if (dark)
+					squareButton[i][j].setSelectedIcon(new ImageIcon(BoardPanel.class.getResource("/images/squareSelectedDark.png")));
+				else
+					squareButton[i][j].setSelectedIcon(new ImageIcon(BoardPanel.class.getResource("/images/squareSelectedLight.png")));
 				add(squareButton[i][j]);
 			}
 		}
