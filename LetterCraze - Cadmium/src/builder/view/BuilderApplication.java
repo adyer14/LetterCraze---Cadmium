@@ -16,7 +16,7 @@ public class BuilderApplication extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		SplashScreenWindow splashWindow = new SplashScreenWindow();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -44,7 +44,7 @@ public class BuilderApplication extends JFrame {
 			}
 		});
 		
-	}
+	}*/
 
 	/**
 	 * Create the frame.
@@ -52,6 +52,20 @@ public class BuilderApplication extends JFrame {
 	public BuilderApplication() {
 		super();
 
+		SplashScreenWindow splashWindow = new SplashScreenWindow();
+
+		try {
+			splashWindow.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		setBounds(250, 80, 816, 589);
 		setTitle("Builder");
 		
