@@ -18,7 +18,7 @@ public class Level {
 	}
 	
 	public boolean resetLevel(){
-		return false;
+		return true;
 	}
 	
 	public boolean saveLevel(){
