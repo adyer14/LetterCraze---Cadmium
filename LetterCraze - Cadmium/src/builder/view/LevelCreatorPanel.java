@@ -17,6 +17,10 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
+
+import builder.controller.ExitLevelController;
+import builder.controller.NewLevelController;
+
 import javax.swing.JFormattedTextField;
 
 
@@ -35,22 +39,31 @@ public class LevelCreatorPanel extends JPanel {
 	private JFormattedTextField timeTextField;
 	private JTextField themeNameTextField;
 	private JTextPane themeWordsTextPane;
+	private JPanel contentPane;
+
+	private JButton backButton;
 	
 	/**
 	 * Create the panel.
 	 */
-	public LevelCreatorPanel() {
+	public LevelCreatorPanel(JPanel panel) {
+		contentPane = panel;
 		setBounds(0, 0, 800, 550);
 		setBackground(new Color(230, 230, 250));
 		setLayout(null);
 		
 		initInputPanels();
 		initTitlePanel();
-		
 		boardPanel = new BoardPanel();
 		boardPanel.setBounds(258, 255, 254, 254);
 		add(boardPanel);
 		
+		initControllers();
+		
+	}
+	
+	public JPanel getContentPane() {
+		return contentPane;
 	}
 	
 	public void initTitlePanel() {
@@ -60,7 +73,7 @@ public class LevelCreatorPanel extends JPanel {
 		titlePanel.setLayout(null);
 		add(titlePanel);
 		
-		JButton backButton = new JButton("");
+		backButton = new JButton("");
 		backButton.setForeground(new Color(119, 136, 153));
 		backButton.setBackground(new Color(119, 136, 153));
 		backButton.setIcon(new ImageIcon(LevelCreatorPanel.class.getResource("/images/backButton.png")));
@@ -97,7 +110,6 @@ public class LevelCreatorPanel extends JPanel {
 		
 	}
 
-	
 	public void initInputPanels() {
 		JPanel movesPanel = new JPanel();
 		movesPanel.setBackground(new Color(176, 196, 222));
@@ -229,4 +241,8 @@ public class LevelCreatorPanel extends JPanel {
 		
 	}
 	
+	public void initControllers() {
+		ExitLevelController elcontrol = new ExitLevelController(this);
+		backButton.addActionListener(elcontrol);
+	}
 }
