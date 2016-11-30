@@ -1,7 +1,5 @@
 package game.view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 
 import builder.view.SplashScreenWindow;
@@ -16,7 +14,7 @@ public class LCApplication extends JFrame {
 	private LevelSelectPanel lsp;
 	private LevelPanel lp;
 	
-	
+	/*
 	public static void main(String[] args) {
 		SplashScreenWindow splashWindow = new SplashScreenWindow();
 		EventQueue.invokeLater(new Runnable() {
@@ -46,6 +44,12 @@ public class LCApplication extends JFrame {
 		});
 		
 	}
+	*/
+	
+	
+	
+	
+	
 
 
 	/**
@@ -53,17 +57,48 @@ public class LCApplication extends JFrame {
 	 */
 	public LCApplication() {
 		super();
+		
+		//____________________________________________________
+		
+		SplashScreenWindow splashWindow = new SplashScreenWindow();
 
+		try {
+			splashWindow.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		try {
+			Thread.sleep(1000);
+			splashWindow.setVisible(false);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		setBounds(250, 80, 816, 589);
 		setTitle("LetterCraze");
 		
 		lsp = new LevelSelectPanel();
-		getContentPane().add (lsp);
-		lsp.setVisible(false);
+		getContentPane().add(lsp);
+		lsp.setVisible(true);
 		
-		lp = new LevelPanel();
-		getContentPane().add(lp);
-		lp.setVisible(true);
+//		lcp = new LevelCreatorPanel();
+//		getContentPane().add(lcp);
+//		lcp.setVisible(true);
+	
+		
+		//_____________________________________________________
+
+//		setBounds(250, 80, 816, 589);
+//		setTitle("LetterCraze");
+		
+//		lsp = new LevelSelectPanel();
+//		getContentPane().add (lsp);
+//		lsp.setVisible(true);
+		
+//		lp = new LevelPanel();
+//		getContentPane().add(lp);
+//		lp.setVisible(true);
 		
 
 	}
