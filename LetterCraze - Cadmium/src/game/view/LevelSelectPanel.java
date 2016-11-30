@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import builder.controller.NewLevelController;
 import game.controller.LevelSelectController;
 import game.model.LevelSelect;
 import game.model.Model;
@@ -20,7 +21,6 @@ public class LevelSelectPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = -8120104755673468942L;
 	
-	LCApplication app;
 	Model m;
 	JPanel contentPane;
 	JButton puzzleButton[] = new JButton[6];
@@ -46,23 +46,35 @@ public class LevelSelectPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public LevelSelectPanel(Model model, LCApplication view, JPanel contentPane) {
-		this.app = view;
+	public LevelSelectPanel(Model model, JPanel panel) {
 		this.m = model;
-		this.contentPane = contentPane;
+		contentPane = panel;
 		
 		setBounds(0, 0, 800, 550);
 		setBackground(new Color(230, 230, 250));
 		setLayout(null);
+		
 		initTitles();
 		initButtons();
 		initStars();
-		
-		LevelSelectController lsc = new LevelSelectController (this.m, this, this.app);
-		this.addMouseListener(lsc);
-		this.addMouseMotionListener(lsc);
+		initControllers();
 	}
 	
+	private void initControllers() {
+		for (int puzzNum = 1; puzzNum <= 5; puzzNum++) { 
+			LevelSelectController lscontrol = new LevelSelectController(m, this, "puzzle", puzzNum);
+			puzzleButton[puzzNum].addActionListener(lscontrol);
+		}
+		for (int litNum = 1; litNum <= 5; litNum++) {
+			LevelSelectController lscontrol = new LevelSelectController(m, this, "lightning", litNum);
+			lightningButton[litNum].addActionListener(lscontrol);
+		}
+		for (int thmNum = 1; thmNum <= 5; thmNum++) {
+			LevelSelectController lscontrol = new LevelSelectController(m, this, "theme", thmNum);
+			themeButton[thmNum].addActionListener(lscontrol);
+		}
+	}
+
 	public JPanel getContentPane() {
 		return contentPane;
 	}
