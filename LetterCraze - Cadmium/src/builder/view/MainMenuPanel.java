@@ -15,6 +15,10 @@ public class MainMenuPanel extends JPanel {
 	 * Keep Eclipse happy
 	 */
 	private static final long serialVersionUID = 6797683652563023292L;
+	
+	JButton newLevelButton;
+	JButton loadLevelButton;
+	JButton deleteLevelButton;
 
 	/**
 	 * Create the panel.
@@ -37,7 +41,7 @@ public class MainMenuPanel extends JPanel {
 		mainMenuLabel.setBounds(0, 0, 800, 160);
 		titlePanel.add(mainMenuLabel);
 
-		JButton newLevelButton = new JButton("NEW LEVEL");
+		newLevelButton = new JButton("NEW LEVEL");
 		newLevelButton.setForeground(new Color(0, 0, 0));
 		newLevelButton.setBackground(new Color(176, 196, 222));
 		newLevelButton.setFont(new Font("OCR A Extended", Font.BOLD, 30));
@@ -45,7 +49,7 @@ public class MainMenuPanel extends JPanel {
 		newLevelButton.setBorder(new LineBorder(new Color(119, 136, 153), 3));
 		add(newLevelButton);
 		
-		JButton loadLevelButton = new JButton("LOAD LEVEL");
+		loadLevelButton = new JButton("LOAD LEVEL");
 		loadLevelButton.setForeground(new Color(0, 0, 0));
 		loadLevelButton.setFont(new Font("OCR A Extended", Font.BOLD, 30));
 		loadLevelButton.setBackground(new Color(176, 196, 222));
@@ -53,7 +57,7 @@ public class MainMenuPanel extends JPanel {
 		loadLevelButton.setBorder(new LineBorder(new Color(119, 136, 153), 3));
 		add(loadLevelButton);
 		
-		JButton deleteLevelButton = new JButton("DELETE LEVEL");
+		deleteLevelButton = new JButton("DELETE LEVEL");
 		deleteLevelButton.setForeground(new Color(0, 0, 0));
 		deleteLevelButton.setFont(new Font("OCR A Extended", Font.BOLD, 30));
 		deleteLevelButton.setBackground(new Color(176, 196, 222));
