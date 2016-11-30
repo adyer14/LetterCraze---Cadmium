@@ -13,6 +13,7 @@ import game.model.LightningLevel;
 import game.model.Model;
 import game.model.PuzzleLevel;
 import game.model.ThemeLevel;
+import game.view.BoardPanel;
 import game.view.LCApplication;
 import game.view.LevelPanel;
 import game.view.LevelSelectPanel;
@@ -32,10 +33,21 @@ public class LevelSelectController extends MouseAdapter {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-	    source = (JButton) e.getSource();
-	    String buttonName = source.getName();
-	    openLevel(buttonName);
+
+		//It was not getting through to the logic in the open level function
+		//I don't think the board gets added
+		Board puz = new Board();
+
+		int[] stars = {1,2,3};
+		PuzzleLevel level = new PuzzleLevel(stars , puz, 1);
+		LevelPanel levelpanel = new LevelPanel(m);
+		this.app.getContentPane().add(levelpanel);
+		lvlSlctPnl.setVisible(false);
+		levelpanel.setVisible(true);
+		
+//	    source = (JButton) e.getSource();
+//	    String buttonName = source.getName();
+//	    openLevel(buttonName);
 	}
 	
 	public void openLevel(String levelName){
@@ -44,6 +56,13 @@ public class LevelSelectController extends MouseAdapter {
 		String type = levelName.substring(0,1);
 		String sNum = levelName.substring(levelName.length() - 1, levelName.length());
 		int lvlNum;
+		//this might work
+//		PuzzleLevel level = new PuzzleLevel(stars , puz, 1);
+//		LevelPanel levelpanel = new LevelPanel(m);
+//		this.app.getContentPane().add(levelpanel);
+//		lvlSlctPnl.setVisible(false);
+//		levelpanel.setVisible(true);
+		
 		switch (sNum){
 		case "1":
 			lvlNum = 1;
@@ -65,23 +84,23 @@ public class LevelSelectController extends MouseAdapter {
 			break;
 		}
 		if (type == "p"){
-			PuzzleLevel level = new PuzzleLevel(stars , puz, 1);
-			LevelPanel levelpanel = new LevelPanel(m);
-			this.app.getContentPane().add(levelpanel);
-			lvlSlctPnl.setVisible(false);
-			levelpanel.setVisible(true);
+//			PuzzleLevel level = new PuzzleLevel(stars , puz, 1);
+//			LevelPanel levelpanel = new LevelPanel(m);
+//			this.app.getContentPane().add(levelpanel);
+//			lvlSlctPnl.setVisible(false);
+//			levelpanel.setVisible(true);
 			
 			}
 
 		else if (type == "l"){
-			LightningLevel level = new LightningLevel();
-			//init level
-			//show level
+//			LightningLevel level = new LightningLevel();
+//			//init level
+//			//show level
 		}
 		else {
-			ThemeLevel level = new ThemeLevel(stars , puz, 1);
-			//init level
-			//show level
+//			ThemeLevel level = new ThemeLevel(stars , puz, 1);
+//			//init level
+//			//show level
 		}
 	}
 
