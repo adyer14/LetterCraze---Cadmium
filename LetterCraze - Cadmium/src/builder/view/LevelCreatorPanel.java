@@ -35,14 +35,6 @@ public class LevelCreatorPanel extends JPanel {
 	private JFormattedTextField timeTextField;
 	private JTextField themeNameTextField;
 	private JTextPane themeWordsTextPane;
-
-	private JLabel star1ValueLabel;
-	private JLabel star2ValueLabel;
-	private JLabel star3ValueLabel;
-	private JLabel movesValueLabel;
-	private JLabel timeValueLabel;
-	private JLabel themeNameValueLabel;
-	private JTextPane themeWordsValueTP;
 	
 	/**
 	 * Create the panel.
