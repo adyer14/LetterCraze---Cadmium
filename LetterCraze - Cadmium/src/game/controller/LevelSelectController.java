@@ -38,21 +38,21 @@ public class LevelSelectController extends MouseAdapter {
 	public void actionPerformed(ActionEvent e) {
 
 		
-		JRootPane contentPane = lvlSlctPnl.getRootPane();
+		JPanel contentPane = lvlSlctPnl.getContentPane();
         CardLayout cardLayout = (CardLayout) contentPane.getLayout();
         cardLayout.next(contentPane);
 		
 		//It was not getting through to the logic in the open level function
 		//I don't think the board gets added
 		Board puz = new Board();
-
+/*
 		int[] stars = {1,2,3};
 		PuzzleLevel level = new PuzzleLevel(stars , puz, 1);
 		LevelPanel levelpanel = new LevelPanel(m);
 		this.app.getContentPane().add(levelpanel);
 		lvlSlctPnl.setVisible(false);
 		levelpanel.setVisible(true);
-	
+	*/
 		
 //	    source = (JButton) e.getSource();
 //	    String buttonName = source.getName();

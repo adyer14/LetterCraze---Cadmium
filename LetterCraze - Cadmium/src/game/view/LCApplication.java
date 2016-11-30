@@ -43,7 +43,7 @@ public class LCApplication extends JFrame {
 		setBounds(250, 80, 816, 589);
 		setTitle("LetterCraze");
 		
-		lsp = new LevelSelectPanel(this.m, this);
+		lsp = new LevelSelectPanel(this.m, this, lsp);
 		getContentPane().add(lsp);
 		lsp.setVisible(true);
 	

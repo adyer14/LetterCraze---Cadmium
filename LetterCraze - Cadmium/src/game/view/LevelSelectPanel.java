@@ -22,6 +22,7 @@ public class LevelSelectPanel extends JPanel {
 	
 	LCApplication app;
 	Model m;
+	JPanel contentPane;
 	JButton puzzleButton[] = new JButton[6];
 	JButton lightningButton[] = new JButton[6];
 	JButton themeButton[] = new JButton[6];
@@ -45,9 +46,11 @@ public class LevelSelectPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public LevelSelectPanel(Model model, LCApplication view) {
+	public LevelSelectPanel(Model model, LCApplication view, JPanel contentPane) {
 		this.app = view;
 		this.m = model;
+		this.contentPane = contentPane;
+		
 		setBounds(0, 0, 800, 550);
 		setBackground(new Color(230, 230, 250));
 		setLayout(null);
@@ -58,6 +61,10 @@ public class LevelSelectPanel extends JPanel {
 		LevelSelectController lsc = new LevelSelectController (this.m, this, this.app);
 		this.addMouseListener(lsc);
 		this.addMouseMotionListener(lsc);
+	}
+	
+	public JPanel getContentPane() {
+		return contentPane;
 	}
 	
 	public void initButtons() {	
