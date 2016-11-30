@@ -6,7 +6,11 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JRootPane;
 
+import builder.view.MainMenuPanel;
 import game.model.Board;
 import game.model.LevelSelect;
 import game.model.LightningLevel;
@@ -31,9 +35,13 @@ public class LevelSelectController extends MouseAdapter {
 		this.app = app;
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e) {
+	public void actionPerformed(ActionEvent e) {
 
+		
+		JRootPane contentPane = lvlSlctPnl.getRootPane();
+        CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+        cardLayout.next(contentPane);
+		
 		//It was not getting through to the logic in the open level function
 		//I don't think the board gets added
 		Board puz = new Board();
@@ -44,11 +52,14 @@ public class LevelSelectController extends MouseAdapter {
 		this.app.getContentPane().add(levelpanel);
 		lvlSlctPnl.setVisible(false);
 		levelpanel.setVisible(true);
+	
 		
 //	    source = (JButton) e.getSource();
 //	    String buttonName = source.getName();
 //	    openLevel(buttonName);
 	}
+	
+	
 	
 	public void openLevel(String levelName){
 		Board puz = new Board();
