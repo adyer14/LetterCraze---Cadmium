@@ -2,7 +2,7 @@ package game.view;
 
 import javax.swing.JFrame;
 
-import builder.view.SplashScreenWindow;
+import game.view.SplashScreenWindow;
 
 public class LCApplication extends JFrame {
 
