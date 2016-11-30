@@ -22,9 +22,9 @@ public class NewLevelController extends MouseAdapter {
 	public void MouseClicked(MouseEvent me){
 	
 		mainMenuView.setVisible(false);
-		mainMenuView.invalidate();
+		//mainMenuView.invalidate();
 		
 		levelCreatorView.setVisible(true);
-		levelCreatorView.validate();
+		//levelCreatorView.validate();
 	}
 }

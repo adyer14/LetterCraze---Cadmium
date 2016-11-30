@@ -18,14 +18,14 @@ public class ExitLevelController extends MouseAdapter {
 		//this.mainMenu = mm;
 		this.mainMenuView = mmv;
 	}
-	/// example
+	
 	public void MousePressed(MouseEvent me){
 		
 		levelCreatorView.setVisible(false);
-		levelCreatorView.invalidate();
+		//levelCreatorView.invalidate();
 		
 		mainMenuView.setVisible(true);
-		mainMenuView.validate();
+		//mainMenuView.validate();
 	}
 
 }
