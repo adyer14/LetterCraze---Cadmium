@@ -12,39 +12,6 @@ public class BuilderApplication extends JFrame {
 
 	private MainMenuPanel mmp;
 	private LevelCreatorPanel lcp;
-	
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		SplashScreenWindow splashWindow = new SplashScreenWindow();
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					splashWindow.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		try {
-		    Thread.sleep(100);
-		} catch (InterruptedException e) {
-		    e.printStackTrace();
-		}
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					splashWindow.setVisible(false);
-					BuilderApplication frame = new BuilderApplication();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		
-	}
 
 	/**
 	 * Create the frame.
@@ -52,6 +19,20 @@ public class BuilderApplication extends JFrame {
 	public BuilderApplication() {
 		super();
 
+		SplashScreenWindow splashWindow = new SplashScreenWindow();
+
+		try {
+			splashWindow.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		setBounds(250, 80, 816, 589);
 		setTitle("Builder");
 		
