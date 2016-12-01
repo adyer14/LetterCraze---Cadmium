@@ -17,10 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
-
 import builder.controller.ExitLevelController;
-import builder.controller.NewLevelController;
-
 import javax.swing.JFormattedTextField;
 
 
@@ -37,12 +34,14 @@ public class LevelCreatorPanel extends JPanel {
 	private JFormattedTextField star3TextField;
 	private JFormattedTextField movesTextField;
 	private JFormattedTextField timeTextField;
+	private JComboBox<String> levelNumCB;
+	private JComboBox<String> levelTypeCB;
 	private JTextField themeNameTextField;
 	private JTextPane themeWordsTextPane;
-	private JPanel contentPane;
-
 	private JButton backButton;
-	
+	private JButton resetButton;
+	private JButton saveButton;
+	private JPanel contentPane;
 	/**
 	 * Create the panel.
 	 */
@@ -54,18 +53,12 @@ public class LevelCreatorPanel extends JPanel {
 		
 		initInputPanels();
 		initTitlePanel();
-		boardPanel = new BoardPanel();
-		boardPanel.setBounds(258, 255, 254, 254);
-		add(boardPanel);
+		initBoard();
 		
 		initControllers();
 		
 	}
-	
-	public JPanel getContentPane() {
-		return contentPane;
-	}
-	
+
 	public void initTitlePanel() {
 		JPanel titlePanel = new JPanel();
 		titlePanel.setBackground(new Color(119, 136, 153));
@@ -80,28 +73,28 @@ public class LevelCreatorPanel extends JPanel {
 		backButton.setBounds(19, 21, 68, 68);
 		titlePanel.add(backButton);
 		
-		JComboBox<String> levelTypeCB = new JComboBox<String>();
+		levelTypeCB = new JComboBox<String>();
 		levelTypeCB.setBounds(198, 21, 319, 68);
 		levelTypeCB.setBackground(new Color(176, 196, 222));
 		levelTypeCB.setFont(new Font("OCR A Extended", Font.BOLD, 45));
 		levelTypeCB.setModel(new DefaultComboBoxModel<String>(new String[] {"LEVEL TYPE", "PUZZLE", "LIGHTNING", "THEME"}));
 		titlePanel.add(levelTypeCB);
 		
-		JComboBox<String> levelNumCB = new JComboBox<String>();
+		levelNumCB = new JComboBox<String>();
 		levelNumCB.setBounds(534, 21, 68, 68);
 		levelNumCB.setBackground(new Color(176, 196, 222));
 		levelNumCB.setFont(new Font("OCR A Extended", Font.BOLD, 45));
 		levelNumCB.setModel(new DefaultComboBoxModel<String>(new String[] {"#", "1", "2", "3", "4", "5"}));
 		titlePanel.add(levelNumCB);
 		
-		JButton resetButton = new JButton("RESET");
+		resetButton = new JButton("RESET");
 		resetButton.setBounds(675, 12, 99, 40);
 		resetButton.setFont(new Font("OCR A Extended", Font.BOLD, 23));
 		resetButton.setBackground(new Color(255, 228, 225));
 		resetButton.setBorder(new LineBorder(new Color(255, 192, 203), 3));
 		titlePanel.add(resetButton);
 		
-		JButton saveButton = new JButton("SAVE");
+		saveButton = new JButton("SAVE");
 		saveButton.setBounds(675, 58, 99, 40);
 		saveButton.setFont(new Font("OCR A Extended", Font.BOLD, 23));
 		saveButton.setBackground(new Color(255, 228, 225));
@@ -241,8 +234,19 @@ public class LevelCreatorPanel extends JPanel {
 		
 	}
 	
+	public void initBoard() {
+		boardPanel = new BoardPanel();
+		boardPanel.setBounds(258, 255, 254, 254);
+		add(boardPanel);
+	}
+	
 	public void initControllers() {
 		ExitLevelController elcontrol = new ExitLevelController(this);
 		backButton.addActionListener(elcontrol);
 	}
+
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+
 }
