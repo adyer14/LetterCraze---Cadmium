@@ -2,11 +2,11 @@ package game.model;
 
 public class PuzzleLevel extends Level {
 	
-	int movesRemaining;
+	private int movesLeft;
 
-	public PuzzleLevel(int[] starVal, Board board, int levelNumber) {
+	public PuzzleLevel(int[] starVal, Board board, int levelNumber, int numMoves) {
 		super(starVal, board, levelNumber);
-		// TODO Auto-generated constructor stub
+		this.movesLeft = numMoves;
 	}
 
 	
@@ -40,6 +40,16 @@ public class PuzzleLevel extends Level {
 	
 	public int calculateScore () {
 		return 0;
+	}
+
+
+	public int getMovesLeft() {
+		return movesLeft;
+	}
+
+
+	public void setMovesLeft(int movesLeft) {
+		this.movesLeft = movesLeft;
 	}
 	
 }

@@ -2,13 +2,13 @@ package game.model;
 
 public class ThemeLevel extends Level {
 
+	private Dictionary themeWords;
+	private String themeName;
 	
-	Dictionary themeWords;
-	String themeName;
-	
-	public ThemeLevel(int[] starVal, Board board, int levelNumber) {
+	public ThemeLevel(int[] starVal, Board board, int levelNumber, String themeName, Dictionary themeWords) {
 		super(starVal, board, levelNumber);
-		// TODO Auto-generated constructor stub
+		this.setThemeName(themeName);
+		this.themeWords = themeWords;
 	}
 
 	public Level resetLevel () {
@@ -37,6 +37,22 @@ public class ThemeLevel extends Level {
 	
 	public boolean repopulate (Board board) {
 		return false;
+	}
+
+	public Dictionary getThemeWords() {
+		return themeWords;
+	}
+
+	public void setThemeWords(Dictionary themeWords) {
+		this.themeWords = themeWords;
+	}
+
+	public String getThemeName() {
+		return themeName;
+	}
+
+	public void setThemeName(String themeName) {
+		this.themeName = themeName;
 	}
 	
 	

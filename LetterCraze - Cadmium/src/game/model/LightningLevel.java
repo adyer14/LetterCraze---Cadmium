@@ -1,14 +1,15 @@
 package game.model;
 import java.util.Timer;
 
-public class LighteningLevel extends Level {
+public class LightningLevel extends Level {
 	
 	boolean isOver;
+	private int time;
 	Timer timer;
 
-	public LighteningLevel(int[] starVal, Board board, int levelNumber) {
+	public LightningLevel(int[] starVal, Board board, int levelNumber, int time) {
 		super(starVal, board, levelNumber);
-		// TODO Auto-generated constructor stub
+		this.time = time;
 	}
 
 	public Level resetLevel () {
@@ -37,6 +38,14 @@ public class LighteningLevel extends Level {
 	
 	public boolean repopulate (Board board) {
 		return false;
+	}
+
+	public int getTime() {
+		return time;
+	}
+
+	public void setTime(int time) {
+		this.time = time;
 	}
 	
 	
