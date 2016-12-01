@@ -32,7 +32,7 @@ public class LCApplication extends JFrame {
 		JPanel contentPane = new JPanel();
 		contentPane.setLayout(new CardLayout());
 		lsp = new LevelSelectPanel(m, contentPane);
-		lp = new LevelPanel(contentPane);
+		lp = new LevelPanel(m, contentPane);
 		contentPane.add(lsp);
 		contentPane.add(lp);
 		
