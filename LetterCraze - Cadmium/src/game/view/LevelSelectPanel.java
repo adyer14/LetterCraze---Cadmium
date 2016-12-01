@@ -8,10 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
-import builder.controller.NewLevelController;
 import game.controller.LevelSelectController;
-import game.model.LevelSelect;
 import game.model.Model;
 
 public class LevelSelectPanel extends JPanel {
