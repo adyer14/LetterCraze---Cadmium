@@ -7,23 +7,20 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
-
 import game.view.BoardPanel;
 import game.controller.ExitLevelController;
-import game.model.Level;
 import game.model.Model;
 
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
 
 public class LevelPanel extends JPanel {
-	// TODO create and include BoardPanel and constraintPanel()
-	// TODO create abstract methods for setting level name, constraint panel name, constraint source, 
 	// TODO (LATER) make those update functions into one refresh probably
-	// TODO actually just update everything with Level when Level exists functionally
+	
 	/**
 	 * Keep Eclipse happy
 	 */
@@ -39,20 +36,20 @@ public class LevelPanel extends JPanel {
 	private JButton undoButton;
 	private JButton backButton;
 	private Model model;
-
-	protected JPanel constraintPanel;
-
 	private BoardPanel boardPanel;
-	
+	protected JPanel constraintPanel;
+	protected JPanel titlePanel;
+	protected JLabel titleLabel;
 	
 	/**
 	 * Create the panel.
 	 */
 	public LevelPanel(Model model, JPanel panel) {
-		contentPane = panel;
+		this.contentPane = panel;
 		this.model = model;
 		setBounds(0, 0, 800, 550);
 		setBackground(new Color(230, 230, 250));
+		setLayout(null);
 
 		initTitle();
 		initButtons();
@@ -68,28 +65,21 @@ public class LevelPanel extends JPanel {
 		add(boardPanel);
 	}
 	
-	
-	/**
-	 * TODO update iniTitle with actual Level model references
-	 */
 	public void initTitle() {
-		String levType = "Puzzle";//Level.getLevType();
-		int levNum = 6; //Level.getLevNum();
-		setLayout(null);
-		JPanel titlePanel = new JPanel();
+		
+		titlePanel = new JPanel();
 		titlePanel.setBounds(0, 0, 800, 110);
 		titlePanel.setBackground(new Color(119, 136, 153));
 		titlePanel.setLayout(null);
 		add(titlePanel);
 		
-		JLabel titleLabel = new JLabel(levType.toUpperCase() + " " + levNum);
+		titleLabel = new JLabel("");
 		titleLabel.setForeground(Color.BLACK);
 		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		titleLabel.setBounds(0, 0, 800, 110);
 		titleLabel.setFont(new Font("OCR A Extended", Font.BOLD, 60));
 		titlePanel.add(titleLabel);
 		
-		//TODO: change backbutton
 		backButton = new JButton("");
 		backButton.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/backButton.png")));
 		backButton.setBounds(20, 22, 66, 66);
@@ -97,15 +87,20 @@ public class LevelPanel extends JPanel {
 	}
 
 	public void initButtons() {
-		//TODO change reset and undo buttons
-		resetButton = new JButton("");
+		resetButton = new JButton("RESET");
 		resetButton.setBounds(615, 215, 101, 42);
-		resetButton.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/reset.png")));
+		resetButton.setFont(new Font("OCR A Extended", Font.BOLD, 23));
+		resetButton.setForeground(new Color(0, 0, 0));
+		resetButton.setBackground(new Color(176, 196, 222));
+		resetButton.setBorder(new LineBorder(new Color(119, 136, 153), 3));
 		add(resetButton);
 		
-		undoButton = new JButton("");
+		undoButton = new JButton("UNDO");
 		undoButton.setBounds(615, 272, 101, 42);
-		undoButton.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/undo.png")));
+		undoButton.setFont(new Font("OCR A Extended", Font.BOLD, 23));
+		undoButton.setForeground(new Color(0, 0, 0));
+		undoButton.setBackground(new Color(176, 196, 222));
+		undoButton.setBorder(new LineBorder(new Color(119, 136, 153), 3));
 		add(undoButton);
 	}
 	
@@ -117,6 +112,7 @@ public class LevelPanel extends JPanel {
 		add(constraintPanel);
 	}
 	
+	//TODO Link highScore with corresponding level - only field that initializes not blank
 	public void initHighScore() {
 		highScore = 0;//Level.getHighScore();
 		
@@ -214,6 +210,14 @@ public class LevelPanel extends JPanel {
 	
 	public JPanel getConstraintPanel() {
 		return constraintPanel;
+	}
+	
+	public JPanel getTitlePanel() {
+		return titlePanel;
+	}
+	
+	public JLabel getTitleLabel() {
+		return titleLabel;
 	}
 	
 	// Don't worry about this quite yet
