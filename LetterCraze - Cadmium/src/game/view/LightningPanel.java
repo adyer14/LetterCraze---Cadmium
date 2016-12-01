@@ -2,12 +2,9 @@ package game.view;
 
 import java.awt.Color;
 import java.awt.Font;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
-import game.model.Level;
 import game.model.LightningLevel;
 import game.model.Model;
 
@@ -18,17 +15,19 @@ public class LightningPanel extends LevelPanel{
 	private static final long serialVersionUID = -7930599956477748320L;
 	
 	Model m;
-
 	private JLabel timeLabel;
 	private int timeLeft;
 	
 	/**
 	 * Create the panel.
 	 */
-	public LightningPanel(Model model, JPanel panel) {//, ) {
+	public LightningPanel(Model model, JPanel panel, LightningLevel litLvl) {
 		super(model, panel);
+		int levNum = litLvl.getLevelNumber();
+		titleLabel.setText("LIGHTNING" + " " + levNum);
+		titlePanel.add(titleLabel);
 		
-		timeLeft = 0;//Level.getHighScore();
+		timeLeft = litLvl.getTime();
 		
 		JLabel tLabel = new JLabel("TIMER");
 		tLabel.setHorizontalAlignment(SwingConstants.CENTER);

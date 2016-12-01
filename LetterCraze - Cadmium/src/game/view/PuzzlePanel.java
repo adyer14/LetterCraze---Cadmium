@@ -2,13 +2,11 @@ package game.view;
 
 import java.awt.Color;
 import java.awt.Font;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
-import game.model.Level;
 import game.model.Model;
+import game.model.PuzzleLevel;
 
 public class PuzzlePanel extends LevelPanel{
 
@@ -17,19 +15,20 @@ public class PuzzlePanel extends LevelPanel{
 	 */
 	private static final long serialVersionUID = -2099720612660676023L;
 
-	
 	Model m;
-
 	private JLabel movesLabel;
 	private int movesLeft;
 	
 	/**
 	 * Create the panel.
 	 */
-	public PuzzlePanel(Model model, JPanel panel) {//, PuzzleLevel model) {
+	public PuzzlePanel(Model model, JPanel panel, PuzzleLevel pzzLvl) {
 		super(model, panel);
+		int levNum = pzzLvl.getLevelNumber();
+		titleLabel.setText("PUZZLE" + " " + levNum);
+		titlePanel.add(titleLabel);
 		
-		movesLeft = 0;//Level.getHighScore();
+		movesLeft = pzzLvl.getMovesLeft();
 		
 		JLabel mLabel = new JLabel("MOVES");
 		mLabel.setHorizontalAlignment(SwingConstants.CENTER);
