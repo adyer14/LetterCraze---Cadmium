@@ -4,10 +4,10 @@ import java.awt.CardLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import game.model.Level;
-import game.model.LevelSelect;
+import game.model.LightningLevel;
 import game.model.Model;
+import game.model.PuzzleLevel;
+import game.model.ThemeLevel;
 import game.view.SplashScreenWindow;
 
 public class LCApplication extends JFrame {
@@ -20,6 +20,11 @@ public class LCApplication extends JFrame {
 	Model m;
 	LevelSelectPanel lsp;
 	LevelPanel lp;
+	PuzzlePanel pp;
+
+	private ThemePanel[] thmPnl = new ThemePanel[6];
+	private LightningPanel[] litPnl = new LightningPanel[6];
+	private PuzzlePanel[] pzzPnl = new PuzzlePanel[6];
 	
 	/**
 	 * Create the frame.
@@ -29,14 +34,7 @@ public class LCApplication extends JFrame {
 		
 		this.m = m;
 		splashWindow();
-		JPanel contentPane = new JPanel();
-		contentPane.setLayout(new CardLayout());
-		lsp = new LevelSelectPanel(m, contentPane);
-		lp = new LevelPanel(m, contentPane);
-		contentPane.add(lsp);
-		contentPane.add(lp);
-		
-		setContentPane(contentPane);
+		initPanels();
         pack();   
         setLocationByPlatform(true);
         setVisible(true);
@@ -62,4 +60,32 @@ public class LCApplication extends JFrame {
 		}
 	}
 
+	public void initPanels() {
+		JPanel contentPane = new JPanel();
+		contentPane.setLayout(new CardLayout());
+		lsp = new LevelSelectPanel(m, contentPane);
+		contentPane.add(lsp, "levelSelectPanel");
+		for (int i = 1; i <= 5; i++) { 
+			String puzzID = "puzzlePanel" + i;
+			PuzzleLevel pzzLvl = m.getLevelSelect().getPuzzleLevel(i);
+			pzzPnl[i] = new PuzzlePanel(m, contentPane, pzzLvl);
+			contentPane.add(pzzPnl[i], puzzID);
+			
+			String litID = "lightningPanel" + i;
+			LightningLevel litLvl = m.getLevelSelect().getLightningLevel(i);
+			litPnl[i] = new LightningPanel(m, contentPane, litLvl);
+			contentPane.add(litPnl[i], litID);
+			
+			String thmID = "themePanel" + i;
+			ThemeLevel thmLvl = m.getLevelSelect().getThemeLevel(i);
+			thmPnl[i] = new ThemePanel(m, contentPane, thmLvl);
+			contentPane.add(thmPnl[i], thmID);
+		}
+
+		lp = new LevelPanel(m, contentPane);
+		
+		contentPane.add(lp, "LevelPanel");
+		
+		setContentPane(contentPane);
+	}
 }
