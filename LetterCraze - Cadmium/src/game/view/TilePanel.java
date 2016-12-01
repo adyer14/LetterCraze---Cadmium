@@ -5,6 +5,8 @@ import java.awt.Color;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import game.model.Model;
+
 public class TilePanel extends JPanel {
 
 	/**
@@ -12,10 +14,13 @@ public class TilePanel extends JPanel {
 	 */
 	private static final long serialVersionUID = -872998560741757223L;
 
+	private Model m;
+	
 	/**
 	 * Create the panel.
 	 */
-	public TilePanel(Color color) {
+	public TilePanel(Model model, Color color) {
+		this.m = model;
 		setBounds(0, 0, 40, 40);
 		setBackground(color);
 		setLayout(null);
