@@ -10,6 +10,8 @@ import javax.swing.SwingConstants;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+
+import game.view.BoardPanel;
 import game.controller.ExitLevelController;
 import game.model.Level;
 import game.model.Model;
@@ -36,15 +38,19 @@ public class LevelPanel extends JPanel {
 	private JButton resetButton;
 	private JButton undoButton;
 	private JButton backButton;
-	private Level model;
+	private Model model;
+
+	protected JPanel constraintPanel;
+
+	private BoardPanel boardPanel;
 	
 	
 	/**
 	 * Create the panel.
 	 */
-	public LevelPanel(/*Level level,*/ JPanel panel) {
+	public LevelPanel(Model model, JPanel panel) {
 		contentPane = panel;
-		//this.model = level;
+		this.model = model;
 		setBounds(0, 0, 800, 550);
 		setBackground(new Color(230, 230, 250));
 
@@ -55,7 +61,14 @@ public class LevelPanel extends JPanel {
 		initWords();
 		initStars();
 		initControllers();
+		initConstraint();
+		
+		boardPanel = new BoardPanel(model);
+		boardPanel.setBounds(297, 203, 254, 254);
+		add(boardPanel);
 	}
+	
+	
 	/**
 	 * TODO update iniTitle with actual Level model references
 	 */
@@ -94,6 +107,14 @@ public class LevelPanel extends JPanel {
 		undoButton.setBounds(615, 272, 101, 42);
 		undoButton.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/undo.png")));
 		add(undoButton);
+	}
+	
+	public void initConstraint() {
+		constraintPanel = new JPanel();
+		constraintPanel.setBounds(615, 348, 101, 77);
+		constraintPanel.setBackground(new Color(176, 196, 222));
+		constraintPanel.setLayout(null);
+		add(constraintPanel);
 	}
 	
 	public void initHighScore() {
@@ -191,8 +212,12 @@ public class LevelPanel extends JPanel {
 		return contentPane;
 	}
 	
+	public JPanel getConstraintPanel() {
+		return constraintPanel;
+	}
 	
-	
+	// Don't worry about this quite yet
+	/*
 	public void updateHighScore() {
 		highScore = 5; //Level.getHighScore();
 		highScoreLabel.setText(Integer.toString(highScore));
@@ -212,5 +237,5 @@ public class LevelPanel extends JPanel {
 	public void updateStars() {
 		int maxStarsAchieved = 2;//Level.getMaxStarsAchieved();
 		starLabel.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/" + maxStarsAchieved + "GameStars.png")));
-	}
+	}*/
 }
