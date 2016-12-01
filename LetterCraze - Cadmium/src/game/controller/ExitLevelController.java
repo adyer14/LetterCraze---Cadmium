@@ -9,14 +9,15 @@ import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
 
 import game.model.Level;
+import game.model.Model;
 import game.view.LevelPanel;
 
 public class ExitLevelController  implements ActionListener {
-	Level lvl;
+	Model m;
 	LevelPanel lp;
 	
-	public ExitLevelController(Level level, LevelPanel levelPanel){
-		this.lvl = level; 
+	public ExitLevelController(Model model, LevelPanel levelPanel){
+		this.m = model; 
 		this.lp = levelPanel;
 	}
 	
