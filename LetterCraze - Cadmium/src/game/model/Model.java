@@ -12,4 +12,12 @@ public class Model {
 		this.level = level;
 	}
 	
+	public LevelSelect getLevelSelect() {
+		return ls;
+	}
+	
+	public void setLevelSelect(LevelSelect ls) {
+		this.ls = ls;
+	}
+	
 }

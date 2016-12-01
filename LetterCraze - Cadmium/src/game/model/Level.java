@@ -2,8 +2,6 @@ package game.model;
 
 import java.util.*;
 
-import javax.swing.JButton;
-
 public class Level {
 	
 	Board board;
@@ -13,17 +11,17 @@ public class Level {
 	int score;
 	int highScore;
 	int mostStars;
-	int levelNumber;
+	private int levelNumber;
 	boolean isUnlocked;
 	Word currentWord;
 	Word [] wordList = new Word [20];
-	Dictionary dictionary;
+	private Dictionary dictionary;
 	HashMap<String, Integer> letterFrequencies = new HashMap<String, Integer>();
 	
 	public Level (int starVal [], Board board, int levelNumber) {
 		this.board = board;
 		this.levelNumber = levelNumber;
-		
+
 		for (int i = 0; i < 3; i++) {
 			starValues [i] = starVal [i];
 		}
@@ -55,6 +53,22 @@ public class Level {
 	
 	public boolean repopulate (Board board) {
 		return false;
+	}
+
+	public int getLevelNumber() {
+		return levelNumber;
+	}
+
+	public void setLevelNumber(int levelNumber) {
+		this.levelNumber = levelNumber;
+	}
+
+	public Dictionary getDictionary() {
+		return dictionary;
+	}
+
+	public void setDictionary(Dictionary dictionary) {
+		this.dictionary = dictionary;
 	}
 	
 }
