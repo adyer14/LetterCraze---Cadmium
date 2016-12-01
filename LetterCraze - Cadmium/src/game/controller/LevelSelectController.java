@@ -3,23 +3,8 @@ package game.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.*;
-import java.awt.event.*;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JRootPane;
-
-import builder.view.MainMenuPanel;
-import game.model.Board;
-import game.model.LevelSelect;
-import game.model.LightningLevel;
 import game.model.Model;
-import game.model.PuzzleLevel;
-import game.model.ThemeLevel;
-import game.view.BoardPanel;
-import game.view.LCApplication;
-import game.view.LevelPanel;
 import game.view.LevelSelectPanel;
 
 public class LevelSelectController implements ActionListener {
@@ -38,9 +23,10 @@ public class LevelSelectController implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		
+		String levelID = lvlType + "Panel" + lvlNum;
 		JPanel contentPane = lsp.getContentPane();
         CardLayout cardLayout = (CardLayout) contentPane.getLayout();
-        cardLayout.next(contentPane);
+        cardLayout.show(contentPane, levelID);
 		
 		//It was not getting through to the logic in the open level function
 		//I don't think the board gets added
@@ -61,7 +47,7 @@ public class LevelSelectController implements ActionListener {
 	
 	
 	
-	public void openLevel(String levelName){
+/*	public void openLevel(String levelName){
 		Board puz = new Board();
 		int[] stars = {1,2,3};
 		String type = levelName.substring(0,1);
@@ -113,6 +99,6 @@ public class LevelSelectController implements ActionListener {
 //			//init level
 //			//show level
 		}
-	}
+	}*/
 
 }
