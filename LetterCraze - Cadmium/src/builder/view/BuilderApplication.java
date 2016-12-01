@@ -1,11 +1,8 @@
 package builder.view;
 
 import java.awt.CardLayout;
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import builder.controller.NewLevelController;
 
 public class BuilderApplication extends JFrame {
 	
