@@ -180,7 +180,7 @@ public class LevelSelectPanel extends JPanel {
 		String starLabelName = level.getLevelType() + "StarLabel" + level.getLevelNumber(); 
 		System.out.println(starLabelName);
 		JLabel starLabel = levelStarLabels.get(starLabelName);
-		starLabel.setIcon(new ImageIcon(LevelSelectPanel.class.getResource("/images/2stars.png")));
+		starLabel.setIcon(new ImageIcon(LevelSelectPanel.class.getResource("/images/" + mostStars + "stars.png")));
 	}
 	
 	public void unlockNext(Level level) {

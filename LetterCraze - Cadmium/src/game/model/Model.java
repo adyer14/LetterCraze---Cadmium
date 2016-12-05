@@ -20,7 +20,6 @@ public class Model {
 	public Model() {
 		for (int i = 1; i <=5; i++) {
 			puzzleLevel[i] = new PuzzleLevel(starVal, board, i, numMoves);
-			puzzleLevel[i].setMostStars(2);
 			lightningLevel[i] = new LightningLevel(starVal, board, i, time);
 			themeLevel[i] = new ThemeLevel(starVal, board, i, themeName, themeDic);
 		}
