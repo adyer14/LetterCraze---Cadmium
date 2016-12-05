@@ -23,16 +23,16 @@ public class ThemePanel extends LevelPanel{
 	/**
 	 * Create the panel.
 	 */
-	public ThemePanel(Model model, JPanel panel, ThemeLevel thmLvl) {
-		super(model, panel);
-		int levNum = thmLvl.getLevelNumber();
-		String themeName = thmLvl.getThemeName();
+	public ThemePanel(Model model, JPanel panel, ThemeLevel level, LevelSelectPanel lsp) {
+		super(model, panel, level, lsp);
+		int levNum = level.getLevelNumber();
+		String themeName = level.getThemeName();
 		titleLabel.setText("THEME" + " " + levNum);
 		titlePanel.add(titleLabel);
 		initThemeName(themeName);
 		
 		// TODO HACK - DIDNT FEEL LIKE DOING THIS BECAUSE IT REQUIRES DICTIONARY WORK
-		wordsLeft = thmLvl.getThemeWords().getdSize();
+		wordsLeft = level.getThemeWords().getdSize();
 				
 		JLabel wLabel = new JLabel("WORDS");
 		wLabel.setHorizontalAlignment(SwingConstants.CENTER);

@@ -21,13 +21,13 @@ public class LightningPanel extends LevelPanel{
 	/**
 	 * Create the panel.
 	 */
-	public LightningPanel(Model model, JPanel panel, LightningLevel litLvl) {
-		super(model, panel);
-		int levNum = litLvl.getLevelNumber();
+	public LightningPanel(Model model, JPanel panel, LightningLevel level, LevelSelectPanel lsp) {
+		super(model, panel, level, lsp);
+		int levNum = level.getLevelNumber();
 		titleLabel.setText("LIGHTNING" + " " + levNum);
 		titlePanel.add(titleLabel);
 		
-		timeLeft = litLvl.getTime();
+		timeLeft = level.getTime();
 		
 		JLabel tLabel = new JLabel("TIMER");
 		tLabel.setHorizontalAlignment(SwingConstants.CENTER);

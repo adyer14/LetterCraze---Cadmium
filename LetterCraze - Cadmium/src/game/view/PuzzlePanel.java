@@ -22,13 +22,13 @@ public class PuzzlePanel extends LevelPanel{
 	/**
 	 * Create the panel.
 	 */
-	public PuzzlePanel(Model model, JPanel panel, PuzzleLevel pzzLvl) {
-		super(model, panel);
-		int levNum = pzzLvl.getLevelNumber();
+	public PuzzlePanel(Model model, JPanel panel, PuzzleLevel level, LevelSelectPanel lsp) {
+		super(model, panel, level, lsp);
+		int levNum = level.getLevelNumber();
 		titleLabel.setText("PUZZLE" + " " + levNum);
 		titlePanel.add(titleLabel);
 		
-		movesLeft = pzzLvl.getMovesLeft();
+		movesLeft = level.getMovesLeft();
 		
 		JLabel mLabel = new JLabel("MOVES");
 		mLabel.setHorizontalAlignment(SwingConstants.CENTER);

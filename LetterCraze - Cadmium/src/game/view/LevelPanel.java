@@ -13,6 +13,7 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import game.view.BoardPanel;
 import game.controller.ExitLevelController;
+import game.model.Level;
 import game.model.Model;
 
 import javax.swing.JTextPane;
@@ -37,16 +38,20 @@ public class LevelPanel extends JPanel {
 	private JButton backButton;
 	private Model model;
 	private BoardPanel boardPanel;
+	private Level level;
 	protected JPanel constraintPanel;
 	protected JPanel titlePanel;
 	protected JLabel titleLabel;
+	private LevelSelectPanel lsp;
 	
 	/**
 	 * Create the panel.
 	 */
-	public LevelPanel(Model model, JPanel panel) {
+	public LevelPanel(Model model, JPanel panel, Level lvl, LevelSelectPanel lsp) {
 		this.contentPane = panel;
 		this.model = model;
+		this.level = lvl;
+		this.lsp = lsp;
 		setBounds(0, 0, 800, 550);
 		setBackground(new Color(230, 230, 250));
 		setLayout(null);
@@ -200,7 +205,7 @@ public class LevelPanel extends JPanel {
 	}
 	
 	public void initControllers() {
-		ExitLevelController elcontrol = new ExitLevelController(model, this);
+		ExitLevelController elcontrol = new ExitLevelController(model, level, this, lsp);
 		backButton.addActionListener(elcontrol);
 	}
 	
