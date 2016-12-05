@@ -7,12 +7,13 @@ public class PuzzleLevel extends Level {
 	public PuzzleLevel(int[] starVal, Board board, int levelNumber, int numMoves) {
 		super(starVal, board, levelNumber);
 		this.movesLeft = numMoves;
+		setLevelType();
 	}
 
-	
+	/*
 	public Level resetLevel () {
 		return new Level (starValues, board, 1);
-	}
+	}*/
 	
 	public boolean undoMove (Board board) {
 		return false;
@@ -50,6 +51,12 @@ public class PuzzleLevel extends Level {
 
 	public void setMovesLeft(int movesLeft) {
 		this.movesLeft = movesLeft;
+	}
+
+	@Override
+	protected void setLevelType() {
+		this.levelType = "puzzle";
+		
 	}
 	
 }

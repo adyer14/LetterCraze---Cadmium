@@ -10,11 +10,12 @@ public class LightningLevel extends Level {
 	public LightningLevel(int[] starVal, Board board, int levelNumber, int time) {
 		super(starVal, board, levelNumber);
 		this.time = time;
+		setLevelType();
 	}
-
+/*
 	public Level resetLevel () {
 		return new Level (starValues, board, 1);
-	}
+	}*/
 	
 	public boolean undoMove (Board board) {
 		return false;
@@ -46,6 +47,12 @@ public class LightningLevel extends Level {
 
 	public void setTime(int time) {
 		this.time = time;
+	}
+	
+	@Override
+	protected void setLevelType() {
+		this.levelType = "lightning";
+		
 	}
 	
 	

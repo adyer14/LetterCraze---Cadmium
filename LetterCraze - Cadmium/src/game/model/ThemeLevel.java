@@ -9,11 +9,12 @@ public class ThemeLevel extends Level {
 		super(starVal, board, levelNumber);
 		this.setThemeName(themeName);
 		this.themeWords = themeWords;
+		setLevelType();
 	}
 
-	public Level resetLevel () {
+	/*public Level resetLevel () {
 		return new Level (starValues, board, 1);
-	}
+	}*/
 	
 	public boolean undoMove (Board board) {
 		return false;
@@ -53,6 +54,12 @@ public class ThemeLevel extends Level {
 
 	public void setThemeName(String themeName) {
 		this.themeName = themeName;
+	}
+	
+	@Override
+	protected void setLevelType() {
+		this.levelType = "theme";
+		
 	}
 	
 	
