@@ -17,24 +17,23 @@ public class LCApplication extends JFrame {
 	 */
 	private static final long serialVersionUID = 4242171863344367254L;
 
-	Model m;
-	LevelSelectPanel lsp;
-	LevelPanel lp;
-	PuzzlePanel pp;
-
+	private Model m;
+	private LevelSelectPanel lsp;
 	private ThemePanel[] thmPnl = new ThemePanel[6];
 	private LightningPanel[] litPnl = new LightningPanel[6];
 	private PuzzlePanel[] pzzPnl = new PuzzlePanel[6];
+	private JPanel contentPane;
 	
 	/**
 	 * Create the frame.
 	 */
 	public LCApplication(Model m) {
 		super();
-		
 		this.m = m;
+		
 		splashWindow();
 		initPanels();
+		
         pack();   
         setLocationByPlatform(true);
         setVisible(true);
@@ -61,31 +60,35 @@ public class LCApplication extends JFrame {
 	}
 
 	public void initPanels() {
-		JPanel contentPane = new JPanel();
+		contentPane = new JPanel();
 		contentPane.setLayout(new CardLayout());
 		lsp = new LevelSelectPanel(m, contentPane);
 		contentPane.add(lsp, "levelSelectPanel");
 		for (int i = 1; i <= 5; i++) { 
 			String puzzID = "puzzlePanel" + i;
-			PuzzleLevel pzzLvl = m.getLevelSelect().getPuzzleLevel(i);
-			pzzPnl[i] = new PuzzlePanel(m, contentPane, pzzLvl);
+			PuzzleLevel pzzLvl = m.getPuzzleLevel(i);
+			pzzPnl[i] = new PuzzlePanel(m, contentPane, pzzLvl, lsp);
 			contentPane.add(pzzPnl[i], puzzID);
 			
 			String litID = "lightningPanel" + i;
-			LightningLevel litLvl = m.getLevelSelect().getLightningLevel(i);
-			litPnl[i] = new LightningPanel(m, contentPane, litLvl);
+			LightningLevel litLvl = m.getLightningLevel(i);
+			litPnl[i] = new LightningPanel(m, contentPane, litLvl, lsp);
 			contentPane.add(litPnl[i], litID);
 			
 			String thmID = "themePanel" + i;
-			ThemeLevel thmLvl = m.getLevelSelect().getThemeLevel(i);
-			thmPnl[i] = new ThemePanel(m, contentPane, thmLvl);
+			ThemeLevel thmLvl = m.getThemeLevel(i);
+			thmPnl[i] = new ThemePanel(m, contentPane, thmLvl, lsp);
 			contentPane.add(thmPnl[i], thmID);
 		}
-
-		lp = new LevelPanel(m, contentPane);
-		
-		contentPane.add(lp, "LevelPanel");
 		
 		setContentPane(contentPane);
+	}
+
+	public LevelSelectPanel getLevelSelectPanel() {
+		return lsp;
+	}
+
+	public void setLevelSelectPanel(LevelSelectPanel lsp) {
+		this.lsp = lsp;
 	}
 }
