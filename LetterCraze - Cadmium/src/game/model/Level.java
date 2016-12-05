@@ -2,16 +2,16 @@ package game.model;
 
 import java.util.*;
 
-public class Level {
+public abstract class Level {
 	
 	Board board;
-	int stars;
-	int maxStarsAcheived;
+	int currentStars;
 	int [] starValues = new int [3];
 	int score;
 	int highScore;
-	int mostStars;
+	private int mostStars;
 	private int levelNumber;
+	protected String levelType;
 	boolean isUnlocked;
 	Word currentWord;
 	Word [] wordList = new Word [20];
@@ -26,10 +26,10 @@ public class Level {
 			starValues [i] = starVal [i];
 		}
 	}
-	
+	/*
 	public Level resetLevel () {
 		return new Level (starValues, board, 1);
-	}
+	}*/
 	
 	public boolean undoMove (Board board) {
 		return false;
@@ -55,6 +55,12 @@ public class Level {
 		return false;
 	}
 
+	public String getLevelType() {
+		return levelType;
+	}
+
+	abstract protected void setLevelType();
+	
 	public int getLevelNumber() {
 		return levelNumber;
 	}
@@ -69,6 +75,14 @@ public class Level {
 
 	public void setDictionary(Dictionary dictionary) {
 		this.dictionary = dictionary;
+	}
+
+	public int getMostStars() {
+		return mostStars;
+	}
+
+	public void setMostStars(int mostStars) {
+		this.mostStars = mostStars;
 	}
 	
 }
