@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import game.controller.LevelSelectController;
+import game.model.Level;
 import game.model.Model;
 
 public class LevelSelectPanel extends JPanel {
@@ -72,10 +73,6 @@ public class LevelSelectPanel extends JPanel {
 		}
 	}
 
-	public JPanel getContentPane() {
-		return contentPane;
-	}
-	
 	public void initButtons() {	
 		for (int puzzNum = 1; puzzNum <= 5; puzzNum++) {
 			puzzleButton[puzzNum] = new JButton("");
@@ -173,28 +170,28 @@ public class LevelSelectPanel extends JPanel {
 		
 	}
 	
-	/**
-	 * TODO update this method with actual Level attributes instead of constants
-	 */
-	public void updateStars(){//Level level) {
-		int levNum = 1; //Level.levNum; 
-		
-		String starLabelName = "lightning" + "StarLabel" + levNum; //Level.levType + "StarLabel" + currentLevNum;
-		JLabel starLabel = levelStarLabels.get(starLabelName);
-		starLabel.setIcon(new ImageIcon(LevelSelectPanel.class.getResource("/images/" + 2 + "Stars.png")));//Level.maxStarsAchieved + "Stars.png")));	
+	public JPanel getContentPane() {
+		return contentPane;
 	}
 	
-	/**
-	 * TODO update this method with actual Level attributes instead of constants
-	 */
-	public void unlockNext(){//Level level) {
-		int nextLevNum = 3; //Level.levNum + 1;
+	public void updateStars(Level level) {
+		int mostStars = level.getMostStars();
+		System.out.println(mostStars);
+		String starLabelName = level.getLevelType() + "StarLabel" + level.getLevelNumber(); 
+		System.out.println(starLabelName);
+		JLabel starLabel = levelStarLabels.get(starLabelName);
+		starLabel.setIcon(new ImageIcon(LevelSelectPanel.class.getResource("/images/2stars.png")));
+	}
+	
+	public void unlockNext(Level level) {
+		int nextLvlNum = level.getLevelNumber() + 1;
+		String lvlType = level.getLevelType();
 		
-		String nextButtonName = "lightning" + "Button" + nextLevNum; //Level.levType + "Button" + currentLevNum;
+		String nextButtonName = lvlType + "Button" + nextLvlNum;
 		JButton nextButton = levelButtons.get(nextButtonName);
 		nextButton.setEnabled(true);
 		
-		String nextLabelName = "lightning" + "StarLabel" + nextLevNum; //Level.levType + "StarLabel" + currentLevNum;
+		String nextLabelName = lvlType + "StarLabel" + nextLvlNum; 
 		JLabel nextStarLabel = levelStarLabels.get(nextLabelName);
 		nextStarLabel.setIcon(new ImageIcon(LevelSelectPanel.class.getResource("/images/0Stars.png")));
 	}
