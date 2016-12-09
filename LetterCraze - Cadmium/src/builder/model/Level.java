@@ -41,4 +41,13 @@ public class Level {
 	public void setTime(int num) {
 		time = num;
 	}
+
+	public String getThemeName() {
+		return themeName;
+	}
+
+	public void setThemeName(String name) {
+		themeName = name;
+		
+	}
 }
