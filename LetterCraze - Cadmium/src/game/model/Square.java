@@ -5,6 +5,7 @@ public class Square {
 	int squareRow;
 	int squareColumn;
 	boolean squareInPlay;
+	boolean isSelected;
 	Tile tile;
 	
 	public Square (int row, int column, boolean valid, Tile tile) {
@@ -12,6 +13,7 @@ public class Square {
 		this.squareColumn = column;
 		this.squareInPlay = valid;
 		this.tile = tile;
+		this.isSelected = false;
 	}
 	
 	public boolean containsTile (Tile tile) {

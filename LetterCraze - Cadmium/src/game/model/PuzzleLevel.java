@@ -41,6 +41,11 @@ public class PuzzleLevel extends Level {
 		return this.score;
 	}
 	
+	public int removeScore (Word word) {
+		this.score = this.score - word.calculateScore();
+		return this.score;
+	}
+	
 	public int checkStarProgress (int score, int levelNumber) {
 		this.score = score;
 		if (this.score > this.highScore) {
@@ -74,8 +79,12 @@ public class PuzzleLevel extends Level {
 	}
 
 
-	public void setMovesLeft(int movesLeft) {
-		this.movesLeft = movesLeft;
+	public int didMove() {
+		return this.movesLeft - 1;
+	}
+	
+	public int undidMove () {
+		return this.movesLeft + 1;
 	}
 
 	@Override

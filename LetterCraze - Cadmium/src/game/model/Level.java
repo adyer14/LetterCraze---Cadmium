@@ -84,5 +84,11 @@ public abstract class Level {
 	public void setMostStars(int mostStars) {
 		this.mostStars = mostStars;
 	}
+
+	public int removeScore(Word word) {
+		return 0;
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
