@@ -2,6 +2,7 @@ package game.model;
 public class Word {
 	
 	LetterTile selectedTiles [] = new LetterTile [36];
+	String letters [] = new String [36];
 	int wordScore;
 	String actualWord;
 	
@@ -11,16 +12,36 @@ public class Word {
 		}
 	}
 	
+	public int numOfSTiles () {
+		int count = 0;
+		for (int i = 0; i < 36; i++) {
+			if (selectedTiles [i] != null) {
+				count++;
+			}
+		}
+			return count;
+	}
+	
 	public boolean isValidWord (Dictionary d) {
-		return false;
+		return d.containsWord(this.actualWord);
 	}
 	
 	public int calculateScore () {
-		return 0;
+		int score = 0;
+		int count = this.numOfSTiles();
+		for (int j = 0; j < count; j++) {
+			score = score + selectedTiles[j].scoreValue;
+		}
+		return score;	
 	}
 	
 	public String makeString () {
-		return "word";
+		int count = this.numOfSTiles();
+		for (int j = 0; j < count; j++) {
+			letters[j].concat(selectedTiles[j].letter);
+		}
+		this.actualWord = letters.toString();
+		return this.actualWord;
 	}
 
 }

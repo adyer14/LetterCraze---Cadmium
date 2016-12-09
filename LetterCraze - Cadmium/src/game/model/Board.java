@@ -1,9 +1,11 @@
 package game.model;
 
+
+
 public class Board {
 	
 	Square boardSquares [] = new Square [36];
-	LetterTile selectedTiles [] = new LetterTile [36];
+	Square selectedSquares [] = new Square [36];
 	Word selectedWord;
 	BlankTile blankTile;
 	
@@ -17,17 +19,58 @@ public class Board {
 		}
 	}
 	
+	public int numOfSTiles () {
+		int count = 0;
+		for (int i = 0; i < 36; i++) {
+			if (selectedSquares [i] != null) {
+				count++;
+			}
+		}
+			return count;
+	}
+	
 	public boolean isValidSelection () {
-		return false;
+		int numOfAdj = 0;
+		int count = this.numOfSTiles();
+		for (int j = 0; j < count - 1; j++) {
+			if (selectedSquares [j].isNeighbor(selectedSquares[j + 1])) {
+				numOfAdj++;
+			}
+		}
+			return (numOfAdj == count - 1);
 	}
 	
 	public boolean clearTiles () {
-		//Already have letterTiles making up the word, run remove tile on each, doesn't need Word
-		return false;
-	}
+		int count = this.numOfSTiles();
+		
+		for (int k = 0; k < count; k++) {
+			selectedSquares[k].removeTile();
+		}
+	return true;
+}
 	
 	public boolean floatTilesUp () {
-		return false;
+		for (int i = 0; i < 36; i++) {
+			if (boardSquares[i].squareInPlay && 
+					boardSquares[i].tile == null) {
+				for (int j = boardSquares[i].squareColumn; j < 36; j++) {
+					if (boardSquares[j].squareInPlay &&
+							boardSquares[j].tile == null &&
+							boardSquares[j].squareColumn == boardSquares[i].squareColumn) {
+						for (int k = (boardSquares[j].squareColumn + 6*boardSquares[j].squareRow); k < 36; k++) {
+							if (boardSquares[k].squareInPlay &&
+									boardSquares[k].tile != null &&
+									boardSquares[k].squareColumn == boardSquares[j].squareColumn) {
+								boardSquares[j].tile = boardSquares[k].tile;
+								boardSquares[k].removeTile();
+							}
+						}
+					}
+				}
+			}
+		}
+		return true;
 	}
-
+	
 }
+

@@ -15,15 +15,52 @@ public class Square {
 	}
 	
 	public boolean containsTile (Tile tile) {
-		return false;
+		if (this.squareInPlay) {
+		
+			if (tile == null) {
+				return false;
+			}
+				
+			else {
+				return this.tile.equals(tile);
+			}
+		}
+		else {
+			return false;
+		}
 	}
 	
 	public boolean removeTile () {
-		return false;
+		if (this.tile != null) {
+			this.tile = null;
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	public boolean isNeighbor (Square square) {
-		return false;
+		if (square.squareInPlay) {
+			if ((this.squareColumn == square.squareColumn) ||
+				(this.squareColumn + 1 == square.squareColumn) ||
+				(this.squareColumn - 1 == square.squareColumn)) {
+			if ((this.squareRow == square.squareRow) ||
+				(this.squareRow + 1 == square.squareRow) ||
+				(this.squareRow - 1 == square.squareRow)) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			return false;
+		}
+	}
+		else {
+			return false;
+		}
 	}
 
 }
