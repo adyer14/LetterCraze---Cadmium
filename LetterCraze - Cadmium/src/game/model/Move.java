@@ -7,13 +7,15 @@ public class Move {
 	Word word;
 	Level level;
 	Board board;
+	Dictionary d;
 	
-	Move (Square theSquares [], Word theWord, Level theLevel, Board theBoard) {
+	Move (Square theSquares [], Word theWord, Level theLevel, Board theBoard, Dictionary dict) {
 		this.word = theWord;
 		this.level = theLevel;
 		this.board = theBoard;
+		this.d = dict;
 		
-		for (int i = 0; i < 36; i++) {
+		for (int i = 0; i < this.numOfSTiles(theSquares); i++) {
 			this.selectedSquares[i] = theSquares [i];
 			this.selectedTiles[i] = this.selectedSquares[i].tile;
 		}
@@ -21,7 +23,7 @@ public class Move {
 	
 	public boolean doMove () {
 		if (this.isValid()) {
-			for (int i = 0; i < 36; i++) {
+			for (int i = 0; i < this.numOfSTiles(selectedSquares); i++) {
 				this.selectedSquares[i].removeTile();
 			}
 				this.level.addScore(this.word);
@@ -45,14 +47,30 @@ public class Move {
 		this.level.removeScore(this.word);
 		this.level.removeWord(this.word);
 		this.level.checkStarProgress(this.level.score, this.level.getLevelNumber());
-		for (int i = 0; i < 36; i++) {
+		for (int i = 0; i < this.numOfSTiles(selectedSquares); i++) {
 			this.selectedSquares[i].tile = this.selectedTiles[i];
 		}
 		return true;
 	} 
 	
 	public boolean isValid () {
+		if (this.board.isValidSelection()) {
+			if (this.word.isValidWord(this.d)) {
+				return true;
+			}
+			return false;
+		}
 		return false;
+	}
+	
+	public int numOfSTiles (Square sSquares []) {
+		int count = 0;
+		for (int i = 0; i < 36; i++) {
+			if (sSquares [i] != null) {
+				count++;
+			}
+		}
+			return count;
 	}
 
 }
