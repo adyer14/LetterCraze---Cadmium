@@ -46,7 +46,12 @@ public class BoardPanel extends JPanel {
 		
 		// create and add the TilePanels with alternating colors
 		for (int i = 0; i < 36; i++) {
-			Tile tile = board.getBoardSquareByIndex(i).getTile();
+			
+			// TODO HACK until we get board and square and tile working 
+			// TODO DELETE
+			// Tile tile = board.getBoardSquareByIndex(i).getTile();
+			Tile tile = new Tile();
+			
 			
 			row = (int) Math.floor(i/6);
 			col = i%6;
