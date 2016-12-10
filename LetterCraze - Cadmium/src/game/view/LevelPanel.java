@@ -13,6 +13,7 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import game.view.BoardPanel;
 import game.controller.ExitLevelController;
+import game.model.Board;
 import game.model.Level;
 import game.model.Model;
 
@@ -65,7 +66,8 @@ public class LevelPanel extends JPanel {
 		initControllers();
 		initConstraint();
 		
-		boardPanel = new BoardPanel(model);
+		Board board = level.getBoard();
+		boardPanel = new BoardPanel(model, board);
 		boardPanel.setBounds(297, 203, 254, 254);
 		add(boardPanel);
 	}
@@ -86,8 +88,12 @@ public class LevelPanel extends JPanel {
 		titlePanel.add(titleLabel);
 		
 		backButton = new JButton("");
+		backButton.setSelectedIcon(new ImageIcon(LevelPanel.class.getResource("/images/backSelected.png")));
 		backButton.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/backButton.png")));
+		backButton.setRolloverIcon(new ImageIcon(LevelPanel.class.getResource("/images/backSelected.png")));
 		backButton.setBounds(20, 22, 66, 66);
+		backButton.setFocusPainted(false);
+		backButton.setBorder(null);
 		titlePanel.add(backButton);
 	}
 
@@ -98,6 +104,7 @@ public class LevelPanel extends JPanel {
 		resetButton.setForeground(new Color(0, 0, 0));
 		resetButton.setBackground(new Color(176, 196, 222));
 		resetButton.setBorder(new LineBorder(new Color(119, 136, 153), 3));
+		resetButton.setFocusPainted(false);
 		add(resetButton);
 		
 		undoButton = new JButton("UNDO");
@@ -106,6 +113,7 @@ public class LevelPanel extends JPanel {
 		undoButton.setForeground(new Color(0, 0, 0));
 		undoButton.setBackground(new Color(176, 196, 222));
 		undoButton.setBorder(new LineBorder(new Color(119, 136, 153), 3));
+		undoButton.setFocusPainted(false);
 		add(undoButton);
 	}
 	
