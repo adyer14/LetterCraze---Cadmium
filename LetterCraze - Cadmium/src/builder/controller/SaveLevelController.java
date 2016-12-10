@@ -1,5 +1,14 @@
 package builder.controller;
 
-public class SaveLevelController {
+import builder.model.*;
+import builder.view.*;
 
+public class SaveLevelController {
+	Level lvl;
+	LevelCreatorPanel levelCreatorView;
+	
+	public SaveLevelController(Level lvl, LevelCreatorPanel levelCreatorView){
+		this.lvl = lvl;
+		this.levelCreatorView = levelCreatorView;
+	}
 }

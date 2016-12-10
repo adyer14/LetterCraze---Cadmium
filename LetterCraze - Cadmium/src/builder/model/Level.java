@@ -32,4 +32,22 @@ public class Level {
 	public boolean addThemeWordTiles(String tw, Board b){
 		return false;
 	}
+
+	public int getTime() {
+		
+		return time;
+	}
+
+	public void setTime(int num) {
+		time = num;
+	}
+
+	public String getThemeName() {
+		return themeName;
+	}
+
+	public void setThemeName(String name) {
+		themeName = name;
+		
+	}
 }

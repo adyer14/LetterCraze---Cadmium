@@ -5,6 +5,7 @@ import javax.swing.*;
 import builder.view.*;
 
 public class LaunchBuilder {
+	
 	public static void main(String[] args) {
 		
 		BuilderApplication app = new BuilderApplication();
