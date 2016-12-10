@@ -1,16 +1,21 @@
 package game.model;
 import java.util.Timer;
 
+import game.controller.EndLightningLevelController;
+
 public class LightningLevel extends Level {
 	
 	boolean isOver;
 	private int time;
-	Timer timer;
+	public Timer timer;
 
 	public LightningLevel(int[] starVal, Board board, int levelNumber, int time) {
 		super(starVal, board, levelNumber);
 		this.time = time;
 		setLevelType();
+		Timer timer = new Timer();
+		timer.schedule(new EndLightningLevelController(this), time);
+	//	EndLightningLevelController llc = new EndLightningLevelController(this, null);
 	}
 /*
 	public Level resetLevel () {
@@ -54,6 +59,7 @@ public class LightningLevel extends Level {
 		this.levelType = "lightning";
 		
 	}
+
 	
 	
 }
