@@ -23,7 +23,7 @@ public void run() {
 	// TODO Auto-generated method stub
 	//display you suck window
 	//window button calls exit level controller
-	lightLevel.timer.cancel();
+	//lightLevel.timer.cancel();
 	
 }
 }
