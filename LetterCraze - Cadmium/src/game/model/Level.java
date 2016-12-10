@@ -85,4 +85,11 @@ public abstract class Level {
 		this.mostStars = mostStars;
 	}
 	
+	public Board getBoard() {
+		return board;
+	}
+	
+	public void setBoard(Board b) {
+		this.board = b;
+	}
 }

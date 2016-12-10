@@ -72,5 +72,19 @@ public class Board {
 		return true;
 	}
 	
+	public Square[] getBoardSquares() {
+		return boardSquares;
+	}
+
+	public void setBoardSquares(Square boardSquares[]) {
+		this.boardSquares = boardSquares;
+	}
+	
+	public Square getBoardSquareByIndex(int index) {
+		return boardSquares[index];
+	}
+
+
+	
 }
 

@@ -63,4 +63,11 @@ public class Square {
 		}
 	}
 
+	public Tile getTile() {
+		return tile;
+	}
+
+	public void setTile(Tile t) {
+		this.tile = t;
+	}
 }

@@ -38,7 +38,7 @@ public class Word {
 	public String makeString () {
 		int count = this.numOfSTiles();
 		for (int j = 0; j < count; j++) {
-			letters[j].concat(selectedTiles[j].letter);
+			letters[j].concat(selectedTiles[j].getLetter());
 		}
 		this.actualWord = letters.toString();
 		return this.actualWord;
