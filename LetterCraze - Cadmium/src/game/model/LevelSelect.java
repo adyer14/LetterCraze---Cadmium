@@ -2,7 +2,7 @@ package game.model;
 
 public class LevelSelect {
 
-	Level playableLevels [] = new Level [15];
+	Level playableLevel[] = new Level [16];
 	PuzzleLevel puzzleLevel[] = new PuzzleLevel[6];
 	LightningLevel lightningLevel[] = new LightningLevel[6];
 	ThemeLevel themeLevel[] = new ThemeLevel[6];
@@ -17,15 +17,17 @@ public class LevelSelect {
 	String themeName = "Example";
 	
 	public LevelSelect (Level levels []) {
-		for (int i = 0; i < 15; i++) {
-			playableLevels [i] = levels [i];
-		}
+		
 		for (int i = 1; i <=5; i++) {
 			puzzleLevel[i] = new PuzzleLevel(starVal, board, i, numMoves);
 			lightningLevel[i] = new LightningLevel(starVal, board, i, time);
 			themeLevel[i] = new ThemeLevel(starVal, board, i, themeName, themeDic);
 		}
-		
+		for (int i = 1; i <= 5; i++) {
+			playableLevel[i] = puzzleLevel[i];
+			playableLevel[i+5] = lightningLevel[i];
+			playableLevel[i+10] = themeLevel[i];
+		}
 	}
 	
 	public PuzzleLevel getPuzzleLevel(int levNum) {
