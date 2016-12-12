@@ -16,9 +16,6 @@ public class PuzzleLevel extends Level {
 		return new Level (starValues, board, 1);
 	}*/
 	
-	public boolean undoMove (Board board) {
-		return false;
-	}
 
 	public boolean addWord (Word word) {
 		this.wordList[i] = word;

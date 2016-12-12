@@ -4,6 +4,7 @@ import java.util.*;
 
 public abstract class Level {
 	
+	int i = 0;
 	Board board;
 	int currentStars;
 	int [] starValues = new int [3];
@@ -30,25 +31,53 @@ public abstract class Level {
 	public Level resetLevel () {
 		return new Level (starValues, board, 1);
 	}*/
-	
-	public boolean undoMove (Board board) {
-		return false;
-	}
 
 	public boolean addWord (Word word) {
-		return false;
+		this.wordList[i] = word;
+		i++;
+		return true;
 	}
 	
 	public boolean removeWord (Word word) {
+		for (int j = 0; j < 20; j++) {
+			if (word.equals(this.wordList[j])) {
+				this.wordList[j] = this.wordList[j + 1];
+				return true;
+			}
+		}
 		return false;
 	}
 	
 	public int addScore (Word word) {
-		return 0;
+		this.score = this.score + word.calculateScore();
+		return this.score;
+	}
+	
+	public int removeScore (Word word) {
+		this.score = this.score - word.calculateScore();
+		return this.score;
 	}
 	
 	public int checkStarProgress (int score, int levelNumber) {
-		return 0;
+		this.score = score;
+		if (this.score > this.highScore) {
+			this.highScore = this.score;
+		}
+		if (this.score >= starValues[1] && this.score < starValues[2]) {
+			this.currentStars = 1;
+			return this.currentStars;
+		}
+		if (this.score >= starValues[2] && this.score < starValues[3]) {
+			this.currentStars = 2;
+			return this.currentStars;
+		}
+		if (this.score >= starValues[3]) {
+			this.currentStars = 3;
+			return this.currentStars;
+		}
+		else {
+			return 0;
+		}
 	}
 	
 	public boolean repopulate (Board board) {
@@ -84,12 +113,6 @@ public abstract class Level {
 	public void setMostStars(int mostStars) {
 		this.mostStars = mostStars;
 	}
-
-	public int removeScore(Word word) {
-		return 0;
-		// TODO Auto-generated method stub
-		
-	}
 	
 	public Board getBoard() {
 		return board;
@@ -97,5 +120,118 @@ public abstract class Level {
 	
 	public void setBoard(Board b) {
 		this.board = b;
+	}
+	
+	public String randomLetter () {
+		Random rand = new Random();
+		int n = rand.nextInt(100000) + 1;
+		
+		if (n >= 1 && n <= 8167) {
+			return "A";
+		}
+		
+		if (n >= 8168 && n <= 9659) {
+			return "B";
+		}
+		
+		if (n >= 1 && n <= 8167) { // Fix val from here
+			return "C";
+		}
+		
+		if (n >= 8168 && n <= 9659) {
+			return "D";
+		}
+		
+		if (n >= 1 && n <= 8167) {
+			return "E";
+		}
+		
+		if (n >= 8168 && n <= 9659) {
+			return "F";
+		}
+		
+		if (n >= 1 && n <= 8167) {
+			return "G";
+		}
+		
+		if (n >= 8168 && n <= 9659) {
+			return "H";
+		}
+		
+		if (n >= 1 && n <= 8167) {
+			return "I";
+		}
+		
+		if (n >= 8168 && n <= 9659) {
+			return "J";
+		}
+		
+		if (n >= 1 && n <= 8167) {
+			return "K";
+		}
+		
+		if (n >= 8168 && n <= 9659) {
+			return "L";
+		}
+		
+		if (n >= 1 && n <= 8167) {
+			return "M";
+		}
+		
+		if (n >= 8168 && n <= 9659) {
+			return "N";
+		}
+		
+		if (n >= 1 && n <= 8167) {
+			return "O";
+		}
+		
+		if (n >= 8168 && n <= 9659) {
+			return "P";
+		}
+		
+		if (n >= 1 && n <= 8167) {
+			return "Qu";
+		}
+		
+		if (n >= 8168 && n <= 9659) {
+			return "R";
+		}
+		
+		if (n >= 1 && n <= 8167) {
+			return "S";
+		}
+		
+		if (n >= 8168 && n <= 9659) {
+			return "T";
+		}
+		
+		if (n >= 1 && n <= 8167) {
+			return "U";
+		}
+		
+		if (n >= 8168 && n <= 9659) {
+			return "V";
+		}
+		
+		if (n >= 1 && n <= 8167) {
+			return "W";
+		}
+		
+		if (n >= 8168 && n <= 9659) {
+			return "X";
+		}
+		
+		if (n >= 1 && n <= 8167) {
+			return "Y";
+		}
+		
+		if (n >= 8168 && n <= 9659) {
+			return "Z";
+		}
+		
+		else {
+			return "I didn't work";
+		}
 	}
 }
