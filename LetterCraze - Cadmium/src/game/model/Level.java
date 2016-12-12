@@ -134,15 +134,15 @@ public abstract class Level {
 			return "B";
 		}
 		
-		if (n >= 1 && n <= 8167) { // Fix val from here
+		if (n >= 9660 && n <= 12441) { 
 			return "C";
 		}
 		
-		if (n >= 8168 && n <= 9659) {
+		if (n >= 12441 && n <= 16694) {
 			return "D";
 		}
 		
-		if (n >= 1 && n <= 8167) {
+		if (n >= 16695 && n <= 29396) {
 			return "E";
 		}
 		
