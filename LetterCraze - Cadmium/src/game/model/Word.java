@@ -23,7 +23,7 @@ public class Word {
 	}
 	
 	public boolean isValidWord (Dictionary d) {
-		return d.containsWord(this.actualWord);
+		return d.isWord(this.actualWord);
 	}
 	
 	public int calculateScore () {
