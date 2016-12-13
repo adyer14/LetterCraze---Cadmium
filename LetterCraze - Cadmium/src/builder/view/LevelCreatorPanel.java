@@ -3,7 +3,6 @@ package builder.view;
 import java.awt.Color;
 import java.awt.Font;
 import java.text.NumberFormat;
-import java.text.ParseException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,7 +14,6 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
 import builder.controller.*;
 import builder.model.*;
@@ -186,16 +184,7 @@ public class LevelCreatorPanel extends JPanel {
 	    formatter.setValueClass(Integer.class);
 	    formatter.setMinimum(0);
 	    formatter.setMaximum(Integer.MAX_VALUE);
-	    formatter.setAllowsInvalid(false);
-
-	    MaskFormatter mask = null;
-        try {
-            mask = new MaskFormatter("#:##");
-            mask.setPlaceholderCharacter('-');
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
+	    formatter.setAllowsInvalid(true);
 		
 		star1TextField = new JFormattedTextField(formatter);
 		star1TextField.setFont(new Font("OCR A Extended", Font.PLAIN, typeFont));
@@ -217,7 +206,7 @@ public class LevelCreatorPanel extends JPanel {
 		movesTextField.setBounds((movesPanel.getWidth()-tfWidth)/2, tfOffset, tfWidth, tfHeight);
 		movesPanel.add(movesTextField);
 		
-		timeTextField = new JFormattedTextField(mask);
+		timeTextField = new JFormattedTextField(formatter);
 		timeTextField.setFont(new Font("OCR A Extended", Font.PLAIN, typeFont));
 		timeTextField.setBounds((timePanel.getWidth()-tfWidth)/2, tfOffset, tfWidth, tfHeight);
 		timePanel.add(timeTextField);
