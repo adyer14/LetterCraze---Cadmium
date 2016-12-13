@@ -1,5 +1,7 @@
 package game.model;
 
+import java.util.ArrayList;
+
 public class Model {
 	
 	private Level level [] = new Level [16];
@@ -9,12 +11,13 @@ public class Model {
 	LevelSelect ls = new LevelSelect (getLevels());
 	
 	// THESE ARE TEST VARIABLES, DELETE WHEN WE GET FILE UPLOAD WORKING
+	ArrayList<Square> squares = new ArrayList<Square>();
 		int[] starVal = {0,0,0};
-		Board board = new Board();
+		Board board = new Board(squares);
 		int numMoves = 5;
 		int time = 34;
-		String[] themeWords = {"yes", "yes", "yes"};
-		Dictionary themeDic = new Dictionary(themeWords);
+		ArrayList<String> themeWords = new ArrayList<String>();
+		ThemeDictionary themeDic = new ThemeDictionary(themeWords);
 		String themeName = "Example";
 	
 	public Model() {
