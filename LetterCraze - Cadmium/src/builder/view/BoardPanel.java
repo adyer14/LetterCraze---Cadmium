@@ -1,7 +1,6 @@
 package builder.view;
 
 import java.awt.Color;
-
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
@@ -14,7 +13,7 @@ public class BoardPanel extends JPanel {
 	 */
 	private static final long serialVersionUID = -3425682784245190630L;
 
-	private JToggleButton squareButton[][] = new JToggleButton[6][6];
+	private JToggleButton squareButton[]= new JToggleButton[36];
 	
 	/**
 	 * Create the panel.
@@ -26,19 +25,28 @@ public class BoardPanel extends JPanel {
 		setBorder(new LineBorder(new Color(176, 196, 222), 6));
 
 		boolean dark = true;
-		for (int i = 0; i <= 5; i++) {
-			dark = !dark;
-			for (int j = 0; j <= 5; j++) {
+		int row, col;
+		
+		for (int i = 0; i < 36; i++) {
+			row = (int) Math.floor(i/6);
+			col = i%6;
+
+			squareButton[i] = new JToggleButton("");
+			squareButton[i].setIcon(new ImageIcon(BoardPanel.class.getResource("/images/squareUnselected.png")));
+			squareButton[i].setBounds((col*40) + 7, (row*40) + 7, 40, 40);
+			if (col == 0)
 				dark = !dark;
-				squareButton[i][j] = new JToggleButton("");
-				squareButton[i][j].setIcon(new ImageIcon(BoardPanel.class.getResource("/images/squareUnselected.png")));
-				squareButton[i][j].setBounds((j*40) + 7, (i*40) + 7, 40, 40);
-				if (dark)
-					squareButton[i][j].setSelectedIcon(new ImageIcon(BoardPanel.class.getResource("/images/squareSelectedDark.png")));
-				else
-					squareButton[i][j].setSelectedIcon(new ImageIcon(BoardPanel.class.getResource("/images/squareSelectedLight.png")));
-				add(squareButton[i][j]);
+			if (dark) {
+				squareButton[i].setSelectedIcon(new ImageIcon(BoardPanel.class.getResource("/images/squareSelectedDark.png")));
+				dark = !dark;
 			}
+			else {		
+				squareButton[i].setSelectedIcon(new ImageIcon(BoardPanel.class.getResource("/images/squareSelectedLight.png")));
+				
+				dark = !dark;
+			}
+			add(squareButton[i]);
+
 		}
 	}
 
