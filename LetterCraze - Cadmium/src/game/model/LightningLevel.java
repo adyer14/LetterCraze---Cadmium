@@ -59,7 +59,13 @@ public class LightningLevel extends Level {
 		this.time = time;
 	}
 	
+	public boolean getIsOver() {
+		return isOver;
+	}
 	
+	public void setIsOver(boolean isOver) {
+		this.isOver = isOver;
+	}
 
 	
 	
