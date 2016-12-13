@@ -20,25 +20,25 @@ import game.model.Model;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
 
-public class LevelPanel extends JPanel {
+public abstract class LevelPanel extends JPanel {
 	
 	/**
 	 * Keep Eclipse happy
 	 */
 	private static final long serialVersionUID = 5365285961036238341L;
 
-	private JLabel highScoreLabel;
-	private int highScore;
-	private JLabel scoreLabel;
-	private JTextPane wordsTextPane;
-	private JLabel starLabel;
+	protected JLabel highScoreLabel;
+	protected int highScore;
+	protected JLabel scoreLabel;
+	protected JTextPane wordsTextPane;
+	protected JLabel starLabel;
 	private JPanel contentPane;
 	private JButton resetButton;
 	private JButton undoButton;
 	private JButton backButton;
 	private Model model;
 	private BoardPanel boardPanel;
-	private Level level;
+	protected Level level;
 	protected JPanel constraintPanel;
 	protected JPanel titlePanel;
 	protected JLabel titleLabel;
@@ -231,22 +231,6 @@ public class LevelPanel extends JPanel {
 		return titleLabel;
 	}
 	
-	// TODO make refresh abstract and give it to the subclasses
-	public void refresh() {
-		highScore = level.getHighScore();
-		highScoreLabel.setText(Integer.toString(highScore));
-		
-		int score = level.getScore();
-		scoreLabel.setText(Integer.toString(score));
-		
-		int mostStars = level.getMostStars();
-		starLabel.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/" + mostStars + "GameStars.png")));
-		
-		String wordListString = "";
-		for (int numWords = 0; numWords < level.getWordList().size(); numWords++) {
-			wordListString = wordListString + level.getWordList().get(numWords).getActualString() + "\n";
-			wordsTextPane.setText(wordListString);
-		}
-	}
+	public abstract void refresh();
 
 }
