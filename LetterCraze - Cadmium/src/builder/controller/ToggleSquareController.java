@@ -3,7 +3,12 @@ package builder.controller;
 import builder.view.*;
 import builder.model.*;
 
-public class ToggleSquareController {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JToggleButton;
+
+public class ToggleSquareController implements ActionListener {
 	Board board;
 	BoardPanel boardView;
 	
@@ -11,4 +16,13 @@ public class ToggleSquareController {
 		this.board = board;
 		this.boardView = boardView;
 	}
+	
+	public void actionPerformed(ActionEvent ae){
+
+		JToggleButton tb = (JToggleButton) ae.getSource();
+		
+		
+	}
+	
+	
 }

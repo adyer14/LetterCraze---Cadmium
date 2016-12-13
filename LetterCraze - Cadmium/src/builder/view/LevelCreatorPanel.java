@@ -249,12 +249,11 @@ public class LevelCreatorPanel extends JPanel {
 		ExitLevelController elcontrol = new ExitLevelController(this);
 		InputThemeNameController itmcontrol = new InputThemeNameController(level ,this);
 		InputNumMovesController nmcontrol = new InputNumMovesController(level, this);
-		InputScoresController sccontrol = new InputScoresController(level, this);
+		// InputScoresController sccontrol = new InputScoresController(level, this);
 		
 		backButton.addActionListener(elcontrol);
 		themeNameTextField.addActionListener(itmcontrol);
 		movesTextField.addActionListener(nmcontrol);
-		
 		
 	}
 
