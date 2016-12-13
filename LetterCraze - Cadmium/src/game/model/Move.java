@@ -44,7 +44,7 @@ public class Move {
 		if (this.level.getLevelType().equalsIgnoreCase("puzzle")) {
 			((PuzzleLevel) this.level).undidMove();
 		}
-		this.level.removeScore(this.word);
+		this.level.removeScore();
 		this.level.removeWord();
 		this.level.checkStarProgress();
 		for (int i = 0; i < this.numOfSTiles(selectedSquares); i++) {
