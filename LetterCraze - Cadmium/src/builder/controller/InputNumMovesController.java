@@ -25,7 +25,6 @@ public class InputNumMovesController implements ActionListener {
 	
 	void update (JTextField tf) {
 		try {
-			//String name = tf.getText();
 			int numMoves = Integer.parseInt(tf.getText());
 			lvl.setNumMoves(numMoves);
 			

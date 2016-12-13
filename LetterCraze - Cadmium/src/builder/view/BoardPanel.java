@@ -17,11 +17,13 @@ public class BoardPanel extends JPanel {
 	private static final long serialVersionUID = -3425682784245190630L;
 
 	private JToggleButton squareButton[]= new JToggleButton[36];
+	private Board board;
 	
 	/**
 	 * Create the panel.
 	 */
 	public BoardPanel(Board board) {
+		this.board = board;
 		setBounds(0, 0, 254, 254);
 		setBackground(new Color(119, 136, 153));
 		setLayout(null);
@@ -55,6 +57,14 @@ public class BoardPanel extends JPanel {
 			add(squareButton[i]);
 
 		}
+	}
+
+	public void reset() {
+		for (int i = 0; i < 36; i++) {
+			squareButton[i].setSelected(false);
+		}
+		board.resetSquares();
+		System.out.println("The Board has been reset.");
 	}
 
 }

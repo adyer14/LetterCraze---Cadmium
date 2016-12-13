@@ -14,11 +14,26 @@ public class Level {
 	int time;
 	
 	public Level(){
-		
+		board = new Board();
 	}
 	
 	public boolean resetLevel(){
-		return false;
+		try {
+
+			starValues = new int[3];
+			themeWords = new ArrayList<String>();
+			themeName = new String();
+			
+			// TODO reset time, numMoves, levelNum and levelType?
+			
+			System.out.println("The level Entity object has been reset.");
+			
+			return true; // success
+			
+		} catch (Exception e){
+			return false; // failure
+		}
+		
 	}
 	
 	public boolean saveLevel(){

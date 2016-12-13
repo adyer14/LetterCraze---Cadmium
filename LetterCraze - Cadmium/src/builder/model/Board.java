@@ -20,4 +20,13 @@ public class Board {
 		System.out.println("The square number " + buttonNumber + " is " + squares[buttonNumber].getSquareInPlay() +" for inPlay.");
 	}
 
+	public void resetSquares() {
+		for(int i = 0; i < 36; i++){
+			if(squares[i].getSquareInPlay()){
+				squares[i].toggleInPlay();
+			}
+		}
+		
+	}
+
 }
