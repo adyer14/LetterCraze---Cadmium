@@ -238,12 +238,14 @@ public class LevelCreatorPanel extends JPanel {
 		InputThemeNameController itmcontrol = new InputThemeNameController(level ,this);
 		InputNumMovesController nmcontrol = new InputNumMovesController(level, this);
 		ResetLevelController rlcontrol = new ResetLevelController(level, this);
+		SelectLevelTypeController ltcontrol = new SelectLevelTypeController(level, this);
 		
 		backButton.addActionListener(elcontrol);
 		backButton.addActionListener(rlcontrol);
 		themeNameTextField.addActionListener(itmcontrol);
 		movesTextField.addActionListener(nmcontrol);
 		resetButton.addActionListener(rlcontrol);
+		levelTypeCB.addActionListener(ltcontrol);
 		
 	}
 
@@ -253,6 +255,50 @@ public class LevelCreatorPanel extends JPanel {
 
 	public void reset() {
 		boardPanel.reset();
+	}
+
+	public void setUpPuzzle() {
+		timeTextField.setEditable(false);
+		themeNameTextField.setEditable(false);
+		themeWordsTextPane.setEditable(false);
+		
+		star1TextField.setEditable(true);
+		star2TextField.setEditable(true);
+		star3TextField.setEditable(true);
+		movesTextField.setEditable(true);
+	}
+
+	public void setUpLightning() {
+		movesTextField.setEditable(false);
+		themeNameTextField.setEditable(false);
+		themeWordsTextPane.setEditable(false);
+		
+		timeTextField.setEditable(true);
+		star1TextField.setEditable(true);
+		star2TextField.setEditable(true);
+		star3TextField.setEditable(true);
+		
+	}
+
+	public void setUpTheme() {
+		timeTextField.setEditable(false);
+		star1TextField.setEditable(false);
+		star2TextField.setEditable(false);
+		star3TextField.setEditable(false);
+		movesTextField.setEditable(false);
+		
+		themeNameTextField.setEditable(true);
+		themeWordsTextPane.setEditable(true);
+	}
+
+	public void setUpDefault() {
+		timeTextField.setEditable(false);
+		star1TextField.setEditable(false);
+		star2TextField.setEditable(false);
+		star3TextField.setEditable(false);
+		movesTextField.setEditable(false);
+		themeNameTextField.setEditable(false);
+		themeWordsTextPane.setEditable(false);
 		
 	}
 
