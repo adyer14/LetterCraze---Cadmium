@@ -4,20 +4,26 @@ public class PuzzleLevel extends Level {
 	
 	private int movesLeft;
 	int i = 0;
+	int lvlNumMoves;
+	Board lvlBoard;
 	
 	public PuzzleLevel(int[] starVal, Board board, int levelNumber, int numMoves) {
 		super(starVal, board, levelNumber);
 		this.movesLeft = numMoves;
+		this.lvlNumMoves = numMoves;
+		this.lvlBoard = board;
 		setLevelType();
 	}
+	
+	//TODO create initialize function
 
 	@Override
 	public boolean resetLevel() {
 		this.wordList.clear();
 		this.score = 0;
 		this.currentStars = 0;
-		// TODO reset movesLeft - get movesLeft from level file and set it back
-		// TODO reset board - get board from level file and set it to the board
+		this.movesLeft = this.lvlNumMoves;
+		this.board = this.lvlBoard;
 		if (wordList.isEmpty() && score == 0 && currentStars == 0)
 			return true;
 		else
@@ -26,7 +32,6 @@ public class PuzzleLevel extends Level {
 	
 	@Override
 	public int addScore(Word word) {
-		// TODO rewrite to use currentWord - maybe
 		this.score = score + word.calculateScore();
 		return this.score;
 	}
