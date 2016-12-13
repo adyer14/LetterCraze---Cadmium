@@ -11,6 +11,15 @@ public class PuzzleLevel extends Level {
 		this.movesLeft = numMoves;
 		this.lvlNumMoves = numMoves;
 		setLevelType();
+		initializeBoard();
+	}
+	
+	public void initializeBoard() {
+		for (int j = 0; j < 36; j++) {
+			if (this.board.boardSquares.get(j).getSquareInPlay()) {
+				this.board.boardSquares.get(j).setTile(randomLetter());
+			}
+		}
 	}
 
 	@Override
@@ -19,7 +28,7 @@ public class PuzzleLevel extends Level {
 		this.score = 0;
 		this.currentStars = 0;
 		this.movesLeft = this.lvlNumMoves;
-		this.board = this.initialBoard;
+		initializeBoard();
 		if (wordList.isEmpty() && score == 0 && currentStars == 0)
 			return true;
 		else
