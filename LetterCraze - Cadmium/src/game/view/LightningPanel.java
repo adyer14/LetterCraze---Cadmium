@@ -2,6 +2,7 @@ package game.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -27,6 +28,7 @@ public class LightningPanel extends LevelPanel{
 		titleLabel.setText("LIGHTNING" + " " + levNum);
 		titlePanel.add(titleLabel);
 		
+		// TODO this probably need to get linked to timer somehow?
 		timeLeft = level.getTime();
 		
 		JLabel tLabel = new JLabel("TIMER");
@@ -42,6 +44,24 @@ public class LightningPanel extends LevelPanel{
 		timeLabel.setForeground(Color.BLACK);
 		timeLabel.setFont(new Font("OCR A Extended", Font.BOLD, 25));
 		getConstraintPanel().add(timeLabel);
+	}
+	
+	@Override
+	public void refresh() {
+		highScore = level.getHighScore();
+		highScoreLabel.setText(Integer.toString(highScore));
+		
+		int score = level.getScore();
+		scoreLabel.setText(Integer.toString(score));
+		
+		int mostStars = level.getMostStars();
+		starLabel.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/" + mostStars + "GameStars.png")));
+		
+		String wordListString = "";
+		for (int numWords = 0; numWords < level.getWordList().size(); numWords++) {
+			wordListString = wordListString + level.getWordList().get(numWords).getActualString() + "\n";
+			wordsTextPane.setText(wordListString);
+		}
 	}
 
 }
