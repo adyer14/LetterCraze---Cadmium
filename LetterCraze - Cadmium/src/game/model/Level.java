@@ -6,7 +6,7 @@ public abstract class Level {
 	
 	int i = 0;
 	
-	private Board board;
+	protected Board board;
 	protected int currentStars;
 	protected int [] starValues = new int [3];
 	protected int score;
@@ -71,116 +71,116 @@ public abstract class Level {
 	
 	public abstract boolean repopulate (Board board);
 
-	public String randomLetter () {
+	public Tile randomLetter () {
 		Random rand = new Random();
 		int n = rand.nextInt(100000) + 1;
 		
 		if (n >= 1 && n <= 8167) {
-			return "A";
+			return new LetterTile ("A", 2);
 		}
 		
 		if (n >= 8168 && n <= 9659) {
-			return "B";
+			return new LetterTile ("B", 4);
 		}
 		
 		if (n >= 9660 && n <= 12441) { 
-			return "C";
+			return new LetterTile ("C", 3);
 		}
 		
 		if (n >= 12441 && n <= 16694) {
-			return "D";
+			return new LetterTile ("D", 3);
 		}
 		
 		if (n >= 16695 && n <= 29396) {
-			return "E";
+			return new LetterTile ("E", 1);
 		}
 		
 		if (n >= 29397 && n <= 31624) {
-			return "F";
+			return new LetterTile ("F", 4);
 		}
 		
 		if (n >= 31625 && n <= 33639) {
-			return "G";
+			return new LetterTile ("G", 4);
 		}
 		
 		if (n >= 33640 && n <= 39733) {
-			return "H";
+			return new LetterTile ("H", 2);
 		}
 		
-		if (n >= 39733 && n <= 8167) {
-			return "I";
+		if (n >= 39733 && n <= 46699) {
+			return new LetterTile ("I", 2);
 		}
 		
-		if (n >= 8168 && n <= 9659) {
-			return "J";
+		if (n >= 46700 && n <= 46852) {
+			return new LetterTile ("J", 7);
 		}
 		
-		if (n >= 1 && n <= 8167) {
-			return "K";
+		if (n >= 46853 && n <= 47624) {
+			return new LetterTile ("K", 5);
 		}
 		
-		if (n >= 8168 && n <= 9659) {
-			return "L";
+		if (n >= 47625 && n <= 51649) {
+			return new LetterTile ("L", 3);
 		}
 		
-		if (n >= 1 && n <= 8167) {
-			return "M";
+		if (n >= 51650 && n <= 54055) {
+			return new LetterTile ("M", 3);
 		}
 		
-		if (n >= 8168 && n <= 9659) {
-			return "N";
+		if (n >= 54056 && n <= 60804) {
+			return new LetterTile ("N", 2);
 		}
 		
-		if (n >= 1 && n <= 8167) {
-			return "O";
+		if (n >= 60805 && n <= 68311) {
+			return new LetterTile ("O", 2);
 		}
 		
-		if (n >= 8168 && n <= 9659) {
-			return "P";
+		if (n >= 68312 && n <= 70240) {
+			return new LetterTile ("P", 4);
 		}
 		
-		if (n >= 1 && n <= 8167) {
-			return "Qu";
+		if (n >= 70241 && n <= 70335) {
+			return new LetterTile ("Qu", 8);
 		}
 		
-		if (n >= 8168 && n <= 9659) {
-			return "R";
+		if (n >= 70336 && n <= 76322) {
+			return new LetterTile ("R", 2);
 		}
 		
-		if (n >= 1 && n <= 8167) {
-			return "S";
+		if (n >= 76323 && n <= 82649) {
+			return new LetterTile ("S", 2);
 		}
 		
-		if (n >= 8168 && n <= 9659) {
-			return "T";
+		if (n >= 82649 && n <= 91705) {
+			return new LetterTile ("T", 1);
 		}
 		
-		if (n >= 1 && n <= 8167) {
-			return "U";
+		if (n >= 91706 && n <= 94463) {
+			return new LetterTile ("U", 3);
 		}
 		
-		if (n >= 8168 && n <= 9659) {
-			return "V";
+		if (n >= 94464 && n <= 95441) {
+			return new LetterTile ("V", 5);
 		}
 		
-		if (n >= 1 && n <= 8167) {
-			return "W";
+		if (n >= 95442 && n <= 97801) {
+			return new LetterTile ("W", 3);
 		}
 		
-		if (n >= 8168 && n <= 9659) {
-			return "X";
+		if (n >= 97802 && n <= 97951) {
+			return new LetterTile ("X", 7);
 		}
 		
-		if (n >= 1 && n <= 8167) {
-			return "Y";
+		if (n >= 97952 && n <= 99925) {
+			return new LetterTile ("Y", 4);
 		}
 		
-		if (n >= 8168 && n <= 9659) {
-			return "Z";
+		if (n >= 99926 && n <= 100000) {
+			return new LetterTile ("Z", 8);
 		}
 		
 		else {
-			return "I didn't work";
+			return new BlankTile ();
 		}
 	}
 

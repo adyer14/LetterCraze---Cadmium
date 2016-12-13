@@ -33,7 +33,14 @@ public class PuzzleLevel extends Level {
 
 	@Override
 	public boolean repopulate (Board board) {
-		// TODO puzzle repopulate method
+		for (int j = 0; j < 36; j++) {
+			if (this.board.boardSquares[j].squareInPlay) {
+				if (this.board.boardSquares[j].tile == null) {
+					this.board.boardSquares[j].setTile(this.randomLetter());
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 
