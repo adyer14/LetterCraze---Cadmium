@@ -13,4 +13,17 @@ public class Square {
 		this.squareInPlay = valid;
 		this.tile = tile;
 	}
+
+	public void toggleInPlay() {
+		if(squareInPlay) {
+			squareInPlay = false;
+		} else {
+			squareInPlay = true;
+		}
+		
+	}
+
+	public Boolean getSquareInPlay() {
+		return squareInPlay;
+	}
 }

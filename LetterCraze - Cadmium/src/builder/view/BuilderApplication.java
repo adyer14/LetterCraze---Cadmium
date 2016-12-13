@@ -4,6 +4,8 @@ import java.awt.CardLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import builder.model.*;
+
 public class BuilderApplication extends JFrame {
 	
 	/**
@@ -24,7 +26,7 @@ public class BuilderApplication extends JFrame {
 		JPanel contentPane = new JPanel();
 		contentPane.setLayout(new CardLayout());
 		mmp = new MainMenuPanel(contentPane);
-		lcp = new LevelCreatorPanel(contentPane);
+		lcp = new LevelCreatorPanel(contentPane, new Level());
 		contentPane.add(mmp);
 		contentPane.add(lcp);
 		

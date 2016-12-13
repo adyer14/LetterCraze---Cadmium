@@ -1,14 +1,25 @@
 package builder.controller;
 
-import builder.view.*;
 import builder.model.*;
 
-public class ToggleSquareController {
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
+public class ToggleSquareController implements ActionListener {
 	Board board;
-	BoardPanel boardView;
+	int buttonNumber;
 	
-	public ToggleSquareController(Board board, BoardPanel boardView){
+	public ToggleSquareController(Board board, int buttonNumber){
 		this.board = board;
-		this.boardView = boardView;
+		this.buttonNumber = buttonNumber;
 	}
+	
+	public void actionPerformed(ActionEvent ae){
+
+		board.toggleSquare(buttonNumber);
+		
+	}
+	
+	
 }

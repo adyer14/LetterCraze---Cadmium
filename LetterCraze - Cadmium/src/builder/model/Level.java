@@ -50,4 +50,26 @@ public class Level {
 		themeName = name;
 		
 	}
+
+	public void setNumMoves(int numMoves2) {
+		numMoves = numMoves2;
+	}
+
+	public int getNumMoves() {
+		return numMoves;
+	}
+
+	public void setScores(int scores[]) {
+		for(int i = 0; i < 3; i++){
+			starValues[i] = scores[i];
+		}
+	}
+
+	public int getScores(int n) {
+		try{
+			return starValues[n];
+		} catch(Exception e){
+			return 0; // indicate failure
+		}
+	}
 }
