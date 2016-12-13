@@ -5,7 +5,7 @@ public class LetterTile extends Tile {
 	private String letter;
 	int scoreValue;
 	
-	LetterTile (String letter, int scoreValue) {
+	public LetterTile (String letter, int scoreValue) {
 		this.letter = letter;
 		this.scoreValue = scoreValue;
 	}
