@@ -5,19 +5,19 @@ import java.util.*;
 public abstract class Level {
 	
 	int i = 0;
-	Board board;
-	int currentStars;
-	int [] starValues = new int [3];
-	int score;
-	int highScore;
+	
+	private Board board;
+	protected int currentStars;
+	protected int [] starValues = new int [3];
+	protected int score;
+	protected int highScore;
 	private int mostStars;
 	private int levelNumber;
 	protected String levelType;
-	boolean isUnlocked;
-	Word currentWord;
-	Word [] wordList = new Word [20];
+	private boolean isUnlocked;
+	private Word currentWord;
+	protected List<Word> wordList = new ArrayList<Word>();
 	private Dictionary dictionary;
-	HashMap<String, Integer> letterFrequencies = new HashMap<String, Integer>();
 	
 	public Level (int starVal [], Board board, int levelNumber) {
 		this.board = board;
@@ -27,39 +27,28 @@ public abstract class Level {
 			starValues [i] = starVal [i];
 		}
 	}
-	/*
-	public Level resetLevel () {
-		return new Level (starValues, board, 1);
-	}*/
+	
+	abstract public boolean resetLevel();
 
 	public boolean addWord (Word word) {
-		this.wordList[i] = word;
-		i++;
-		return true;
+		return this.wordList.add(word);
 	}
 	
-	public boolean removeWord (Word word) {
-		for (int j = 0; j < 20; j++) {
-			if (word.equals(this.wordList[j])) {
-				this.wordList[j] = this.wordList[j + 1];
-				return true;
-			}
-		}
-		return false;
+	public boolean removeWord () {
+		Word word = wordList.get(wordList.size());
+		wordList.remove(wordList.size());
+		return !wordList.contains(word);
 	}
 	
-	public int addScore (Word word) {
-		this.score = this.score + word.calculateScore();
-		return this.score;
-	}
+	//rewrite this to be with currentWord in puzzle so it takes no parameters
+	public abstract int addScore (Word word);
 	
 	public int removeScore (Word word) {
 		this.score = this.score - word.calculateScore();
 		return this.score;
 	}
 	
-	public int checkStarProgress (int score, int levelNumber) {
-		this.score = score;
+	public int checkStarProgress () {
 		if (this.score > this.highScore) {
 			this.highScore = this.score;
 		}
@@ -80,48 +69,8 @@ public abstract class Level {
 		}
 	}
 	
-	public boolean repopulate (Board board) {
-		return false;
-	}
+	public abstract boolean repopulate (Board board);
 
-	public String getLevelType() {
-		return levelType;
-	}
-
-	abstract protected void setLevelType();
-	
-	public int getLevelNumber() {
-		return levelNumber;
-	}
-
-	public void setLevelNumber(int levelNumber) {
-		this.levelNumber = levelNumber;
-	}
-
-	public Dictionary getDictionary() {
-		return dictionary;
-	}
-
-	public void setDictionary(Dictionary dictionary) {
-		this.dictionary = dictionary;
-	}
-
-	public int getMostStars() {
-		return mostStars;
-	}
-
-	public void setMostStars(int mostStars) {
-		this.mostStars = mostStars;
-	}
-	
-	public Board getBoard() {
-		return board;
-	}
-	
-	public void setBoard(Board b) {
-		this.board = b;
-	}
-	
 	public String randomLetter () {
 		Random rand = new Random();
 		int n = rand.nextInt(100000) + 1;
@@ -234,4 +183,110 @@ public abstract class Level {
 			return "I didn't work";
 		}
 	}
+
+
+	
+	/**
+	 * Get/Set methods up the a-hole
+	 */
+	public Board getBoard() {
+		return board;
+	}
+	
+	public void setBoard(Board b) {
+		this.board = b;
+	}
+	
+	public int getCurrentStars() {
+		return currentStars;
+	}
+
+	public void setCurrentStars(int currentStars) {
+		this.currentStars = currentStars;
+	}
+	
+	public int[] getStarValues() {
+		return starValues;
+	}
+
+	public void setStarValues(int[] starValues) {
+		this.starValues = starValues;
+	}
+	
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+	
+	public int getHighScore() {
+		return highScore;
+	}
+
+	public void setHighScore(int highScore) {
+		this.highScore = highScore;
+	}
+	
+	public int getMostStars() {
+		return mostStars;
+	}
+
+	public void setMostStars(int mostStars) {
+		this.mostStars = mostStars;
+	}
+	
+	public int getLevelNumber() {
+		return levelNumber;
+	}
+
+	public void setLevelNumber(int levelNumber) {
+		this.levelNumber = levelNumber;
+	}
+	
+	public String getLevelType() {
+		return levelType;
+	}
+
+	// This one method is abstract because the subclasses define their own level type
+	abstract protected void setLevelType();
+	
+	public boolean getIsUnlocked() {
+		return isUnlocked;
+	}
+
+	public void setIsUnlocked(boolean isUnlocked) {
+		this.isUnlocked = isUnlocked;
+	}
+	
+	public Word getCurrentWord() {
+		return currentWord;
+	}
+
+	public void setCurrentWord(Word currentWord) {
+		this.currentWord = currentWord;
+	}
+	
+	public List<Word> getWordList() {
+		return wordList;
+	}
+
+	public void setWordList(List<Word> wordList) {
+		this.wordList = wordList;
+	}
+
+	public Dictionary getDictionary() {
+		return dictionary;
+	}
+
+	public void setDictionary(Dictionary dictionary) {
+		this.dictionary = dictionary;
+	}
+
+	
+	
+	
 }
+	
+	
