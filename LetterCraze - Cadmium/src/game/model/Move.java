@@ -28,7 +28,7 @@ public class Move {
 			}
 				this.level.addScore(this.word);
 				this.level.addWord(this.word);
-				this.level.checkStarProgress(this.level.score, this.level.getLevelNumber());
+				this.level.checkStarProgress();
 				if (this.level.getLevelType().equalsIgnoreCase("puzzle")) {
 					((PuzzleLevel) this.level).didMove();
 				}
@@ -45,8 +45,8 @@ public class Move {
 			((PuzzleLevel) this.level).undidMove();
 		}
 		this.level.removeScore(this.word);
-		this.level.removeWord(this.word);
-		this.level.checkStarProgress(this.level.score, this.level.getLevelNumber());
+		this.level.removeWord();
+		this.level.checkStarProgress();
 		for (int i = 0; i < this.numOfSTiles(selectedSquares); i++) {
 			this.selectedSquares[i].tile = this.selectedTiles[i];
 		}

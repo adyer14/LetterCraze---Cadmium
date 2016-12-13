@@ -43,5 +43,9 @@ public class Word {
 		this.actualWord = letters.toString();
 		return this.actualWord;
 	}
+	
+	public String getActualString() {
+		return actualWord;
+	}
 
 }
