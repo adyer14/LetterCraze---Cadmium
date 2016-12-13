@@ -7,6 +7,7 @@ public abstract class Level {
 	int i = 0;
 	
 	protected Board board;
+	protected final Board initialBoard;
 	protected int currentStars;
 	protected int [] starValues = new int [3];
 	protected int score;
@@ -22,6 +23,7 @@ public abstract class Level {
 	public Level (int starVal [], Board board, int levelNumber) {
 		this.board = board;
 		this.levelNumber = levelNumber;
+		this.initialBoard = board;
 
 		for (int i = 0; i < 3; i++) {
 			starValues [i] = starVal [i];
@@ -50,6 +52,10 @@ public abstract class Level {
 		this.board = b;
 	}
 	
+	public Board getInitialBoard() {
+		return initialBoard;
+	}
+
 	public int getCurrentStars() {
 		return currentStars;
 	}

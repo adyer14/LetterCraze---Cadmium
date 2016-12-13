@@ -10,12 +10,10 @@ public class LightningLevel extends Level {
 	private int time;
 	public Timer timer;
 	int i = 0;
-	Board lvlBoard;
 
 	public LightningLevel(int[] starVal, Board board, int levelNumber, int time) {
 		super(starVal, board, levelNumber);
 		this.time = time;
-		this.lvlBoard = board;
 		setLevelType();
 		Timer timer = new Timer();
 		timer.schedule(new EndLightningLevelController(this), time);
@@ -27,7 +25,7 @@ public class LightningLevel extends Level {
 		this.wordList.clear();
 		this.score = 0;
 		this.currentStars = 0;
-		this.board = this.lvlBoard;
+		this.board = this.initialBoard;
 		if (wordList.isEmpty() && score == 0 && currentStars == 0)
 			return true;
 		else

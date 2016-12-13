@@ -5,13 +5,11 @@ public class PuzzleLevel extends Level {
 	private int movesLeft;
 	int i = 0;
 	int lvlNumMoves;
-	Board lvlBoard;
 	
 	public PuzzleLevel(int[] starVal, Board board, int levelNumber, int numMoves) {
 		super(starVal, board, levelNumber);
 		this.movesLeft = numMoves;
 		this.lvlNumMoves = numMoves;
-		this.lvlBoard = board;
 		setLevelType();
 	}
 	
@@ -23,7 +21,7 @@ public class PuzzleLevel extends Level {
 		this.score = 0;
 		this.currentStars = 0;
 		this.movesLeft = this.lvlNumMoves;
-		this.board = this.lvlBoard;
+		this.board = this.initialBoard;
 		if (wordList.isEmpty() && score == 0 && currentStars == 0)
 			return true;
 		else

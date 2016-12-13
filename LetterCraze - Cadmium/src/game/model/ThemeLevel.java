@@ -19,7 +19,7 @@ public class ThemeLevel extends Level {
 		this.wordList.clear();
 		this.score = 0;
 		this.currentStars = 0;
-		// TODO reset board - get board from level file and set it to the board
+		this.board = this.initialBoard;
 		if (wordList.isEmpty() && score == 0 && currentStars == 0)
 			return true;
 		else
@@ -28,8 +28,7 @@ public class ThemeLevel extends Level {
 
 	@Override
 	public int addScore(Word word) {
-		// TODO score method for theme
-		return 0;
+		return this.score = wordList.size();
 	}
 
 	@Override
@@ -71,10 +70,5 @@ public class ThemeLevel extends Level {
 	public void setWordsLeft(int wordsLeft) {
 		this.wordsLeft = wordsLeft;
 	}
-	
-	
-
-
-	
 	
 }
