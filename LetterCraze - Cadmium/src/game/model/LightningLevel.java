@@ -1,6 +1,7 @@
 package game.model;
 import java.util.Timer;
 
+
 import game.controller.EndLightningLevelController;
 
 public class LightningLevel extends Level {
@@ -9,10 +10,12 @@ public class LightningLevel extends Level {
 	private int time;
 	public Timer timer;
 	int i = 0;
+	Board lvlBoard;
 
 	public LightningLevel(int[] starVal, Board board, int levelNumber, int time) {
 		super(starVal, board, levelNumber);
 		this.time = time;
+		this.lvlBoard = board;
 		setLevelType();
 		Timer timer = new Timer();
 		timer.schedule(new EndLightningLevelController(this), time);
@@ -24,7 +27,7 @@ public class LightningLevel extends Level {
 		this.wordList.clear();
 		this.score = 0;
 		this.currentStars = 0;
-		// TODO reset board - get board from level file and set it to the board
+		this.board = this.lvlBoard;
 		if (wordList.isEmpty() && score == 0 && currentStars == 0)
 			return true;
 		else
@@ -33,13 +36,24 @@ public class LightningLevel extends Level {
 	
 	@Override
 	public int addScore (Word word) {
-		//TODO lightning score method
-		return -1;
+		return this.score = wordList.size();
+	}
+	
+	public int removeScore () {
+		return this.score = wordList.size();
+		
 	}
 	
 	@Override
 	public boolean repopulate (Board board) {
-		//TODO lightning repopulate method
+		for (int j = 0; j < 36; j++) {
+			if (this.board.boardSquares[j].squareInPlay) {
+				if (this.board.boardSquares[j].tile == null) {
+					this.board.boardSquares[j].setTile(this.randomLetter());
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 
@@ -51,6 +65,7 @@ public class LightningLevel extends Level {
 	/**
 	 * Get/set methods
 	 */
+	
 	public int getTime() {
 		return time;
 	}
