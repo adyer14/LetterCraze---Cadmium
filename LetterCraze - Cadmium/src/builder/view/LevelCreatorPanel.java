@@ -240,7 +240,7 @@ public class LevelCreatorPanel extends JPanel {
 	}
 	
 	public void initBoard() {
-		boardPanel = new BoardPanel();
+		boardPanel = new BoardPanel(new Board());
 		boardPanel.setBounds(258, 255, 254, 254);
 		add(boardPanel);
 	}

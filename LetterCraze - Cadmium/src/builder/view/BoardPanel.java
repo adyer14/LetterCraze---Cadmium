@@ -6,6 +6,9 @@ import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.border.LineBorder;
 
+import builder.model.*;
+import builder.controller.*;
+
 public class BoardPanel extends JPanel {
 
 	/**
@@ -18,7 +21,7 @@ public class BoardPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public BoardPanel() {
+	public BoardPanel(Board board) {
 		setBounds(0, 0, 254, 254);
 		setBackground(new Color(119, 136, 153));
 		setLayout(null);
@@ -34,6 +37,10 @@ public class BoardPanel extends JPanel {
 			squareButton[i] = new JToggleButton("");
 			squareButton[i].setIcon(new ImageIcon(BoardPanel.class.getResource("/images/squareUnselected.png")));
 			squareButton[i].setBounds((col*40) + 7, (row*40) + 7, 40, 40);
+			
+			ToggleSquareController tsc = new ToggleSquareController(board, i);
+			squareButton[i].addActionListener(tsc);
+			
 			if (col == 0)
 				dark = !dark;
 			if (dark) {
