@@ -31,6 +31,7 @@ public abstract class Level {
 	abstract public boolean resetLevel();
 
 	public boolean addWord (Word word) {
+		this.addScore(word);
 		return this.wordList.add(word);
 	}
 	
@@ -38,6 +39,7 @@ public abstract class Level {
 		if (wordList.isEmpty()) 
 			return false;
 		Word word = wordList.get(wordList.size()-1);
+		this.removeScore();
 		wordList.remove(wordList.size()-1);
 		return !wordList.contains(word);
 	}
