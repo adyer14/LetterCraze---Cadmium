@@ -17,7 +17,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
-import builder.controller.ExitLevelController;
+import builder.controller.*;
+import builder.model.*;
 import javax.swing.JFormattedTextField;
 
 
@@ -42,10 +43,14 @@ public class LevelCreatorPanel extends JPanel {
 	private JButton resetButton;
 	private JButton saveButton;
 	private JPanel contentPane;
+	
+	private Level level;
 	/**
 	 * Create the panel.
 	 */
-	public LevelCreatorPanel(JPanel panel) {
+	public LevelCreatorPanel(JPanel panel, Level level) {
+		this.level = level;
+		
 		contentPane = panel;
 		setBounds(0, 0, 800, 550);
 		setBackground(new Color(230, 230, 250));
@@ -242,7 +247,10 @@ public class LevelCreatorPanel extends JPanel {
 	
 	public void initControllers() {
 		ExitLevelController elcontrol = new ExitLevelController(this);
+		InputThemeNameController itmcontrol = new InputThemeNameController(level ,this);
+		
 		backButton.addActionListener(elcontrol);
+		themeNameTextField.addActionListener(itmcontrol);
 	}
 
 	public JPanel getContentPane() {
