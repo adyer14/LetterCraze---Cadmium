@@ -58,4 +58,18 @@ public class Level {
 	public int getNumMoves() {
 		return numMoves;
 	}
+
+	public void setScores(int scores[]) {
+		for(int i = 0; i < 3; i++){
+			starValues[i] = scores[i];
+		}
+	}
+
+	public int getScores(int n) {
+		try{
+			return starValues[n];
+		} catch(Exception e){
+			return 0; // indicate failure
+		}
+	}
 }
