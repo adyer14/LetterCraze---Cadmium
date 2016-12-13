@@ -2,12 +2,12 @@ package game.model;
 
 public class ThemeLevel extends Level {
 
-	private Dictionary themeWords;
+	ThemeDictionary themeWords;
 	private String themeName;
 	private int wordsLeft;
 	int i = 0;
 	
-	public ThemeLevel(int[] starVal, Board board, int levelNumber, String themeName, Dictionary themeWords) {
+	public ThemeLevel(int[] starVal, Board board, int levelNumber, String themeName, ThemeDictionary themeWords) {
 		super(starVal, board, levelNumber);
 		this.setThemeName(themeName);
 		this.themeWords = themeWords;
@@ -47,11 +47,11 @@ public class ThemeLevel extends Level {
 	/**
 	 * Get/set methods
 	 */
-	public Dictionary getThemeWords() {
+	public ThemeDictionary getThemeWords() {
 		return themeWords;
 	}
 
-	public void setThemeWords(Dictionary themeWords) {
+	public void setThemeWords(ThemeDictionary themeWords) {
 		this.themeWords = themeWords;
 	}
 

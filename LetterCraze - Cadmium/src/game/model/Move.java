@@ -53,6 +53,9 @@ public class Move {
 	
 	public boolean isValid () {
 		if (this.board.isValidSelection()) {
+			if (this.level.getLevelType().equalsIgnoreCase("theme")) {
+				return ((ThemeLevel)this.level).themeWords.containsWord(this.word.getActualString());
+			}
 			if (this.word.isValidWord(this.d)) {
 				return true;
 			}
