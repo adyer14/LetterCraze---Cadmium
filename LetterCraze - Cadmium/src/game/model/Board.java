@@ -1,6 +1,6 @@
 package game.model;
 
-
+import java.util.HashMap;
 
 public class Board {
 	
@@ -8,6 +8,7 @@ public class Board {
 	Square selectedSquares [] = new Square [36];
 	Word selectedWord;
 	BlankTile blankTile;
+	private static HashMap<String, Integer> letterScores = new HashMap<String, Integer>();
 	
 	public Board () {
 		int k = 0;
@@ -17,6 +18,7 @@ public class Board {
 			k++;
 			}
 		}
+		assignLevelScores();
 	}
 	
 	public int numOfSTiles () {
@@ -72,6 +74,17 @@ public class Board {
 		return true;
 	}
 	
+	private static void assignLevelScores() {
+		String[] letters = new String[]{"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+		Integer[] scores = new Integer[]{2,  4,  3,  3,  1,  4,  4,  2,  2,  7,  5,  3,  3,  2,  2,  4,  8,  2,  2,  1,  3,  5,  3,  7,  4,  8};
+		for(int i = 0; i < letters.length; i++){
+	        letterScores.put(letters[i], scores[i]);
+		}
+	}
+	
+	/**
+	 * Get/set methods
+	 */
 	public Square[] getBoardSquares() {
 		return boardSquares;
 	}
@@ -79,11 +92,10 @@ public class Board {
 	public void setBoardSquares(Square boardSquares[]) {
 		this.boardSquares = boardSquares;
 	}
-	
-	public Square getBoardSquareByIndex(int index) {
-		return boardSquares[index];
-	}
 
+	public HashMap<String, Integer> getLetterScores() {
+		return letterScores;
+	}
 
 	
 }
