@@ -21,7 +21,6 @@ import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
 
 public class LevelPanel extends JPanel {
-	// TODO (LATER) make those update functions into one refresh probably
 	
 	/**
 	 * Keep Eclipse happy
@@ -125,9 +124,8 @@ public class LevelPanel extends JPanel {
 		add(constraintPanel);
 	}
 	
-	//TODO Link highScore with corresponding level - only field that initializes not blank
 	public void initHighScore() {
-		highScore = 0;//Level.getHighScore();
+		highScore = level.getHighScore();
 		
 		JPanel highScorePanel = new JPanel();
 		highScorePanel.setBounds(48, 143, 184, 77);
@@ -233,26 +231,22 @@ public class LevelPanel extends JPanel {
 		return titleLabel;
 	}
 	
-	// Don't worry about this quite yet
-	/*
-	public void updateHighScore() {
-		highScore = 5; //Level.getHighScore();
+	// TODO make refresh abstract and give it to the subclasses
+	public void refresh() {
+		highScore = level.getHighScore();
 		highScoreLabel.setText(Integer.toString(highScore));
-	}
-	public void updateScore() {
-		int score = 5; //Level.getScore();
+		
+		int score = level.getScore();
 		scoreLabel.setText(Integer.toString(score));
-	}
-	public void updateWords() {
+		
+		int mostStars = level.getMostStars();
+		starLabel.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/" + mostStars + "GameStars.png")));
+		
 		String wordListString = "";
-		String wordList[] = {"this", "is", "a", "series", "of", "example", "words"};//Level.getWordList();
-		for (int numWords = 0; numWords < wordList.length; numWords++) {
-			wordListString = wordListString + wordList[numWords] + "\n";
+		for (int numWords = 0; numWords < level.getWordList().size(); numWords++) {
+			wordListString = wordListString + level.getWordList().get(numWords).getActualString() + "\n";
+			wordsTextPane.setText(wordListString);
 		}
-		wordsTextPane.setText(wordListString);
 	}
-	public void updateStars() {
-		int maxStarsAchieved = 2;//Level.getMaxStarsAchieved();
-		starLabel.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/" + maxStarsAchieved + "GameStars.png")));
-	}*/
+
 }
