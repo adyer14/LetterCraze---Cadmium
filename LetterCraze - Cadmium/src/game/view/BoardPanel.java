@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 
 import game.controller.ChooseWordController;
 import game.model.Board;
+import game.model.LetterTile;
 import game.model.Model;
 import game.model.Tile;
 
@@ -50,7 +51,7 @@ public class BoardPanel extends JPanel {
 			// TODO HACK until we get board and square and tile working 
 			// TODO DELETE
 			// Tile tile = board.getBoardSquareByIndex(i).getTile();
-			Tile tile = new Tile();
+			LetterTile tile = new LetterTile("D", 69);
 			
 			
 			row = (int) Math.floor(i/6);
