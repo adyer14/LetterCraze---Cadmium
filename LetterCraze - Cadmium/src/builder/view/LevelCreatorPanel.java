@@ -240,6 +240,7 @@ public class LevelCreatorPanel extends JPanel {
 		ResetLevelController rlcontrol = new ResetLevelController(level, this);
 		
 		backButton.addActionListener(elcontrol);
+		backButton.addActionListener(rlcontrol);
 		themeNameTextField.addActionListener(itmcontrol);
 		movesTextField.addActionListener(nmcontrol);
 		resetButton.addActionListener(rlcontrol);
