@@ -2,6 +2,7 @@ package game.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -13,8 +14,6 @@ public class ThemePanel extends LevelPanel{
 	 * Keep Eclipse happy
 	 */
 	private static final long serialVersionUID = 6784567307261293313L;
-
-	// TODO add in theme level name 
 	
 	Model m;
 	private JLabel wordsLeftLabel;
@@ -29,11 +28,16 @@ public class ThemePanel extends LevelPanel{
 		String themeName = level.getThemeName();
 		titleLabel.setText("THEME" + " " + levNum);
 		titlePanel.add(titleLabel);
-		initThemeName(themeName);
 		
-		// TODO HACK - DIDNT FEEL LIKE DOING THIS BECAUSE IT REQUIRES DICTIONARY WORK
-		wordsLeft = level.getThemeWords().getdSize();
+		wordsLeft = level.getWordsLeft();
 				
+		JLabel themeLabel = new JLabel(themeName);
+		themeLabel.setForeground(Color.BLACK);
+		themeLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		themeLabel.setFont(new Font("OCR A Extended", Font.BOLD, 35));
+		themeLabel.setBounds(297, 150, 254, 35);
+		add(themeLabel);
+		
 		JLabel wLabel = new JLabel("WORDS");
 		wLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		wLabel.setBounds(0, 4, 101, 37);
@@ -47,15 +51,28 @@ public class ThemePanel extends LevelPanel{
 		wordsLeftLabel.setForeground(Color.BLACK);
 		wordsLeftLabel.setFont(new Font("OCR A Extended", Font.BOLD, 25));
 		getConstraintPanel().add(wordsLeftLabel);
+		
 	}
 	
-	public void initThemeName(String thmName) {
-		JLabel themeLabel = new JLabel(thmName);
-		themeLabel.setForeground(Color.BLACK);
-		themeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		themeLabel.setFont(new Font("OCR A Extended", Font.BOLD, 35));
-		themeLabel.setBounds(297, 150, 254, 35);
-		add(themeLabel);
+	@Override
+	public void refresh() {
+		wordsLeft = ((ThemeLevel) level).getWordsLeft();
+		wordsLeftLabel.setText(Integer.toString(wordsLeft));
+		
+		highScore = level.getHighScore();
+		highScoreLabel.setText(Integer.toString(highScore));
+		
+		int score = level.getScore();
+		scoreLabel.setText(Integer.toString(score));
+		
+		int mostStars = level.getMostStars();
+		starLabel.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/" + mostStars + "GameStars.png")));
+		
+		String wordListString = "";
+		for (int numWords = 0; numWords < level.getWordList().size(); numWords++) {
+			wordListString = wordListString + level.getWordList().get(numWords).getActualString() + "\n";
+			wordsTextPane.setText(wordListString);
+		}
 	}
 
 }

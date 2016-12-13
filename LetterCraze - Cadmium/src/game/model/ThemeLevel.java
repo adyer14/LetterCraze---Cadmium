@@ -4,6 +4,7 @@ public class ThemeLevel extends Level {
 
 	private Dictionary themeWords;
 	private String themeName;
+	private int wordsLeft;
 	int i = 0;
 	
 	public ThemeLevel(int[] starVal, Board board, int levelNumber, String themeName, Dictionary themeWords) {
@@ -61,6 +62,14 @@ public class ThemeLevel extends Level {
 
 	public void setThemeName(String themeName) {
 		this.themeName = themeName;
+	}
+	
+	public int getWordsLeft() {
+		return wordsLeft;
+	}
+	
+	public void setWordsLeft(int wordsLeft) {
+		this.wordsLeft = wordsLeft;
 	}
 	
 	

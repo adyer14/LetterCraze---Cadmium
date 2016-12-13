@@ -26,7 +26,7 @@ public class PuzzleLevel extends Level {
 	
 	@Override
 	public int addScore(Word word) {
-		// TODO rewrite to use currentWord
+		// TODO rewrite to use currentWord - maybe
 		this.score = score + word.calculateScore();
 		return this.score;
 	}

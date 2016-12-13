@@ -7,14 +7,12 @@ public class Word {
 	String actualWord;
 	
 	public Word (LetterTile wordTiles []) {
-		for (int i = 0; i < 35; i++) {
-			selectedTiles [i] = wordTiles [i];
-		}
+		this.selectedTiles = wordTiles;
 	}
 	
 	public int numOfSTiles () {
 		int count = 0;
-		for (int i = 0; i < 36; i++) {
+		for (int i = 0; i < selectedTiles.length; i++) {
 			if (selectedTiles [i] != null) {
 				count++;
 			}
@@ -32,6 +30,7 @@ public class Word {
 		for (int j = 0; j < count; j++) {
 			score = score + selectedTiles[j].scoreValue;
 		}
+		score = score*(this.numOfSTiles()-2);
 		return score;	
 	}
 	

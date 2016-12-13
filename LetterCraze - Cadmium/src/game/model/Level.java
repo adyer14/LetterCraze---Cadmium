@@ -35,15 +35,20 @@ public abstract class Level {
 	}
 	
 	public boolean removeWord () {
-		Word word = wordList.get(wordList.size());
-		wordList.remove(wordList.size());
+		if (wordList.isEmpty()) 
+			return false;
+		Word word = wordList.get(wordList.size()-1);
+		wordList.remove(wordList.size()-1);
 		return !wordList.contains(word);
 	}
 	
-	//rewrite this to be with currentWord in puzzle so it takes no parameters
+	//TODO we should really consider adding these to addWord and removeWord
 	public abstract int addScore (Word word);
 	
-	public int removeScore (Word word) {
+	public int removeScore () {
+		if (wordList.isEmpty()) 
+			return this.score;
+		Word word = this.getWordList().get(getWordList().size()-1);
 		this.score = this.score - word.calculateScore();
 		return this.score;
 	}
@@ -52,15 +57,15 @@ public abstract class Level {
 		if (this.score > this.highScore) {
 			this.highScore = this.score;
 		}
-		if (this.score >= starValues[1] && this.score < starValues[2]) {
+		if (this.score >= starValues[0] && this.score < starValues[1]) {
 			this.currentStars = 1;
 			return this.currentStars;
 		}
-		if (this.score >= starValues[2] && this.score < starValues[3]) {
+		if (this.score >= starValues[1] && this.score < starValues[2]) {
 			this.currentStars = 2;
 			return this.currentStars;
 		}
-		if (this.score >= starValues[3]) {
+		if (this.score >= starValues[2]) {
 			this.currentStars = 3;
 			return this.currentStars;
 		}
