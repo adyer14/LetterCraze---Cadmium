@@ -1,23 +1,18 @@
 package game.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Board {
 	
-	Square boardSquares [] = new Square [36];
+	ArrayList<Square> boardSquares = new ArrayList<Square>();
 	Square selectedSquares [] = new Square [36];
 	Word selectedWord;
 	BlankTile blankTile;
 	private static HashMap<String, Integer> letterScores = new HashMap<String, Integer>();
 	
-	public Board () {
-		int k = 0;
-		for (int i = 0; i < 5; i++) {
-			for (int j = 0; j < 5; j++) {
-			boardSquares [k] = new Square (i, j, true, blankTile);
-			k++;
-			}
-		}
+	public Board (ArrayList<Square> squares) {
+		this.boardSquares = squares;
 		assignLevelScores();
 	}
 	
@@ -51,27 +46,27 @@ public class Board {
 	return true;
 }
 	
-	public boolean floatTilesUp () {
+	public Board floatTilesUp () {
 		for (int i = 0; i < 36; i++) {
-			if (boardSquares[i].squareInPlay && 
-					boardSquares[i].tile == null) {
-				for (int j = boardSquares[i].squareColumn; j < 36; j++) {
-					if (boardSquares[j].squareInPlay &&
-							boardSquares[j].tile == null &&
-							boardSquares[j].squareColumn == boardSquares[i].squareColumn) {
-						for (int k = (boardSquares[j].squareColumn + 6*boardSquares[j].squareRow); k < 36; k++) {
-							if (boardSquares[k].squareInPlay &&
-									boardSquares[k].tile != null &&
-									boardSquares[k].squareColumn == boardSquares[j].squareColumn) {
-								boardSquares[j].tile = boardSquares[k].tile;
-								boardSquares[k].removeTile();
+			if (this.boardSquares.get(i).squareInPlay && 
+					this.boardSquares.get(i).getTile() == null) {
+				for (int j = this.boardSquares.get(i).getSquareColumn(); j < 36; j++) {
+					if (this.boardSquares.get(j).getSquareInPlay() &&
+							this.boardSquares.get(j).getTile() == null &&
+							this.boardSquares.get(j).getSquareColumn() == this.boardSquares.get(j).getSquareColumn()) {
+						for (int k = (this.boardSquares.get(j).getSquareColumn() + 6*this.boardSquares.get(j).getSquareRow()); k < 36; k++) {
+							if (this.boardSquares.get(k).getSquareInPlay() &&
+									this.boardSquares.get(k).getTile() != null &&
+									this.boardSquares.get(k).getSquareColumn() == this.boardSquares.get(j).getSquareColumn()) {
+								this.boardSquares.get(j).setTile(this.boardSquares.get(k).getTile());
+								this.boardSquares.get(k).removeTile();
 							}
 						}
 					}
 				}
 			}
 		}
-		return true;
+		return new Board (this.boardSquares);
 	}
 	
 	private static void assignLevelScores() {
@@ -85,12 +80,12 @@ public class Board {
 	/**
 	 * Get/set methods
 	 */
-	public Square[] getBoardSquares() {
+	public ArrayList<Square> getBoardSquares() {
 		return boardSquares;
 	}
 
-	public void setBoardSquares(Square boardSquares[]) {
-		this.boardSquares = boardSquares;
+	public void setBoardSquares(ArrayList<Square> bSquares) {
+		this.boardSquares = bSquares;
 	}
 
 	public HashMap<String, Integer> getLetterScores() {

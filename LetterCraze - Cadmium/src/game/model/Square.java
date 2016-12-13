@@ -72,4 +72,16 @@ public class Square {
 	public void setTile(Tile t) {
 		this.tile = t;
 	}
+
+	public int getSquareColumn() {
+		return squareColumn;
+	}
+
+	public boolean getSquareInPlay() {
+		return squareInPlay;
+	}
+
+	public int getSquareRow() {
+		return squareRow;
+	}
 }

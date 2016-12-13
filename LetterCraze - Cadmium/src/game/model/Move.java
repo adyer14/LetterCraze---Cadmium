@@ -2,32 +2,25 @@ package game.model;
 
 public class Move {
 	
-	Square selectedSquares [] = new Square [36];
-	Tile selectedTiles [] = new Tile [36];
 	Word word;
 	Level level;
 	Board board;
-	Dictionary d;
 	
-	Move (Square theSquares [], Word theWord, Level theLevel, Board theBoard, Dictionary dict) {
+	Move (Word theWord, Level theLevel) {
 		this.word = theWord;
 		this.level = theLevel;
-		this.board = theBoard;
-		this.d = dict;
-		
-		for (int i = 0; i < this.numOfSTiles(theSquares); i++) {
-			this.selectedSquares[i] = theSquares [i];
-			this.selectedTiles[i] = this.selectedSquares[i].tile;
-		}
+		this.board = this.level.board;
 	}
 	
 	public boolean doMove () {
 		if (this.isValid()) {
-			for (int i = 0; i < this.numOfSTiles(selectedSquares); i++) {
-				this.selectedSquares[i].removeTile();
+			for (int i = 0; i < this.word.getSelectedSquares().size(); i++) {
+				this.word.getSelectedSquares().get(i).removeTile();
 			}
 				this.level.addWord(this.word);
 				this.level.checkStarProgress();
+				this.level.board.floatTilesUp();
+				this.level.repopulate(this.level.board);
 				if (this.level.getLevelType().equalsIgnoreCase("puzzle")) {
 					((PuzzleLevel) this.level).didMove();
 				}
@@ -45,9 +38,7 @@ public class Move {
 		}
 		this.level.removeWord();
 		this.level.checkStarProgress();
-		for (int i = 0; i < this.numOfSTiles(selectedSquares); i++) {
-			this.selectedSquares[i].tile = this.selectedTiles[i];
-		}
+		this.level.setBoard(this.board);
 		return true;
 	} 
 	
@@ -56,7 +47,7 @@ public class Move {
 			if (this.level.getLevelType().equalsIgnoreCase("theme")) {
 				return ((ThemeLevel)this.level).themeWords.containsWord(this.word.getActualString());
 			}
-			if (this.word.isValidWord(this.d)) {
+			if (this.word.isValidWord(this.level.getDictionary())) {
 				return true;
 			}
 			return false;
