@@ -1,19 +1,21 @@
 package game.model;
+
+import java.util.ArrayList;
+
 public class Word {
 	
-	LetterTile selectedTiles [] = new LetterTile [36];
-	String letters [] = new String [36];
-	int wordScore;
-	String actualWord;
+	private ArrayList<Square> selectedSquares = new ArrayList<Square>();
+	private int wordScore;
+	private String actualWord;
 	
-	public Word (LetterTile wordTiles []) {
-		this.selectedTiles = wordTiles;
+	public Word (ArrayList<Square> wordSquares) {
+		this.selectedSquares = wordSquares;
 	}
 	
 	public int numOfSTiles () {
 		int count = 0;
-		for (int i = 0; i < selectedTiles.length; i++) {
-			if (selectedTiles [i] != null) {
+		for (int i = 0; i < selectedSquares.size(); i++) {
+			if (selectedSquares.get(i) != null) {
 				count++;
 			}
 		}
@@ -28,7 +30,7 @@ public class Word {
 		int score = 0;
 		int count = this.numOfSTiles();
 		for (int j = 0; j < count; j++) {
-			score = score + selectedTiles[j].scoreValue;
+			score = score + ((LetterTile)selectedSquares.get(j).getTile()).getScoreValue();
 		}
 		score = score*(this.numOfSTiles()-2);
 		return score;	
@@ -37,14 +39,27 @@ public class Word {
 	public String makeString () {
 		int count = this.numOfSTiles();
 		for (int j = 0; j < count; j++) {
-			letters[j].concat(selectedTiles[j].getLetter());
+			actualWord.concat(((LetterTile)selectedSquares.get(j).getTile()).getLetter());
 		}
-		this.actualWord = letters.toString();
 		return this.actualWord;
 	}
 	
 	public String getActualString() {
 		return actualWord;
 	}
+	
+	public int getWordScore() {
+		return wordScore;
+	}
+	
+	public ArrayList<Square> getSelectedSquares() {
+		return selectedSquares;
+	}
+	
+	public void setSelectedSquares(ArrayList<Square> selectedSquares) {
+		this.selectedSquares = selectedSquares;
+	}
+	
+	
 
 }
