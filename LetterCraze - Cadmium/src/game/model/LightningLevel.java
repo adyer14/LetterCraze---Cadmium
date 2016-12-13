@@ -5,7 +5,7 @@ import game.controller.EndLightningLevelController;
 
 public class LightningLevel extends Level {
 	
-	boolean isOver;
+	private boolean isOver;
 	private int time;
 	public Timer timer;
 	int i = 0;
@@ -18,63 +18,39 @@ public class LightningLevel extends Level {
 		timer.schedule(new EndLightningLevelController(this), time);
 	//	EndLightningLevelController llc = new EndLightningLevelController(this, null);
 	}
-/*
-	public Level resetLevel () {
-		return new Level (starValues, board, 1);
-	}*/
 
-	public boolean addWord (Word word) {
-		this.wordList[i] = word;
-		i++;
-		return true;
+	@Override
+	public boolean resetLevel () {
+		this.wordList.clear();
+		this.score = 0;
+		this.currentStars = 0;
+		// TODO reset board - get board from level file and set it to the board
+		if (wordList.isEmpty() && score == 0 && currentStars == 0)
+			return true;
+		else
+			return false;
 	}
 	
-	public boolean removeWord (Word word) {
-		for (int j = 0; j < 20; j++) {
-			if (word.equals(this.wordList[j])) {
-				this.wordList[j] = this.wordList[j + 1];
-				return true;
-			}
-		}
-		return false;
-	}
-	
+	@Override
 	public int addScore (Word word) {
-		this.score = this.score + word.calculateScore();
-		return this.score;
+		//TODO lightning score method
+		return -1;
 	}
 	
-	public int removeScore (Word word) {
-		this.score = this.score - word.calculateScore();
-		return this.score;
-	}
-	
-	public int checkStarProgress (int score, int levelNumber) {
-		this.score = score;
-		if (this.score > this.highScore) {
-			this.highScore = this.score;
-		}
-		if (this.score >= starValues[1] && this.score < starValues[2]) {
-			this.currentStars = 1;
-			return this.currentStars;
-		}
-		if (this.score >= starValues[2] && this.score < starValues[3]) {
-			this.currentStars = 2;
-			return this.currentStars;
-		}
-		if (this.score >= starValues[3]) {
-			this.currentStars = 3;
-			return this.currentStars;
-		}
-		else {
-			return 0;
-		}
-	}
-	
+	@Override
 	public boolean repopulate (Board board) {
+		//TODO lightning repopulate method
 		return false;
 	}
 
+	@Override
+	protected void setLevelType() {
+		this.levelType = "lightning";	
+	}
+	
+	/**
+	 * Get/set methods
+	 */
 	public int getTime() {
 		return time;
 	}
@@ -83,11 +59,7 @@ public class LightningLevel extends Level {
 		this.time = time;
 	}
 	
-	@Override
-	protected void setLevelType() {
-		this.levelType = "lightning";
-		
-	}
+	
 
 	
 	

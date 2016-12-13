@@ -12,63 +12,41 @@ public class ThemeLevel extends Level {
 		this.themeWords = themeWords;
 		setLevelType();
 	}
-
-	/*public Level resetLevel () {
-		return new Level (starValues, board, 1);
-	}*/
-
-	public boolean addWord (Word word) {
-		this.wordList[i] = word;
-		i++;
-		return true;
-	}
 	
-	public boolean removeWord (Word word) {
-		for (int j = 0; j < 20; j++) {
-			if (word.equals(this.wordList[j])) {
-				this.wordList[j] = this.wordList[j + 1];
-				return true;
-			}
-		}
+	@Override
+	public boolean resetLevel() {
+		this.wordList.clear();
+		this.score = 0;
+		this.currentStars = 0;
+		// TODO reset board - get board from level file and set it to the board
+		if (wordList.isEmpty() && score == 0 && currentStars == 0)
+			return true;
+		else
+			return false;
+	}
+
+	@Override
+	public int addScore(Word word) {
+		// TODO score method for theme
+		return 0;
+	}
+
+	@Override
+	public boolean repopulate(Board board) {
+		// TODO repopulate method for theme
 		return false;
 	}
 	
-	public int addScore (Word word) {
-		this.score = this.score + word.calculateScore();
-		return this.score;
+	@Override
+	protected void setLevelType() {
+		this.levelType = "theme";
 	}
 	
-	public int removeScore (Word word) {
-		this.score = this.score - word.calculateScore();
-		return this.score;
-	}
-	
-	public int checkStarProgress (int score, int levelNumber) {
-		this.score = score;
-		if (this.score > this.highScore) {
-			this.highScore = this.score;
-		}
-		if (this.score >= starValues[1] && this.score < starValues[2]) {
-			this.currentStars = 1;
-			return this.currentStars;
-		}
-		if (this.score >= starValues[2] && this.score < starValues[3]) {
-			this.currentStars = 2;
-			return this.currentStars;
-		}
-		if (this.score >= starValues[3]) {
-			this.currentStars = 3;
-			return this.currentStars;
-		}
-		else {
-			return 0;
-		}
-	}
-	
-	public boolean repopulate (Board board) {
-		return false;
-	}
 
+	
+	/**
+	 * Get/set methods
+	 */
 	public Dictionary getThemeWords() {
 		return themeWords;
 	}
@@ -85,11 +63,9 @@ public class ThemeLevel extends Level {
 		this.themeName = themeName;
 	}
 	
-	@Override
-	protected void setLevelType() {
-		this.levelType = "theme";
-		
-	}
+	
+
+
 	
 	
 }

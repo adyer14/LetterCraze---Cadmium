@@ -11,66 +11,38 @@ public class PuzzleLevel extends Level {
 		setLevelType();
 	}
 
-	/*
-	public Level resetLevel () {
-		return new Level (starValues, board, 1);
-	}*/
+	@Override
+	public boolean resetLevel() {
+		this.wordList.clear();
+		this.score = 0;
+		this.currentStars = 0;
+		// TODO reset movesLeft - get movesLeft from level file and set it back
+		// TODO reset board - get board from level file and set it to the board
+		if (wordList.isEmpty() && score == 0 && currentStars == 0)
+			return true;
+		else
+			return false;
+	}
 	
+	@Override
+	public int addScore(Word word) {
+		// TODO rewrite to use currentWord
+		this.score = score + word.calculateScore();
+		return this.score;
+	}
 
-	public boolean addWord (Word word) {
-		this.wordList[i] = word;
-		i++;
-		return true;
-	}
-	
-	public boolean removeWord (Word word) {
-		for (int j = 0; j < 20; j++) {
-			if (word.equals(this.wordList[j])) {
-				this.wordList[j] = this.wordList[j + 1];
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public int addScore (Word word) {
-		this.score = this.score + word.calculateScore();
-		return this.score;
-	}
-	
-	public int removeScore (Word word) {
-		this.score = this.score - word.calculateScore();
-		return this.score;
-	}
-	
-	public int checkStarProgress (int score, int levelNumber) {
-		this.score = score;
-		if (this.score > this.highScore) {
-			this.highScore = this.score;
-		}
-		if (this.score >= starValues[1] && this.score < starValues[2]) {
-			this.currentStars = 1;
-			return this.currentStars;
-		}
-		if (this.score >= starValues[2] && this.score < starValues[3]) {
-			this.currentStars = 2;
-			return this.currentStars;
-		}
-		if (this.score >= starValues[3]) {
-			this.currentStars = 3;
-			return this.currentStars;
-		}
-		else {
-			return 0;
-		}
-	}
-	
+	@Override
 	public boolean repopulate (Board board) {
-		// TO DO
+		// TODO puzzle repopulate method
 		return false;
 	}
 
-
+	@Override
+	protected void setLevelType() {
+		this.levelType = "puzzle";
+	}
+	
+	
 	public int getMovesLeft() {
 		return this.movesLeft;
 	}
@@ -84,10 +56,7 @@ public class PuzzleLevel extends Level {
 		return this.movesLeft + 1;
 	}
 
-	@Override
-	protected void setLevelType() {
-		this.levelType = "puzzle";
-		
-	}
+	
+
 	
 }
