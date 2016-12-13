@@ -19,7 +19,6 @@ public class InputThemeNameController implements ActionListener {
 		
 	@Override
 	public void actionPerformed(ActionEvent ae){
-		System.out.println("Theme name is being added.");
 		JTextField tf = (JTextField) ae.getSource();
 		update (tf);
 	}
@@ -29,8 +28,6 @@ public class InputThemeNameController implements ActionListener {
 		try {
 			String name = tf.getText();
 			lvl.setThemeName(name);
-			
-			System.out.println("" + lvl.getThemeName());
 			
 		} catch (Exception e) {
 			// just put old value back in

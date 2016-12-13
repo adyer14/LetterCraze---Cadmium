@@ -50,4 +50,12 @@ public class Level {
 		themeName = name;
 		
 	}
+
+	public void setNumMoves(int numMoves2) {
+		numMoves = numMoves2;
+	}
+
+	public int getNumMoves() {
+		return numMoves;
+	}
 }
