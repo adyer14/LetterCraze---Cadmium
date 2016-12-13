@@ -100,19 +100,19 @@ public abstract class Level {
 			return "E";
 		}
 		
-		if (n >= 8168 && n <= 9659) {
+		if (n >= 29397 && n <= 31624) {
 			return "F";
 		}
 		
-		if (n >= 1 && n <= 8167) {
+		if (n >= 31625 && n <= 33639) {
 			return "G";
 		}
 		
-		if (n >= 8168 && n <= 9659) {
+		if (n >= 33640 && n <= 39733) {
 			return "H";
 		}
 		
-		if (n >= 1 && n <= 8167) {
+		if (n >= 39733 && n <= 8167) {
 			return "I";
 		}
 		
