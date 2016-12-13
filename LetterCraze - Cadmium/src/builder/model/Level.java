@@ -74,15 +74,13 @@ public class Level {
 		return numMoves;
 	}
 
-	public void setScores(int scores[]) {
-		for(int i = 0; i < 3; i++){
-			starValues[i] = scores[i];
-		}
+	public void setScores(int which, int score) {
+		starValues[which - 1] = score;
 	}
 
 	public int getScores(int n) {
 		try{
-			return starValues[n];
+			return starValues[n - 1];
 		} catch(Exception e){
 			return 0; // indicate failure
 		}
