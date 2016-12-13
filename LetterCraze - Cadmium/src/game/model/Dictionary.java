@@ -1,26 +1,51 @@
 package game.model;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Hashtable;
+import java.util.Iterator;
+
 public class Dictionary {
+	static Hashtable<String,Boolean> table;
 	
-	private int dictSize = 3;
-	String words [] = new String [dictSize];
+	/** Default word table. */
+	public static final String wordTable = "WordTable.sort";
 	
-	public Dictionary (String dictionary []) {
-		for (int i = 0; i < dictSize; i++) {
-			words [i] = dictionary [i];
+	/**
+	 * Load up word table. Note that there may be superfluous spaces throughout for formatting
+	 * reasons, and these are excised before being added to the table.
+	 * 
+	 * @throws IOException   if unable to find file 
+	 */
+	public static void loadWordTable() throws IOException {
+		table = new Hashtable<String,Boolean>();
+		
+		Iterator<String> it = new StringFileIterator(new File (".", wordTable));
+		while (it.hasNext()) {
+			String word = it.next();
+			word = word.trim();
+			table.put(word, Boolean.TRUE);
 		}
 	}
 	
-	public boolean containsWord (String word) {
-		return false;
+	/**
+	 * Converts word to lowercase and checks whether exists within table.
+	 * 
+	 * @param s
+	 * @return     <code>true</code> if a word in the table; <code>false</code> otherwise.
+	 */
+	public boolean isWord(String s) {
+		if (table == null) {
+			try {
+				loadWordTable();
+			} catch (IOException ioe) {
+				System.err.println("Word Table Not Yet Initialized!");
+				return false;
+			}
+		}
+		
+		s = s.toLowerCase();
+		return table.containsKey(s);
 	}
-
-	public int getDictSize() {
-		return dictSize;
-	}
-
-	public void setDictSize(int dSize) {
-		this.dictSize = dSize;
-	}
-
 }
+
