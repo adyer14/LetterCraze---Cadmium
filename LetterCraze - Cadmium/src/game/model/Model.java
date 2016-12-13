@@ -1,6 +1,7 @@
 package game.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Model {
 	
@@ -16,7 +17,8 @@ public class Model {
 		Board board = new Board(squares);
 		int numMoves = 5;
 		int time = 34;
-		ArrayList<String> themeWords = new ArrayList<String>();
+		String list [] = {"yes", "no", "maybe"};
+		ArrayList<String> themeWords = (ArrayList<String>) Arrays.asList(list);
 		ThemeDictionary themeDic = new ThemeDictionary(themeWords);
 		String themeName = "Example";
 	
