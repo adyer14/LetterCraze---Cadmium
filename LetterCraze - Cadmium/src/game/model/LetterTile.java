@@ -3,7 +3,7 @@ package game.model;
 public class LetterTile extends Tile {
 	
 	private String letter;
-	int scoreValue;
+	private int scoreValue;
 	
 	public LetterTile (String letter, int scoreValue) {
 		this.letter = letter;
@@ -18,4 +18,11 @@ public class LetterTile extends Tile {
 		this.letter = letter;
 	}
 
+	public int getScoreValue() {
+		return scoreValue;
+	}
+	
+	public void setScoreValue(int scoreValue) {
+		this.scoreValue = scoreValue;
+	}
 }
