@@ -2,11 +2,11 @@ package game.model;
 
 public class Dictionary {
 	
-	private int dSize = 3;
-	String words [] = new String [getdSize()];
+	private int dictSize = 3;
+	String words [] = new String [dictSize];
 	
 	public Dictionary (String dictionary []) {
-		for (int i = 0; i < getdSize(); i++) {
+		for (int i = 0; i < dictSize; i++) {
 			words [i] = dictionary [i];
 		}
 	}
@@ -15,12 +15,12 @@ public class Dictionary {
 		return false;
 	}
 
-	public int getdSize() {
-		return dSize;
+	public int getDictSize() {
+		return dictSize;
 	}
 
-	public void setdSize(int dSize) {
-		this.dSize = dSize;
+	public void setDictSize(int dSize) {
+		this.dictSize = dSize;
 	}
 
 }
