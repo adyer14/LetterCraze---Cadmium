@@ -28,7 +28,114 @@ public abstract class Level {
 		}
 	}
 	
+	// Abstract Methods
 	abstract public boolean resetLevel();
+	
+	public abstract int addScore (Word word);
+	
+	public abstract boolean repopulate (Board board);
+	
+	// This one method is abstract because the subclasses define their own level type
+	abstract protected void setLevelType();
+
+	
+	/**
+	 * Get/Set methods up the a-hole
+	 */
+	public Board getBoard() {
+		return board;
+	}
+	
+	public void setBoard(Board b) {
+		this.board = b;
+	}
+	
+	public int getCurrentStars() {
+		return currentStars;
+	}
+
+	public void setCurrentStars(int currentStars) {
+		this.currentStars = currentStars;
+	}
+	
+	public int[] getStarValues() {
+		return starValues;
+	}
+
+	public void setStarValues(int[] starValues) {
+		this.starValues = starValues;
+	}
+	
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+	
+	public int getHighScore() {
+		return highScore;
+	}
+
+	public void setHighScore(int highScore) {
+		this.highScore = highScore;
+	}
+	
+	public int getMostStars() {
+		return mostStars;
+	}
+
+	public void setMostStars(int mostStars) {
+		this.mostStars = mostStars;
+	}
+	
+	public int getLevelNumber() {
+		return levelNumber;
+	}
+
+	public void setLevelNumber(int levelNumber) {
+		this.levelNumber = levelNumber;
+	}
+	
+	public String getLevelType() {
+		return levelType;
+	}
+	
+	public boolean getIsUnlocked() {
+		return isUnlocked;
+	}
+
+	public void setIsUnlocked(boolean isUnlocked) {
+		this.isUnlocked = isUnlocked;
+	}
+	
+	public Word getCurrentWord() {
+		return currentWord;
+	}
+
+	public void setCurrentWord(Word currentWord) {
+		this.currentWord = currentWord;
+	}
+	
+	public List<Word> getWordList() {
+		return wordList;
+	}
+
+	public void setWordList(List<Word> wordList) {
+		this.wordList = wordList;
+	}
+
+	public Dictionary getDictionary() {
+		return dictionary;
+	}
+
+	public void setDictionary(Dictionary dictionary) {
+		this.dictionary = dictionary;
+	}
+	
+	/* End of Get/Set Methods */
+	
 
 	public boolean addWord (Word word) {
 		this.addScore(word);
@@ -44,8 +151,6 @@ public abstract class Level {
 		return !wordList.contains(word);
 	}
 	
-	//TODO we should really consider adding these to addWord and removeWord
-	public abstract int addScore (Word word);
 	
 	public int removeScore () {
 		if (wordList.isEmpty()) 
@@ -75,8 +180,7 @@ public abstract class Level {
 			return 0;
 		}
 	}
-	
-	public abstract boolean repopulate (Board board);
+
 
 	public Tile randomLetter () {
 		Random rand = new Random();
@@ -190,110 +294,6 @@ public abstract class Level {
 			return new BlankTile ();
 		}
 	}
-
-
-	
-	/**
-	 * Get/Set methods up the a-hole
-	 */
-	public Board getBoard() {
-		return board;
-	}
-	
-	public void setBoard(Board b) {
-		this.board = b;
-	}
-	
-	public int getCurrentStars() {
-		return currentStars;
-	}
-
-	public void setCurrentStars(int currentStars) {
-		this.currentStars = currentStars;
-	}
-	
-	public int[] getStarValues() {
-		return starValues;
-	}
-
-	public void setStarValues(int[] starValues) {
-		this.starValues = starValues;
-	}
-	
-	public int getScore() {
-		return score;
-	}
-
-	public void setScore(int score) {
-		this.score = score;
-	}
-	
-	public int getHighScore() {
-		return highScore;
-	}
-
-	public void setHighScore(int highScore) {
-		this.highScore = highScore;
-	}
-	
-	public int getMostStars() {
-		return mostStars;
-	}
-
-	public void setMostStars(int mostStars) {
-		this.mostStars = mostStars;
-	}
-	
-	public int getLevelNumber() {
-		return levelNumber;
-	}
-
-	public void setLevelNumber(int levelNumber) {
-		this.levelNumber = levelNumber;
-	}
-	
-	public String getLevelType() {
-		return levelType;
-	}
-
-	// This one method is abstract because the subclasses define their own level type
-	abstract protected void setLevelType();
-	
-	public boolean getIsUnlocked() {
-		return isUnlocked;
-	}
-
-	public void setIsUnlocked(boolean isUnlocked) {
-		this.isUnlocked = isUnlocked;
-	}
-	
-	public Word getCurrentWord() {
-		return currentWord;
-	}
-
-	public void setCurrentWord(Word currentWord) {
-		this.currentWord = currentWord;
-	}
-	
-	public List<Word> getWordList() {
-		return wordList;
-	}
-
-	public void setWordList(List<Word> wordList) {
-		this.wordList = wordList;
-	}
-
-	public Dictionary getDictionary() {
-		return dictionary;
-	}
-
-	public void setDictionary(Dictionary dictionary) {
-		this.dictionary = dictionary;
-	}
-
-	
-	
-	
 }
 	
 	
