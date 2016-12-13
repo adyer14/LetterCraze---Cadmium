@@ -23,7 +23,6 @@ import javax.swing.JFormattedTextField;
 
 
 public class LevelCreatorPanel extends JPanel {
-	// TODO create update methods for all editable fields - or just one refresh?
 	/**
 	 * Keep Eclipse happy
 	 */
