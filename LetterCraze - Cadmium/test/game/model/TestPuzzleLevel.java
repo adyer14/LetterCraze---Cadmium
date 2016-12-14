@@ -1,5 +1,9 @@
 package game.model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import junit.framework.TestCase;
 
 public class TestPuzzleLevel extends TestCase {
@@ -8,45 +12,48 @@ public class TestPuzzleLevel extends TestCase {
 	Word w1;
 	Word w2;
 	Word w3;
-	LetterTile A;
-	LetterTile C;
-	LetterTile E;
-	LetterTile F;
-	LetterTile H;
-	LetterTile K;
-	LetterTile O;
-	LetterTile R;
-	LetterTile T;
-	LetterTile U;
-	LetterTile W;
-	LetterTile Y;
+	Square A;
+	Square C;
+	Square E;
+	Square F;
+	Square H;
+	Square K;
+	Square O;
+	Square R;
+	Square T;
+	Square U;
+	Square W;
+	Square Y;
 	
 	protected void setUp() {
 		int starVal[] = {10, 20, 30};
-		Board b = new Board();
+		Board b = new Board(null);
 		int levNum = 2;
 		int numMoves = 15;
-		lvl = new PuzzleLevel(starVal, b, levNum, numMoves);
+		lvl = new PuzzleLevel(starVal, b, null, levNum, numMoves);
 	
-		A = new LetterTile("A", b.getLetterScores().get("A"));
-		C = new LetterTile("C", b.getLetterScores().get("C"));
-		E = new LetterTile("E", b.getLetterScores().get("E"));
-		F = new LetterTile("F", b.getLetterScores().get("F"));
-		H = new LetterTile("H", b.getLetterScores().get("H"));
-		K = new LetterTile("K", b.getLetterScores().get("K"));
-		O = new LetterTile("O", b.getLetterScores().get("O"));
-		R = new LetterTile("R", b.getLetterScores().get("R"));
-		T = new LetterTile("T", b.getLetterScores().get("T"));
-		U = new LetterTile("U", b.getLetterScores().get("U"));
-		W = new LetterTile("W", b.getLetterScores().get("W"));
-		Y = new LetterTile("Y", b.getLetterScores().get("Y"));
-		
-		LetterTile[] fucktruck = {F,U,C,K,T,R,U,C,K};
-		w1 = new Word(fucktruck);
-		LetterTile[] fuck = {F,U,C,K};
-		w2 = new Word(fuck);
-		LetterTile[] you = {Y,O,U};
-		w3 = new Word(you);
+		A = new Square(0, 0, true,new LetterTile("A", b.getLetterScores().get("A")));
+		C = new Square(0, 0, true,new LetterTile("C", b.getLetterScores().get("C")));
+		E = new Square(0, 0, true,new LetterTile("E", b.getLetterScores().get("E")));
+		F = new Square(0, 0, true,new LetterTile("F", b.getLetterScores().get("F")));
+		H = new Square(0, 0, true,new LetterTile("H", b.getLetterScores().get("H")));
+		K = new Square(0, 0, true,new LetterTile("K", b.getLetterScores().get("K")));
+		O = new Square(0, 0, true,new LetterTile("O", b.getLetterScores().get("O")));
+		R = new Square(0, 0, true,new LetterTile("R", b.getLetterScores().get("R")));
+		T = new Square(0, 0, true,new LetterTile("T", b.getLetterScores().get("T")));
+		U = new Square(0, 0, true,new LetterTile("U", b.getLetterScores().get("U")));
+		W = new Square(0, 0, true,new LetterTile("W", b.getLetterScores().get("W")));
+		Y = new Square(0, 0, true,new LetterTile("Y", b.getLetterScores().get("Y")));
+
+		Square[] fucktruck = {F,U,C,K,T,R,U,C,K};
+		ArrayList<Square> fucktruckList = new ArrayList<Square>(Arrays.asList(fucktruck));
+		w1 = new Word(fucktruckList);
+		Square[] fuck = {F,U,C,K};
+		ArrayList<Square> fuckList = new ArrayList<Square>(Arrays.asList(fuck));
+		w2 = new Word(fuckList);
+		Square[] you = {Y,O,U};
+		ArrayList<Square> youList = new ArrayList<Square>(Arrays.asList(you));
+		w3 = new Word(youList);
 	}
 
 	protected void tearDown() throws Exception {
@@ -165,7 +172,7 @@ public class TestPuzzleLevel extends TestCase {
 		int numYs = 0;
 		int numZs = 0;
 		for (int i=0; i < 10000; i++) {
-			String randLetter = ((LetterTile)lvl.randomLetter()).getLetter();
+			String randLetter = ((LetterTile)lvl.randomTile()).getLetter();
 			if (randLetter == "A") {
 				numAs++;
 			}
