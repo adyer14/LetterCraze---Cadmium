@@ -2,6 +2,7 @@ package game.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class LevelSelect {
 
@@ -16,16 +17,16 @@ public class LevelSelect {
 	int numMoves = 5;
 	int time = 34;
 	String list [] = {"yes", "no", "maybe"};
-	ArrayList<String> themeWords = (ArrayList<String>) Arrays.asList(list);
+	List<String> themeWords = new ArrayList<String>(Arrays.asList(list));
 	ThemeDictionary themeDic = new ThemeDictionary(themeWords);
 	String themeName = "Example";
 	
 	public LevelSelect (Level levels []) {
-		
+	/*	
 		for (int i = 1; i <=5; i++) {
-			puzzleLevel[i] = new PuzzleLevel(starVal, board, i, numMoves);
-			lightningLevel[i] = new LightningLevel(starVal, board, i, time);
-			themeLevel[i] = new ThemeLevel(starVal, board, i, themeName, themeDic);
+			puzzleLevel[i] = new PuzzleLevel(starVal, board, initialTiles, i, numMoves);
+			lightningLevel[i] = new LightningLevel(starVal, board, initialTiles, i, time);
+			themeLevel[i] = new ThemeLevel(starVal, board, initialTiles, i, themeName, themeDic);
 		}
 		for (int i = 1; i <= 5; i++) {
 			playableLevel[i] = puzzleLevel[i];
@@ -57,5 +58,5 @@ public class LevelSelect {
 	public void setThemeLevel(int levNum, ThemeLevel tLvl) {
 		this.themeLevel[levNum] = tLvl;
 	}
-	
+	*/}
 }
