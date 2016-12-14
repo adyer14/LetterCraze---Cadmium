@@ -5,6 +5,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import game.controller.ChooseWordController;
 import game.model.LetterTile;
+import game.model.Square;
 import game.model.Tile;
 import java.awt.Font;
 
@@ -15,6 +16,7 @@ public class TilePanel extends JPanel {
 	 */
 	private static final long serialVersionUID = -872998560741757223L;
 
+	private Square square;
 	private Tile tile;
 	private JButton tileButton;
 	private String letter;
@@ -25,9 +27,10 @@ public class TilePanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public TilePanel(Tile t, Color color, ChooseWordController controller) {
-		this.tile = t;
+	public TilePanel(Square s, Color color, ChooseWordController controller) {
+		this.square = s;
 		this.unselectedColor = color;
+		this.tile = square.getTile();
 		if (tile instanceof LetterTile) {
 			this.letter = ((LetterTile)tile).getLetter();
 		}
@@ -60,4 +63,21 @@ public class TilePanel extends JPanel {
 		this.setBackground(unselectedColor);
 		tileButton.setForeground(null);
 	}
+
+	public Square getSquare() {
+		return square;
+	}
+	
+	public Tile getTile() {
+		return tile;
+	}
+	
+	public JButton getTileButton() {
+		return tileButton;
+	}
+	
+	public String getLetter() {
+		return letter;
+	}
+
 }
