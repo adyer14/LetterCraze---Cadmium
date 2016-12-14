@@ -1,5 +1,7 @@
 package game.model;
 
+import java.util.ArrayList;
+
 public class ThemeLevel extends Level {
 
 	ThemeDictionary themeWords;
@@ -7,23 +9,22 @@ public class ThemeLevel extends Level {
 	private int wordsLeft;
 	int i = 0;
 	
-	public ThemeLevel(int[] starVal, Board board, int levelNumber, String themeName, ThemeDictionary themeWords) {
-		super(starVal, board, levelNumber);
+	public ThemeLevel(int[] starVal, Board board, ArrayList<Tile> initialTiles, int levelNumber, String themeName, ThemeDictionary themeWords) {
+		super(starVal, board, initialTiles, levelNumber);
 		this.setThemeName(themeName);
 		this.themeWords = themeWords;
+		//TODO HACK super hacks
+		themeWords.words.add("NOON");
+		themeWords.words.add("TEN");
+		themeWords.words.add("TED");
+		themeWords.words.add("EA");
+		themeWords.words.add("EO");
 		setLevelType();
 	}
 	
 	@Override
 	public boolean resetLevel() {
-		this.wordList.clear();
-		this.score = 0;
-		this.currentStars = 0;
-		this.board = this.initialBoard;
-		if (wordList.isEmpty() && score == 0 && currentStars == 0)
-			return true;
-		else
-			return false;
+		return this.levelResetLevel();
 	}
 
 	@Override

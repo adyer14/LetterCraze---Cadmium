@@ -1,4 +1,5 @@
 package game.model;
+import java.util.ArrayList;
 import java.util.Timer;
 
 
@@ -11,8 +12,8 @@ public class LightningLevel extends Level {
 	public Timer timer;
 	int i = 0;
 
-	public LightningLevel(int[] starVal, Board board, int levelNumber, int time) {
-		super(starVal, board, levelNumber);
+	public LightningLevel(int[] starVal, Board board, ArrayList<Tile> initialTiles, int levelNumber, int time) {
+		super(starVal, board, initialTiles, levelNumber);
 		this.time = time;
 		setLevelType();
 		Timer timer = new Timer();
@@ -22,14 +23,7 @@ public class LightningLevel extends Level {
 
 	@Override
 	public boolean resetLevel () {
-		this.wordList.clear();
-		this.score = 0;
-		this.currentStars = 0;
-		this.board = this.initialBoard;
-		if (wordList.isEmpty() && score == 0 && currentStars == 0)
-			return true;
-		else
-			return false;
+		return this.levelResetLevel();
 	}
 	
 	@Override
@@ -47,7 +41,7 @@ public class LightningLevel extends Level {
 		for (int j = 0; j < 36; j++) {
 			if (this.board.boardSquares.get(j).getSquareInPlay()) {
 				if (this.board.boardSquares.get(j).getTile() == null) {
-					this.board.boardSquares.get(j).setTile(this.randomLetter());
+					this.board.boardSquares.get(j).setTile(this.randomTile());
 					return true;
 				}
 			}

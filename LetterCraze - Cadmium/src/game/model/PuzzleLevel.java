@@ -1,13 +1,15 @@
 package game.model;
 
+import java.util.ArrayList;
+
 public class PuzzleLevel extends Level {
 	
 	private int movesLeft;
 	int i = 0;
 	int lvlNumMoves;
 	
-	public PuzzleLevel(int[] starVal, Board board, int levelNumber, int numMoves) {
-		super(starVal, board, levelNumber);
+	public PuzzleLevel(int[] starVal, Board board, ArrayList<Tile> initialTiles, int levelNumber, int numMoves) {
+		super(starVal, board, initialTiles, levelNumber);
 		this.movesLeft = numMoves;
 		this.lvlNumMoves = numMoves;
 		setLevelType();
@@ -17,15 +19,8 @@ public class PuzzleLevel extends Level {
 
 	@Override
 	public boolean resetLevel() {
-		this.wordList.clear();
-		this.score = 0;
-		this.currentStars = 0;
 		this.movesLeft = this.lvlNumMoves;
-		this.board = this.initialBoard;
-		if (wordList.isEmpty() && score == 0 && currentStars == 0)
-			return true;
-		else
-			return false;
+		return this.levelResetLevel();
 	}
 	
 	@Override
@@ -39,7 +34,7 @@ public class PuzzleLevel extends Level {
 		for (int j = 0; j < 36; j++) {
 			if (this.board.boardSquares.get(j).getSquareInPlay()) {
 				if (this.board.boardSquares.get(j).getTile() == null) {
-					this.board.boardSquares.get(j).setTile(this.randomLetter());
+					this.board.boardSquares.get(j).setTile(this.randomTile());
 					return true;
 				}
 			}
