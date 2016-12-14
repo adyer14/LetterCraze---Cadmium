@@ -11,14 +11,6 @@ public class Board {
 	BlankTile blankTile;
 	private static HashMap<String, Integer> letterScores = new HashMap<String, Integer>();
 	
-	public Board () {
-		int k = 0;
-		for (int i = 0; i <= 5; i++) {
-			for (int j = 0; j <= 5; j++) {
-			boardSquares [k] = new Square (i, j, true, blankTile);
-			k++;
-			}
-		}
 	public Board (ArrayList<Square> squares) {
 		this.boardSquares = squares;
 		assignLevelScores();
@@ -56,19 +48,7 @@ public class Board {
 	
 	public Board floatTilesUp () {
 		for (int i = 0; i < 36; i++) {
-			if (boardSquares[i].getSquareInPlay() && 
-					boardSquares[i].getTile() == null) {
-				for (int j = boardSquares[i].getSquareColumn(); j < 36; j++) {
-					if (boardSquares[j].getSquareInPlay() &&
-							boardSquares[j].getTile() == null &&
-							boardSquares[j].getSquareColumn() == boardSquares[i].getSquareColumn()) {
-						for (int k = (boardSquares[j].getSquareColumn() + 6*boardSquares[j].getSquareRow()); k < 36; k++) {
-							if (boardSquares[k].getSquareInPlay() &&
-									boardSquares[k].getTile() != null &&
-									boardSquares[k].getSquareColumn() == boardSquares[j].getSquareColumn()) {
-								boardSquares[j].setTile(boardSquares[k].getTile());
-								boardSquares[k].removeTile();
-			if (this.boardSquares.get(i).squareInPlay && 
+			if (this.boardSquares.get(i).getSquareInPlay() && 
 					this.boardSquares.get(i).getTile() == null) {
 				for (int j = this.boardSquares.get(i).getSquareColumn(); j < 36; j++) {
 					if (this.boardSquares.get(j).getSquareInPlay() &&
@@ -95,10 +75,6 @@ public class Board {
 		for(int i = 0; i < letters.length; i++){
 	        letterScores.put(letters[i], scores[i]);
 		}
-	}
-	
-	public Square getSpecificBoardSquare(int index) {
-		return boardSquares[index];
 	}
 	
 	/**

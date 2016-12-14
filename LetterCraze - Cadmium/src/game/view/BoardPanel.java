@@ -52,7 +52,7 @@ public class BoardPanel extends JPanel {
 			row = (int) Math.floor(i/6);
 			col = i%6;
 			
-			Square square = board.getSpecificBoardSquare(i);
+			Square square = board.getBoardSquares().get(i);
 			// TODO HACK super duper looper nooper pooper hackz
 			Tile tile1 = new LetterTile("N", 69);
 			Tile tile2 = new LetterTile("O", 420);

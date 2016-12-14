@@ -13,7 +13,7 @@ public class Model {
 	
 	// THESE ARE TEST VARIABLES, DELETE WHEN WE GET FILE UPLOAD WORKING
 		int[] starVal = {0,0,0};
-		Board board = new Board();
+		Board board = new Board(null);
 		int numMoves = 5;
 		int time = 34;
 		String list [] = {"yes", "no", "maybe"};
