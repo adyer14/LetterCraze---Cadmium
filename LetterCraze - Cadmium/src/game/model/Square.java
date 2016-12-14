@@ -2,11 +2,12 @@ package game.model;
 
 public class Square {
 	
-	int squareRow;
-	int squareColumn;
-	boolean squareInPlay;
-	boolean isSelected;
-	Tile tile;
+	private int squareRow;
+	private int squareColumn;
+	private boolean squareInPlay;
+	// TODO delete if we don't end up using
+	private boolean isSelected;
+	private Tile tile;
 	
 	public Square (int row, int column, boolean valid, Tile tile) {
 		this.squareRow = row;
@@ -72,4 +73,16 @@ public class Square {
 	public void setTile(Tile t) {
 		this.tile = t;
 	}
+
+	public int getSquareRow() {
+		return squareRow;
+	}
+	public int getSquareColumn() {
+		return squareColumn;
+	}
+	public boolean getSquareInPlay() {
+		return squareInPlay;
+	}
+
+	
 }
