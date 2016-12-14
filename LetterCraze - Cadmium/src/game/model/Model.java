@@ -2,6 +2,8 @@ package game.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 public class Model {
 	
@@ -12,20 +14,34 @@ public class Model {
 	LevelSelect ls = new LevelSelect (getLevels());
 	
 	// THESE ARE TEST VARIABLES, DELETE WHEN WE GET FILE UPLOAD WORKING
-		int[] starVal = {0,0,0};
-		Board board = new Board(null);
+		int[] starVal = {1,2,3};
+		//Board board = new Board(null);
 		int numMoves = 5;
 		int time = 34;
 		String list [] = {"yes", "no", "maybe"};
-		ArrayList<String> themeWords = (ArrayList<String>) Arrays.asList(list);
+		List<String> themeWords = new ArrayList<String>(Arrays.asList(list));
 		ThemeDictionary themeDic = new ThemeDictionary(themeWords);
 		String themeName = "Example";
 	
 	public Model() {
+		ArrayList<Square> initBoardSquares = new ArrayList<Square>(36);
+		ArrayList<Tile> initialTiles = new ArrayList<Tile>();
+		int row, col;
+		for (int i = 0; i < 36; i++) {
+			row = (int) Math.floor(i/6);
+			col = i%6;
+			//TODO HACK right now all squares are getting random tiles
+			Tile tile = randomTile();
+			initialTiles.add(tile);
+			Square square = new Square(row, col, true, tile);
+			initBoardSquares.add(i, square);
+		}
+		Board board = new Board(initBoardSquares);
+		
 		for (int i = 1; i <=5; i++) {
-			puzzleLevel[i] = new PuzzleLevel(starVal, board, i, numMoves);
-			lightningLevel[i] = new LightningLevel(starVal, board, i, time);
-			themeLevel[i] = new ThemeLevel(starVal, board, i, themeName, themeDic);
+			puzzleLevel[i] = new PuzzleLevel(starVal, board, initialTiles, i, numMoves);
+			lightningLevel[i] = new LightningLevel(starVal, board, initialTiles, i, time);
+			themeLevel[i] = new ThemeLevel(starVal, board, initialTiles, i, themeName, themeDic);
 		}
 		for (int i = 1; i <= 5; i++) {
 			level[i] = puzzleLevel[i];
@@ -34,9 +50,132 @@ public class Model {
 		}
 	}
 	
+	public Level getSpecificLevel(String levType, int levNum) {
+		if (levType == "puzzle")
+			return getPuzzleLevel(levNum);
+		if (levType == "lightning")
+			return getLightningLevel(levNum);
+		else 
+			return getThemeLevel(levNum);
+	}
+	
+	public Tile randomTile () {
+		Random rand = new Random();
+		int n = rand.nextInt(100000) + 1;
+		
+		if (n >= 1 && n <= 8167) {
+			return new LetterTile ("A", 2);
+		}
+		
+		if (n >= 8168 && n <= 9659) {
+			return new LetterTile ("B", 4);
+		}
+		
+		if (n >= 9660 && n <= 12441) { 
+			return new LetterTile ("C", 3);
+		}
+		
+		if (n >= 12441 && n <= 16694) {
+			return new LetterTile ("D", 3);
+		}
+		
+		if (n >= 16695 && n <= 29396) {
+			return new LetterTile ("E", 1);
+		}
+		
+		if (n >= 29397 && n <= 31624) {
+			return new LetterTile ("F", 4);
+		}
+		
+		if (n >= 31625 && n <= 33639) {
+			return new LetterTile ("G", 4);
+		}
+		
+		if (n >= 33640 && n <= 39733) {
+			return new LetterTile ("H", 2);
+		}
+		
+		if (n >= 39733 && n <= 46699) {
+			return new LetterTile ("I", 2);
+		}
+		
+		if (n >= 46700 && n <= 46852) {
+			return new LetterTile ("J", 7);
+		}
+		
+		if (n >= 46853 && n <= 47624) {
+			return new LetterTile ("K", 5);
+		}
+		
+		if (n >= 47625 && n <= 51649) {
+			return new LetterTile ("L", 3);
+		}
+		
+		if (n >= 51650 && n <= 54055) {
+			return new LetterTile ("M", 3);
+		}
+		
+		if (n >= 54056 && n <= 60804) {
+			return new LetterTile ("N", 2);
+		}
+		
+		if (n >= 60805 && n <= 68311) {
+			return new LetterTile ("O", 2);
+		}
+		
+		if (n >= 68312 && n <= 70240) {
+			return new LetterTile ("P", 4);
+		}
+		
+		if (n >= 70241 && n <= 70335) {
+			return new LetterTile ("Qu", 8);
+		}
+		
+		if (n >= 70336 && n <= 76322) {
+			return new LetterTile ("R", 2);
+		}
+		
+		if (n >= 76323 && n <= 82649) {
+			return new LetterTile ("S", 2);
+		}
+		
+		if (n >= 82649 && n <= 91705) {
+			return new LetterTile ("T", 1);
+		}
+		
+		if (n >= 91706 && n <= 94463) {
+			return new LetterTile ("U", 3);
+		}
+		
+		if (n >= 94464 && n <= 95441) {
+			return new LetterTile ("V", 5);
+		}
+		
+		if (n >= 95442 && n <= 97801) {
+			return new LetterTile ("W", 3);
+		}
+		
+		if (n >= 97802 && n <= 97951) {
+			return new LetterTile ("X", 7);
+		}
+		
+		if (n >= 97952 && n <= 99925) {
+			return new LetterTile ("Y", 4);
+		}
+		
+		if (n >= 99926 && n <= 100000) {
+			return new LetterTile ("Z", 8);
+		}
+		
+		else {
+			return new BlankTile ();
+		}
+	}
+
 	public Level[] getLevels() {
 		return level;
 	}
+	
 	public void setLevels(Level level[]) {
 		this.level = level;
 	}
