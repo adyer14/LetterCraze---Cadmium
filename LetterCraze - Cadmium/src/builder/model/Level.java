@@ -38,7 +38,7 @@ public class Level {
 			themeName = "";
 			
 			time = 0;
-			numMoves= 0;
+			numMoves = 0;
 			levelNum = 1;
 			levelType = "";
 			
@@ -172,5 +172,21 @@ public class Level {
 	public void setLevelNum(int i) {
 		levelNum = i;
 		System.out.println("The number of the level was set to "+ levelNum);
+	}
+
+
+	public void addThemeWord(String word) {
+		themeWords.add(word);
+		System.out.println(word + " has been added to the themeWords list.");
+	}
+
+	public String getWord() {
+		String last = "";
+		
+		for(String s: themeWords){
+			last = s;
+		}
+		
+		return last;
 	}
 }
