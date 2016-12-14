@@ -66,9 +66,23 @@ public class ThemeLevel extends Level {
 			}
 			}
 		}
-		for ()
-		
-	}
+		for (int p = 0; p < numOfWords; p++) {
+			for (int q = 0; q < listOfThemeWordLetters.get(p).size(); q++) {
+				int r = 0;
+				int index = this.initBoardSquares.indexOf(this.beingUsed.get(r));
+				String letter = listOfThemeWordLetters.get(p).get(q);
+				this.initBoardSquares.get(index).setTile(new LetterTile(letter, this.board.getLetterScores().get(letter)));
+			}
+		}
+
+			for (int j = 0; j < 36; j++) {
+				if (this.board.boardSquares.get(j).getSquareInPlay()) {
+					if (this.board.boardSquares.get(j).getTile() instanceof BlankTile) {
+						this.board.boardSquares.get(j).setTile(this.randomTile());
+					}
+				}
+			}
+		}
 
 	
 	public boolean recursionAlgorithm (ArrayList<Square> beingUsed, int numOfLetters, Square s) {
