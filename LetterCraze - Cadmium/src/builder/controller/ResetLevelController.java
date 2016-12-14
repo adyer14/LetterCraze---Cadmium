@@ -18,7 +18,6 @@ public class ResetLevelController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent ae){
 		lvl.resetLevel();
-		//JPanel panel = levelCreatorView.getContentPane();
 		levelCreatorView.reset();
 		levelCreatorView.repaint();
 	}

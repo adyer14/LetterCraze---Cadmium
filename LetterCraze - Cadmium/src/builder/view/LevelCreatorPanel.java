@@ -247,8 +247,8 @@ public class LevelCreatorPanel extends JPanel {
 		ResetLevelController rlcontrol = new ResetLevelController(level, this);
 		SelectLevelTypeController ltcontrol = new SelectLevelTypeController(level, this);
 		InputStarValueController1 svcontrol1 = new InputStarValueController1(level, this);
-		InputStarValueController1 svcontrol2 = new InputStarValueController1(level, this);
-		InputStarValueController1 svcontrol3 = new InputStarValueController1(level, this);
+		InputStarValueController2 svcontrol2 = new InputStarValueController2(level, this);
+		InputStarValueController3 svcontrol3 = new InputStarValueController3(level, this);
 		InputTimeController timecontrol = new InputTimeController(level, this);
 		SelectLevelNumController lvlnumcontrol = new SelectLevelNumController(level, this);
 		
@@ -272,6 +272,16 @@ public class LevelCreatorPanel extends JPanel {
 
 	public void reset() {
 		boardPanel.reset();
+		star1TextField.setText("");
+		star2TextField.setText("");
+		star3TextField.setText("");
+		movesTextField.setText("");
+		timeTextField.setText("");
+		themeNameTextField.setText("");
+		themeWordsTextPane.setText("");
+		
+		levelNumCB.setSelectedItem("#");
+		levelTypeCB.setSelectedItem("LEVEL TYPE");
 	}
 
 	public void setUpPuzzle() {

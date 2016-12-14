@@ -21,7 +21,7 @@ public class Level {
 	public Level(){
 		//initializing all attributes to zero or default
 		board = new Board();
-		levelType = "Puzzel";
+		levelType = "";
 		levelNum = 1;
 		numMoves = 0;
 		themeWords = new ArrayList<String>();
@@ -35,16 +35,12 @@ public class Level {
 
 			starValues = new int[3];
 			themeWords = new ArrayList<String>();
-			themeName = new String();
-			
-			// TODO reset time, numMoves, levelNum and levelType
+			themeName = "";
 			
 			time = 0;
 			numMoves= 0;
 			levelNum = 1;
-			levelType = "Puzzel";
-			
-			System.out.println("The level Entity object has been reset.");
+			levelType = "";
 			
 			return true; // success
 			
@@ -124,7 +120,6 @@ public class Level {
 	}
 
 	public int getTime() {
-		
 		return time;
 	}
 
@@ -153,7 +148,7 @@ public class Level {
 
 	public void setScores(int which, int score) {
 		starValues[which - 1] = score;
-		System.out.println("The score for star value number " + (which-1) + " is now "+ score);
+		System.out.println("The score for star value number " + (which) + " is now "+ score);
 	}
 
 	public int getScores(int n) {
