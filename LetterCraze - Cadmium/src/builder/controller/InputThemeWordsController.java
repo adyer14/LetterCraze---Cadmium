@@ -5,6 +5,7 @@ import builder.view.*;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 import javax.swing.JTextPane;
 
@@ -23,8 +24,12 @@ public class InputThemeWordsController implements KeyListener {
 			JTextPane tp = (JTextPane) ke.getSource();
 			try {
 		
-				String word = tp.getText();
-				lvl.addThemeWord(word);
+				lvl.setThemeWords(new ArrayList<String>());
+				
+				// make sure the words in the JTextPane are the same in the list by renewing the list
+				for(String s: tp.getText().split("\\n")){
+					lvl.addThemeWord(s);
+				}
 				
 			} catch (Exception e) {
 				// just put old value back in
