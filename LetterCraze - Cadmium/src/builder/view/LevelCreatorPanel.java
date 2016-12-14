@@ -250,6 +250,7 @@ public class LevelCreatorPanel extends JPanel {
 		InputStarValueController1 svcontrol2 = new InputStarValueController1(level, this);
 		InputStarValueController1 svcontrol3 = new InputStarValueController1(level, this);
 		InputTimeController timecontrol = new InputTimeController(level, this);
+		SelectLevelNumController lvlnumcontrol = new SelectLevelNumController(level, this);
 		
 		backButton.addActionListener(elcontrol);
 		backButton.addActionListener(rlcontrol);
@@ -261,6 +262,7 @@ public class LevelCreatorPanel extends JPanel {
 		star2TextField.addActionListener(svcontrol2);
 		star3TextField.addActionListener(svcontrol3);
 		timeTextField.addActionListener(timecontrol);
+		levelNumCB.addActionListener(lvlnumcontrol);
 		
 	}
 

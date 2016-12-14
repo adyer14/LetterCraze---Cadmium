@@ -172,4 +172,10 @@ public class Level {
 	public void setBoard(Board b){
 		board = b;
 	}
+
+
+	public void setLevelNum(int i) {
+		levelNum = i;
+		System.out.println("The number of the level was set to "+ levelNum);
+	}
 }
