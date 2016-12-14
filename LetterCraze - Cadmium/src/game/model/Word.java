@@ -10,6 +10,7 @@ public class Word {
 	
 	public Word (ArrayList<Square> wordSquares) {
 		this.selectedSquares = wordSquares;
+		this.actualWord = "";
 	}
 	
 	public int numOfSTiles () {
@@ -39,7 +40,7 @@ public class Word {
 	public String makeString () {
 		int count = this.numOfSTiles();
 		for (int j = 0; j < count; j++) {
-			actualWord.concat(((LetterTile)selectedSquares.get(j).getTile()).getLetter());
+			actualWord = actualWord.concat(((LetterTile)selectedSquares.get(j).getTile()).getLetter());
 		}
 		return this.actualWord;
 	}

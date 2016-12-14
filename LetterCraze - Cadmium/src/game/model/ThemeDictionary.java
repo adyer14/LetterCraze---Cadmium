@@ -7,7 +7,7 @@ public class ThemeDictionary {
 	
 	List<String> words = new ArrayList<String>();
 	
-	public ThemeDictionary (ArrayList<String> dictionary) {
+	public ThemeDictionary (List<String> dictionary) {
 		this.words = dictionary;
 	}
 	

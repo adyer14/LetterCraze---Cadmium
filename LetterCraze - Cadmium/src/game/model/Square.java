@@ -5,8 +5,6 @@ public class Square {
 	private int squareRow;
 	private int squareColumn;
 	private boolean squareInPlay;
-	// TODO delete if we don't end up using
-	private boolean isSelected;
 	private Tile tile;
 	
 	public Square (int row, int column, boolean valid, Tile tile) {
@@ -14,7 +12,6 @@ public class Square {
 		this.squareColumn = column;
 		this.squareInPlay = valid;
 		this.tile = tile;
-		this.isSelected = false;
 	}
 	
 	public boolean containsTile (Tile tile) {
