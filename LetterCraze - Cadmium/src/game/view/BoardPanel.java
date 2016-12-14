@@ -8,6 +8,7 @@ import game.controller.ChooseWordController;
 import game.model.Board;
 import game.model.LetterTile;
 import game.model.Model;
+import game.model.Square;
 import game.model.Tile;
 
 public class BoardPanel extends JPanel {
@@ -20,6 +21,7 @@ public class BoardPanel extends JPanel {
 	private TilePanel tilePanel[] = new TilePanel[36];
 	Model m;
 	Board board;
+	ChooseWordController CWcontrol;
 	
 	/**
 	 * Create the panel.
@@ -32,14 +34,13 @@ public class BoardPanel extends JPanel {
 		setBackground(new Color(176, 196, 222));
 		setLayout(null);
 		
+		// create controller for choosing words
+		CWcontrol = new ChooseWordController(this);
 		initTiles();
 	}
 	
 	public void initTiles() {
 		
-		// create controller for choosing words
-		ChooseWordController CWcontrol = new ChooseWordController(this);
-
 		Color darkColor = new Color(216, 191, 216);
 		Color lightColor = new Color(255, 228, 225);
 		boolean dark = true;
@@ -48,22 +49,27 @@ public class BoardPanel extends JPanel {
 		// create and add the TilePanels with alternating colors
 		for (int i = 0; i < 36; i++) {
 			
-			// TODO HACK until we get board and square and tile working 
-			// TODO DELETE
-			// Tile tile = board.getBoardSquareByIndex(i).getTile();
-			LetterTile tile = new LetterTile("D", 69);
-			
-			
 			row = (int) Math.floor(i/6);
 			col = i%6;
+			
+			Square square = board.getSpecificBoardSquare(i);
+			// TODO HACK super duper looper nooper pooper hackz
+			Tile tile1 = new LetterTile("N", 69);
+			Tile tile2 = new LetterTile("O", 420);
+			
+			
 			if (col == 0)
 					dark = !dark;
 			if (dark) {
-				tilePanel[i] = new TilePanel(tile, darkColor, CWcontrol);
+				// TODO HACK hackz continued
+				square.setTile(tile1);
+				tilePanel[i] = new TilePanel(square, darkColor, CWcontrol);
 				dark = !dark;
 			}
 			else {		
-				tilePanel[i] = new TilePanel(tile, lightColor, CWcontrol);
+				// TODO HACK hackz continued
+				square.setTile(tile2);
+				tilePanel[i] = new TilePanel(square, lightColor, CWcontrol);
 				dark = !dark;
 			}
 			
