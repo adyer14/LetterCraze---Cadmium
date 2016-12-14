@@ -168,6 +168,9 @@ public class Level {
 		board = b;
 	}
 
+	public Board getBoard(){
+		return board;
+	}
 
 	public void setLevelNum(int i) {
 		levelNum = i;

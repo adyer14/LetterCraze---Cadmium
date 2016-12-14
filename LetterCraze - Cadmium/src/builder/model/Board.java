@@ -16,7 +16,7 @@ public class Board {
 	}
 
 	public void toggleSquare(int buttonNumber) {
-		squares[buttonNumber].toggleInPlay();
+		this.squares[buttonNumber].toggleInPlay();
 		System.out.println("The square number " + buttonNumber + " is " + squares[buttonNumber].getSquareInPlay() +" for inPlay.");
 	}
 
@@ -32,7 +32,7 @@ public class Board {
 	public String toString(){
 		String out ="";
 		for(int i = 0; i < 36;i++){
-			if(squares[i].squareInPlay){
+			if(this.squares[i].getSquareInPlay()){
 				out = out + 1;
 			}else{
 				out = out + 0;

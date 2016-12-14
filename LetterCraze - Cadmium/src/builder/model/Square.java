@@ -16,9 +16,11 @@ public class Square {
 
 	public void toggleInPlay() {
 		if(squareInPlay) {
-			squareInPlay = false;
+			this.squareInPlay = false;
+			System.out.println("false");
 		} else {
-			squareInPlay = true;
+			this.squareInPlay = true;
+			System.out.println("true");
 		}
 		
 	}
