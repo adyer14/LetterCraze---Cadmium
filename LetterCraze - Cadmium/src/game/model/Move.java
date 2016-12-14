@@ -6,27 +6,30 @@ public class Move {
 	Level level;
 	Board board;
 	
-	Move (Word theWord, Level theLevel) {
+	public Move (Word theWord, Level theLevel) {
 		this.word = theWord;
 		this.level = theLevel;
-		this.board = this.level.board;
+		this.board = theLevel.getBoard();
+		this.board.setSelectedSquares(word.getSelectedSquares());
 	}
 	
 	public boolean doMove () {
 		if (this.isValid()) {
-			for (int i = 0; i < this.word.getSelectedSquares().size(); i++) {
+
+			int wordSize = this.word.getSelectedSquares().size();
+			for (int i = 0; i < wordSize; i++) {
 				this.word.getSelectedSquares().get(i).removeTile();
 			}
-				this.level.addWord(this.word);
-				this.level.checkStarProgress();
-				this.level.board.floatTilesUp();
-				this.level.repopulate(this.level.board);
-				if (this.level.getLevelType().equalsIgnoreCase("puzzle")) {
-					((PuzzleLevel) this.level).didMove();
-				}
-				return true;
+			this.level.addWord(this.word);
+			this.level.checkStarProgress();
+			this.board.floatTilesUp();
+			this.level.repopulate(this.level.board);
+			if (this.level.getLevelType().equalsIgnoreCase("puzzle")) {
+				((PuzzleLevel) this.level).didMove();
+			}
+			return true;
 		}
-		
+
 		else {
 			return false;
 		}
