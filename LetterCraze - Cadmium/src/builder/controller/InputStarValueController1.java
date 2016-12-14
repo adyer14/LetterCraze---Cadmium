@@ -26,7 +26,6 @@ public class InputStarValueController1 implements ActionListener {
 	public void update(JTextField tf){
 		try {
 			int score = Integer.parseInt(tf.getText());
-			
 			lvl.setScores(1, score);
 			
 		} catch (Exception e) {

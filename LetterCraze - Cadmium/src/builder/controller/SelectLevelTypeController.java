@@ -26,10 +26,16 @@ public class SelectLevelTypeController implements ActionListener {
 		
 		if (levelType.equals("PUZZLE")){
 			levelCreatorView.setUpPuzzle();
+			lvl.setLevelType("PUZZLE");
+			
 		} else if (levelType.equals("LIGHTNING")){
 			levelCreatorView.setUpLightning();
+			lvl.setLevelType("LIGHTNING");
+			
 		} else if (levelType.equals("THEME")){
 			levelCreatorView.setUpTheme();
+			lvl.setLevelType("THEME");
+			
 		} else {
 			levelCreatorView.setUpDefault();
 		}

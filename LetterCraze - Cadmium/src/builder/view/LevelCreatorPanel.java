@@ -190,31 +190,37 @@ public class LevelCreatorPanel extends JPanel {
 		star1TextField.setFont(new Font("OCR A Extended", Font.PLAIN, typeFont));
 		star1TextField.setBounds(((starsPanel.getWidth()/3)-tfWidth)/2, tfOffset, tfWidth, tfHeight);
 		starsPanel.add(star1TextField);
+		star1TextField.setEditable(false);
 		
 		star2TextField = new JFormattedTextField(formatter);
 		star2TextField.setFont(new Font("OCR A Extended", Font.PLAIN, typeFont));
 		star2TextField.setBounds(((starsPanel.getWidth()/3)-tfWidth)/2 + (starsPanel.getWidth()/3), tfOffset, tfWidth, tfHeight);
 		starsPanel.add(star2TextField);
+		star2TextField.setEditable(false);
 		
 		star3TextField = new JFormattedTextField(formatter);
 		star3TextField.setFont(new Font("OCR A Extended", Font.PLAIN, typeFont));
 		star3TextField.setBounds(((starsPanel.getWidth()/3)-tfWidth)/2 + ((starsPanel.getWidth()/3)*2), tfOffset, tfWidth, tfHeight);
 		starsPanel.add(star3TextField);
+		star3TextField.setEditable(false);
 		
 		movesTextField = new JFormattedTextField(formatter);
 		movesTextField.setFont(new Font("OCR A Extended", Font.PLAIN, typeFont));
 		movesTextField.setBounds((movesPanel.getWidth()-tfWidth)/2, tfOffset, tfWidth, tfHeight);
 		movesPanel.add(movesTextField);
+		movesTextField.setEditable(false);
 		
 		timeTextField = new JFormattedTextField(formatter);
 		timeTextField.setFont(new Font("OCR A Extended", Font.PLAIN, typeFont));
 		timeTextField.setBounds((timePanel.getWidth()-tfWidth)/2, tfOffset, tfWidth, tfHeight);
 		timePanel.add(timeTextField);
+		timeTextField.setEditable(false);
 		
 		themeNameTextField = new JTextField();
 		themeNameTextField.setFont(new Font("OCR A Extended", Font.PLAIN, typeFont));
 		themeNameTextField.setBounds((themePanel.getWidth()-(tfWidth+20))/2, tfOffset, tfWidth+20, tfHeight);
 		themePanel.add(themeNameTextField);
+		themeNameTextField.setEditable(false);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBorder(null);
@@ -224,6 +230,7 @@ public class LevelCreatorPanel extends JPanel {
 		themeWordsTextPane = new JTextPane();
 		themeWordsTextPane.setFont(new Font("OCR A Extended", Font.PLAIN, typeFont));
 		scrollPane.setViewportView(themeWordsTextPane);
+		themeWordsTextPane.setEditable(false);
 		
 	}
 	
@@ -239,6 +246,10 @@ public class LevelCreatorPanel extends JPanel {
 		InputNumMovesController nmcontrol = new InputNumMovesController(level, this);
 		ResetLevelController rlcontrol = new ResetLevelController(level, this);
 		SelectLevelTypeController ltcontrol = new SelectLevelTypeController(level, this);
+		InputStarValueController1 svcontrol1 = new InputStarValueController1(level, this);
+		InputStarValueController1 svcontrol2 = new InputStarValueController1(level, this);
+		InputStarValueController1 svcontrol3 = new InputStarValueController1(level, this);
+		InputTimeController timecontrol = new InputTimeController(level, this);
 		
 		backButton.addActionListener(elcontrol);
 		backButton.addActionListener(rlcontrol);
@@ -246,6 +257,10 @@ public class LevelCreatorPanel extends JPanel {
 		movesTextField.addActionListener(nmcontrol);
 		resetButton.addActionListener(rlcontrol);
 		levelTypeCB.addActionListener(ltcontrol);
+		star1TextField.addActionListener(svcontrol1);
+		star2TextField.addActionListener(svcontrol2);
+		star3TextField.addActionListener(svcontrol3);
+		timeTextField.addActionListener(timecontrol);
 		
 	}
 

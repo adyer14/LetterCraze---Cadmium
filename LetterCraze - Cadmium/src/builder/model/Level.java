@@ -55,6 +55,7 @@ public class Level {
 
 	public void setTime(int num) {
 		time = num;
+		System.out.println("The time has been set to " + time);
 	}
 
 	public String getThemeName() {
@@ -63,11 +64,12 @@ public class Level {
 
 	public void setThemeName(String name) {
 		themeName = name;
-		
+		System.out.println("The theme name is now " + themeName);
 	}
 
 	public void setNumMoves(int numMoves2) {
 		numMoves = numMoves2;
+		System.out.println("The number of moves is now " + numMoves);
 	}
 
 	public int getNumMoves() {
@@ -76,6 +78,7 @@ public class Level {
 
 	public void setScores(int which, int score) {
 		starValues[which - 1] = score;
+		System.out.println("The score for star value number " + (which-1) + " is now "+ score);
 	}
 
 	public int getScores(int n) {
@@ -84,5 +87,11 @@ public class Level {
 		} catch(Exception e){
 			return 0; // indicate failure
 		}
+	}
+
+	public void setLevelType(String type) {
+		levelType = type;
+		System.out.println("The entity level type is now " + levelType);
+		
 	}
 }
