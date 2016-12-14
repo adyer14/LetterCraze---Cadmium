@@ -4,10 +4,7 @@ import java.awt.CardLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import game.model.LightningLevel;
 import game.model.Model;
-import game.model.PuzzleLevel;
-import game.model.ThemeLevel;
 import game.view.SplashScreenWindow;
 
 public class LCApplication extends JFrame {
@@ -66,18 +63,18 @@ public class LCApplication extends JFrame {
 		contentPane.add(lsp, "levelSelectPanel");
 		for (int i = 1; i <= 5; i++) { 
 			String puzzID = "puzzlePanel" + i;
-			PuzzleLevel pzzLvl = m.getPuzzleLevel(i);
-			pzzPnl[i] = new PuzzlePanel(m, contentPane, pzzLvl, lsp);
+			//PuzzleLevel pzzLvl = m.getPuzzleLevel(i);
+			pzzPnl[i] = new PuzzlePanel(m, contentPane, "puzzle", i, lsp);
 			contentPane.add(pzzPnl[i], puzzID);
 			
 			String litID = "lightningPanel" + i;
-			LightningLevel litLvl = m.getLightningLevel(i);
-			litPnl[i] = new LightningPanel(m, contentPane, litLvl, lsp);
+			//LightningLevel litLvl = m.getLightningLevel(i);
+			litPnl[i] = new LightningPanel(m, contentPane, "lightning", i, lsp);
 			contentPane.add(litPnl[i], litID);
 			
 			String thmID = "themePanel" + i;
-			ThemeLevel thmLvl = m.getThemeLevel(i);
-			thmPnl[i] = new ThemePanel(m, contentPane, thmLvl, lsp);
+			//ThemeLevel thmLvl = m.getThemeLevel(i);
+			thmPnl[i] = new ThemePanel(m, contentPane, "theme", i, lsp);
 			contentPane.add(thmPnl[i], thmID);
 		}
 		
