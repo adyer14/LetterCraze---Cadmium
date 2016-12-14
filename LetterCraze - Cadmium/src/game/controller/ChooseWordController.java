@@ -2,8 +2,14 @@ package game.controller;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+
 import javax.swing.JButton;
+
+import game.model.LetterTile;
 import game.model.Level;
+import game.model.Square;
+import game.model.Word;
 import game.view.BoardPanel;
 import game.view.TilePanel;
 
@@ -11,11 +17,14 @@ public class ChooseWordController implements MouseListener {
 
 	Level level;
 	BoardPanel bp;
+	Word wordBeingCreated;
+	ArrayList<Square> squaresBeingSelected = new ArrayList<Square>();
 	private boolean isWordBeingCreated = false;
 	
 	public ChooseWordController(/*Level l, */BoardPanel bp){
 		//this.level = l;
 		this.bp = bp;
+		wordBeingCreated = new Word(squaresBeingSelected);
 	}
 	
 	@Override
@@ -27,17 +36,23 @@ public class ChooseWordController implements MouseListener {
 		JButton selectedButton = (JButton) arg0.getSource();
 		TilePanel tp = (TilePanel)selectedButton.getParent();
 		tp.setSelected();
+		
+		squaresBeingSelected.add(tp.getSquare());
 	}
 	
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		//if mousePressed flag set add letter to word
 		
 		// update graphics
 		JButton selectedButton = (JButton) arg0.getSource();
 		TilePanel tp = (TilePanel)selectedButton.getParent();
+		
 		if (isWordBeingCreated) {
 			tp.setSelected();
+
+			if (!squaresBeingSelected.contains(tp.getSquare()))
+				squaresBeingSelected.add(tp.getSquare());
+
 		}
 	}
 
@@ -45,9 +60,14 @@ public class ChooseWordController implements MouseListener {
 	public void mouseReleased(MouseEvent arg0) {
 		//finish word hand off to check word
 		isWordBeingCreated = false;
-		
+		wordBeingCreated.setSelectedSquares(squaresBeingSelected);
+		wordBeingCreated.makeString();
+		System.out.println(wordBeingCreated.getActualString());
+
 		// reset graphics
 		bp.resetTiles();	
+		
+		squaresBeingSelected.clear();
 	}
 	
 	@Override
