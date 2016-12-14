@@ -14,15 +14,20 @@ public class ExitLevelController  implements ActionListener {
 	LevelPanel lp;
 	Level level;
 	LevelSelectPanel lsp;
+	private String levType;
+	private int levNum;
 	
-	public ExitLevelController(Model model, Level level, LevelPanel levelPanel, LevelSelectPanel lsp){
-		this.m = model; 
-		this.level = level;
+	public ExitLevelController(Model model, String levType, int levNum, LevelPanel levelPanel, LevelSelectPanel lsp){
+		this.m = model;
+		this.levType = levType;
+		this.levNum = levNum;
 		this.lp = levelPanel;
 		this.lsp = lsp;
 	}
 	
 	public void actionPerformed(ActionEvent e) {
+		this.level = this.m.getSpecificLevel(levType, levNum);
+
 		JPanel contentPane = lp.getContentPane();
         CardLayout cardLayout = (CardLayout) contentPane.getLayout();
         cardLayout.show(contentPane, "levelSelectPanel");
