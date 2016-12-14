@@ -37,9 +37,9 @@ public class PuzzleLevel extends Level {
 	@Override
 	public boolean repopulate (Board board) {
 		for (int j = 0; j < 36; j++) {
-			if (this.board.boardSquares[j].getSquareInPlay()) {
-				if (this.board.boardSquares[j].getTile() == null) {
-					this.board.boardSquares[j].setTile(this.randomLetter());
+			if (this.board.boardSquares.get(j).getSquareInPlay()) {
+				if (this.board.boardSquares.get(j).getTile() == null) {
+					this.board.boardSquares.get(j).setTile(this.randomLetter());
 					return true;
 				}
 			}

@@ -74,15 +74,15 @@ public class Square {
 		this.tile = t;
 	}
 
-	public int getSquareRow() {
-		return squareRow;
-	}
 	public int getSquareColumn() {
 		return squareColumn;
 	}
+
 	public boolean getSquareInPlay() {
 		return squareInPlay;
 	}
 
-	
+	public int getSquareRow() {
+		return squareRow;
+	}
 }

@@ -1,10 +1,11 @@
 package game.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Board {
 	
-	Square boardSquares [] = new Square [36];
+	ArrayList<Square> boardSquares = new ArrayList<Square>();
 	Square selectedSquares [] = new Square [36];
 	Word selectedWord;
 	BlankTile blankTile;
@@ -18,6 +19,8 @@ public class Board {
 			k++;
 			}
 		}
+	public Board (ArrayList<Square> squares) {
+		this.boardSquares = squares;
 		assignLevelScores();
 	}
 	
@@ -51,7 +54,7 @@ public class Board {
 	return true;
 }
 	
-	public boolean floatTilesUp () {
+	public Board floatTilesUp () {
 		for (int i = 0; i < 36; i++) {
 			if (boardSquares[i].getSquareInPlay() && 
 					boardSquares[i].getTile() == null) {
@@ -65,13 +68,25 @@ public class Board {
 									boardSquares[k].getSquareColumn() == boardSquares[j].getSquareColumn()) {
 								boardSquares[j].setTile(boardSquares[k].getTile());
 								boardSquares[k].removeTile();
+			if (this.boardSquares.get(i).squareInPlay && 
+					this.boardSquares.get(i).getTile() == null) {
+				for (int j = this.boardSquares.get(i).getSquareColumn(); j < 36; j++) {
+					if (this.boardSquares.get(j).getSquareInPlay() &&
+							this.boardSquares.get(j).getTile() == null &&
+							this.boardSquares.get(j).getSquareColumn() == this.boardSquares.get(j).getSquareColumn()) {
+						for (int k = (this.boardSquares.get(j).getSquareColumn() + 6*this.boardSquares.get(j).getSquareRow()); k < 36; k++) {
+							if (this.boardSquares.get(k).getSquareInPlay() &&
+									this.boardSquares.get(k).getTile() != null &&
+									this.boardSquares.get(k).getSquareColumn() == this.boardSquares.get(j).getSquareColumn()) {
+								this.boardSquares.get(j).setTile(this.boardSquares.get(k).getTile());
+								this.boardSquares.get(k).removeTile();
 							}
 						}
 					}
 				}
 			}
 		}
-		return true;
+		return new Board (this.boardSquares);
 	}
 	
 	private static void assignLevelScores() {
@@ -89,12 +104,12 @@ public class Board {
 	/**
 	 * Get/set methods
 	 */
-	public Square[] getBoardSquares() {
+	public ArrayList<Square> getBoardSquares() {
 		return boardSquares;
 	}
 
-	public void setBoardSquares(Square boardSquares[]) {
-		this.boardSquares = boardSquares;
+	public void setBoardSquares(ArrayList<Square> bSquares) {
+		this.boardSquares = bSquares;
 	}
 	
 	public HashMap<String, Integer> getLetterScores() {
