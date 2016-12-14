@@ -6,8 +6,6 @@ import builder.view.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-//import javax.swing.JPanel;
-
 public class ResetLevelController implements ActionListener {
 	Level lvl;
 	LevelCreatorPanel levelCreatorView;
@@ -22,6 +20,7 @@ public class ResetLevelController implements ActionListener {
 		lvl.resetLevel();
 		//JPanel panel = levelCreatorView.getContentPane();
 		levelCreatorView.reset();
+		levelCreatorView.repaint();
 	}
 	
 }
