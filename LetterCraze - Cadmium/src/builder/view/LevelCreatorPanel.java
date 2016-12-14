@@ -17,6 +17,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.text.NumberFormatter;
 import builder.controller.*;
 import builder.model.*;
+
 import javax.swing.JFormattedTextField;
 
 
@@ -69,10 +70,12 @@ public class LevelCreatorPanel extends JPanel {
 		add(titlePanel);
 		
 		backButton = new JButton("");
-		backButton.setForeground(new Color(119, 136, 153));
-		backButton.setBackground(new Color(119, 136, 153));
+		backButton.setSelectedIcon(new ImageIcon(LevelCreatorPanel.class.getResource("/images/backSelected.png")));
 		backButton.setIcon(new ImageIcon(LevelCreatorPanel.class.getResource("/images/backButton.png")));
-		backButton.setBounds(19, 21, 68, 68);
+		backButton.setRolloverIcon(new ImageIcon(LevelCreatorPanel.class.getResource("/images/backSelected.png")));
+		backButton.setBounds(20, 22, 66, 66);
+		backButton.setFocusPainted(false);
+		backButton.setBorder(null);
 		titlePanel.add(backButton);
 		
 		levelTypeCB = new JComboBox<String>();
@@ -94,6 +97,7 @@ public class LevelCreatorPanel extends JPanel {
 		resetButton.setFont(new Font("OCR A Extended", Font.BOLD, 23));
 		resetButton.setBackground(new Color(255, 228, 225));
 		resetButton.setBorder(new LineBorder(new Color(255, 192, 203), 3));
+		resetButton.setFocusPainted(false);
 		titlePanel.add(resetButton);
 		
 		saveButton = new JButton("SAVE");
@@ -101,6 +105,7 @@ public class LevelCreatorPanel extends JPanel {
 		saveButton.setFont(new Font("OCR A Extended", Font.BOLD, 23));
 		saveButton.setBackground(new Color(255, 228, 225));
 		saveButton.setBorder(new LineBorder(new Color(255, 192, 203), 3));
+		saveButton.setFocusPainted(false);
 		titlePanel.add(saveButton);
 		
 	}
