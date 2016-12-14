@@ -9,6 +9,10 @@ import javax.swing.JTextField;
 import builder.model.*;
 import builder.view.*;
 
+/**
+ * Controller for inputting time (lightning levels only).
+ *
+ */
 public class InputTimeController implements ActionListener {
 	Level lvl;
 	LevelCreatorPanel levelCreatorView;
@@ -24,6 +28,10 @@ public class InputTimeController implements ActionListener {
 		update (tf);
 	}
 	
+	/**
+	 * Update value for the entity object (and for the JTextField if input is not valid)
+	 * @param tf
+	 */
 	void update (JTextField tf) {
 		try {
 			int num = Integer.parseInt(tf.getText());

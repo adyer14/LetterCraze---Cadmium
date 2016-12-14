@@ -8,6 +8,10 @@ import javax.swing.JTextField;
 import builder.model.Level;
 import builder.view.LevelCreatorPanel;
 
+/**
+ * Controller for inputting the score required to achieve three stars (not for theme levels).
+ *
+ */
 public class InputStarValueController3 implements ActionListener {
 	Level lvl;
 	LevelCreatorPanel levelCreatorView;
@@ -23,6 +27,10 @@ public class InputStarValueController3 implements ActionListener {
 		update(tf);
 	}
 	
+	/**
+	 * Update value for the entity object (and for the JTextField if input is not valid)
+	 * @param tf
+	 */
 	public void update(JTextField tf){
 		try {
 			int score = Integer.parseInt(tf.getText());
