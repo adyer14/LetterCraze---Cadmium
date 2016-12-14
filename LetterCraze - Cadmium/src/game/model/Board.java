@@ -5,8 +5,8 @@ import java.util.HashMap;
 
 public class Board {
 	
-	ArrayList<Square> boardSquares = new ArrayList<Square>();
-	Square selectedSquares [] = new Square [36];
+	ArrayList<Square> boardSquares = new ArrayList<Square>(36);
+	ArrayList<Square> selectedSquares = new ArrayList<Square>();
 	Word selectedWord;
 	BlankTile blankTile;
 	private static HashMap<String, Integer> letterScores = new HashMap<String, Integer>();
@@ -18,19 +18,20 @@ public class Board {
 	
 	public int numOfSTiles () {
 		int count = 0;
-		for (int i = 0; i < 36; i++) {
-			if (selectedSquares [i] != null) {
+		for (int i = 0; i < selectedSquares.size(); i++) {
+			if (selectedSquares.get(i) != null) {
 				count++;
 			}
 		}
 			return count;
 	}
 	
+	// TODO make sure two-letter words not permissable (are they in Theme?)
 	public boolean isValidSelection () {
 		int numOfAdj = 0;
 		int count = this.numOfSTiles();
-		for (int j = 0; j < count - 1; j++) {
-			if (selectedSquares [j].isNeighbor(selectedSquares[j + 1])) {
+		for (int j = 0; j < (count - 1); j++) {
+			if (selectedSquares.get(j).isNeighbor(selectedSquares.get(j + 1))) {
 				numOfAdj++;
 			}
 		}
@@ -41,19 +42,19 @@ public class Board {
 		int count = this.numOfSTiles();
 		
 		for (int k = 0; k < count; k++) {
-			selectedSquares[k].removeTile();
+			selectedSquares.get(k).removeTile();
 		}
 	return true;
 }
 	
-	public Board floatTilesUp () {
-		for (int i = 0; i < 36; i++) {
+	public boolean floatTilesUp () {
+		/*for (int i = 0; i < 36; i++) {
 			if (this.boardSquares.get(i).getSquareInPlay() && 
 					this.boardSquares.get(i).getTile() == null) {
 				for (int j = this.boardSquares.get(i).getSquareColumn(); j < 36; j++) {
 					if (this.boardSquares.get(j).getSquareInPlay() &&
 							this.boardSquares.get(j).getTile() == null &&
-							this.boardSquares.get(j).getSquareColumn() == this.boardSquares.get(j).getSquareColumn()) {
+							this.boardSquares.get(j).getSquareColumn() == this.boardSquares.get(i).getSquareColumn()) {
 						for (int k = (this.boardSquares.get(j).getSquareColumn() + 6*this.boardSquares.get(j).getSquareRow()); k < 36; k++) {
 							if (this.boardSquares.get(k).getSquareInPlay() &&
 									this.boardSquares.get(k).getTile() != null &&
@@ -66,7 +67,28 @@ public class Board {
 				}
 			}
 		}
-		return new Board (this.boardSquares);
+		return new Board (this.boardSquares);*/
+		Square current, nextWithLetter;
+		boolean haveNotTaken;
+		int numEmptyTiles = 0;
+		for (int i = 0; i < 36; i++) {
+			haveNotTaken = true;
+			current = this.boardSquares.get(i);
+			if (current.getSquareInPlay() && current.getTile() == null) {
+				for (int j = 1; j <= (5-current.getSquareRow()); j++) {
+					int k = i + (6*j);
+					nextWithLetter = this.boardSquares.get(k);
+					if (nextWithLetter.getSquareInPlay() && nextWithLetter.getTile() != null && haveNotTaken) {
+						haveNotTaken = false;
+						current.setTile(nextWithLetter.getTile());
+						nextWithLetter.removeTile();
+					}
+					else
+						numEmptyTiles++;
+				}
+			}
+		}
+		return (numEmptyTiles == selectedSquares.size());
 	}
 	
 	private static void assignLevelScores() {
@@ -86,6 +108,22 @@ public class Board {
 
 	public void setBoardSquares(ArrayList<Square> bSquares) {
 		this.boardSquares = bSquares;
+	}
+	
+	public ArrayList<Square> getSelectedSquares() {
+		return selectedSquares;
+	}
+
+	public void setSelectedSquares(ArrayList<Square> sSquares) {
+		this.selectedSquares = sSquares;
+	}
+	
+	public Word getSelectedWord() {
+		return selectedWord;
+	}
+
+	public void setSelectedWord(Word selWord) {
+		this.selectedWord = selWord;
 	}
 	
 	public HashMap<String, Integer> getLetterScores() {
