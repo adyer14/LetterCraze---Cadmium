@@ -28,5 +28,17 @@ public class Board {
 		}
 		
 	}
+	
+	public String toString(){
+		String out ="";
+		for(int i = 0; i < 36;i++){
+			if(squares[i].squareInPlay){
+				out = out + 1;
+			}else{
+				out = out + 0;
+			}
+		}
+		return out;
+	}
 
 }
