@@ -37,7 +37,14 @@ public class ThemeLevel extends Level {
 
 	@Override
 	public boolean repopulate(Board board) {
-		// TODO repopulate method for theme
+		for (int j = 0; j < 36; j++) {
+			if (this.board.boardSquares.get(j).getSquareInPlay()) {
+				if (this.board.boardSquares.get(j).getTile() == null) {
+					this.board.boardSquares.get(j).setTile(new BlankTile());
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 	
@@ -89,7 +96,8 @@ public class ThemeLevel extends Level {
 		numOfLetters --;
 		beingUsed.add(s);
 		int squareNum = ((6*s.getSquareColumn()) + s.getSquareRow());
-		int neighbors [] = {-7, -6, -5, -1, 1, 5, 6, 7};
+		int neighbors [] = {-6, -5, 1, 7, 6, 5, -1, -7};
+		
 		if (numOfLetters == 0 && checkValidStart(s, beingUsed)) {
 			return true;
 		}
@@ -99,6 +107,151 @@ public class ThemeLevel extends Level {
 			return false;
 		}
 		boolean foundPath = false;
+		
+		if (numOfLetters != 0 && squareNum == 0) {
+			for (int m = 2; m < 5; m++) {
+				if (checkValidStart(s, beingUsed) && recursionAlgorithm(beingUsed, numOfLetters, this.initBoardSquares.get(squareNum + neighbors[m]))) {
+					foundPath = true;
+					break;
+				} else {
+					foundPath = false;
+				}
+			} if (foundPath) {
+				return true;
+			} else {
+				numOfLetters++;
+				beingUsed.remove(beingUsed.size() - 1);
+				return false;
+			}
+			}
+		
+		if (numOfLetters != 0 && squareNum == 5) {
+			for (int m = 4; m < 7; m++) {
+				if (checkValidStart(s, beingUsed) && recursionAlgorithm(beingUsed, numOfLetters, this.initBoardSquares.get(squareNum + neighbors[m]))) {
+					foundPath = true;
+					break;
+				} else {
+					foundPath = false;
+				}
+			} if (foundPath) {
+				return true;
+			} else {
+				numOfLetters++;
+				beingUsed.remove(beingUsed.size() - 1);
+				return false;
+			}
+			}
+		
+		if (numOfLetters != 0 && squareNum == 35) {
+			for (int m = 0; m < 8; m++) {
+				if (m == 6 || m == 7 || m == 0) {
+					if (checkValidStart(s, beingUsed) && recursionAlgorithm(beingUsed, numOfLetters, this.initBoardSquares.get(squareNum + neighbors[m]))) {
+						foundPath = true;
+						break;
+					} else {
+						foundPath = false;
+					}
+				}
+				} if (foundPath) {
+					return true;
+				} else {
+					numOfLetters++;
+					beingUsed.remove(beingUsed.size() - 1);
+					return false;
+				}
+			}
+
+		
+		if (numOfLetters != 0 && squareNum == 30) {
+			for (int m = 0; m < 3; m++) {
+				if (checkValidStart(s, beingUsed) && recursionAlgorithm(beingUsed, numOfLetters, this.initBoardSquares.get(squareNum + neighbors[m]))) {
+					foundPath = true;
+					break;
+				} else {
+					foundPath = false;
+				}
+			} if (foundPath) {
+				return true;
+			} else {
+				numOfLetters++;
+				beingUsed.remove(beingUsed.size() - 1);
+				return false;
+			}
+			}
+		
+		if (numOfLetters != 0 && (s.getSquareColumn() == 0) && (squareNum != 0 && squareNum != 30)) {
+			for (int m = 0; m < 5; m++) {
+				if (checkValidStart(s, beingUsed) && recursionAlgorithm(beingUsed, numOfLetters, this.initBoardSquares.get(squareNum + neighbors[m]))) {
+					foundPath = true;
+					break;
+				} else {
+					foundPath = false;
+				}
+			} if (foundPath) {
+				return true;
+			} else {
+				numOfLetters++;
+				beingUsed.remove(beingUsed.size() - 1);
+				return false;
+			}
+			}
+		
+		if (numOfLetters != 0 && (s.getSquareColumn() == 5) && (squareNum != 5 && squareNum != 35)) {
+			for (int m = 0; m < 8; m++) {
+				if (m == 0 || m >= 4) {
+				if (checkValidStart(s, beingUsed) && recursionAlgorithm(beingUsed, numOfLetters, this.initBoardSquares.get(squareNum + neighbors[m]))) {
+					foundPath = true;
+					break;
+				} else {
+					foundPath = false;
+				}
+				}
+			} if (foundPath) {
+				return true;
+			} else {
+				numOfLetters++;
+				beingUsed.remove(beingUsed.size() - 1);
+				return false;
+			}
+			}
+		
+		if (numOfLetters != 0 && (s.getSquareRow() == 0) && (squareNum != 0 && squareNum != 5)) {
+			for (int m = 2; m < 7; m++) {
+				if (checkValidStart(s, beingUsed) && recursionAlgorithm(beingUsed, numOfLetters, this.initBoardSquares.get(squareNum + neighbors[m]))) {
+					foundPath = true;
+					break;
+				} else {
+					foundPath = false;
+				}
+			} if (foundPath) {
+				return true;
+			} else {
+				numOfLetters++;
+				beingUsed.remove(beingUsed.size() - 1);
+				return false;
+			}
+			}
+		
+		if (numOfLetters != 0 && (s.getSquareRow() == 5) && (squareNum != 30 && squareNum != 35)) {
+			for (int m = 0; m < 8; m++) {
+				if (m <= 2 || m >= 6) {
+				if (checkValidStart(s, beingUsed) && recursionAlgorithm(beingUsed, numOfLetters, this.initBoardSquares.get(squareNum + neighbors[m]))) {
+					foundPath = true;
+					break;
+				} else {
+					foundPath = false;
+				}
+				}
+			} if (foundPath) {
+				return true;
+			} else {
+				numOfLetters++;
+				beingUsed.remove(beingUsed.size() - 1);
+				return false;
+			}
+			}
+		
+		if (numOfLetters != 0 && s.getSquareRow() != 0 && s.getSquareColumn() !=0) {
 		for (int m = 0; m < 8; m++) {
 			if (checkValidStart(s, beingUsed) && recursionAlgorithm(beingUsed, numOfLetters, this.initBoardSquares.get(squareNum + neighbors[m]))) {
 				foundPath = true;
@@ -111,6 +264,11 @@ public class ThemeLevel extends Level {
 		} else {
 			numOfLetters++;
 			beingUsed.remove(beingUsed.size() - 1);
+			return false;
+		}
+		}
+		
+		else {
 			return false;
 		}
 	}		
