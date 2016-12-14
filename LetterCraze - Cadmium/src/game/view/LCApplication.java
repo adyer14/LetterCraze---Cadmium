@@ -52,7 +52,7 @@ public class LCApplication extends JFrame {
 		}
 
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(100);
 			splashWindow.setVisible(false);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
