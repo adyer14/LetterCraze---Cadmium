@@ -13,7 +13,7 @@ public class LevelSelect {
 	int numMoves = 5;
 	int time = 34;
 	String[] themeWords = {"yes", "yes", "yes"};
-	Dictionary themeDic = new Dictionary(themeWords);
+	Dictionary themeDic = new Dictionary();
 	String themeName = "Example";
 	
 	public LevelSelect (Level levels []) {
