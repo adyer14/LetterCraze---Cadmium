@@ -1,6 +1,7 @@
 package game.model;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class ThemeLevel extends Level {
 
@@ -8,6 +9,8 @@ public class ThemeLevel extends Level {
 	private String themeName;
 	private int wordsLeft;
 	int i = 0;
+	ArrayList<Square> beingUsed = new ArrayList<Square>();
+	
 	
 	public ThemeLevel(int[] starVal, Board board, ArrayList<Tile> initialTiles, int levelNumber, String themeName, ThemeDictionary themeWords) {
 		super(starVal, board, initialTiles, levelNumber);
@@ -41,6 +44,85 @@ public class ThemeLevel extends Level {
 	@Override
 	protected void setLevelType() {
 		this.levelType = "theme";
+	}
+	
+
+	public void findThemeWordPlacement (Square sqr) {
+		int numOfWords = this.themeWords.words.size();
+		ArrayList<ArrayList<String>> listOfThemeWordLetters = new ArrayList<ArrayList<String>>();
+		for (int p = 0; p < numOfWords; p++) {
+			listOfThemeWordLetters.add(parseThemeWords(this.themeWords.words.get(p)));
+		}
+		for (int p = 0; p < listOfThemeWordLetters.size(); p++) {
+			boolean foundSequence = false;
+			Random rand = new Random();
+			int n;
+			while (!foundSequence) {
+				n = rand.nextInt(36);
+				if (recursionAlgorithm(this.beingUsed, listOfThemeWordLetters.get(p).size(), this.initBoardSquares.get(n))) {
+					foundSequence = true;
+			} else {
+				foundSequence = false;
+			}
+			}
+		}
+		for ()
+		
+	}
+
+	
+	public boolean recursionAlgorithm (ArrayList<Square> beingUsed, int numOfLetters, Square s) {
+		numOfLetters --;
+		beingUsed.add(s);
+		int squareNum = ((6*s.getSquareColumn()) + s.getSquareRow());
+		int neighbors [] = {-7, -6, -5, -1, 1, 5, 6, 7};
+		if (numOfLetters == 0 && checkValidStart(s, beingUsed)) {
+			return true;
+		}
+		if (!checkValidStart(s, beingUsed)) {
+			numOfLetters++;
+			beingUsed.remove(beingUsed.size() - 1);
+			return false;
+		}
+		boolean foundPath = false;
+		for (int m = 0; m < 8; m++) {
+			if (checkValidStart(s, beingUsed) && recursionAlgorithm(beingUsed, numOfLetters, this.initBoardSquares.get(squareNum + neighbors[m]))) {
+				foundPath = true;
+				break;
+			} else {
+				foundPath = false;
+			}
+		} if (foundPath) {
+			return true;
+		} else {
+			numOfLetters++;
+			beingUsed.remove(beingUsed.size() - 1);
+			return false;
+		}
+	}		
+	
+	public ArrayList<String> parseThemeWords (String string) {
+		ArrayList<String> wordLetters = new ArrayList<String>();
+		for (int j = 0; j < string.length(); j++) {
+			 wordLetters.add(Character.toString(string.charAt(j)));
+		}
+		return wordLetters;
+	}
+	
+	public boolean checkValidStart(Square sqr, ArrayList<Square> currentValid) {
+		int instances = 0;
+		if (sqr.getSquareInPlay()) {
+			for (int k = 0; k < currentValid.size(); k++) {
+				if(currentValid.get(k).equals(sqr)) {
+					instances++;
+				}
+			}
+			if (instances > 1) {
+				return false;
+			}
+			else return true;
+		}
+		else return false;
 	}
 	
 
