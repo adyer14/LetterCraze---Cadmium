@@ -4,7 +4,7 @@ public class Board {
 	
 	Square[] squares = new Square[36];
 	BlankTile blank;
-	
+	 
 	public Board () {
 		int k = 0;
 		for (int i = 0; i < 6; i++) {
@@ -27,6 +27,18 @@ public class Board {
 			}
 		}
 		
+	}
+	
+	public String toString(){
+		String out ="";
+		for(int i = 0; i < 36;i++){
+			if(squares[i].squareInPlay){
+				out = out + 1;
+			}else{
+				out = out + 0;
+			}
+		}
+		return out;
 	}
 
 }

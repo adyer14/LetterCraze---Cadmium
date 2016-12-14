@@ -1,5 +1,10 @@
 package builder.model;
 
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Level {
@@ -14,8 +19,16 @@ public class Level {
 	int time;
 	
 	public Level(){
+		//initializing all attributes to zero or default
 		board = new Board();
+		levelType = "Puzzel";
+		levelNum = 1;
+		numMoves = 0;
+		themeWords = new ArrayList<String>();
+		themeName = "";
+		time = 0;
 	}
+	 
 	
 	public boolean resetLevel(){
 		try {
@@ -24,7 +37,12 @@ public class Level {
 			themeWords = new ArrayList<String>();
 			themeName = new String();
 			
-			// TODO reset time, numMoves, levelNum and levelType?
+			// TODO reset time, numMoves, levelNum and levelType
+			
+			time = 0;
+			numMoves= 0;
+			levelNum = 1;
+			levelType = "Puzzel";
 			
 			System.out.println("The level Entity object has been reset.");
 			
@@ -37,9 +55,66 @@ public class Level {
 	}
 	
 	public boolean saveLevel(){
-		return false;
+		String pathName = "";
+		pathName = pathName + this.levelType;
+		
+		if(this.levelNum == 1){
+			pathName = pathName + "One";
+		}
+		else if(this.levelNum == 2){
+			pathName = pathName + "Two";
+		}
+		else if(this.levelNum == 3){
+			pathName = pathName + "Three";
+		}
+		else if(this.levelNum == 4){
+			pathName = pathName + "Four";
+		}
+		else if(this.levelNum == 5){
+			pathName = pathName + "Five";
+		}
+		else{
+			System.out.println("Invalid level Number");
+			return false;
+		}
+		
+		try{
+			Path filePath = Paths.get(pathName+".txt");
+			ArrayList<String> contents = this.levelToText();
+			Charset charset = Charset.forName("US-ASCII");
+			Files.write(filePath, contents, charset);
+			return true;
+		}catch(IOException e){
+			//TODO
+			return false;
+		}
 	}
 	
+	private ArrayList<String> levelToText() {
+		ArrayList<String> levelText = new ArrayList<String>();
+		
+		levelText.add(this.levelType);
+		levelText.add(""+this.levelNum);
+		levelText.add(this.board.toString());
+		
+		String stars = "";
+		stars = stars + this.starValues[0];
+		stars = stars + this.starValues[1];
+		stars = stars + this.starValues[2];
+		levelText.add(stars);
+		
+		levelText.add(""+this.numMoves);
+		levelText.add(""+this.time);
+		levelText.add(themeName);
+		levelText.addAll(themeWords);
+		
+		for(int i = 0; i < levelText.size(); i++){
+			System.out.println(levelText.get(i));
+		}
+		
+		return levelText;
+	}
+
 	public void setThemeWords(ArrayList<String> words){
 		
 	}
@@ -92,6 +167,9 @@ public class Level {
 	public void setLevelType(String type) {
 		levelType = type;
 		System.out.println("The entity level type is now " + levelType);
-		
+	}
+	
+	public void setBoard(Board b){
+		board = b;
 	}
 }
