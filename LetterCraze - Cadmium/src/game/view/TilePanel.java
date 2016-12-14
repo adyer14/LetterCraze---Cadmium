@@ -64,6 +64,17 @@ public class TilePanel extends JPanel {
 		tileButton.setForeground(null);
 	}
 
+	public void refresh(Square sq) {
+		this.square = sq;
+		this.tile = square.getTile();
+		if (tile instanceof LetterTile) {
+			this.letter = ((LetterTile)tile).getLetter();
+		}
+		else
+			this.letter = "";
+		tileButton.setText(letter);
+	}
+
 	public Square getSquare() {
 		return square;
 	}
