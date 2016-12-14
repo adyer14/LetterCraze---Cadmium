@@ -1,5 +1,8 @@
 package game.model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Model {
 	
 	private Level level [] = new Level [16];
@@ -14,7 +17,7 @@ public class Model {
 		int numMoves = 5;
 		int time = 34;
 		String[] themeWords = {"yes", "yes", "yes"};
-		Dictionary themeDic = new Dictionary(themeWords);
+		Dictionary themeDic = new Dictionary();
 		String themeName = "Example";
 	
 	public Model() {
