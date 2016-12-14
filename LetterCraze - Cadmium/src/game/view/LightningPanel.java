@@ -2,7 +2,6 @@ package game.view;
 
 import java.awt.Color;
 import java.awt.Font;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -22,14 +21,14 @@ public class LightningPanel extends LevelPanel{
 	/**
 	 * Create the panel.
 	 */
-	public LightningPanel(Model model, JPanel panel, LightningLevel level, LevelSelectPanel lsp) {
-		super(model, panel, level, lsp);
-		int levNum = level.getLevelNumber();
+	public LightningPanel(Model model, JPanel panel, String levType, int levNum, LevelSelectPanel lsp) {
+		super(model, panel, levType, levNum, lsp);
+		this.levNum = levNum;
 		titleLabel.setText("LIGHTNING" + " " + levNum);
 		titlePanel.add(titleLabel);
 		
 		// TODO this probably need to get linked to timer somehow?
-		timeLeft = level.getTime();
+		timeLeft = ((LightningLevel) level).getTime();
 		
 		JLabel tLabel = new JLabel("TIMER");
 		tLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -48,20 +47,7 @@ public class LightningPanel extends LevelPanel{
 	
 	@Override
 	public void refresh() {
-		highScore = level.getHighScore();
-		highScoreLabel.setText(Integer.toString(highScore));
-		
-		int score = level.getScore();
-		scoreLabel.setText(Integer.toString(score));
-		
-		int mostStars = level.getMostStars();
-		starLabel.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/" + mostStars + "GameStars.png")));
-		
-		String wordListString = "";
-		for (int numWords = 0; numWords < level.getWordList().size(); numWords++) {
-			wordListString = wordListString + level.getWordList().get(numWords).getActualString() + "\n";
-			wordsTextPane.setText(wordListString);
-		}
+		this.levelRefresh();
 	}
 
 }

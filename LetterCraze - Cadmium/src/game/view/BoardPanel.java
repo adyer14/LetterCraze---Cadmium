@@ -6,10 +6,8 @@ import javax.swing.JPanel;
 
 import game.controller.ChooseWordController;
 import game.model.Board;
-import game.model.LetterTile;
 import game.model.Model;
 import game.model.Square;
-import game.model.Tile;
 
 public class BoardPanel extends JPanel {
 
@@ -20,27 +18,30 @@ public class BoardPanel extends JPanel {
 	
 	private TilePanel tilePanel[] = new TilePanel[36];
 	Model m;
+	String levType;
+	int levNum;
 	Board board;
 	ChooseWordController CWcontrol;
 	
 	/**
 	 * Create the panel.
 	 */
-	public BoardPanel(Model model, Board b) {
+	public BoardPanel(Model model, String levType, int levNum, ChooseWordController CWcontrol) {
 		this.m = model;
-		this.board = b;
+		this.levNum = levNum;
+		this.levType = levType;
+		this.board = m.getSpecificLevel(levType, levNum).getBoard();
+		this.CWcontrol = CWcontrol;
 		
 		setBounds(0, 0, 254, 254);
 		setBackground(new Color(176, 196, 222));
 		setLayout(null);
-		
-		// create controller for choosing words
-		CWcontrol = new ChooseWordController(this);
+	
 		initTiles();
 	}
 	
 	public void initTiles() {
-		
+		this.board = m.getSpecificLevel(levType, levNum).getBoard();
 		Color darkColor = new Color(216, 191, 216);
 		Color lightColor = new Color(255, 228, 225);
 		boolean dark = true;
@@ -53,22 +54,14 @@ public class BoardPanel extends JPanel {
 			col = i%6;
 			
 			Square square = board.getBoardSquares().get(i);
-			// TODO HACK super duper looper nooper pooper hackz
-			Tile tile1 = new LetterTile("N", 69);
-			Tile tile2 = new LetterTile("O", 420);
-			
 			
 			if (col == 0)
 					dark = !dark;
 			if (dark) {
-				// TODO HACK hackz continued
-				square.setTile(tile1);
 				tilePanel[i] = new TilePanel(square, darkColor, CWcontrol);
 				dark = !dark;
 			}
 			else {		
-				// TODO HACK hackz continued
-				square.setTile(tile2);
 				tilePanel[i] = new TilePanel(square, lightColor, CWcontrol);
 				dark = !dark;
 			}
@@ -78,10 +71,20 @@ public class BoardPanel extends JPanel {
 		}
 	}
 	
+	public void refresh() {
+		this.board = m.getSpecificLevel(levType, levNum).getBoard();
+		for (int i = 0; i < 36; i++) {
+			tilePanel[i].refresh(board.getBoardSquares().get(i));
+		}
+	}
+	
 	public void resetTiles() {
 		for (int i = 0; i < 36; i++) {
 			tilePanel[i].resetColors();
 		}
 	}
 
+	public void setBoard(Board b) {
+		
+	}
 }

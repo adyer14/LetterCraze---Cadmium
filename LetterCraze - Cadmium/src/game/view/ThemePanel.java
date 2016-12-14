@@ -2,7 +2,6 @@ package game.view;
 
 import java.awt.Color;
 import java.awt.Font;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -22,14 +21,13 @@ public class ThemePanel extends LevelPanel{
 	/**
 	 * Create the panel.
 	 */
-	public ThemePanel(Model model, JPanel panel, ThemeLevel level, LevelSelectPanel lsp) {
-		super(model, panel, level, lsp);
-		int levNum = level.getLevelNumber();
-		String themeName = level.getThemeName();
+	public ThemePanel(Model model, JPanel panel, String levType, int levNum, LevelSelectPanel lsp) {
+		super(model, panel, levType, levNum, lsp);
+		String themeName = ((ThemeLevel) level).getThemeName();
 		titleLabel.setText("THEME" + " " + levNum);
 		titlePanel.add(titleLabel);
 		
-		wordsLeft = level.getWordsLeft();
+		wordsLeft = ((ThemeLevel) level).getWordsLeft();
 				
 		JLabel themeLabel = new JLabel(themeName);
 		themeLabel.setForeground(Color.BLACK);
@@ -56,23 +54,11 @@ public class ThemePanel extends LevelPanel{
 	
 	@Override
 	public void refresh() {
+		this.levelRefresh();
+		
 		wordsLeft = ((ThemeLevel) level).getWordsLeft();
 		wordsLeftLabel.setText(Integer.toString(wordsLeft));
 		
-		highScore = level.getHighScore();
-		highScoreLabel.setText(Integer.toString(highScore));
-		
-		int score = level.getScore();
-		scoreLabel.setText(Integer.toString(score));
-		
-		int mostStars = level.getMostStars();
-		starLabel.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/" + mostStars + "GameStars.png")));
-		
-		String wordListString = "";
-		for (int numWords = 0; numWords < level.getWordList().size(); numWords++) {
-			wordListString = wordListString + level.getWordList().get(numWords).getActualString() + "\n";
-			wordsTextPane.setText(wordListString);
-		}
 	}
 
 }

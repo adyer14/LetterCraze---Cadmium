@@ -12,11 +12,11 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 import game.view.BoardPanel;
+import game.controller.ChooseWordController;
 import game.controller.ExitLevelController;
-import game.model.Board;
+import game.controller.ResetBoardController;
 import game.model.Level;
 import game.model.Model;
-
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
 
@@ -36,21 +36,25 @@ public abstract class LevelPanel extends JPanel {
 	private JButton resetButton;
 	private JButton undoButton;
 	private JButton backButton;
-	private Model model;
+	protected Model model;
 	private BoardPanel boardPanel;
 	protected Level level;
 	protected JPanel constraintPanel;
 	protected JPanel titlePanel;
 	protected JLabel titleLabel;
 	private LevelSelectPanel lsp;
+	String levType;
+	int levNum;
 	
 	/**
 	 * Create the panel.
 	 */
-	public LevelPanel(Model model, JPanel panel, Level lvl, LevelSelectPanel lsp) {
+	public LevelPanel(Model model, JPanel panel, String levType, int levNum, LevelSelectPanel lsp) {
 		this.contentPane = panel;
 		this.model = model;
-		this.level = lvl;
+		this.levNum = levNum;
+		this.levType = levType;
+		this.level = this.model.getSpecificLevel(levType, levNum);
 		this.lsp = lsp;
 		setBounds(0, 0, 800, 550);
 		setBackground(new Color(230, 230, 250));
@@ -65,8 +69,10 @@ public abstract class LevelPanel extends JPanel {
 		initControllers();
 		initConstraint();
 		
-		Board board = level.getBoard();
-		boardPanel = new BoardPanel(model, board);
+		// create controller for choosing words
+		ChooseWordController CWcontrol = new ChooseWordController(this.level, this);
+		
+		boardPanel = new BoardPanel(model, level.getLevelType(), level.getLevelNumber(), CWcontrol);
 		boardPanel.setBounds(297, 203, 254, 254);
 		add(boardPanel);
 	}
@@ -211,8 +217,11 @@ public abstract class LevelPanel extends JPanel {
 	}
 	
 	public void initControllers() {
-		ExitLevelController elcontrol = new ExitLevelController(model, level, this, lsp);
+		ExitLevelController elcontrol = new ExitLevelController(model, levType, levNum, this, lsp);
 		backButton.addActionListener(elcontrol);
+		ResetBoardController RBcontrol = new ResetBoardController(model, levType, levNum, this);
+		backButton.addActionListener(RBcontrol);
+		resetButton.addActionListener(RBcontrol);
 	}
 	
 	public JPanel getContentPane() {
@@ -229,6 +238,30 @@ public abstract class LevelPanel extends JPanel {
 	
 	public JLabel getTitleLabel() {
 		return titleLabel;
+	}
+	
+	public BoardPanel getBoardPanel() {
+		return boardPanel;
+	}
+	
+	protected void levelRefresh() {
+		this.level = this.model.getSpecificLevel(levType, levNum);
+		boardPanel.refresh();
+		
+		highScore = level.getHighScore();
+		highScoreLabel.setText(Integer.toString(highScore));
+		
+		int score = level.getScore();
+		scoreLabel.setText(Integer.toString(score));
+		
+		int currentStars = level.getCurrentStars();
+		starLabel.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/" + currentStars + "GameStars.png")));
+		
+		String wordListString = "";
+		for (int numWords = 0; numWords < level.getWordList().size(); numWords++) {
+			wordListString = wordListString + level.getWordList().get(numWords).getActualString() + "\n";
+		}
+		wordsTextPane.setText(wordListString);
 	}
 	
 	public abstract void refresh();

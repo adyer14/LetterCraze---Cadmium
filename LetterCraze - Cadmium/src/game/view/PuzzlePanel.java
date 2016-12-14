@@ -2,8 +2,6 @@ package game.view;
 
 import java.awt.Color;
 import java.awt.Font;
-
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -24,13 +22,12 @@ public class PuzzlePanel extends LevelPanel{
 	/**
 	 * Create the panel.
 	 */
-	public PuzzlePanel(Model model, JPanel panel, PuzzleLevel level, LevelSelectPanel lsp) {
-		super(model, panel, level, lsp);
-		int levNum = level.getLevelNumber();
+	public PuzzlePanel(Model model, JPanel panel, String levType, int levNum, LevelSelectPanel lsp) {
+		super(model, panel, levType, levNum, lsp);
 		titleLabel.setText("PUZZLE" + " " + levNum);
 		titlePanel.add(titleLabel);
 		
-		movesLeft = level.getMovesLeft();
+		movesLeft = ((PuzzleLevel) level).getMovesLeft();
 		
 		JLabel mLabel = new JLabel("MOVES");
 		mLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -49,23 +46,11 @@ public class PuzzlePanel extends LevelPanel{
 	
 	@Override
 	public void refresh() {
+		this.levelRefresh();
+		
 		movesLeft = ((PuzzleLevel) level).getMovesLeft();
 		movesLabel.setText(Integer.toString(movesLeft));
-		
-		highScore = level.getHighScore();
-		highScoreLabel.setText(Integer.toString(highScore));
-		
-		int score = level.getScore();
-		scoreLabel.setText(Integer.toString(score));
-		
-		int mostStars = level.getMostStars();
-		starLabel.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/" + mostStars + "GameStars.png")));
-		
-		String wordListString = "";
-		for (int numWords = 0; numWords < level.getWordList().size(); numWords++) {
-			wordListString = wordListString + level.getWordList().get(numWords).getActualString() + "\n";
-			wordsTextPane.setText(wordListString);
-		}
+
 	}
 
 
