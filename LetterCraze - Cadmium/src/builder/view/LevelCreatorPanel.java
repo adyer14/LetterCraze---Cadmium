@@ -3,7 +3,6 @@ package builder.view;
 import java.awt.Color;
 import java.awt.Font;
 import java.text.NumberFormat;
-import java.text.ParseException;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,10 +14,10 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
 import builder.controller.*;
 import builder.model.*;
+
 import javax.swing.JFormattedTextField;
 
 
@@ -71,10 +70,12 @@ public class LevelCreatorPanel extends JPanel {
 		add(titlePanel);
 		
 		backButton = new JButton("");
-		backButton.setForeground(new Color(119, 136, 153));
-		backButton.setBackground(new Color(119, 136, 153));
+		backButton.setSelectedIcon(new ImageIcon(LevelCreatorPanel.class.getResource("/images/backSelected.png")));
 		backButton.setIcon(new ImageIcon(LevelCreatorPanel.class.getResource("/images/backButton.png")));
-		backButton.setBounds(19, 21, 68, 68);
+		backButton.setRolloverIcon(new ImageIcon(LevelCreatorPanel.class.getResource("/images/backSelected.png")));
+		backButton.setBounds(20, 22, 66, 66);
+		backButton.setFocusPainted(false);
+		backButton.setBorder(null);
 		titlePanel.add(backButton);
 		
 		levelTypeCB = new JComboBox<String>();
@@ -96,6 +97,7 @@ public class LevelCreatorPanel extends JPanel {
 		resetButton.setFont(new Font("OCR A Extended", Font.BOLD, 23));
 		resetButton.setBackground(new Color(255, 228, 225));
 		resetButton.setBorder(new LineBorder(new Color(255, 192, 203), 3));
+		resetButton.setFocusPainted(false);
 		titlePanel.add(resetButton);
 		
 		saveButton = new JButton("SAVE");
@@ -103,6 +105,7 @@ public class LevelCreatorPanel extends JPanel {
 		saveButton.setFont(new Font("OCR A Extended", Font.BOLD, 23));
 		saveButton.setBackground(new Color(255, 228, 225));
 		saveButton.setBorder(new LineBorder(new Color(255, 192, 203), 3));
+		saveButton.setFocusPainted(false);
 		titlePanel.add(saveButton);
 		
 	}
@@ -186,46 +189,43 @@ public class LevelCreatorPanel extends JPanel {
 	    formatter.setValueClass(Integer.class);
 	    formatter.setMinimum(0);
 	    formatter.setMaximum(Integer.MAX_VALUE);
-	    formatter.setAllowsInvalid(false);
-
-	    MaskFormatter mask = null;
-        try {
-            mask = new MaskFormatter("#:##");
-            mask.setPlaceholderCharacter('-');
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
+	    formatter.setAllowsInvalid(true);
 		
 		star1TextField = new JFormattedTextField(formatter);
 		star1TextField.setFont(new Font("OCR A Extended", Font.PLAIN, typeFont));
 		star1TextField.setBounds(((starsPanel.getWidth()/3)-tfWidth)/2, tfOffset, tfWidth, tfHeight);
 		starsPanel.add(star1TextField);
+		star1TextField.setEditable(false);
 		
 		star2TextField = new JFormattedTextField(formatter);
 		star2TextField.setFont(new Font("OCR A Extended", Font.PLAIN, typeFont));
 		star2TextField.setBounds(((starsPanel.getWidth()/3)-tfWidth)/2 + (starsPanel.getWidth()/3), tfOffset, tfWidth, tfHeight);
 		starsPanel.add(star2TextField);
+		star2TextField.setEditable(false);
 		
 		star3TextField = new JFormattedTextField(formatter);
 		star3TextField.setFont(new Font("OCR A Extended", Font.PLAIN, typeFont));
 		star3TextField.setBounds(((starsPanel.getWidth()/3)-tfWidth)/2 + ((starsPanel.getWidth()/3)*2), tfOffset, tfWidth, tfHeight);
 		starsPanel.add(star3TextField);
+		star3TextField.setEditable(false);
 		
 		movesTextField = new JFormattedTextField(formatter);
 		movesTextField.setFont(new Font("OCR A Extended", Font.PLAIN, typeFont));
 		movesTextField.setBounds((movesPanel.getWidth()-tfWidth)/2, tfOffset, tfWidth, tfHeight);
 		movesPanel.add(movesTextField);
+		movesTextField.setEditable(false);
 		
-		timeTextField = new JFormattedTextField(mask);
+		timeTextField = new JFormattedTextField(formatter);
 		timeTextField.setFont(new Font("OCR A Extended", Font.PLAIN, typeFont));
 		timeTextField.setBounds((timePanel.getWidth()-tfWidth)/2, tfOffset, tfWidth, tfHeight);
 		timePanel.add(timeTextField);
+		timeTextField.setEditable(false);
 		
 		themeNameTextField = new JTextField();
 		themeNameTextField.setFont(new Font("OCR A Extended", Font.PLAIN, typeFont));
 		themeNameTextField.setBounds((themePanel.getWidth()-(tfWidth+20))/2, tfOffset, tfWidth+20, tfHeight);
 		themePanel.add(themeNameTextField);
+		themeNameTextField.setEditable(false);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBorder(null);
@@ -235,6 +235,7 @@ public class LevelCreatorPanel extends JPanel {
 		themeWordsTextPane = new JTextPane();
 		themeWordsTextPane.setFont(new Font("OCR A Extended", Font.PLAIN, typeFont));
 		scrollPane.setViewportView(themeWordsTextPane);
+		themeWordsTextPane.setEditable(false);
 		
 	}
 	
@@ -248,16 +249,92 @@ public class LevelCreatorPanel extends JPanel {
 		ExitLevelController elcontrol = new ExitLevelController(this);
 		InputThemeNameController itmcontrol = new InputThemeNameController(level ,this);
 		InputNumMovesController nmcontrol = new InputNumMovesController(level, this);
-		// InputScoresController sccontrol = new InputScoresController(level, this);
+		ResetLevelController rlcontrol = new ResetLevelController(level, this);
+		SelectLevelTypeController ltcontrol = new SelectLevelTypeController(level, this);
+		InputStarValueController1 svcontrol1 = new InputStarValueController1(level, this);
+		InputStarValueController2 svcontrol2 = new InputStarValueController2(level, this);
+		InputStarValueController3 svcontrol3 = new InputStarValueController3(level, this);
+		InputTimeController timecontrol = new InputTimeController(level, this);
+		InputThemeWordsController themewordscontrol = new InputThemeWordsController(level, this);
+		SelectLevelNumController lvlnumcontrol = new SelectLevelNumController(level, this);
 		
 		backButton.addActionListener(elcontrol);
+		backButton.addActionListener(rlcontrol);
 		themeNameTextField.addActionListener(itmcontrol);
 		movesTextField.addActionListener(nmcontrol);
+		resetButton.addActionListener(rlcontrol);
+		levelTypeCB.addActionListener(ltcontrol);
+		star1TextField.addActionListener(svcontrol1);
+		star2TextField.addActionListener(svcontrol2);
+		star3TextField.addActionListener(svcontrol3);
+		timeTextField.addActionListener(timecontrol);
+		themeWordsTextPane.addKeyListener(themewordscontrol);
+		levelNumCB.addActionListener(lvlnumcontrol);
 		
 	}
 
 	public JPanel getContentPane() {
 		return contentPane;
 	}
+
+	public void reset() {
+		boardPanel.reset();
+		star1TextField.setText("");
+		star2TextField.setText("");
+		star3TextField.setText("");
+		movesTextField.setText("");
+		timeTextField.setText("");
+		themeNameTextField.setText("");
+		themeWordsTextPane.setText("");
+		
+		levelNumCB.setSelectedItem("#");
+		levelTypeCB.setSelectedItem("LEVEL TYPE");
+	}
+
+	public void setUpPuzzle() {
+		timeTextField.setEditable(false);
+		themeNameTextField.setEditable(false);
+		themeWordsTextPane.setEditable(false);
+		
+		star1TextField.setEditable(true);
+		star2TextField.setEditable(true);
+		star3TextField.setEditable(true);
+		movesTextField.setEditable(true);
+	}
+
+	public void setUpLightning() {
+		movesTextField.setEditable(false);
+		themeNameTextField.setEditable(false);
+		themeWordsTextPane.setEditable(false);
+		
+		timeTextField.setEditable(true);
+		star1TextField.setEditable(true);
+		star2TextField.setEditable(true);
+		star3TextField.setEditable(true);
+		
+	}
+
+	public void setUpTheme() {
+		timeTextField.setEditable(false);
+		star1TextField.setEditable(false);
+		star2TextField.setEditable(false);
+		star3TextField.setEditable(false);
+		movesTextField.setEditable(false);
+		
+		themeNameTextField.setEditable(true);
+		themeWordsTextPane.setEditable(true);
+	}
+
+	public void setUpDefault() {
+		timeTextField.setEditable(false);
+		star1TextField.setEditable(false);
+		star2TextField.setEditable(false);
+		star3TextField.setEditable(false);
+		movesTextField.setEditable(false);
+		themeNameTextField.setEditable(false);
+		themeWordsTextPane.setEditable(false);
+		
+	}
+
 
 }

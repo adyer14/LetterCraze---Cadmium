@@ -23,7 +23,8 @@ public class Square {
 		
 	}
 
-	public Boolean getSquareInPlay() {
+	public boolean getSquareInPlay() {
 		return squareInPlay;
 	}
+
 }

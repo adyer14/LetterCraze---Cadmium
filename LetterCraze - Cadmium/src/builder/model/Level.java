@@ -1,5 +1,10 @@
 package builder.model;
 
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Level {
@@ -14,17 +19,98 @@ public class Level {
 	int time;
 	
 	public Level(){
+		//initializing all attributes to zero or default
+		board = new Board();
+		levelType = "";
+		levelNum = 1;
+		numMoves = 0;
+		themeWords = new ArrayList<String>();
+		themeName = "";
+		time = 0;
+	}
+	 
+	
+	public boolean resetLevel(){
+		try {
+
+			starValues = new int[3];
+			themeWords = new ArrayList<String>();
+			themeName = "";
+			
+			time = 0;
+			numMoves = 0;
+			levelNum = 1;
+			levelType = "";
+			
+			return true; // success
+			
+		} catch (Exception e){
+			return false; // failure
+		}
 		
 	}
 	
-	public boolean resetLevel(){
-		return false;
-	}
-	
 	public boolean saveLevel(){
-		return false;
+		String pathName = "";
+		pathName = pathName + this.levelType;
+		
+		if(this.levelNum == 1){
+			pathName = pathName + "One";
+		}
+		else if(this.levelNum == 2){
+			pathName = pathName + "Two";
+		}
+		else if(this.levelNum == 3){
+			pathName = pathName + "Three";
+		}
+		else if(this.levelNum == 4){
+			pathName = pathName + "Four";
+		}
+		else if(this.levelNum == 5){
+			pathName = pathName + "Five";
+		}
+		else{
+			System.out.println("Invalid level Number");
+			return false;
+		}
+		
+		try{
+			Path filePath = Paths.get(pathName+".txt");
+			ArrayList<String> contents = this.levelToText();
+			Charset charset = Charset.forName("US-ASCII");
+			Files.write(filePath, contents, charset);
+			return true;
+		}catch(IOException e){
+			//TODO
+			return false;
+		}
 	}
 	
+	private ArrayList<String> levelToText() {
+		ArrayList<String> levelText = new ArrayList<String>();
+		
+		levelText.add(this.levelType);
+		levelText.add(""+this.levelNum);
+		levelText.add(this.board.toString());
+		
+		String stars = "";
+		stars = stars + this.starValues[0];
+		stars = stars + this.starValues[1];
+		stars = stars + this.starValues[2];
+		levelText.add(stars);
+		
+		levelText.add(""+this.numMoves);
+		levelText.add(""+this.time);
+		levelText.add(themeName);
+		levelText.addAll(themeWords);
+		
+		for(int i = 0; i < levelText.size(); i++){
+			System.out.println(levelText.get(i));
+		}
+		
+		return levelText;
+	}
+
 	public void setThemeWords(ArrayList<String> words){
 		
 	}
@@ -34,12 +120,12 @@ public class Level {
 	}
 
 	public int getTime() {
-		
 		return time;
 	}
 
 	public void setTime(int num) {
 		time = num;
+		System.out.println("The time has been set to " + time);
 	}
 
 	public String getThemeName() {
@@ -48,28 +134,59 @@ public class Level {
 
 	public void setThemeName(String name) {
 		themeName = name;
-		
+		System.out.println("The theme name is now " + themeName);
 	}
 
 	public void setNumMoves(int numMoves2) {
 		numMoves = numMoves2;
+		System.out.println("The number of moves is now " + numMoves);
 	}
 
 	public int getNumMoves() {
 		return numMoves;
 	}
 
-	public void setScores(int scores[]) {
-		for(int i = 0; i < 3; i++){
-			starValues[i] = scores[i];
-		}
+	public void setScores(int which, int score) {
+		starValues[which - 1] = score;
+		System.out.println("The score for star value number " + (which) + " is now "+ score);
 	}
 
 	public int getScores(int n) {
 		try{
-			return starValues[n];
+			return starValues[n - 1];
 		} catch(Exception e){
 			return 0; // indicate failure
 		}
+	}
+
+	public void setLevelType(String type) {
+		levelType = type;
+		System.out.println("The entity level type is now " + levelType);
+	}
+	
+	public void setBoard(Board b){
+		board = b;
+	}
+
+
+	public void setLevelNum(int i) {
+		levelNum = i;
+		System.out.println("The number of the level was set to "+ levelNum);
+	}
+
+
+	public void addThemeWord(String word) {
+		themeWords.add(word);
+		System.out.println(word + " has been added to the themeWords list.");
+	}
+
+	public String getWord() {
+		String last = "";
+		
+		for(String s: themeWords){
+			last = s;
+		}
+		
+		return last;
 	}
 }
