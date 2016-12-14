@@ -94,8 +94,8 @@ public class Level {
 		levelText.add(this.board.toString());
 		
 		String stars = "";
-		stars = stars + this.starValues[0];
-		stars = stars + this.starValues[1];
+		stars = stars + this.starValues[0] + ",";
+		stars = stars + this.starValues[1] + ",";
 		stars = stars + this.starValues[2];
 		levelText.add(stars);
 		
