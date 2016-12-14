@@ -25,6 +25,7 @@ import javax.swing.JFormattedTextField;
  *
  */
 public class LevelCreatorPanel extends JPanel {
+	
 	/**
 	 * Keep Eclipse happy
 	 */
@@ -367,6 +368,14 @@ public class LevelCreatorPanel extends JPanel {
 		themeNameTextField.setEditable(false);
 		themeWordsTextPane.setEditable(false);
 		
+	}
+
+	public JFormattedTextField getMovesTextField() {
+		return movesTextField;
+	}
+
+	public Level getLevel() {
+		return level;
 	}
 
 

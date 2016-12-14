@@ -28,11 +28,9 @@ public class Level {
 		themeName = "";
 		time = 0;
 	}
-	 
 	
 	public boolean resetLevel(){
 		try {
-
 			starValues = new int[3];
 			themeWords = new ArrayList<String>();
 			themeName = "";
@@ -79,6 +77,7 @@ public class Level {
 			ArrayList<String> contents = this.levelToText();
 			Charset charset = Charset.forName("US-ASCII");
 			Files.write(filePath, contents, charset);
+			System.out.println("The level has been saved");
 			return true;
 		}catch(IOException e){
 			//TODO
@@ -146,8 +145,40 @@ public class Level {
 		return numMoves;
 	}
 
-	public void setScores(int which, int score) {
-		starValues[which - 1] = score;
+	/**
+	 * Sets the score for the given star value.
+	 * @param which
+	 * @param score
+	 */
+	public void setScores(int which, int score) throws Exception {
+		
+		switch(which){
+		case 1:
+			if(starValues[2] == 0 && starValues[1] == 0) {
+				starValues[which - 1] = score;
+				break;
+			} else if(score > starValues[1]) {
+				throw new Exception("Value not valid.");
+			} else {
+				starValues[which - 1] = score;
+				break;
+			}
+		case 2:
+			if(score <= starValues[0]) {
+				throw new Exception("Value not valid.");
+			} else {
+				starValues[which - 1] = score;
+				break;
+			}
+		case 3:
+			if(score <= starValues[1]) {
+				throw new Exception("Value not valid.");
+			} else {
+				starValues[which - 1] = score;
+				break;
+			}
+		}
+		
 		System.out.println("The score for star value number " + (which) + " is now "+ score);
 	}
 
