@@ -24,6 +24,9 @@ public class ThemeLevel extends Level {
 		themeWords.words.add("EO");
 		setLevelType();
 		findThemeWordPlacement();
+		for (int z = 0; z < this.beingUsed.size(); z++) {
+			System.out.println(this.beingUsed.get(z));
+		}
 	}
 	
 	@Override
@@ -66,7 +69,7 @@ public class ThemeLevel extends Level {
 		for (int p = 0; p < numOfWords; p++) {
 			listOfThemeWordLetters.add(parseThemeWords(this.themeWords.words.get(p)));
 		}
-		System.out.println(this.initBoardSquares.get(0).getTile().toString());
+
 		for (int p = 0; p < listOfThemeWordLetters.size(); p++) {
 			boolean foundSequence = false;
 			int n;
@@ -87,17 +90,9 @@ public class ThemeLevel extends Level {
 		for (int p = 0; p < numOfWords; p++) {
 			for (int q = 0; q < listOfThemeWordLetters.get(p).size(); q++) {
 				int r = 0;
-				System.out.println("hi");
-				System.out.println(listOfThemeWordLetters.get(p).get(q));
 				int index = this.initBoardSquares.indexOf(this.beingUsed.get(r));
-				System.out.println("hi");
-				System.out.println(p);
-				System.out.println(q);
 				String letter = listOfThemeWordLetters.get(p).get(q);
-				System.out.println("hi");
 				LetterTile lt = new LetterTile(letter, this.board.getLetterScores().get(letter.toUpperCase()));
-				System.out.println("bye");
-				System.out.println(lt.getLetter());
 				this.initBoardSquares.get(index).setTile(lt);
 			}
 		}
@@ -127,10 +122,6 @@ public class ThemeLevel extends Level {
 			return false;
 		}
 		boolean foundPath = false;
-		System.out.println(squareNum);
-		System.out.println(s.getSquareColumn());
-		System.out.println(s.getSquareRow());
-		
 		if (numOfLetters != 0 && squareNum == 0) {
 			for (int m = 2; m < 5; m++) {
 				if (checkValidStart(s, beingUsed) && recursionAlgorithm(beingUsed, numOfLetters, this.initBoardSquares.get(squareNum + neighbors[m]))) {
@@ -292,6 +283,8 @@ public class ThemeLevel extends Level {
 		}
 		
 		else {
+			numOfLetters++;
+			beingUsed.remove(beingUsed.size() - 1);
 			return false;
 		}
 	}		
