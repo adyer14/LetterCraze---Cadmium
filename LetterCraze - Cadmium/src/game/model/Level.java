@@ -48,7 +48,7 @@ public abstract class Level {
 	abstract protected void setLevelType();
 
 	public boolean levelResetLevel() {
-		this.board.setBoardSquares(initBoardSquares);
+//		this.board.setBoardSquares(initBoardSquares);
 		this.wordList.clear();
 		this.score = 0;
 		this.currentStars = 0;
@@ -307,6 +307,10 @@ public abstract class Level {
 
 	public void setDictionary(Dictionary dictionary) {
 		this.dictionary = dictionary;
+	}
+	
+	public void setInitialBoardSquares (ArrayList<Square> s) {
+		this.initBoardSquares = s;
 	}
 	
 	/* End of Get/Set Methods */

@@ -14,38 +14,36 @@ public class ThemeLevel extends Level {
 	public ThemeLevel(int[] starVal, Board board, ArrayList<Tile> initialTiles, int levelNumber, String themeName, ThemeDictionary themeWords) {
 		super(starVal, board, initialTiles, levelNumber);
 		this.setThemeName(themeName);
+		this.initBoardSquares = board.boardSquares;
 		this.themeWords = themeWords;
 		this.initBoardSquares = board.boardSquares;
+		this.wordsLeft = 0;
 		//TODO HACK super hacks
-		themeWords.words.add("NOON");
-		themeWords.words.add("TEN");
-		themeWords.words.add("TED");
-		themeWords.words.add("EA");
-		themeWords.words.add("EO");
-		setLevelType();
-		wipeLevel();
-		findThemeWordPlacement();
+		themeWords.words.add("PIE");
+		themeWords.words.add("BURGER");
+		themeWords.words.add("PIZZA");
+		setLevelType();		
+		//wipeLevel();
+		//findThemeWordPlacement();
 
 	}
 	
 	@Override
 	public boolean resetLevel() {
-		int row,col;
-		for (int i=0;i<36;i++){
-			row = (int) Math.floor(i/6);
-			col = i%6;
-			initBoardSquares.add(i, new Square(row,col,true,this.initialTiles.get(i)));
-		}
-		return this.levelResetLevel();
+		this.levelResetLevel();
+		this.board.setBoardSquares(this.initBoardSquares);
+		return true;
 	}
 
 	@Override
 	public int addScore(Word word) {
+		this.wordsLeft++;
 		return this.score = wordList.size();
 	}
 
 	@Override
 	public int removeScore() {
+		this.wordsLeft--;
 		return this.score = wordList.size();
 	}
 	

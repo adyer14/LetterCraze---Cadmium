@@ -312,4 +312,20 @@ public abstract class LevelPanel extends JPanel {
 	
 	public abstract void refresh();
 
+	public String getLevelType() {
+		return levType;
+	}
+
+	public Model getModel() {
+		return model;
+	}
+
+	public LevelSelectPanel getLsp() {
+		return lsp;
+	}
+
+	public int getLevelNum() {
+		return levNum;
+	}
+
 }

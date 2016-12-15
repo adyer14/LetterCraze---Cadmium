@@ -30,6 +30,9 @@ public class Word {
 	public int calculateScore () {
 		int score = 0;
 		int count = this.numOfSTiles();
+		if (selectedSquares.get(0) == null) {
+		System.out.println("hi");
+		}
 		for (int j = 0; j < count; j++) {
 			score = score + ((LetterTile)selectedSquares.get(j).getTile()).getScoreValue();
 		}

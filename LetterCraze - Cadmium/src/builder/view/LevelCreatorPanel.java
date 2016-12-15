@@ -278,15 +278,15 @@ public class LevelCreatorPanel extends JPanel {
 		
 		backButton.addActionListener(elcontrol);
 		backButton.addActionListener(rlcontrol);
-		themeNameTextField.addActionListener(itmcontrol);
-		movesTextField.addActionListener(nmcontrol);
+		//themeNameTextField.addActionListener(itmcontrol);
+		//movesTextField.addActionListener(nmcontrol);
 		resetButton.addActionListener(rlcontrol);
 		levelTypeCB.addActionListener(ltcontrol);
-		star1TextField.addActionListener(svcontrol1);
-		star2TextField.addActionListener(svcontrol2);
-		star3TextField.addActionListener(svcontrol3);
-		timeTextField.addActionListener(timecontrol);
-		themeWordsTextPane.addKeyListener(themewordscontrol);
+		//star1TextField.addActionListener(svcontrol1);
+		//star2TextField.addActionListener(svcontrol2);
+		//star3TextField.addActionListener(svcontrol3);
+		//timeTextField.addActionListener(timecontrol);
+		//themeWordsTextPane.addKeyListener(themewordscontrol);
 		levelNumCB.addActionListener(lvlnumcontrol);
 		saveButton.addActionListener(savelvlcontrol);
 		
@@ -370,13 +370,45 @@ public class LevelCreatorPanel extends JPanel {
 		
 	}
 
-	public JFormattedTextField getMovesTextField() {
-		return movesTextField;
-	}
-
 	public Level getLevel() {
 		return level;
 	}
 
+	public JButton getResetButton() {
+		return resetButton;
+	}
+
+	public BoardPanel getBoardPanel() {
+		// TODO Auto-generated method stub
+		return boardPanel;
+	}
+
+	public JFormattedTextField getStar1TextField() {
+		return star1TextField;
+	}
+	
+	public JFormattedTextField getStar2TextField() {
+		return star2TextField;
+	}
+	
+	public JFormattedTextField getStar3TextField() {
+		return star3TextField;
+	}
+
+	public JFormattedTextField getMovesTextField() {
+		return movesTextField;
+	}
+	
+	public JFormattedTextField getTimeTextField() {
+		return timeTextField;
+	}
+	
+	public JTextField getThemeNameTextField() {
+		return themeNameTextField;
+	}
+	
+	public JTextPane getThemeWordsTextPane() {
+		return themeWordsTextPane;
+	}
 
 }

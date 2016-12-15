@@ -27,16 +27,16 @@ public class InputThemeWordsController implements KeyListener {
 			JTextPane tp = (JTextPane) ke.getSource();
 			try {
 		
-				lvl.setThemeWords(new ArrayList<String>());
+				//lvl.setThemeWords(new ArrayList<String>());
 				
 				// make sure the words in the JTextPane are the same in the list by renewing the list
-				for(String s: tp.getText().split("\\n")) {
-					lvl.addThemeWord(s);
-				}
+				//for(String s: tp.getText().split("\\n")) {
+				//	lvl.addThemeWord(s);
+				//}
 				
 			} catch (Exception e) {
 				// just put old value back in
-				tp.setText("" + lvl.getWord());
+				//tp.setText("" + lvl.getWord());
 			}
 		}
 	}

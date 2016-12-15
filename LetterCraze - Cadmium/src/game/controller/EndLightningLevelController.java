@@ -16,7 +16,6 @@ public class EndLightningLevelController implements ActionListener {
 		this.time = 10; //TODO ll.getTime();
 	}
 
-
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		time--;

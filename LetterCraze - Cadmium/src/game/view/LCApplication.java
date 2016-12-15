@@ -104,5 +104,10 @@ public class LCApplication extends JFrame {
 	public ThemePanel getThemePanel(int levNum) {
 		return thmPnl[levNum];
 	}
+
+	public Model getModel() {
+		// TODO Auto-generated method stub
+		return m;
+	}
 	
 }
