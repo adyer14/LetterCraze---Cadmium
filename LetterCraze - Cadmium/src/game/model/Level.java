@@ -20,7 +20,7 @@ public abstract class Level {
 	protected List<Word> wordList = new ArrayList<Word>();
 	private Dictionary dictionary = new Dictionary();
 	ArrayList<Square> boardSquares = new ArrayList<Square>(36);
-	ArrayList<Square> initBoardSquares = new ArrayList<Square>();
+	ArrayList<Square> initBoardSquares = new ArrayList<Square>(36);
 	ArrayList<Tile> initialTiles = new ArrayList<Tile>();
 	
 	public Level (int starVal [], Board b, ArrayList<Tile> initialTiles, int levelNumber) {
