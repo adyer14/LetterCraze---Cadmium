@@ -39,6 +39,7 @@ public class Move {
 			}
 			return true;
 		}
+		
 
 		else {
 			return false;

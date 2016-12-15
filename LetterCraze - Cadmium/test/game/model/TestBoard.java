@@ -81,6 +81,7 @@ public class TestBoard extends TestCase {
 			}
 		}
 		b.selectedSquares.add(s);
+		s.removeTile();
 		b.floatTilesUp();
 		assertTrue( s.containsTile(t2) );
 		
