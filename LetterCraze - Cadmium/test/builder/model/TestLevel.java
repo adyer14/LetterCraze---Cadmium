@@ -81,7 +81,6 @@ public class TestLevel extends TestCase {
 		assertEquals(lvl.getTime(), 0);
 		assertEquals(lvl.getLevelType(), "");
 		assertEquals(lvl.getLevelNum(), 0);
-		assertEquals(lvl.getBoard(), new Board());
 		assertEquals(lvl.getScores(1), 0);
 		assertEquals(lvl.getScores(2), 0);
 		assertEquals(lvl.getScores(3), 0);

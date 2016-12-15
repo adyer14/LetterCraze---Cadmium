@@ -25,8 +25,8 @@ public class LightningPanel extends LevelPanel{
 	/**
 	 * Create the panel.
 	 */
-	public LightningPanel(Model model, JPanel panel, String levType, int levNum, LevelSelectPanel lsp) {
-		super(model, panel, levType, levNum, lsp);
+	public LightningPanel(Model model, JPanel panel, /*String levType,*/ int levNum, LevelSelectPanel lsp) {
+		super(model, panel, "LIGHTNING", levNum, lsp);
 		this.levNum = levNum;
 		titleLabel.setText("LIGHTNING" + " " + levNum);
 		titlePanel.add(titleLabel);
