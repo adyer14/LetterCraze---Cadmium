@@ -19,6 +19,12 @@ public class LightningLevel extends Level {
 
 	@Override
 	public boolean resetLevel () {
+		int row,col;
+		for (int i=0;i<36;i++){
+			row = (int) Math.floor(i/6);
+			col = i%6;
+			initBoardSquares.add(i, new Square(row,col,true,this.randomTile()));//initialTiles.get(i)));
+		}
 		return this.levelResetLevel();
 		
 	}

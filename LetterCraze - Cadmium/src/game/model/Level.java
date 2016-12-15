@@ -28,10 +28,10 @@ public abstract class Level {
 		this.initialBoard = b;
 		this.levelNumber = levelNumber;
 		this.initialTiles = initialTiles;
-
-		for (int i = 0; i < 3; i++) {
-			starValues [i] = starVal [i];
-		}
+		this.starValues = starVal;
+		//for (int i = 0; i < 3; i++) {
+			//starValues [i] = starVal [i];
+		//}
 		
 	}
 	
@@ -48,13 +48,6 @@ public abstract class Level {
 	abstract protected void setLevelType();
 
 	public boolean levelResetLevel() {
-		int row,col;
-		for (int i=0;i<36;i++){
-			row = (int) Math.floor(i/6);
-			col = i%6;
-			initBoardSquares.add(i, new Square(row,col,true,this.randomTile()));//initialTiles.get(i)));
-		}
-		
 		this.board.setBoardSquares(initBoardSquares);
 		this.wordList.clear();
 		this.score = 0;
