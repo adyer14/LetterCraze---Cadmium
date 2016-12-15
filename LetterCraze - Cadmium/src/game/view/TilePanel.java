@@ -23,6 +23,7 @@ public class TilePanel extends JPanel {
 	private Color unselectedColor;
 	private Color letterSelected = new Color(51, 0, 0);
 	private Color selectedColor = new Color(255, 153, 153);
+	private ChooseWordController CWControl;
 	
 	/**
 	 * Create the panel.
@@ -30,6 +31,7 @@ public class TilePanel extends JPanel {
 	public TilePanel(Square s, Color color, ChooseWordController controller) {
 		this.square = s;
 		this.unselectedColor = color;
+		this.CWControl = controller;
 		this.tile = square.getTile();
 		if (tile instanceof LetterTile) {
 			this.letter = ((LetterTile)tile).getLetter();
@@ -47,7 +49,7 @@ public class TilePanel extends JPanel {
 		tileButton.setBorder(null);
 		tileButton.setFocusPainted(false);
 		tileButton.setContentAreaFilled(false);
-		tileButton.addMouseListener(controller);
+		tileButton.addMouseListener(CWControl);
 		
 		add(tileButton);
 	}
@@ -91,4 +93,7 @@ public class TilePanel extends JPanel {
 		return letter;
 	}
 
+	public ChooseWordController getCWControl() {
+		return CWControl;
+	}
 }

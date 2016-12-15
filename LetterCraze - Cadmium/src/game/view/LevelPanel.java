@@ -2,6 +2,8 @@ package game.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -15,10 +17,12 @@ import game.view.BoardPanel;
 import game.controller.ChooseWordController;
 import game.controller.ExitLevelController;
 import game.controller.ResetBoardController;
+import game.controller.UndoMoveController;
 import game.model.Level;
 import game.model.Model;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
+import game.view.ScoreMessagePanel;
 
 public abstract class LevelPanel extends JPanel {
 	
@@ -33,8 +37,8 @@ public abstract class LevelPanel extends JPanel {
 	protected JTextPane wordsTextPane;
 	protected JLabel starLabel;
 	private JPanel contentPane;
-	private JButton resetButton;
-	private JButton undoButton;
+	protected JButton resetButton;
+	protected JButton undoButton;
 	private JButton backButton;
 	protected Model model;
 	private BoardPanel boardPanel;
@@ -45,6 +49,8 @@ public abstract class LevelPanel extends JPanel {
 	private LevelSelectPanel lsp;
 	String levType;
 	int levNum;
+
+	protected ScoreMessagePanel smp;
 	
 	/**
 	 * Create the panel.
@@ -60,6 +66,12 @@ public abstract class LevelPanel extends JPanel {
 		setBackground(new Color(230, 230, 250));
 		setLayout(null);
 
+		// create controller for choosing words
+		ChooseWordController CWcontrol = new ChooseWordController(this.level, this);
+				
+		smp = new ScoreMessagePanel(this.level, CWcontrol);
+		add(smp);
+		
 		initTitle();
 		initButtons();
 		initHighScore();
@@ -69,8 +81,6 @@ public abstract class LevelPanel extends JPanel {
 		initControllers();
 		initConstraint();
 		
-		// create controller for choosing words
-		ChooseWordController CWcontrol = new ChooseWordController(this.level, this);
 		
 		boardPanel = new BoardPanel(model, level.getLevelType(), level.getLevelNumber(), CWcontrol);
 		boardPanel.setBounds(297, 203, 254, 254);
@@ -219,9 +229,18 @@ public abstract class LevelPanel extends JPanel {
 	public void initControllers() {
 		ExitLevelController elcontrol = new ExitLevelController(model, levType, levNum, this, lsp);
 		backButton.addActionListener(elcontrol);
+		
 		ResetBoardController RBcontrol = new ResetBoardController(model, levType, levNum, this);
 		backButton.addActionListener(RBcontrol);
 		resetButton.addActionListener(RBcontrol);
+		
+		// install undo controller.
+		LevelPanel lp = this;
+		undoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new UndoMoveController(level, lp).process();
+			}
+		});
 	}
 	
 	public JPanel getContentPane() {

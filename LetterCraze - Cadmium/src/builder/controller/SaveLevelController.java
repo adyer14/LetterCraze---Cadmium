@@ -7,7 +7,11 @@ import java.awt.event.ActionListener;
 import builder.model.*;
 import builder.view.*;
 
-public class SaveLevelController implements ActionListener{
+/**
+ * Controller to save a level to a file.
+ *
+ */
+public class SaveLevelController implements ActionListener {
 	Level lvl;
 	LevelCreatorPanel levelCreatorView;
 	
@@ -19,5 +23,11 @@ public class SaveLevelController implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent ae){
 		lvl.saveLevel();
+		try{
+			lvl.saveLevel();
+			
+		} catch (Exception e){
+			System.out.println(e);
+		}
 	}
 }

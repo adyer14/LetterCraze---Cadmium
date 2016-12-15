@@ -8,7 +8,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import game.controller.LevelSelectController;
 import game.model.Level;
 import game.model.Model;
 
@@ -55,10 +54,10 @@ public class LevelSelectPanel extends JPanel {
 		initTitles();
 		initButtons();
 		initStars();
-		initControllers();
+		//initControllers();
 	}
 	
-	private void initControllers() {
+	/* void initControllers() {
 		for (int puzzNum = 1; puzzNum <= 5; puzzNum++) { 
 			LevelSelectController lscontrol = new LevelSelectController(m, this, "puzzle", puzzNum);
 			puzzleButton[puzzNum].addActionListener(lscontrol);
@@ -71,7 +70,7 @@ public class LevelSelectPanel extends JPanel {
 			LevelSelectController lscontrol = new LevelSelectController(m, this, "theme", thmNum);
 			themeButton[thmNum].addActionListener(lscontrol);
 		}
-	}
+	}*/
 
 	public void initButtons() {	
 		for (int puzzNum = 1; puzzNum <= 5; puzzNum++) {
@@ -174,11 +173,21 @@ public class LevelSelectPanel extends JPanel {
 		return contentPane;
 	}
 	
+	public JButton getPuzzleButton(int levNum) {
+		return puzzleButton[levNum];
+	}
+	
+	public JButton getLightningButton(int levNum) {
+		return lightningButton[levNum];
+	}
+	
+	public JButton getThemeButton(int levNum) {
+		return themeButton[levNum];
+	}
+	
 	public void updateStars(Level level) {
 		int mostStars = level.getMostStars();
-		System.out.println(mostStars);
 		String starLabelName = level.getLevelType() + "StarLabel" + level.getLevelNumber(); 
-		System.out.println(starLabelName);
 		JLabel starLabel = levelStarLabels.get(starLabelName);
 		starLabel.setIcon(new ImageIcon(LevelSelectPanel.class.getResource("/images/" + mostStars + "stars.png")));
 	}

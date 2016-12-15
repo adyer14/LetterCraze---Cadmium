@@ -1,29 +1,26 @@
 package game.model;
 import java.util.ArrayList;
-import java.util.Timer;
-
-
-import game.controller.EndLightningLevelController;
 
 public class LightningLevel extends Level {
 	
 	private boolean isOver;
 	private int time;
-	public Timer timer;
+	//public Timer timer;
 	int i = 0;
 
 	public LightningLevel(int[] starVal, Board board, ArrayList<Tile> initialTiles, int levelNumber, int time) {
 		super(starVal, board, initialTiles, levelNumber);
 		this.time = time;
 		setLevelType();
-		Timer timer = new Timer();
-		timer.schedule(new EndLightningLevelController(this), time);
+		//Timer timer = new Timer();
+		//timer.schedule(new EndLightningLevelController(this), time);
 	//	EndLightningLevelController llc = new EndLightningLevelController(this, null);
 	}
 
 	@Override
 	public boolean resetLevel () {
 		return this.levelResetLevel();
+		
 	}
 	
 	@Override
@@ -31,9 +28,9 @@ public class LightningLevel extends Level {
 		return this.score = wordList.size();
 	}
 	
+	@Override
 	public int removeScore () {
 		return this.score = wordList.size();
-		
 	}
 	
 	@Override

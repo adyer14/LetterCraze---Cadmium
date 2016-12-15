@@ -8,6 +8,10 @@ import javax.swing.JTextField;
 import builder.model.*;
 import builder.view.*;
 
+/**
+ * Controller for inputting theme name (theme levels only).
+ *
+ */
 public class InputThemeNameController implements ActionListener {
 	Level lvl;
 	LevelCreatorPanel levelCreatorView;
@@ -23,7 +27,10 @@ public class InputThemeNameController implements ActionListener {
 		update (tf);
 	}
 	
-	
+	/**
+	 * Update value for the entity object (and for the JTextField if input is not valid)
+	 * @param tf
+	 */
 	void update (JTextField tf) {
 		try {
 			String name = tf.getText();

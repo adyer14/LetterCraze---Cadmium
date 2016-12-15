@@ -8,6 +8,10 @@ import javax.swing.JPanel;
 
 import builder.view.*;
 
+/**
+ * Controller for navigating from the level creator view to the main menu
+ *
+ */
 public class ExitLevelController  implements ActionListener {
 	LevelCreatorPanel lcp;
 	

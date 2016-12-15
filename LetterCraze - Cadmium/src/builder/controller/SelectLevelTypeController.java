@@ -8,6 +8,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JComboBox;
 
+/**
+ * Controller to select level type being worked on (from drop down menu).
+ *
+ */
 public class SelectLevelTypeController implements ActionListener {
 	Level lvl;
 	LevelCreatorPanel levelCreatorView;

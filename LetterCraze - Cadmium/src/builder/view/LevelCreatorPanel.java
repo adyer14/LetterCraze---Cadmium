@@ -20,8 +20,12 @@ import builder.model.*;
 
 import javax.swing.JFormattedTextField;
 
-
+/**
+ * The view for the level creator screen.
+ *
+ */
 public class LevelCreatorPanel extends JPanel {
+	
 	/**
 	 * Keep Eclipse happy
 	 */
@@ -43,6 +47,7 @@ public class LevelCreatorPanel extends JPanel {
 	private JPanel contentPane;
 	
 	private Level level;
+	
 	/**
 	 * Create the panel.
 	 */
@@ -59,9 +64,11 @@ public class LevelCreatorPanel extends JPanel {
 		initBoard();
 		
 		initControllers();
-		
 	}
 
+	/**
+	 * Initialize the Title panel and the widgets within.
+	 */
 	public void initTitlePanel() {
 		JPanel titlePanel = new JPanel();
 		titlePanel.setBackground(new Color(119, 136, 153));
@@ -110,6 +117,9 @@ public class LevelCreatorPanel extends JPanel {
 		
 	}
 
+	/**
+	 * Initialize all input panels and the widgets within.
+	 */
 	public void initInputPanels() {
 		JPanel movesPanel = new JPanel();
 		movesPanel.setBackground(new Color(176, 196, 222));
@@ -239,13 +249,20 @@ public class LevelCreatorPanel extends JPanel {
 		
 	}
 	
+	/**
+	 * Initialize the BoardPanel and add it to the view.
+	 */
 	public void initBoard() {
 		boardPanel = new BoardPanel(level.getBoard());
 		boardPanel.setBounds(258, 255, 254, 254);
 		add(boardPanel);
 	}
 	
+	/**
+	 * Initialize all controllers and link them to their respective widgets.
+	 */
 	public void initControllers() {
+		
 		ExitLevelController elcontrol = new ExitLevelController(this);
 		InputThemeNameController itmcontrol = new InputThemeNameController(level ,this);
 		InputNumMovesController nmcontrol = new InputNumMovesController(level, this);
@@ -258,6 +275,7 @@ public class LevelCreatorPanel extends JPanel {
 		InputThemeWordsController themewordscontrol = new InputThemeWordsController(level, this);
 		SelectLevelNumController lvlnumcontrol = new SelectLevelNumController(level, this);
 		SaveLevelController savelvlcontrol = new SaveLevelController(level, this);
+		SaveLevelController savecontrol = new SaveLevelController(level, this);
 		
 		backButton.addActionListener(elcontrol);
 		backButton.addActionListener(rlcontrol);
@@ -272,6 +290,7 @@ public class LevelCreatorPanel extends JPanel {
 		themeWordsTextPane.addKeyListener(themewordscontrol);
 		levelNumCB.addActionListener(lvlnumcontrol);
 		saveButton.addActionListener(savelvlcontrol);
+		saveButton.addActionListener(savecontrol);
 		
 	}
 
@@ -279,6 +298,9 @@ public class LevelCreatorPanel extends JPanel {
 		return contentPane;
 	}
 
+	/**
+	 * Reset the entire LevelCreatorPanel.
+	 */
 	public void reset() {
 		boardPanel.reset();
 		star1TextField.setText("");
@@ -292,7 +314,10 @@ public class LevelCreatorPanel extends JPanel {
 		levelNumCB.setSelectedItem("#");
 		levelTypeCB.setSelectedItem("LEVEL TYPE");
 	}
-
+	
+	/**
+	 * Make valid only the fields to be used for puzzle levels.
+	 */
 	public void setUpPuzzle() {
 		timeTextField.setEditable(false);
 		themeNameTextField.setEditable(false);
@@ -304,6 +329,9 @@ public class LevelCreatorPanel extends JPanel {
 		movesTextField.setEditable(true);
 	}
 
+	/**
+	 * Make valid only the fields to be used for lightning levels.
+	 */
 	public void setUpLightning() {
 		movesTextField.setEditable(false);
 		themeNameTextField.setEditable(false);
@@ -316,6 +344,9 @@ public class LevelCreatorPanel extends JPanel {
 		
 	}
 
+	/**
+	 * Make valid only the fields to be used for theme levels.
+	 */
 	public void setUpTheme() {
 		timeTextField.setEditable(false);
 		star1TextField.setEditable(false);
@@ -327,6 +358,9 @@ public class LevelCreatorPanel extends JPanel {
 		themeWordsTextPane.setEditable(true);
 	}
 
+	/**
+	 * If no level type is selected, make every field invalid.
+	 */
 	public void setUpDefault() {
 		timeTextField.setEditable(false);
 		star1TextField.setEditable(false);
@@ -336,6 +370,14 @@ public class LevelCreatorPanel extends JPanel {
 		themeNameTextField.setEditable(false);
 		themeWordsTextPane.setEditable(false);
 		
+	}
+
+	public JFormattedTextField getMovesTextField() {
+		return movesTextField;
+	}
+
+	public Level getLevel() {
+		return level;
 	}
 
 
