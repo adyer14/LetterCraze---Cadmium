@@ -2,6 +2,8 @@ package game.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -15,6 +17,7 @@ import game.view.BoardPanel;
 import game.controller.ChooseWordController;
 import game.controller.ExitLevelController;
 import game.controller.ResetBoardController;
+import game.controller.UndoMoveController;
 import game.model.Level;
 import game.model.Model;
 import javax.swing.JTextPane;
@@ -226,9 +229,18 @@ public abstract class LevelPanel extends JPanel {
 	public void initControllers() {
 		ExitLevelController elcontrol = new ExitLevelController(model, levType, levNum, this, lsp);
 		backButton.addActionListener(elcontrol);
+		
 		ResetBoardController RBcontrol = new ResetBoardController(model, levType, levNum, this);
 		backButton.addActionListener(RBcontrol);
 		resetButton.addActionListener(RBcontrol);
+		
+		// install undo controller.
+		LevelPanel lp = this;
+		undoButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new UndoMoveController(level, lp).process();
+			}
+		});
 	}
 	
 	public JPanel getContentPane() {

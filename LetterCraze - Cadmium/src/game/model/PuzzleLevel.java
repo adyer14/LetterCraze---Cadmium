@@ -30,6 +30,15 @@ public class PuzzleLevel extends Level {
 	}
 
 	@Override
+	public int removeScore () {
+		if (wordList.isEmpty()) 
+			return this.score;
+		Word word = this.getWordList().get(getWordList().size()-1);
+		this.score = this.score - word.calculateScore();
+		return this.score;
+	}
+	
+	@Override
 	public boolean repopulate (Board board) {
 		for (int j = 0; j < 36; j++) {
 			if (this.board.boardSquares.get(j).getSquareInPlay()) {
@@ -47,11 +56,9 @@ public class PuzzleLevel extends Level {
 		this.levelType = "puzzle";
 	}
 	
-	
 	public int getMovesLeft() {
 		return this.movesLeft;
 	}
-
 
 	public int didMove() {
 		return this.movesLeft - 1;

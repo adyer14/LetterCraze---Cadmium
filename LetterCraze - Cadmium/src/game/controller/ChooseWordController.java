@@ -10,6 +10,7 @@ import game.model.Level;
 import game.model.Move;
 import game.model.Square;
 import game.model.Word;
+import game.undo.UndoManager;
 import game.view.LevelPanel;
 import game.view.TilePanel;
 import game.view.ScoreMessagePanel;
@@ -75,7 +76,6 @@ public class ChooseWordController implements MouseListener {
 	public void mouseReleased(MouseEvent arg0) {
 		wordBeingCreated.setSelectedSquares(squaresBeingSelected);
 		isWordBeingCreated = false;
-		squaresBeingSelected.clear();
 		lp.refresh();
 		lp.repaint();
 		
@@ -83,11 +83,16 @@ public class ChooseWordController implements MouseListener {
 			((Component) arg0.getSource()).repaint();
 		else {
 			//finish word hand off to check word
-			lp.getBoardPanel().reseTileColors();
+			lp.getBoardPanel().resetTileColors();
 			wordBeingCreated.makeString();
 			Move move = new Move(wordBeingCreated, level);
-			move.doMove();
+			// request move
+			if (move.doMove()) {
+				UndoManager.instance().recordMove(move);
+				lp.refresh();
+			}
 		}
+		squaresBeingSelected.clear();
 	}
 
 

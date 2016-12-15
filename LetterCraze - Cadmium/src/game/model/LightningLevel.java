@@ -1,9 +1,5 @@
 package game.model;
 import java.util.ArrayList;
-import java.util.Timer;
-
-
-import game.controller.EndLightningLevelController;
 
 public class LightningLevel extends Level {
 	
@@ -32,9 +28,9 @@ public class LightningLevel extends Level {
 		return this.score = wordList.size();
 	}
 	
+	@Override
 	public int removeScore () {
 		return this.score = wordList.size();
-		
 	}
 	
 	@Override

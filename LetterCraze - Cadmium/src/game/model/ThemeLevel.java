@@ -11,7 +11,6 @@ public class ThemeLevel extends Level {
 	int i = 0;
 	ArrayList<Square> beingUsed = new ArrayList<Square>();
 	
-	
 	public ThemeLevel(int[] starVal, Board board, ArrayList<Tile> initialTiles, int levelNumber, String themeName, ThemeDictionary themeWords) {
 		super(starVal, board, initialTiles, levelNumber);
 		this.setThemeName(themeName);
@@ -35,6 +34,11 @@ public class ThemeLevel extends Level {
 		return this.score = wordList.size();
 	}
 
+	@Override
+	public int removeScore() {
+		return this.score = wordList.size();
+	}
+	
 	@Override
 	public boolean repopulate(Board board) {
 		for (int j = 0; j < 36; j++) {
