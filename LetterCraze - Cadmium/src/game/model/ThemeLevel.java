@@ -22,6 +22,7 @@ public class ThemeLevel extends Level {
 		themeWords.words.add("EA");
 		themeWords.words.add("EO");
 		setLevelType();
+		findThemeWordPlacement();
 	}
 	
 	@Override
@@ -58,7 +59,7 @@ public class ThemeLevel extends Level {
 	}
 	
 
-	public void findThemeWordPlacement (Square sqr) {
+	public void findThemeWordPlacement () {
 		int numOfWords = this.themeWords.words.size();
 		ArrayList<ArrayList<String>> listOfThemeWordLetters = new ArrayList<ArrayList<String>>();
 		for (int p = 0; p < numOfWords; p++) {
