@@ -28,10 +28,10 @@ public abstract class Level {
 		this.initialBoard = b;
 		this.levelNumber = levelNumber;
 		this.initialTiles = initialTiles;
-
-		for (int i = 0; i < 3; i++) {
-			starValues [i] = starVal [i];
-		}
+		this.starValues = starVal;
+		//for (int i = 0; i < 3; i++) {
+			//starValues [i] = starVal [i];
+		//}
 		
 	}
 	
