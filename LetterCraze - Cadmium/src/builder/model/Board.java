@@ -34,7 +34,6 @@ public class Board {
 
 	public void toggleSquare(int buttonNumber) {
 		this.squares[buttonNumber].toggleInPlay();
-		System.out.println("The square number " + buttonNumber + " is " + squares[buttonNumber].getSquareInPlay() +" for inPlay.");
 	}
 
 	public void resetSquares() {

@@ -37,7 +37,7 @@ public class Level {
 			
 			time = 0;
 			numMoves = 0;
-			levelNum = 1;
+			levelNum = 0;
 			levelType = "";
 			
 			return true; // success
@@ -229,7 +229,6 @@ public class Level {
 
 	public void setLevelType(String type) {
 		levelType = type;
-		System.out.println("The entity level type is now " + levelType);
 	}
 	
 	public void setBoard(Board b){
@@ -242,13 +241,11 @@ public class Level {
 
 	public void setLevelNum(int i) {
 		levelNum = i;
-		System.out.println("The number of the level was set to "+ levelNum);
 	}
 
 
 	public void addThemeWord(String word) {
 		themeWords.add(word);
-		System.out.println(word + " has been added to the themeWords list.");
 	}
 
 	public String getWord() {
@@ -260,6 +257,7 @@ public class Level {
 		
 		return last;
 	}
+	
 	private void setStarValues(String values) {
 		String[] tokens = values.split("[,]");
 		for(int i = 0; i < 3; i++){
