@@ -95,7 +95,6 @@ public class ChooseWordController implements MouseListener {
 		squaresBeingSelected.clear();
 	}
 
-
 	@Override
 	public void mouseExited(MouseEvent arg0) {
 

@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import game.model.Level;
 import game.model.Model;
+import game.undo.UndoManager;
 import game.view.LevelPanel;
 
 public class ResetBoardController implements ActionListener{
@@ -23,6 +24,10 @@ public class ResetBoardController implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		this.level = this.m.getSpecificLevel(levType, levNum);
+		UndoManager mgr = UndoManager.instance();
+		for (int i = 0; i < mgr.getSizeOfStack(); i++) {
+			mgr.removeLastMove();
+		}
 		level.resetLevel();
 		levPanel.refresh();
 	}

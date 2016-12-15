@@ -1,7 +1,6 @@
 package game.model;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class ThemeLevel extends Level {
 
@@ -10,11 +9,13 @@ public class ThemeLevel extends Level {
 	private int wordsLeft;
 	int i = 0;
 	ArrayList<Square> beingUsed = new ArrayList<Square>();
+	ArrayList<Square> initBoardSquares = new ArrayList<Square>(36);
 	
 	public ThemeLevel(int[] starVal, Board board, ArrayList<Tile> initialTiles, int levelNumber, String themeName, ThemeDictionary themeWords) {
 		super(starVal, board, initialTiles, levelNumber);
 		this.setThemeName(themeName);
 		this.themeWords = themeWords;
+		this.initBoardSquares = board.boardSquares;
 		//TODO HACK super hacks
 		themeWords.words.add("NOON");
 		themeWords.words.add("TEN");
@@ -22,11 +23,19 @@ public class ThemeLevel extends Level {
 		themeWords.words.add("EA");
 		themeWords.words.add("EO");
 		setLevelType();
+		wipeLevel();
 		findThemeWordPlacement();
+
 	}
 	
 	@Override
 	public boolean resetLevel() {
+		int row,col;
+		for (int i=0;i<36;i++){
+			row = (int) Math.floor(i/6);
+			col = i%6;
+			initBoardSquares.add(i, new Square(row,col,true,this.initialTiles.get(i)));
+		}
 		return this.levelResetLevel();
 	}
 
@@ -38,6 +47,12 @@ public class ThemeLevel extends Level {
 	@Override
 	public int removeScore() {
 		return this.score = wordList.size();
+	}
+	
+	public void wipeLevel() {
+		for (int n = 0; n < 36; n++) {
+			this.board.boardSquares.get(n).removeTile();
+		}
 	}
 	
 	@Override
@@ -58,24 +73,47 @@ public class ThemeLevel extends Level {
 		this.levelType = "theme";
 	}
 	
-
 	public void findThemeWordPlacement () {
 		int numOfWords = this.themeWords.words.size();
 		ArrayList<ArrayList<String>> listOfThemeWordLetters = new ArrayList<ArrayList<String>>();
 		for (int p = 0; p < numOfWords; p++) {
 			listOfThemeWordLetters.add(parseThemeWords(this.themeWords.words.get(p)));
 		}
+
+		for (int p = 0; p < numOfWords; p++) {
+			for (int q = 0; q < listOfThemeWordLetters.get(p).size(); q++) {
+				int index = 0;
+				String letter = listOfThemeWordLetters.get(p).get(q);
+				LetterTile lt = new LetterTile(letter, this.board.getLetterScores().get(letter.toUpperCase()));
+				this.initBoardSquares.get(index).setTile(lt);
+			index++;
+			}
+		}
+		
+		for (int n = 0; n < 36; n++) {
+			if (this.initBoardSquares.get(n).getTile() == null) {
+				this.initBoardSquares.get(n).setTile(randomTile());
+			}
+		}
+	}
+		
+		/*
+
 		for (int p = 0; p < listOfThemeWordLetters.size(); p++) {
 			boolean foundSequence = false;
-			Random rand = new Random();
 			int n;
 			while (!foundSequence) {
-				n = rand.nextInt(36);
+				for (n = 0; n < 36; n++) {
 				if (recursionAlgorithm(this.beingUsed, listOfThemeWordLetters.get(p).size(), this.initBoardSquares.get(n))) {
 					foundSequence = true;
 			} else {
 				foundSequence = false;
 			}
+			}
+				if (!foundSequence) {
+					System.out.println("Could not generate Theme level with given board shape and Words");
+					break;
+				}
 			}
 		}
 		for (int p = 0; p < numOfWords; p++) {
@@ -83,7 +121,8 @@ public class ThemeLevel extends Level {
 				int r = 0;
 				int index = this.initBoardSquares.indexOf(this.beingUsed.get(r));
 				String letter = listOfThemeWordLetters.get(p).get(q);
-				this.initBoardSquares.get(index).setTile(new LetterTile(letter, this.board.getLetterScores().get(letter)));
+				LetterTile lt = new LetterTile(letter, this.board.getLetterScores().get(letter.toUpperCase()));
+				this.initBoardSquares.get(index).setTile(lt);
 			}
 		}
 
@@ -100,7 +139,7 @@ public class ThemeLevel extends Level {
 	public boolean recursionAlgorithm (ArrayList<Square> beingUsed, int numOfLetters, Square s) {
 		numOfLetters --;
 		beingUsed.add(s);
-		int squareNum = ((6*s.getSquareColumn()) + s.getSquareRow());
+		int squareNum = ((6*s.getSquareRow()) + s.getSquareColumn());
 		int neighbors [] = {-6, -5, 1, 7, 6, 5, -1, -7};
 		
 		if (numOfLetters == 0 && checkValidStart(s, beingUsed)) {
@@ -112,7 +151,6 @@ public class ThemeLevel extends Level {
 			return false;
 		}
 		boolean foundPath = false;
-		
 		if (numOfLetters != 0 && squareNum == 0) {
 			for (int m = 2; m < 5; m++) {
 				if (checkValidStart(s, beingUsed) && recursionAlgorithm(beingUsed, numOfLetters, this.initBoardSquares.get(squareNum + neighbors[m]))) {
@@ -274,10 +312,12 @@ public class ThemeLevel extends Level {
 		}
 		
 		else {
+			numOfLetters++;
+			beingUsed.remove(beingUsed.size() - 1);
 			return false;
 		}
 	}		
-	
+	*/
 	public ArrayList<String> parseThemeWords (String string) {
 		ArrayList<String> wordLetters = new ArrayList<String>();
 		for (int j = 0; j < string.length(); j++) {
@@ -286,20 +326,8 @@ public class ThemeLevel extends Level {
 		return wordLetters;
 	}
 	
-	public boolean checkValidStart(Square sqr, ArrayList<Square> currentValid) {
-		int instances = 0;
-		if (sqr.getSquareInPlay()) {
-			for (int k = 0; k < currentValid.size(); k++) {
-				if(currentValid.get(k).equals(sqr)) {
-					instances++;
-				}
-			}
-			if (instances > 1) {
-				return false;
-			}
-			else return true;
-		}
-		else return false;
+	public boolean checkValidStart(Square sqr) {
+		return sqr.getSquareInPlay();
 	}
 	
 

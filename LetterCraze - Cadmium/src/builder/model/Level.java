@@ -84,7 +84,44 @@ public class Level {
 			return false;
 		}
 	}
-	
+	public Level loadLevel(String pathName){
+		
+		ArrayList<String> contents = new ArrayList<String>();
+		
+		try{
+			Path filePath = Paths.get(pathName+".txt");
+			contents = (ArrayList<String>) Files.readAllLines(filePath);
+			System.out.println("The level has been read");
+		}catch(IOException e){
+			//TODO
+			System.out.println("could not find file");
+		}
+		
+		Level lvl = new Level();
+		
+		lvl.setLevelType(contents.remove(0));
+		lvl.setLevelNum( Integer.parseInt(contents.remove(0)));
+		lvl.setBoard(new Board(contents.remove(0)));
+		lvl.setStarValues(contents.remove(0));
+		
+		if(lvl.levelType.equals("PUZZLE")){
+			lvl.setNumMoves(Integer.parseInt(contents.remove(0)));
+		}else{
+			contents.remove(0);
+		}
+		if(lvl.levelType.equals("LIGHTNING")){
+			lvl.setTime(Integer.parseInt(contents.remove(0)));
+		}else{
+			contents.remove(0);
+		}
+		if(lvl.levelType.equals("THEME")){
+			lvl.setThemeName(contents.remove(0));
+			lvl.setThemeWords(contents);
+		}
+		return lvl;
+		
+	}
+
 	private ArrayList<String> levelToText() {
 		ArrayList<String> levelText = new ArrayList<String>();
 		
@@ -93,8 +130,8 @@ public class Level {
 		levelText.add(this.board.toString());
 		
 		String stars = "";
-		stars = stars + this.starValues[0];
-		stars = stars + this.starValues[1];
+		stars = stars + this.starValues[0] + ",";
+		stars = stars + this.starValues[1] + ",";
 		stars = stars + this.starValues[2];
 		levelText.add(stars);
 		
@@ -199,6 +236,9 @@ public class Level {
 		board = b;
 	}
 
+	public Board getBoard(){
+		return board;
+	}
 
 	public void setLevelNum(int i) {
 		levelNum = i;
@@ -219,5 +259,11 @@ public class Level {
 		}
 		
 		return last;
+	}
+	private void setStarValues(String values) {
+		String[] tokens = values.split("[,]");
+		for(int i = 0; i < 3; i++){
+			this.starValues[i] = Integer.parseInt(tokens[i]);
+		}
 	}
 }

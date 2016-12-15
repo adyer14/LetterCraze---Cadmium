@@ -49,8 +49,10 @@ public abstract class LevelPanel extends JPanel {
 	private LevelSelectPanel lsp;
 	String levType;
 	int levNum;
-
 	protected ScoreMessagePanel smp;
+	private JLabel star1ValueLabel;
+	private JLabel star2ValueLabel;
+	private JLabel star3ValueLabel;
 	
 	/**
 	 * Create the panel.
@@ -221,8 +223,33 @@ public abstract class LevelPanel extends JPanel {
 
 	public void initStars() {
 		starLabel = new JLabel();
-		starLabel.setBounds(574, 138, 183, 62);
+		starLabel.setBounds(574, 130, 183, 62);
 		starLabel.setIcon(new ImageIcon(LevelPanel.class.getResource("/images/0GameStars.png")));
+		
+		int[] starValues = level.getStarValues();
+		int star1Value = starValues[0];
+		int star2Value = starValues[1];
+		int star3Value = starValues[2];
+		
+		star1ValueLabel = new JLabel();
+		star1ValueLabel.setBounds(576, 185, 61, 20);
+		star1ValueLabel.setFont(new Font("OCR A Extended", Font.BOLD, 15));
+		star1ValueLabel.setText(Integer.toString(star1Value));
+		star1ValueLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		add(star1ValueLabel);
+		star2ValueLabel = new JLabel();
+		star2ValueLabel.setBounds(635, 185, 61, 20);
+		star2ValueLabel.setFont(new Font("OCR A Extended", Font.BOLD, 15));
+		star2ValueLabel.setText(Integer.toString(star2Value));
+		star2ValueLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		add(star2ValueLabel);
+		star3ValueLabel = new JLabel();
+		star3ValueLabel.setBounds(694, 185, 61, 20);
+		star3ValueLabel.setFont(new Font("OCR A Extended", Font.BOLD, 15));
+		star3ValueLabel.setText(Integer.toString(star3Value));
+		star3ValueLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		add(star3ValueLabel);
+		
 		add(starLabel);
 	}
 	

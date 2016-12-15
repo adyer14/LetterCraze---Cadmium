@@ -20,7 +20,7 @@ public abstract class Level {
 	protected List<Word> wordList = new ArrayList<Word>();
 	private Dictionary dictionary = new Dictionary();
 	ArrayList<Square> boardSquares = new ArrayList<Square>(36);
-	ArrayList<Square> initBoardSquares = new ArrayList<Square>();
+	ArrayList<Square> initBoardSquares = new ArrayList<Square>(36);
 	ArrayList<Tile> initialTiles = new ArrayList<Tile>();
 	
 	public Level (int starVal [], Board b, ArrayList<Tile> initialTiles, int levelNumber) {
@@ -28,10 +28,10 @@ public abstract class Level {
 		this.initialBoard = b;
 		this.levelNumber = levelNumber;
 		this.initialTiles = initialTiles;
-
-		for (int i = 0; i < 3; i++) {
-			starValues [i] = starVal [i];
-		}
+		this.starValues = starVal;
+		//for (int i = 0; i < 3; i++) {
+			//starValues [i] = starVal [i];
+		//}
 		
 	}
 	
@@ -48,13 +48,6 @@ public abstract class Level {
 	abstract protected void setLevelType();
 
 	public boolean levelResetLevel() {
-		int row,col;
-		for (int i=0;i<36;i++){
-			row = (int) Math.floor(i/6);
-			col = i%6;
-			initBoardSquares.add(i, new Square(row,col,true,this.randomTile()));//initialTiles.get(i)));
-		}
-		
 		this.board.setBoardSquares(initBoardSquares);
 		this.wordList.clear();
 		this.score = 0;
