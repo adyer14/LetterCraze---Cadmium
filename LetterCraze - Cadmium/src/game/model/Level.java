@@ -48,7 +48,7 @@ public abstract class Level {
 	abstract protected void setLevelType();
 
 	public boolean levelResetLevel() {
-//		this.board.setBoardSquares(initBoardSquares);
+		this.board.setBoardSquares(this.initBoardSquares);
 		this.wordList.clear();
 		this.score = 0;
 		this.currentStars = 0;

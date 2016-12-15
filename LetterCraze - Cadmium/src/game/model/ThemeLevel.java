@@ -30,9 +30,15 @@ public class ThemeLevel extends Level {
 	
 	@Override
 	public boolean resetLevel() {
-		this.levelResetLevel();
+		int row,col;
+		
+		for (int i=0;i<36;i++){
+			row = (int) Math.floor(i/6);
+			col = i%6;
+			initBoardSquares.add(i, new Square(row,col,true,this.initialTiles.get(i)));
+		}
 		this.board.setBoardSquares(this.initBoardSquares);
-		return true;
+		return this.levelResetLevel();
 	}
 
 	@Override
