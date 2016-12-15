@@ -2,7 +2,10 @@ package builder.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
+import javax.swing.JTextField;
+import javax.swing.JTextPane;
 
 import builder.model.*;
 import builder.view.*;
@@ -13,21 +16,45 @@ import builder.view.*;
  */
 public class SaveLevelController implements ActionListener {
 	Level lvl;
-	LevelCreatorPanel levelCreatorView;
-	
-	public SaveLevelController(Level lvl, LevelCreatorPanel levelCreatorView){
+	LevelCreatorPanel lcp;
+
+	public SaveLevelController(Level lvl, LevelCreatorPanel levelCreatorPanel){
 		this.lvl = lvl;
-		this.levelCreatorView = levelCreatorView;
+		this.lcp = levelCreatorPanel;
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent ae){
-		lvl.saveLevel();
+		updateAllValues();
 		try{
 			lvl.saveLevel();
-			
+
 		} catch (Exception e){
 			System.out.println(e);
 		}
+	}
+
+	public void updateAllValues() {
+		int[] tempStarValues = new int[3];
+		String levType = lvl.getLevelType();
+		try {
+			if (levType == "THEME") {
+				lvl.setThemeName(lcp.getThemeNameTextField().getText());
+				lvl.setThemeWords(lcp.getThemeWordsTextPane().getText());
+			}
+			else {
+				tempStarValues[0] = Integer.parseInt(lcp.getStar1TextField().getText());
+				tempStarValues[1] = Integer.parseInt(lcp.getStar2TextField().getText());
+				tempStarValues[2] = Integer.parseInt(lcp.getStar3TextField().getText());
+				lvl.setStarValues(tempStarValues);
+				if (lvl.getLevelType() == "PUZZLE")
+					lvl.setNumMoves(Integer.parseInt(lcp.getMovesTextField().getText()));
+				if (lvl.getLevelType() == "LIGHTNING")
+					lvl.setTime(Integer.parseInt(lcp.getTimeTextField().getText()));
+			}
+		} catch(NumberFormatException e){
+			System.out.println("Not all fields have been filled");
+		}
+
 	}
 }
