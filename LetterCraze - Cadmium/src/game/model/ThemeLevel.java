@@ -65,7 +65,6 @@ public class ThemeLevel extends Level {
 		this.levelType = "theme";
 	}
 	
-/*
 	public void findThemeWordPlacement () {
 		int numOfWords = this.themeWords.words.size();
 		ArrayList<ArrayList<String>> listOfThemeWordLetters = new ArrayList<ArrayList<String>>();
