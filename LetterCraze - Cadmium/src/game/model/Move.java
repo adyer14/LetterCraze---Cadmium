@@ -14,7 +14,7 @@ public class Move {
 		this.level = theLevel;
 		
 		this.board = theLevel.getBoard();
-
+ 
 		this.board.setSelectedSquares(word.getSelectedSquares());
 		for (int i = 0; i < 36; i++) {
 			oldTiles.add(board.getBoardSquares().get(i).getTile());
