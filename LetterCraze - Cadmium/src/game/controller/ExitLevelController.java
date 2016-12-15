@@ -8,6 +8,7 @@ import game.model.Level;
 import game.model.Model;
 import game.view.LevelPanel;
 import game.view.LevelSelectPanel;
+import game.view.LightningPanel;
 
 public class ExitLevelController  implements ActionListener {
 	Model m;
@@ -35,6 +36,11 @@ public class ExitLevelController  implements ActionListener {
         lsp.updateStars(level);
         if ((level.getMostStars() > 0) && (level.getLevelNumber() < 5)) 
         	lsp.unlockNext(level);
+        
+    	if (levType == "lightning") {
+    		((LightningPanel) lp).resetLightning();
+    	}
+        
 	}
 
 }

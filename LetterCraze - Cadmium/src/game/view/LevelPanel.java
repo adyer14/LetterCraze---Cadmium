@@ -19,6 +19,7 @@ import game.model.Level;
 import game.model.Model;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
+import game.view.ScoreMessagePanel;
 
 public abstract class LevelPanel extends JPanel {
 	
@@ -33,8 +34,8 @@ public abstract class LevelPanel extends JPanel {
 	protected JTextPane wordsTextPane;
 	protected JLabel starLabel;
 	private JPanel contentPane;
-	private JButton resetButton;
-	private JButton undoButton;
+	protected JButton resetButton;
+	protected JButton undoButton;
 	private JButton backButton;
 	protected Model model;
 	private BoardPanel boardPanel;
@@ -45,6 +46,8 @@ public abstract class LevelPanel extends JPanel {
 	private LevelSelectPanel lsp;
 	String levType;
 	int levNum;
+
+	protected ScoreMessagePanel smp;
 	
 	/**
 	 * Create the panel.
@@ -60,6 +63,12 @@ public abstract class LevelPanel extends JPanel {
 		setBackground(new Color(230, 230, 250));
 		setLayout(null);
 
+		// create controller for choosing words
+		ChooseWordController CWcontrol = new ChooseWordController(this.level, this);
+				
+		smp = new ScoreMessagePanel(this.level, CWcontrol);
+		add(smp);
+		
 		initTitle();
 		initButtons();
 		initHighScore();
@@ -69,8 +78,6 @@ public abstract class LevelPanel extends JPanel {
 		initControllers();
 		initConstraint();
 		
-		// create controller for choosing words
-		ChooseWordController CWcontrol = new ChooseWordController(this.level, this);
 		
 		boardPanel = new BoardPanel(model, level.getLevelType(), level.getLevelNumber(), CWcontrol);
 		boardPanel.setBounds(297, 203, 254, 254);

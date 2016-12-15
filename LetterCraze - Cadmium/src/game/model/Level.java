@@ -46,14 +46,12 @@ public abstract class Level {
 	abstract protected void setLevelType();
 
 	public boolean levelResetLevel() {
-		System.out.println("i did it");
 		int row,col;
 		for (int i=0;i<36;i++){
 			row = (int) Math.floor(i/6);
 			col = i%6;
-			initBoardSquares.add(i, new Square(row,col,true,initialTiles.get(i)));
+			initBoardSquares.add(i, new Square(row,col,true,this.randomTile()));//initialTiles.get(i)));
 		}
-		System.out.println("");
 		
 		this.board.setBoardSquares(initBoardSquares);
 		this.wordList.clear();
@@ -79,8 +77,7 @@ public abstract class Level {
 		wordList.remove(wordList.size()-1);
 		return !wordList.contains(word);
 	}
-	
-	
+		
 	public int removeScore () {
 		if (wordList.isEmpty()) 
 			return this.score;
