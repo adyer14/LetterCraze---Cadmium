@@ -8,7 +8,10 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.JTextPane;
-
+/**
+ * Controller for getting words from the themeWordsTextPane
+ *
+ */
 public class InputThemeWordsController implements KeyListener {
 	Level lvl;
 	LevelCreatorPanel levelCreatorView;
@@ -27,7 +30,7 @@ public class InputThemeWordsController implements KeyListener {
 				lvl.setThemeWords(new ArrayList<String>());
 				
 				// make sure the words in the JTextPane are the same in the list by renewing the list
-				for(String s: tp.getText().split("\\n")){
+				for(String s: tp.getText().split("\\n")) {
 					lvl.addThemeWord(s);
 				}
 				

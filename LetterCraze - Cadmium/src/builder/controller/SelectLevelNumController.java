@@ -9,6 +9,10 @@ import builder.view.LevelCreatorPanel;
 
 import java.awt.event.ActionEvent;
 
+/**
+ * Controller to select the level number being worked on (from drop down menu).
+ *
+ */
 public class SelectLevelNumController implements ActionListener {
 	
 	Level lvl;

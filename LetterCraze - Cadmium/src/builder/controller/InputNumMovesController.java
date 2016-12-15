@@ -8,6 +8,10 @@ import javax.swing.JTextField;
 import builder.model.*;
 import builder.view.*;
 
+/**
+ * Controller for inputting the maximum number of moves (for puzzle level)
+ *
+ */
 public class InputNumMovesController implements ActionListener {
 	Level lvl;
 	LevelCreatorPanel levelCreatorView;
@@ -23,6 +27,10 @@ public class InputNumMovesController implements ActionListener {
 		update (tf);
 	}
 	
+	/**
+	 * Update value for the entity object (and for the JTextField if input is not valid)
+	 * @param tf
+	 */
 	void update (JTextField tf) {
 		try {
 			int numMoves = Integer.parseInt(tf.getText());

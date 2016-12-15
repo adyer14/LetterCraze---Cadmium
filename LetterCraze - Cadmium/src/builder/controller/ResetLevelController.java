@@ -6,6 +6,10 @@ import builder.view.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Controller to reset level creator view (erase all information and reset board).
+ *
+ */
 public class ResetLevelController implements ActionListener {
 	Level lvl;
 	LevelCreatorPanel levelCreatorView;
