@@ -40,6 +40,8 @@ public abstract class Level {
 	
 	public abstract int addScore (Word word);
 	
+	public abstract int removeScore();
+	
 	public abstract boolean repopulate (Board board);
 	
 	// This one method is abstract because the subclasses define their own level type
@@ -73,17 +75,9 @@ public abstract class Level {
 		if (wordList.isEmpty()) 
 			return false;
 		Word word = wordList.get(wordList.size()-1);
-		this.removeScore();
 		wordList.remove(wordList.size()-1);
+		this.removeScore();
 		return !wordList.contains(word);
-	}
-		
-	public int removeScore () {
-		if (wordList.isEmpty()) 
-			return this.score;
-		Word word = this.getWordList().get(getWordList().size()-1);
-		this.score = this.score - word.calculateScore();
-		return this.score;
 	}
 	
 	public int checkStarProgress () {
@@ -103,6 +97,7 @@ public abstract class Level {
 			return this.currentStars;
 		}
 		else {
+			this.currentStars = 0;
 			return 0;
 		}
 	}

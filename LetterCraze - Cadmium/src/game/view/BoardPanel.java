@@ -84,7 +84,7 @@ public class BoardPanel extends JPanel {
 		}
 	}
 	
-	public void reseTileColors() {
+	public void resetTileColors() {
 		for (int i = 0; i < 36; i++) {
 			tilePanel[i].resetColors();
 		}

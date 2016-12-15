@@ -18,6 +18,9 @@ public class Board {
 	
 	public int numOfSTiles () {
 		int count = 0;
+		if (selectedSquares == null) {
+			return 0;
+		}
 		for (int i = 0; i < selectedSquares.size(); i++) {
 			if (selectedSquares.get(i) != null) {
 				count++;
@@ -35,7 +38,7 @@ public class Board {
 				numOfAdj++;
 			}
 		}
-			return (numOfAdj == count - 1);
+		return (numOfAdj == count - 1);
 	}
 	
 	public boolean clearTiles () {
