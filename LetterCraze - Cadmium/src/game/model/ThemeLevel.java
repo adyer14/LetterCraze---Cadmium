@@ -22,11 +22,17 @@ public class ThemeLevel extends Level {
 		themeWords.words.add("EA");
 		themeWords.words.add("EO");
 		setLevelType();
-		findThemeWordPlacement();
+		//findThemeWordPlacement();
 	}
 	
 	@Override
 	public boolean resetLevel() {
+		int row,col;
+		for (int i=0;i<36;i++){
+			row = (int) Math.floor(i/6);
+			col = i%6;
+			initBoardSquares.add(i, new Square(row,col,true,this.initialTiles.get(i)));
+		}
 		return this.levelResetLevel();
 	}
 
@@ -58,7 +64,7 @@ public class ThemeLevel extends Level {
 		this.levelType = "theme";
 	}
 	
-
+/*
 	public void findThemeWordPlacement () {
 		int numOfWords = this.themeWords.words.size();
 		ArrayList<ArrayList<String>> listOfThemeWordLetters = new ArrayList<ArrayList<String>>();

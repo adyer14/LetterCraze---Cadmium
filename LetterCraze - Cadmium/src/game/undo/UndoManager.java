@@ -40,4 +40,8 @@ public class UndoManager {
 		if (undoStack.isEmpty()) { return null; }
 		return undoStack.pop();
 	}
+	
+	public int getSizeOfStack() {
+		return undoStack.size();
+	}
 }
