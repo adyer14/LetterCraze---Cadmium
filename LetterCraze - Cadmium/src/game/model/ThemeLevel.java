@@ -23,10 +23,9 @@ public class ThemeLevel extends Level {
 		themeWords.words.add("EA");
 		themeWords.words.add("EO");
 		setLevelType();
+		wipeLevel();
 		findThemeWordPlacement();
-		for (int z = 0; z < this.beingUsed.size(); z++) {
-			System.out.println(this.beingUsed.get(z));
-		}
+
 	}
 	
 	@Override
@@ -48,6 +47,12 @@ public class ThemeLevel extends Level {
 	@Override
 	public int removeScore() {
 		return this.score = wordList.size();
+	}
+	
+	public void wipeLevel() {
+		for (int n = 0; n < 36; n++) {
+			this.board.boardSquares.get(n).removeTile();
+		}
 	}
 	
 	@Override
@@ -74,6 +79,25 @@ public class ThemeLevel extends Level {
 		for (int p = 0; p < numOfWords; p++) {
 			listOfThemeWordLetters.add(parseThemeWords(this.themeWords.words.get(p)));
 		}
+
+		for (int p = 0; p < numOfWords; p++) {
+			for (int q = 0; q < listOfThemeWordLetters.get(p).size(); q++) {
+				int index = 0;
+				String letter = listOfThemeWordLetters.get(p).get(q);
+				LetterTile lt = new LetterTile(letter, this.board.getLetterScores().get(letter.toUpperCase()));
+				this.initBoardSquares.get(index).setTile(lt);
+			index++;
+			}
+		}
+		
+		for (int n = 0; n < 36; n++) {
+			if (this.initBoardSquares.get(n).getTile() == null) {
+				this.initBoardSquares.get(n).setTile(randomTile());
+			}
+		}
+	}
+		
+		/*
 
 		for (int p = 0; p < listOfThemeWordLetters.size(); p++) {
 			boolean foundSequence = false;
@@ -293,7 +317,7 @@ public class ThemeLevel extends Level {
 			return false;
 		}
 	}		
-	
+	*/
 	public ArrayList<String> parseThemeWords (String string) {
 		ArrayList<String> wordLetters = new ArrayList<String>();
 		for (int j = 0; j < string.length(); j++) {
@@ -302,20 +326,8 @@ public class ThemeLevel extends Level {
 		return wordLetters;
 	}
 	
-	public boolean checkValidStart(Square sqr, ArrayList<Square> currentValid) {
-		int instances = 0;
-		if (sqr.getSquareInPlay()) {
-			for (int k = 0; k < currentValid.size(); k++) {
-				if(currentValid.get(k).equals(sqr)) {
-					instances++;
-				}
-			}
-			if (instances > 1) {
-				return false;
-			}
-			else return true;
-		}
-		else return false;
+	public boolean checkValidStart(Square sqr) {
+		return sqr.getSquareInPlay();
 	}
 	
 
