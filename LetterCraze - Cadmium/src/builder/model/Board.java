@@ -63,5 +63,9 @@ public class Board {
 		}
 		return out;
 	}
+	
+	public Square getSquare(int i){
+		return squares[i];
+	}
 
 }

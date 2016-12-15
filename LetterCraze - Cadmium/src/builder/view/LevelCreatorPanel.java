@@ -378,5 +378,14 @@ public class LevelCreatorPanel extends JPanel {
 		return level;
 	}
 
+	public JButton getResetButton() {
+		return resetButton;
+	}
+
+	public BoardPanel getBoardPanel() {
+		// TODO Auto-generated method stub
+		return boardPanel;
+	}
+
 
 }

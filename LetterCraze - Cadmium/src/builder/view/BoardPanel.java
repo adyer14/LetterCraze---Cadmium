@@ -67,4 +67,8 @@ public class BoardPanel extends JPanel {
 		System.out.println("The Board has been reset.");
 	}
 
+	public JToggleButton getSquare(int i) {
+		return squareButton[i];
+	}
+
 }

@@ -22,7 +22,7 @@ public class Level {
 		//initializing all attributes to zero or default
 		board = new Board();
 		levelType = "";
-		levelNum = 1;
+		levelNum = 0;
 		numMoves = 0;
 		themeWords = new ArrayList<String>();
 		themeName = "";
@@ -265,5 +265,17 @@ public class Level {
 		for(int i = 0; i < 3; i++){
 			this.starValues[i] = Integer.parseInt(tokens[i]);
 		}
+	}
+
+	public String getLevelType() {
+		return levelType;
+	}
+
+	public ArrayList<String> getThemeWords() {
+		return themeWords;
+	}
+
+	public int getLevelNum() {
+		return levelNum;
 	}
 }
