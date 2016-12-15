@@ -14,6 +14,7 @@ public class Model {
 	LevelSelect ls = new LevelSelect (getLevels());
 	
 	ArrayList<Square> foodSquares = new ArrayList<Square>();
+	ArrayList<Square> rSquares = new ArrayList<Square>();
 
 	
 	// THESE ARE TEST VARIABLES, DELETE WHEN WE GET FILE UPLOAD WORKING
@@ -30,6 +31,11 @@ public class Model {
 		List<String> foodWords = new ArrayList<String>(Arrays.asList(list));
 		ThemeDictionary foodDic = new ThemeDictionary(foodWords);
 		String foodName = "Food";
+		
+		String rList [] = {"RAW", "RAT", "RED", "RIP"};
+		List<String> rWords = new ArrayList<String>(Arrays.asList(list));
+		ThemeDictionary rDic = new ThemeDictionary(rWords);
+		String rName = "R";
 	
 	public Model() {
 		ArrayList<Square> initBoardSquares = new ArrayList<Square>(36);
@@ -83,15 +89,58 @@ public class Model {
 		foodSquares.add(new Square(5, 4, true, new LetterTile("A", 2)));//34
 		foodSquares.add(new Square(5, 5, true, randomTile()));//35
 		
+		rSquares.add(new Square(0, 0, true, new LetterTile("R", 2)));//0
+		rSquares.add(new Square(0, 1, true, new LetterTile("E", 1)));//1
+		rSquares.add(new Square(0, 2, true, new LetterTile("D", 3)));//2
+		rSquares.add(new Square(0, 3, false,new BlankTile()));//3
+		rSquares.add(new Square(0, 4, false,new BlankTile()));//4
+		rSquares.add(new Square(0, 5, false,new BlankTile()));//5
+		rSquares.add(new Square(1, 0, true, randomTile()));//6
+		rSquares.add(new Square(1, 1, false,new BlankTile()));//7
+		rSquares.add(new Square(1, 2, true, randomTile()));//8
+		rSquares.add(new Square(1, 3, false,new BlankTile()));//9
+		rSquares.add(new Square(1, 4, false,new BlankTile()));//10
+		rSquares.add(new Square(1, 5, false,new BlankTile()));//11
+		rSquares.add(new Square(2, 0, true, new LetterTile("R", 2)));//12
+		rSquares.add(new Square(2, 1, true, new LetterTile("A", 2)));//13
+		rSquares.add(new Square(2, 2, true, new LetterTile("W", 3)));//14
+		rSquares.add(new Square(2, 3, false,new BlankTile()));//15
+		rSquares.add(new Square(2, 4, false,new BlankTile()));//16
+		rSquares.add(new Square(2, 5, false,new BlankTile()));//17
+		rSquares.add(new Square(3, 0, true, randomTile()));//18
+		rSquares.add(new Square(3, 1, true, new LetterTile("R", 2)));//19
+		rSquares.add(new Square(3, 2, false,new BlankTile()));//20
+		rSquares.add(new Square(3, 3, true, new LetterTile("R", 2)));//21
+		rSquares.add(new Square(3, 4, false,new BlankTile()));//22
+		rSquares.add(new Square(3, 5, false,new BlankTile()));//23
+		rSquares.add(new Square(4, 0, true, new LetterTile("A", 2)));//24
+		rSquares.add(new Square(4, 1, true, randomTile()));//25
+		rSquares.add(new Square(4, 2, false,new BlankTile()));//26
+		rSquares.add(new Square(4, 3, false,new BlankTile()));//27
+		rSquares.add(new Square(4, 4, true, new LetterTile("I", 2)));//28
+		rSquares.add(new Square(4, 5, false,new BlankTile()));//29
+		rSquares.add(new Square(5, 0, true, new LetterTile("T", 1)));//30
+		rSquares.add(new Square(5, 1, true, randomTile()));//31
+		rSquares.add(new Square(5, 2, false,new BlankTile()));//32
+		rSquares.add(new Square(5, 3, false,new BlankTile()));//33
+		rSquares.add(new Square(5, 4, false,new BlankTile()));//34
+		rSquares.add(new Square(5, 5, true, new LetterTile("P", 4)));//35
+		
 		Board food = new Board (foodSquares);
+		Board r = new Board (rSquares);
 		
 		Board board = new Board(initBoardSquares);
 		
 		for (int i = 1; i <=5; i++) {
 			if (i == 1) {
-			puzzleLevel[i] = new PuzzleLevel(starVal, board, initialTiles, i, numMoves);
-			lightningLevel[i] = new LightningLevel(starVal, board, initialTiles, i, time);
-			themeLevel[i] = new ThemeLevel(starVal, food, initialTiles, i, foodName, foodDic);
+				puzzleLevel[i] = new PuzzleLevel(starVal, board, initialTiles, i, numMoves);
+				lightningLevel[i] = new LightningLevel(starVal, board, initialTiles, i, time);
+				themeLevel[i] = new ThemeLevel(starVal, food, initialTiles, i, foodName, foodDic);
+			}
+			if (i == 2) {
+				puzzleLevel[i] = new PuzzleLevel(starVal, board, initialTiles, i, numMoves);
+				lightningLevel[i] = new LightningLevel(starVal, board, initialTiles, i, time);
+				themeLevel[i] = new ThemeLevel(starVal, r, initialTiles, i, rName, rDic);	
 			}
 			else {
 				puzzleLevel[i] = new PuzzleLevel(starVal, board, initialTiles, i, numMoves);
