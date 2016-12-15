@@ -130,8 +130,8 @@ public class Level {
 		levelText.add(this.board.toString());
 		
 		String stars = "";
-		stars = stars + this.starValues[0];
-		stars = stars + this.starValues[1];
+		stars = stars + this.starValues[0] + ",";
+		stars = stars + this.starValues[1] + ",";
 		stars = stars + this.starValues[2];
 		levelText.add(stars);
 		
@@ -261,8 +261,9 @@ public class Level {
 		return last;
 	}
 	private void setStarValues(String values) {
+		String[] tokens = values.split("[,]");
 		for(int i = 0; i < 3; i++){
-			this.starValues[i] = Integer.parseInt(values.substring(i, i+1));
+			this.starValues[i] = Integer.parseInt(tokens[i]);
 		}
 	}
 }
