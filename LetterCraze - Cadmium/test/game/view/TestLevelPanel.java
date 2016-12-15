@@ -1,7 +1,8 @@
-package game.model;
+package game.view;
 
 import javax.swing.JPanel;
 
+import game.model.Model;
 import game.view.*;
 import junit.framework.TestCase;
 
