@@ -275,7 +275,6 @@ public class LevelCreatorPanel extends JPanel {
 		InputThemeWordsController themewordscontrol = new InputThemeWordsController(level, this);
 		SelectLevelNumController lvlnumcontrol = new SelectLevelNumController(level, this);
 		SaveLevelController savelvlcontrol = new SaveLevelController(level, this);
-		SaveLevelController savecontrol = new SaveLevelController(level, this);
 		
 		backButton.addActionListener(elcontrol);
 		backButton.addActionListener(rlcontrol);
@@ -290,7 +289,6 @@ public class LevelCreatorPanel extends JPanel {
 		themeWordsTextPane.addKeyListener(themewordscontrol);
 		levelNumCB.addActionListener(lvlnumcontrol);
 		saveButton.addActionListener(savelvlcontrol);
-		saveButton.addActionListener(savecontrol);
 		
 	}
 
