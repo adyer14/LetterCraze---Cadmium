@@ -53,12 +53,6 @@ public class TestLevel extends TestCase {
 		assertEquals(lvl.getScores(5), 0);
 	}
 	
-	public void testAddThemeWord(){
-		lvl.addThemeWord("TestString");
-		
-		assertTrue(lvl.getThemeWords().contains("TestString"));
-	}
-	
 	public void testResetLevel(){
 		lvl.setLevelNum(1);
 		lvl.setLevelType("PUZZLE");

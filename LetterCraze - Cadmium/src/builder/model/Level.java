@@ -14,7 +14,7 @@ public class Level {
 	String levelType;
 	int levelNum;
 	int numMoves;
-	ArrayList<String> themeWords;
+	String themeWords;
 	String themeName;
 	int time;
 	
@@ -24,7 +24,7 @@ public class Level {
 		levelType = "";
 		levelNum = 0;
 		numMoves = 0;
-		themeWords = new ArrayList<String>();
+		themeWords = "";
 		themeName = "";
 		time = 0;
 	}
@@ -32,7 +32,7 @@ public class Level {
 	public boolean resetLevel(){
 		try {
 			starValues = new int[3];
-			themeWords = new ArrayList<String>();
+			themeWords = "";
 			themeName = "";
 			
 			time = 0;
@@ -49,25 +49,13 @@ public class Level {
 	}
 	
 	public boolean saveLevel(){
-		String pathName = "";
+		String pathName = "src/levels/";
 		pathName = pathName + this.levelType;
 		
-		if(this.levelNum == 1){
-			pathName = pathName + "One";
+		if(this.levelNum != 0){
+			pathName = pathName + Integer.toString(this.levelNum);
 		}
-		else if(this.levelNum == 2){
-			pathName = pathName + "Two";
-		}
-		else if(this.levelNum == 3){
-			pathName = pathName + "Three";
-		}
-		else if(this.levelNum == 4){
-			pathName = pathName + "Four";
-		}
-		else if(this.levelNum == 5){
-			pathName = pathName + "Five";
-		}
-		else{
+		else {
 			System.out.println("Invalid level Number");
 			return false;
 		}
@@ -102,7 +90,7 @@ public class Level {
 		lvl.setLevelType(contents.remove(0));
 		lvl.setLevelNum( Integer.parseInt(contents.remove(0)));
 		lvl.setBoard(new Board(contents.remove(0)));
-		lvl.setStarValues(contents.remove(0));
+		lvl.fakeSetStarValues(contents.remove(0));
 		
 		if(lvl.levelType.equals("PUZZLE")){
 			lvl.setNumMoves(Integer.parseInt(contents.remove(0)));
@@ -116,39 +104,37 @@ public class Level {
 		}
 		if(lvl.levelType.equals("THEME")){
 			lvl.setThemeName(contents.remove(0));
-			lvl.setThemeWords(contents);
+			lvl.setThemeWords(contents.remove(0));
 		}
 		return lvl;
 		
 	}
-
+	
 	private ArrayList<String> levelToText() {
 		ArrayList<String> levelText = new ArrayList<String>();
 		
 		levelText.add(this.levelType);
 		levelText.add(""+this.levelNum);
 		levelText.add(this.board.toString());
-		
-		String stars = "";
+		levelText.add("" + this.starValues[0]);
+		levelText.add("" + this.starValues[1]);
+		levelText.add("" + this.starValues[2]);
+		/*String stars = "";
 		stars = stars + this.starValues[0] + ",";
 		stars = stars + this.starValues[1] + ",";
 		stars = stars + this.starValues[2];
-		levelText.add(stars);
+		levelText.add(stars);*/
 		
 		levelText.add(""+this.numMoves);
 		levelText.add(""+this.time);
 		levelText.add(themeName);
-		levelText.addAll(themeWords);
+		levelText.add(themeWords);
 		
 		for(int i = 0; i < levelText.size(); i++){
 			System.out.println(levelText.get(i));
 		}
 		
 		return levelText;
-	}
-
-	public void setThemeWords(ArrayList<String> words){
-		
 	}
 	
 	public boolean addThemeWordTiles(String tw, Board b){
@@ -169,12 +155,12 @@ public class Level {
 	}
 
 	public void setThemeName(String name) {
-		themeName = name;
+		this.themeName = name;
 		System.out.println("The theme name is now " + themeName);
 	}
 
 	public void setNumMoves(int numMoves2) {
-		numMoves = numMoves2;
+		this.numMoves = numMoves2;
 		System.out.println("The number of moves is now " + numMoves);
 	}
 
@@ -242,38 +228,35 @@ public class Level {
 	public void setLevelNum(int i) {
 		levelNum = i;
 	}
-
-
-	public void addThemeWord(String word) {
-		themeWords.add(word);
-	}
-
-	public String getWord() {
-		String last = "";
-		
-		for(String s: themeWords){
-			last = s;
-		}
-		
-		return last;
-	}
 	
-	private void setStarValues(String values) {
+	private void fakeSetStarValues(String values) {
 		String[] tokens = values.split("[,]");
 		for(int i = 0; i < 3; i++){
 			this.starValues[i] = Integer.parseInt(tokens[i]);
 		}
+	}
+	
+	public int[] getStarValues() {
+		return starValues;
+	}
+	
+	public void setStarValues(int[] starVal) {
+		this.starValues = starVal;
 	}
 
 	public String getLevelType() {
 		return levelType;
 	}
 
-	public ArrayList<String> getThemeWords() {
-		return themeWords;
-	}
-
 	public int getLevelNum() {
 		return levelNum;
+	}
+	
+	public String getThemeWords() {
+		return themeWords;
+	}
+	
+	public void setThemeWords(String themeWords) {
+		this.themeWords = themeWords;
 	}
 }
