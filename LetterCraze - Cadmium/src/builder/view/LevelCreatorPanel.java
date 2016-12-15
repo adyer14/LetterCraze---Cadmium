@@ -253,7 +253,7 @@ public class LevelCreatorPanel extends JPanel {
 	 * Initialize the BoardPanel and add it to the view.
 	 */
 	public void initBoard() {
-		boardPanel = new BoardPanel(new Board());
+		boardPanel = new BoardPanel(level.getBoard());
 		boardPanel.setBounds(258, 255, 254, 254);
 		add(boardPanel);
 	}
@@ -274,7 +274,7 @@ public class LevelCreatorPanel extends JPanel {
 		InputTimeController timecontrol = new InputTimeController(level, this);
 		InputThemeWordsController themewordscontrol = new InputThemeWordsController(level, this);
 		SelectLevelNumController lvlnumcontrol = new SelectLevelNumController(level, this);
-		SaveLevelController savecontrol = new SaveLevelController(level, this);
+		SaveLevelController savelvlcontrol = new SaveLevelController(level, this);
 		
 		backButton.addActionListener(elcontrol);
 		backButton.addActionListener(rlcontrol);
@@ -288,7 +288,7 @@ public class LevelCreatorPanel extends JPanel {
 		timeTextField.addActionListener(timecontrol);
 		themeWordsTextPane.addKeyListener(themewordscontrol);
 		levelNumCB.addActionListener(lvlnumcontrol);
-		saveButton.addActionListener(savecontrol);
+		saveButton.addActionListener(savelvlcontrol);
 		
 	}
 
