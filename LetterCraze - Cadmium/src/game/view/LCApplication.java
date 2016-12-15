@@ -73,7 +73,7 @@ public class LCApplication extends JFrame {
 			
 			String litID = "lightningPanel" + i;
 			//LightningLevel litLvl = m.getLightningLevel(i);
-			litPnl[i] = new LightningPanel(m, contentPane, i, lsp);
+			litPnl[i] = new LightningPanel(m, contentPane, "lightning", i, lsp);
 			contentPane.add(litPnl[i], litID);
 			LevelSelectController lslcontrol = new LevelSelectController(m, this, "lightning", i);
 			lsp.getLightningButton(i).addActionListener(lslcontrol);
