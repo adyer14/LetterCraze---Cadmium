@@ -23,11 +23,10 @@ public abstract class Level {
 	ArrayList<Square> initBoardSquares = new ArrayList<Square>(36);
 	ArrayList<Tile> initialTiles = new ArrayList<Tile>();
 	
-	public Level (int starVal [], Board b, ArrayList<Tile> initialTiles, int levelNumber) {
+	public Level (int starVal [], Board b, int levelNumber) {
 		this.board = b;
 		this.initialBoard = b;
 		this.levelNumber = levelNumber;
-		this.initialTiles = initialTiles;
 		this.starValues = starVal;
 		this.boardSquares = b.getBoardSquares();
 		//for (int i = 0; i < 3; i++) {

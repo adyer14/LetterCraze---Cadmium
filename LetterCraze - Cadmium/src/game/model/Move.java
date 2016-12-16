@@ -49,6 +49,7 @@ public class Move {
 	public boolean undoMove () {
 		if (this.level.getLevelType().equalsIgnoreCase("puzzle")) {
 			((PuzzleLevel) this.level).undidMove();
+			System.out.println("hi");
 		}
 		this.level.removeWord();
 		this.level.checkStarProgress();

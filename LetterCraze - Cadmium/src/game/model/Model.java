@@ -23,23 +23,23 @@ public class Model {
 		//Board board = new Board(null);
 		int numMoves = 5;
 		int time = 34;
-		String list [] = {"yes", "no", "maybe"};
-		List<String> themeWords = new ArrayList<String>(Arrays.asList(list));
-		ThemeDictionary themeDic = new ThemeDictionary(themeWords);
-		String themeName = "Example";
+		//String list [] = {"yes", "no", "maybe"};
+		//List<String> themeWords = new ArrayList<String>(Arrays.asList(list));
+		//ThemeDictionary themeDic = new ThemeDictionary(themeWords);
+		//String themeName = "Example";
 		
 		String foodList [] = {"PIE", "BURGER", "PIZZA"};
-		List<String> foodWords = new ArrayList<String>(Arrays.asList(list));
+		List<String> foodWords = new ArrayList<String>(Arrays.asList(foodList));
 		ThemeDictionary foodDic = new ThemeDictionary(foodWords);
 		String foodName = "Food";
 		
 		String rList [] = {"RAW", "RAT", "RED", "RIP"};
-		List<String> rWords = new ArrayList<String>(Arrays.asList(list));
+		List<String> rWords = new ArrayList<String>(Arrays.asList(rList));
 		ThemeDictionary rDic = new ThemeDictionary(rWords);
 		String rName = "R";
 		
 		String fourList [] = {"FOUR", "FOUR", "FOUR", "Four"};
-		List<String> fourWords = new ArrayList<String>(Arrays.asList(list));
+		List<String> fourWords = new ArrayList<String>(Arrays.asList(fourList));
 		ThemeDictionary fourDic = new ThemeDictionary(fourWords);
 		String fourName = "Four";
 	
@@ -177,24 +177,24 @@ public class Model {
 		
 		for (int i = 1; i <=5; i++) {
 			if (i == 1) {
-				puzzleLevel[i] = new PuzzleLevel(starVal, board, initialTiles, i, numMoves);
-				lightningLevel[i] = new LightningLevel(starVal, board, initialTiles, i, time);
-				themeLevel[i] = new ThemeLevel(starVal, food, initialTiles, i, foodName, foodDic);
+				puzzleLevel[i] = new PuzzleLevel(starVal, board, i, numMoves);
+				lightningLevel[i] = new LightningLevel(starVal, board, i, time);
+				themeLevel[i] = new ThemeLevel(starVal, food, i, foodName, foodDic);
 			}
 			if (i == 2) {
-				puzzleLevel[i] = new PuzzleLevel(starVal, board, initialTiles, i, numMoves);
-				lightningLevel[i] = new LightningLevel(starVal, board, initialTiles, i, time);
-				themeLevel[i] = new ThemeLevel(starVal, r, initialTiles, i, rName, rDic);	
+				puzzleLevel[i] = new PuzzleLevel(starVal, board, i, numMoves);
+				lightningLevel[i] = new LightningLevel(starVal, board, i, time);
+				themeLevel[i] = new ThemeLevel(starVal, r, i, rName, rDic);	
 			}
 			if (i == 3) {
-				puzzleLevel[i] = new PuzzleLevel(starVal, board, initialTiles, i, numMoves);
-				lightningLevel[i] = new LightningLevel(starVal, board, initialTiles, i, time);
-				themeLevel[i] = new ThemeLevel(starVal, four, initialTiles, i, fourName, fourDic);
+				puzzleLevel[i] = new PuzzleLevel(starVal, board, i, numMoves);
+				lightningLevel[i] = new LightningLevel(starVal, board, i, time);
+				themeLevel[i] = new ThemeLevel(starVal, four, i, fourName, fourDic);
 			}
 			else {
-				puzzleLevel[i] = new PuzzleLevel(starVal, board, initialTiles, i, numMoves);
-				lightningLevel[i] = new LightningLevel(starVal, board, initialTiles, i, time);
-				themeLevel[i] = new ThemeLevel(starVal, board, initialTiles, i, themeName, themeDic);
+				puzzleLevel[i] = new PuzzleLevel(starVal, board, i, numMoves);
+				lightningLevel[i] = new LightningLevel(starVal, board, i, time);
+				themeLevel[i] = new ThemeLevel(starVal, r, i, rName, rDic);
 			}
 		}
 		for (int i = 1; i <= 5; i++) {

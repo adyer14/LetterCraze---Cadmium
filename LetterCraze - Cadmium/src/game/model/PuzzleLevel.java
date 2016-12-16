@@ -8,8 +8,8 @@ public class PuzzleLevel extends Level {
 	int i = 0;
 	int lvlNumMoves;
 	
-	public PuzzleLevel(int[] starVal, Board board, ArrayList<Tile> initialTiles, int levelNumber, int numMoves) {
-		super(starVal, board, initialTiles, levelNumber);
+	public PuzzleLevel(int[] starVal, Board board, int levelNumber, int numMoves) {
+		super(starVal, board, levelNumber);
 		this.movesLeft = numMoves;
 		this.lvlNumMoves = numMoves;
 		setLevelType();
