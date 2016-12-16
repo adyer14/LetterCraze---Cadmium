@@ -20,7 +20,7 @@ public class DeleteLevelPanel extends SelectLevelPanel {
 
 		this.getTitleLabel().setText("DELETE LEVEL");
 		
-		for (int i = 0; i < 5; i++) {
+		for (int i = 1; i <= 5; i++) {
 			DeleteLevelController PDLcontrol = new DeleteLevelController(this, "puzzle", i);
 			DeleteLevelController LDLcontrol = new DeleteLevelController(this, "lightning", i);
 			DeleteLevelController TDLcontrol = new DeleteLevelController(this, "theme", i);
