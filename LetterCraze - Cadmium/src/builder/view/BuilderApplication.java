@@ -15,20 +15,27 @@ public class BuilderApplication extends JFrame {
 
 	private MainMenuPanel mmp;
 	private LevelCreatorPanel lcp;
+	private LoadLevelPanel llp;
+	private DeleteLevelPanel dlp;
+	private Model model;
 
 	/**
 	 * Create the frame.
 	 */
-	public BuilderApplication() {
+	public BuilderApplication(Model model) {
 		super();
-
+		this.model = model;
 		splashWindow();
 		JPanel contentPane = new JPanel();
 		contentPane.setLayout(new CardLayout());
 		mmp = new MainMenuPanel(contentPane);
 		lcp = new LevelCreatorPanel(contentPane, new Level());
-		contentPane.add(mmp);
-		contentPane.add(lcp);
+		llp = new LoadLevelPanel(model, contentPane);
+		dlp = new DeleteLevelPanel(model, contentPane);
+		contentPane.add(mmp, "mainMenuPanel");
+		contentPane.add(lcp, "levelCreatorPanel");
+		contentPane.add(llp, "loadLevelPanel");
+		contentPane.add(dlp, "deleteLevelPanel");
 		
 		setContentPane(contentPane);
         pack();   
@@ -36,10 +43,6 @@ public class BuilderApplication extends JFrame {
         setVisible(true);
 		setBounds(250, 80, 816, 589);
 		setTitle("Builder");
-		
-		
-		
-		
 		
 	}
 	

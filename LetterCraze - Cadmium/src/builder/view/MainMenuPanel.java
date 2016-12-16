@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import builder.controller.DeleteLevelController;
+import builder.controller.LoadLevelController;
 import builder.controller.NewLevelController;
 
 public class MainMenuPanel extends JPanel {
@@ -80,7 +82,11 @@ public class MainMenuPanel extends JPanel {
 	}
 
 	public void initControllers() {
-		NewLevelController nlcontrol = new NewLevelController(this);
-		newLevelButton.addActionListener(nlcontrol);
+		NewLevelController NLcontrol = new NewLevelController(this);
+		newLevelButton.addActionListener(NLcontrol);
+		LoadLevelController LLcontrol = new LoadLevelController(this);
+		loadLevelButton.addActionListener(LLcontrol);
+		DeleteLevelController DLcontrol = new DeleteLevelController(this);
+		deleteLevelButton.addActionListener(DLcontrol);
 	}
 }
