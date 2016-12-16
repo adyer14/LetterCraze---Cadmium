@@ -25,7 +25,7 @@ public class DeleteLevelController implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		level.deleteLevel(this.pathName);
-		System.out.println("yes");
+		System.out.println("goodbye forever");
 		switch (levType) {
 		case "PUZZLE": slp.getPuzzleButton(levNum).setEnabled(false);
 		break;
