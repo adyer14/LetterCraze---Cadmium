@@ -29,6 +29,7 @@ public abstract class Level {
 		this.levelNumber = levelNumber;
 		this.initialTiles = initialTiles;
 		this.starValues = starVal;
+		this.boardSquares = b.getBoardSquares();
 		//for (int i = 0; i < 3; i++) {
 			//starValues [i] = starVal [i];
 		//}
