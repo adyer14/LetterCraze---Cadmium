@@ -106,7 +106,7 @@ public abstract class Level {
 			this.currentStars = 2;
 		}
 		else if (this.score >= starValues[2]) {
-
+			this.currentStars = 3;
 		}
 		else {
 			this.currentStars = 0;
