@@ -41,5 +41,6 @@ public class ResetBoardController implements ActionListener{
 		}
 		level.resetLevel();
 		levPanel.refresh();
+		levPanel.repaint();
 	}
 }
