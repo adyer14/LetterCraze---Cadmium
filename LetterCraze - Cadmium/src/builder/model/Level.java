@@ -2,11 +2,17 @@ package builder.model;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-
+/**
+ * The Level that the builder is working on.
+ * 
+ *
+ */
 public class Level {
 
 	Board board;
@@ -17,7 +23,16 @@ public class Level {
 	String themeWords;
 	String themeName;
 	int time;
-	
+	/**
+	 * Constructor
+	 * @param board The board portion of the active level
+	 * @param levelType can be set later
+	 * @param levelNum 
+	 * @param numMoves
+	 * @param themeWords
+	 * @param themeName
+	 * @param time
+	 */
 	public Level(){
 		//initializing all attributes to zero or default
 		board = new Board();
@@ -28,7 +43,10 @@ public class Level {
 		themeName = "";
 		time = 0;
 	}
-	
+	/**
+	 * resetLevel clears values 
+	 * @return boolean
+	 */
 	public boolean resetLevel(){
 		try {
 			starValues = new int[3];
@@ -47,7 +65,10 @@ public class Level {
 		}
 		
 	}
-	
+	/**
+	 * Saves file information into a text file so it can be loaded when the application runs again
+	 * @return boolean
+	 */
 	public boolean saveLevel(){
 		String pathName = "src/levels/";
 		pathName = pathName + this.levelType;
@@ -72,6 +93,11 @@ public class Level {
 			return false;
 		}
 	}
+	/**
+	 * Loads a previously saved level into the editor
+	 * @param pathName
+	 * @return boolean
+	 */
 	public Level loadLevel(String pathName){
 		
 		ArrayList<String> contents = new ArrayList<String>();
@@ -79,6 +105,9 @@ public class Level {
 		try{
 			Path filePath = Paths.get(pathName+".txt");
 			contents = (ArrayList<String>) Files.readAllLines(filePath);
+			for (int i = 0; i < contents.size(); i++) {
+				System.out.println(contents.get(i));
+			}
 			System.out.println("The level has been read");
 		}catch(IOException e){
 			//TODO
@@ -90,7 +119,11 @@ public class Level {
 		lvl.setLevelType(contents.remove(0));
 		lvl.setLevelNum( Integer.parseInt(contents.remove(0)));
 		lvl.setBoard(new Board(contents.remove(0)));
-		lvl.fakeSetStarValues(contents.remove(0));
+		int[] tempStarValues = new int[3];
+		tempStarValues[0] = Integer.parseInt(contents.remove(0));
+		tempStarValues[1] = Integer.parseInt(contents.remove(0));
+		tempStarValues[2] = Integer.parseInt(contents.remove(0));
+		lvl.setStarValues(tempStarValues);
 		
 		if(lvl.levelType.equals("PUZZLE")){
 			lvl.setNumMoves(Integer.parseInt(contents.remove(0)));
@@ -109,7 +142,11 @@ public class Level {
 		return lvl;
 		
 	}
-	
+	/**
+	 * Takes all the relevant information from a created and saved level , converts it to a string, and 
+	 * saves it in a text file
+	 * @return levelText
+	 */
 	private ArrayList<String> levelToText() {
 		ArrayList<String> levelText = new ArrayList<String>();
 		
@@ -258,5 +295,30 @@ public class Level {
 	
 	public void setThemeWords(String themeWords) {
 		this.themeWords = themeWords;
+	}
+	
+	public void deleteLevel(String pathName) {
+		
+		try{
+			Path filePath = Paths.get(pathName+".txt");
+			ArrayList<String> contents = new ArrayList<String>();
+			Charset charset = Charset.forName("US-ASCII");
+			Files.write(filePath, contents, charset);
+		}catch(IOException e){
+			//TODO
+		}
+		
+		try{
+			Path filePath = Paths.get(pathName + ".txt");
+			Files.delete(filePath);
+		} catch (NoSuchFileException x) {
+			
+		} catch (DirectoryNotEmptyException x) {
+			
+		} catch (IOException x) {
+		    // File permission problems are caught here.
+		    System.err.println(x);
+		}
+		
 	}
 }

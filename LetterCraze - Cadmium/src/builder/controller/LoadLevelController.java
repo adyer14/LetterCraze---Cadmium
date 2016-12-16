@@ -1,27 +1,36 @@
 package builder.controller;
 
+import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import builder.model.*;
-import builder.view.*;
+import javax.swing.JPanel;
+
+import builder.model.Level;
+import builder.view.BuilderApplication;
+import builder.view.SelectLevelPanel;
 
 public class LoadLevelController implements ActionListener{
-	Level lvl;
-	LevelCreatorPanel levelCreatorView;
-	MainMenu mainMenu;
-	MainMenuPanel mainMenuView;
-	
-	public LoadLevelController(Level lvl, LevelCreatorPanel levelCreatorView, MainMenu mainMenu, MainMenuPanel mainMenuView){
-		this.lvl = lvl;
-		this.levelCreatorView = levelCreatorView;
-		this.mainMenu = mainMenu;
-		this.mainMenuView = mainMenuView;
-	}
 
+	Level level = new Level();
+	BuilderApplication app;
+	String pathName;
+	
+	
+	public LoadLevelController(BuilderApplication app, String levelName, int levelNum){
+		this.app = app;
+		this.pathName = "src/levels/"+ levelName + levelNum;
+	}
+	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+		JPanel contentPane = app.getLoadLevelPanel().getContentPane();
+        CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+        cardLayout.show(contentPane, "levelCreatorPanel");
+		
+		level = level.loadLevel(this.pathName);
+		app.getLevelCreatorPanel().loadIn(level);
 		
 	}
+
 }

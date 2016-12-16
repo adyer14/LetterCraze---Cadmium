@@ -2,11 +2,11 @@ package builder.model;
 
 import java.util.ArrayList;
 
-public class MainMenu {
+public class Model {
 
 	ArrayList<Level> levels;
 	
-	public MainMenu(){
+	public Model(){
 		
 	}
 	
