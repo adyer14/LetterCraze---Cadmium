@@ -15,7 +15,8 @@ public class Model {
 	
 	ArrayList<Square> foodSquares = new ArrayList<Square>();
 	ArrayList<Square> rSquares = new ArrayList<Square>();
-
+	ArrayList<Square> fourSquares = new ArrayList<Square>();
+	
 	
 	// THESE ARE TEST VARIABLES, DELETE WHEN WE GET FILE UPLOAD WORKING
 		int[] starVal = {1,2,3};
@@ -36,6 +37,11 @@ public class Model {
 		List<String> rWords = new ArrayList<String>(Arrays.asList(list));
 		ThemeDictionary rDic = new ThemeDictionary(rWords);
 		String rName = "R";
+		
+		String fourList [] = {"FOUR", "FOUR", "FOUR", "Four"};
+		List<String> fourWords = new ArrayList<String>(Arrays.asList(list));
+		ThemeDictionary fourDic = new ThemeDictionary(fourWords);
+		String fourName = "Four";
 	
 	public Model() {
 		ArrayList<Square> initBoardSquares = new ArrayList<Square>(36);
@@ -126,8 +132,46 @@ public class Model {
 		rSquares.add(new Square(5, 4, false,new BlankTile()));//34
 		rSquares.add(new Square(5, 5, true, new LetterTile("P", 4)));//35
 		
+		fourSquares.add(new Square(0, 0, true, new LetterTile("F", 4)));//0
+		fourSquares.add(new Square(0, 1, true, new LetterTile("O", 2)));//1
+		fourSquares.add(new Square(0, 2, true, randomTile()));//2
+		fourSquares.add(new Square(0, 3, true, randomTile()));//3
+		fourSquares.add(new Square(0, 4, true, new LetterTile("F", 4)));//4
+		fourSquares.add(new Square(0, 5, true, new LetterTile("O", 2)));//5
+		fourSquares.add(new Square(1, 0, true, new LetterTile("U", 3)));//6
+		fourSquares.add(new Square(1, 1, true, new LetterTile("R", 2)));//7
+		fourSquares.add(new Square(1, 2, true, randomTile()));//8
+		fourSquares.add(new Square(1, 3, true, randomTile()));//9
+		fourSquares.add(new Square(1, 4, true, new LetterTile("U", 3)));//10
+		fourSquares.add(new Square(1, 5, true, new LetterTile("R", 2)));//11
+		fourSquares.add(new Square(2, 0, true, randomTile()));//12
+		fourSquares.add(new Square(2, 1, true, randomTile()));//13
+		fourSquares.add(new Square(2, 2, false,new BlankTile()));//14
+		fourSquares.add(new Square(2, 3, false,new BlankTile()));//15
+		fourSquares.add(new Square(2, 4, true, randomTile()));//16
+		fourSquares.add(new Square(2, 5, true, randomTile()));//17
+		fourSquares.add(new Square(3, 0, true, randomTile()));//18
+		fourSquares.add(new Square(3, 1, true, randomTile()));//19
+		fourSquares.add(new Square(3, 2, false,new BlankTile()));//20
+		fourSquares.add(new Square(3, 3, false,new BlankTile()));//21
+		fourSquares.add(new Square(3, 4, true, randomTile()));//22
+		fourSquares.add(new Square(3, 5, true, randomTile()));//23
+		fourSquares.add(new Square(4, 0, true, new LetterTile("F", 4)));//24
+		fourSquares.add(new Square(4, 1, true, new LetterTile("O", 2)));//25
+		fourSquares.add(new Square(4, 2, true, randomTile()));//26
+		fourSquares.add(new Square(4, 3, true, randomTile()));//27
+		fourSquares.add(new Square(4, 4, true, new LetterTile("F", 4)));//28
+		fourSquares.add(new Square(4, 5, true, new LetterTile("O", 2)));//29
+		fourSquares.add(new Square(5, 0, true, new LetterTile("U", 3)));//30
+		fourSquares.add(new Square(5, 1, true, new LetterTile("R", 2)));//31
+		fourSquares.add(new Square(5, 2, true, randomTile()));//32
+		fourSquares.add(new Square(5, 3, true, randomTile()));//33
+		fourSquares.add(new Square(5, 4, true, new LetterTile("U", 3)));//34
+		fourSquares.add(new Square(5, 5, true, new LetterTile("R", 2)));//35
+		
 		Board food = new Board (foodSquares);
 		Board r = new Board (rSquares);
+		Board four = new Board (fourSquares);
 		
 		Board board = new Board(initBoardSquares);
 		
@@ -141,6 +185,11 @@ public class Model {
 				puzzleLevel[i] = new PuzzleLevel(starVal, board, initialTiles, i, numMoves);
 				lightningLevel[i] = new LightningLevel(starVal, board, initialTiles, i, time);
 				themeLevel[i] = new ThemeLevel(starVal, r, initialTiles, i, rName, rDic);	
+			}
+			if (i == 3) {
+				puzzleLevel[i] = new PuzzleLevel(starVal, board, initialTiles, i, numMoves);
+				lightningLevel[i] = new LightningLevel(starVal, board, initialTiles, i, time);
+				themeLevel[i] = new ThemeLevel(starVal, four, initialTiles, i, fourName, fourDic);
 			}
 			else {
 				puzzleLevel[i] = new PuzzleLevel(starVal, board, initialTiles, i, numMoves);
