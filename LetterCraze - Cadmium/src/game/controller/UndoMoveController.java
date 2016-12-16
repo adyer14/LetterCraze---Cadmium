@@ -4,16 +4,26 @@ import game.model.Level;
 import game.model.Move;
 import game.undo.UndoManager;
 import game.view.LevelPanel;
-
+/**
+ * Undo move allows a game to return to a previous state
+ *
+ */
 public class UndoMoveController {
 	Level level;
 	LevelPanel levPanel;
-
+/**
+ * Constructor
+ * @param l Level
+ * @param lp LevelPanel
+ */
 	public UndoMoveController(Level l, LevelPanel lp) {
 		this.level = l;
 		this.levPanel = lp;
 	}
-
+/**
+ * Calls an instance of UndoManager
+ * @return boolean
+ */
 	public boolean process(){
 		UndoManager mgr = UndoManager.instance();
 

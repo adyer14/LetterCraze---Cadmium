@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-
+/**
+ * Model is the base for the game
+ */
 public class Model {
 	
 	private Level level [] = new Level [16];
@@ -49,7 +51,9 @@ public class Model {
 		List<String> duneWords = new ArrayList<String>(Arrays.asList(duneList));
 		ThemeDictionary duneDic = new ThemeDictionary(fourWords);
 		String duneName = "Dune";
-	
+	/**
+	 * Constructor
+	 */
 		String latinList [] = {"CATULLUS", "CAESAR", "HORACE"};
 		List<String> latinWords = new ArrayList<String>(Arrays.asList(latinList));
 		ThemeDictionary latinDic = new ThemeDictionary(latinWords);

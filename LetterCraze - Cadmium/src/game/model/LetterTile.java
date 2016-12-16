@@ -1,10 +1,16 @@
 package game.model;
-
+/**
+ * This is the non-empty tile which has a letter and a score associated with it
+ */
 public class LetterTile extends Tile {
 	
 	private String letter;
 	private int scoreValue;
-	
+	/**
+	 * Constructor
+	 * @param letter
+	 * @param scoreValue
+	 */
 	public LetterTile (String letter, int scoreValue) {
 		this.letter = letter;
 		this.scoreValue = scoreValue;

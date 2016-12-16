@@ -9,7 +9,11 @@ import game.model.Model;
 import game.view.LevelPanel;
 import game.view.LevelSelectPanel;
 import game.view.LightningPanel;
-
+/**
+ * This is the exit level controller for all levels except for the lightning level
+ * This relies on a button press to save score and return to the level select menu
+ *
+ */
 public class ExitLevelController  implements ActionListener {
 	Model m;
 	LevelPanel lp;
@@ -17,7 +21,14 @@ public class ExitLevelController  implements ActionListener {
 	LevelSelectPanel lsp;
 	private String levType;
 	private int levNum;
-	
+	/**
+	 * Constructor
+	 * @param model Model
+	 * @param levType String
+	 * @param levNum Int
+	 * @param levelPanel LevelPanel
+	 * @param lsp LevelSelectPanel
+	 */
 	public ExitLevelController(Model model, String levType, int levNum, LevelPanel levelPanel, LevelSelectPanel lsp){
 		this.m = model;
 		this.levType = levType;
@@ -25,7 +36,9 @@ public class ExitLevelController  implements ActionListener {
 		this.lp = levelPanel;
 		this.lsp = lsp;
 	}
-	
+	/**
+	 * Returns to the level select panel
+	 */
 	public void actionPerformed(ActionEvent e) {
 		this.level = this.m.getSpecificLevel(levType, levNum);
 

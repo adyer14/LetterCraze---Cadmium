@@ -1,7 +1,9 @@
 package game.model;
 
 import java.util.*;
-
+/**
+ * Level base class
+ */
 public abstract class Level {
 	
 	int i = 0;
@@ -22,7 +24,13 @@ public abstract class Level {
 	ArrayList<Square> boardSquares = new ArrayList<Square>(36);
 	ArrayList<Square> initBoardSquares = new ArrayList<Square>(36);
 	ArrayList<Tile> initialTiles = new ArrayList<Tile>();
-	
+	/**
+	 * Constructor
+	 * @param starVal
+	 * @param b
+	 * @param initialTiles
+	 * @param levelNumber
+	 */
 	public Level (int starVal [], Board b, int levelNumber) {
 		this.board = b;
 		this.initialBoard = b;
@@ -46,7 +54,10 @@ public abstract class Level {
 	
 	// This one method is abstract because the subclasses define their own level type
 	abstract protected void setLevelType();
-
+/**
+ * Reset Level
+ * @return boolean
+ */
 	public boolean levelResetLevel() {
 		this.board.setBoardSquares(this.initBoardSquares);
 		this.wordList.clear();
@@ -57,13 +68,20 @@ public abstract class Level {
 		else
 			return false;
 	}
-
+/**
+ * Add a word to the list of found words and change the score accordingly
+ * @param word
+ * @return boolean
+ */
 	public boolean addWord (Word word) {
 		boolean wordHasBeenAdded = this.wordList.add(word);
 		this.addScore(word);
 		return wordHasBeenAdded;
 	}
-	
+	/**
+	 * Remove a word from the list, useful with undo
+	 * @return new word list
+	 */
 	public boolean removeWord () {
 		if (wordList.isEmpty()) 
 			return false;
@@ -72,7 +90,10 @@ public abstract class Level {
 		this.removeScore();
 		return !wordList.contains(word);
 	}
-	
+	/**
+	 * Keeps track of score and compares it to the requirements for stars
+	 * @return Stars or 0
+	 */
 	public int checkStarProgress () {
 		if (this.score > this.highScore) {
 			this.highScore = this.score;
@@ -94,7 +115,10 @@ public abstract class Level {
 			return 0;
 		}
 	}
-
+/**
+ * Creates a random tile
+ * @return Tile
+ */
 	public Tile randomTile () {
 		Random rand = new Random();
 		int n = rand.nextInt(100000) + 1;

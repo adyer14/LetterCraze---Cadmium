@@ -1,19 +1,31 @@
 package game.model;
-
+/**
+ *A square is a container for a Tile which is either inactive or active
+ */
 public class Square {
 	
 	private int squareRow;
 	private int squareColumn;
 	private boolean squareInPlay;
 	private Tile tile;
-	
+	/**
+	 * Constructor
+	 * @param row int
+	 * @param column int
+	 * @param valid boolean
+	 * @param tile Tile
+	 */
 	public Square (int row, int column, boolean valid, Tile tile) {
 		this.squareRow = row;
 		this.squareColumn = column;
 		this.squareInPlay = valid;
 		this.tile = tile;
 	}
-	
+	/**
+	 * Checks if the Square contains a specific tile
+	 * @param tile
+	 * @return boolean
+	 */
 	public boolean containsTile (Tile tile) {
 		if (this.squareInPlay) {
 		
@@ -29,7 +41,10 @@ public class Square {
 			return false;
 		}
 	}
-	
+	/**
+	 * Removes a tile from a square, useful when a word is selected
+	 * @return boolean
+	 */
 	public boolean removeTile () {
 		if (this.tile != null) {
 			this.tile = null;
@@ -39,7 +54,11 @@ public class Square {
 			return false;
 		}
 	}
-	
+	/**
+	 * Checks to see if one square is adjacent to another one
+	 * @param square
+	 * @return boolean
+	 */
 	public boolean isNeighbor (Square square) {
 		if (square.squareInPlay) {
 			if ((this.squareColumn == square.squareColumn) ||

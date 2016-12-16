@@ -1,13 +1,22 @@
 package game.model;
 
 import java.util.ArrayList;
-
+/**
+ *The Puzzle version of the Level class
+ */
 public class PuzzleLevel extends Level {
 	
 	private int movesLeft;
 	int i = 0;
 	int lvlNumMoves;
-	
+	/**
+	 * Constructor
+	 * @param starVal int[]
+	 * @param board Board
+	 * @param initialTiles ArrayList<Tile>
+	 * @param levelNumber int
+	 * @param numMoves int
+	 */
 	public PuzzleLevel(int[] starVal, Board board, int levelNumber, int numMoves) {
 		super(starVal, board, levelNumber);
 		this.movesLeft = numMoves;
@@ -16,7 +25,9 @@ public class PuzzleLevel extends Level {
 	}
 	
 	//TODO create initialize function
-
+	/**
+	 * Provides a new level
+	 */
 	@Override
 	public boolean resetLevel() {
 		this.movesLeft = this.lvlNumMoves;
