@@ -408,7 +408,10 @@ public class Model {
 			return new BlankTile ();
 		}
 	}
-
+/**
+ * get/set
+ *
+ */
 	public void loadIn(String levType, int levNum) {
 		ArrayList<String> contents = new ArrayList<String>();
 		String pathName = "src/levels/" + levType.toUpperCase() + levNum + ".txt";

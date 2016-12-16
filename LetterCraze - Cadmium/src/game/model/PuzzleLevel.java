@@ -67,14 +67,7 @@ public class PuzzleLevel extends Level {
 		return true;
 	}
 
-	@Override
-	protected void setLevelType() {
-		this.levelType = "puzzle";
-	}
-	
-	public int getMovesLeft() {
-		return this.movesLeft;
-	}
+
 
 	public int didMove() {
 		return this.movesLeft - 1;
@@ -83,8 +76,17 @@ public class PuzzleLevel extends Level {
 	public int undidMove () {
 		return this.movesLeft + 1;
 	}
-
+/**
+ * get/set
+ */
+	@Override
+	protected void setLevelType() {
+		this.levelType = "puzzle";
+	}
 	
+	public int getMovesLeft() {
+		return this.movesLeft;
+	}
 
 	
 }

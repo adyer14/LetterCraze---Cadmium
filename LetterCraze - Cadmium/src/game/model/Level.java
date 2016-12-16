@@ -236,7 +236,7 @@ public abstract class Level {
 
 
 	/**
-	 * Get/Set methods up the a-hole
+	 * Get/Set methods 
 	 */
 	public Board getBoard() {
 		return board;
