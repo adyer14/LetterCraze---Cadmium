@@ -30,7 +30,7 @@ public class TestPuzzleLevel extends TestCase {
 		Board b = new Board(null);
 		int levNum = 2;
 		int numMoves = 15;
-		lvl = new PuzzleLevel(starVal, b, null, levNum, numMoves);
+		lvl = new PuzzleLevel(starVal, b, levNum, numMoves);
 	
 		A = new Square(0, 0, true,new LetterTile("A", b.getLetterScores().get("A")));
 		C = new Square(0, 0, true,new LetterTile("C", b.getLetterScores().get("C")));
