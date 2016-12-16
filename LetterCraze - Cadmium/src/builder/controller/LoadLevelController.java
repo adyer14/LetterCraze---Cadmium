@@ -15,7 +15,7 @@ public class LoadLevelController implements ActionListener{
 	
 	public LoadLevelController(SelectLevelPanel levelSelect, String levelName, int levelNum){
 		this.levelSelectView = levelSelect;
-		this.pathName = levelName + levelNum;
+		this.pathName = "src/levels/"+ levelName + levelNum;
 	}
 	
 	@Override

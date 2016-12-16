@@ -2,7 +2,9 @@ package builder.model;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -286,5 +288,29 @@ public class Level {
 	
 	public void setThemeWords(String themeWords) {
 		this.themeWords = themeWords;
+	}
+	public void deleteLevel(String pathName) {
+		
+		try{
+			Path filePath = Paths.get(pathName+".txt");
+			ArrayList<String> contents = new ArrayList<String>();
+			Charset charset = Charset.forName("US-ASCII");
+			Files.write(filePath, contents, charset);
+		}catch(IOException e){
+			//TODO
+		}
+		
+		try{
+			Path filePath = Paths.get(pathName + ".txt");
+			Files.delete(filePath);
+		} catch (NoSuchFileException x) {
+			
+		} catch (DirectoryNotEmptyException x) {
+			
+		} catch (IOException x) {
+		    // File permission problems are caught here.
+		    System.err.println(x);
+		}
+		
 	}
 }
