@@ -31,12 +31,12 @@ public abstract class Level {
 	 * @param initialTiles
 	 * @param levelNumber
 	 */
-	public Level (int starVal [], Board b, ArrayList<Tile> initialTiles, int levelNumber) {
+	public Level (int starVal [], Board b, int levelNumber) {
 		this.board = b;
 		this.initialBoard = b;
 		this.levelNumber = levelNumber;
-		this.initialTiles = initialTiles;
 		this.starValues = starVal;
+		this.boardSquares = b.getBoardSquares();
 		//for (int i = 0; i < 3; i++) {
 			//starValues [i] = starVal [i];
 		//}
@@ -59,7 +59,7 @@ public abstract class Level {
  * @return boolean
  */
 	public boolean levelResetLevel() {
-//		this.board.setBoardSquares(initBoardSquares);
+		this.board.setBoardSquares(this.initBoardSquares);
 		this.wordList.clear();
 		this.score = 0;
 		this.currentStars = 0;

@@ -11,13 +11,16 @@ public class ThemeLevel extends Level {
 	ArrayList<Square> beingUsed = new ArrayList<Square>();
 	ArrayList<Square> initBoardSquares = new ArrayList<Square>(36);
 	
-	public ThemeLevel(int[] starVal, Board board, ArrayList<Tile> initialTiles, int levelNumber, String themeName, ThemeDictionary themeWords) {
-		super(starVal, board, initialTiles, levelNumber);
+	public ThemeLevel(int[] starVal, Board board, int levelNumber, String themeName, ThemeDictionary themeWords) {
+		super(starVal, board, levelNumber);
 		this.setThemeName(themeName);
-		this.initBoardSquares = board.boardSquares;
+		this.initBoardSquares = board.getBoardSquares();
 		this.themeWords = themeWords;
-		this.initBoardSquares = board.boardSquares;
 		this.wordsLeft = 0;
+		for (int i=0;i<36;i++){
+			this.initialTiles.add(i, this.boardSquares.get(i).getTile());
+		}
+		
 		//TODO HACK super hacks
 		themeWords.words.add("PIE");
 		themeWords.words.add("BURGER");

@@ -17,8 +17,8 @@ public class LightningLevel extends Level {
  * @param levelNumber
  * @param time
  */
-	public LightningLevel(int[] starVal, Board board, ArrayList<Tile> initialTiles, int levelNumber, int time) {
-		super(starVal, board, initialTiles, levelNumber);
+	public LightningLevel(int[] starVal, Board board, int levelNumber, int time) {
+		super(starVal, board, levelNumber);
 		this.time = time;
 		setLevelType();
 		//Timer timer = new Timer();

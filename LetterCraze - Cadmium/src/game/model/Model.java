@@ -16,22 +16,40 @@ public class Model {
 	LevelSelect ls = new LevelSelect (getLevels());
 	
 	ArrayList<Square> foodSquares = new ArrayList<Square>();
-
+	ArrayList<Square> rSquares = new ArrayList<Square>();
+	ArrayList<Square> fourSquares = new ArrayList<Square>();
+	ArrayList<Square> duneSquares = new ArrayList<Square>();
+	
 	
 	// THESE ARE TEST VARIABLES, DELETE WHEN WE GET FILE UPLOAD WORKING
 		int[] starVal = {1,2,3};
 		//Board board = new Board(null);
 		int numMoves = 5;
 		int time = 34;
-		String list [] = {"yes", "no", "maybe"};
-		List<String> themeWords = new ArrayList<String>(Arrays.asList(list));
-		ThemeDictionary themeDic = new ThemeDictionary(themeWords);
-		String themeName = "Example";
+		//String list [] = {"yes", "no", "maybe"};
+		//List<String> themeWords = new ArrayList<String>(Arrays.asList(list));
+		//ThemeDictionary themeDic = new ThemeDictionary(themeWords);
+		//String themeName = "Example";
 		
 		String foodList [] = {"PIE", "BURGER", "PIZZA"};
-		List<String> foodWords = new ArrayList<String>(Arrays.asList(list));
+		List<String> foodWords = new ArrayList<String>(Arrays.asList(foodList));
 		ThemeDictionary foodDic = new ThemeDictionary(foodWords);
 		String foodName = "Food";
+		
+		String rList [] = {"RAW", "RAT", "RED", "RIP"};
+		List<String> rWords = new ArrayList<String>(Arrays.asList(rList));
+		ThemeDictionary rDic = new ThemeDictionary(rWords);
+		String rName = "R";
+		
+		String fourList [] = {"FOUR", "FOUR", "FOUR", "Four"};
+		List<String> fourWords = new ArrayList<String>(Arrays.asList(fourList));
+		ThemeDictionary fourDic = new ThemeDictionary(fourWords);
+		String fourName = "Four";
+		
+		String duneList [] = {"MELANGE", "ARRAKIS", "MUADDIB"};
+		List<String> duneWords = new ArrayList<String>(Arrays.asList(duneList));
+		ThemeDictionary duneDic = new ThemeDictionary(fourWords);
+		String duneName = "Four";
 	/**
 	 * Constructor
 	 */
@@ -87,22 +105,140 @@ public class Model {
 		foodSquares.add(new Square(5, 4, true, new LetterTile("A", 2)));//34
 		foodSquares.add(new Square(5, 5, true, randomTile()));//35
 		
+		rSquares.add(new Square(0, 0, true, new LetterTile("R", 2)));//0
+		rSquares.add(new Square(0, 1, true, new LetterTile("E", 1)));//1
+		rSquares.add(new Square(0, 2, true, new LetterTile("D", 3)));//2
+		rSquares.add(new Square(0, 3, false,new BlankTile()));//3
+		rSquares.add(new Square(0, 4, false,new BlankTile()));//4
+		rSquares.add(new Square(0, 5, false,new BlankTile()));//5
+		rSquares.add(new Square(1, 0, true, randomTile()));//6
+		rSquares.add(new Square(1, 1, false,new BlankTile()));//7
+		rSquares.add(new Square(1, 2, true, randomTile()));//8
+		rSquares.add(new Square(1, 3, false,new BlankTile()));//9
+		rSquares.add(new Square(1, 4, false,new BlankTile()));//10
+		rSquares.add(new Square(1, 5, false,new BlankTile()));//11
+		rSquares.add(new Square(2, 0, true, new LetterTile("R", 2)));//12
+		rSquares.add(new Square(2, 1, true, new LetterTile("A", 2)));//13
+		rSquares.add(new Square(2, 2, true, new LetterTile("W", 3)));//14
+		rSquares.add(new Square(2, 3, false,new BlankTile()));//15
+		rSquares.add(new Square(2, 4, false,new BlankTile()));//16
+		rSquares.add(new Square(2, 5, false,new BlankTile()));//17
+		rSquares.add(new Square(3, 0, true, randomTile()));//18
+		rSquares.add(new Square(3, 1, true, new LetterTile("R", 2)));//19
+		rSquares.add(new Square(3, 2, false,new BlankTile()));//20
+		rSquares.add(new Square(3, 3, true, new LetterTile("R", 2)));//21
+		rSquares.add(new Square(3, 4, false,new BlankTile()));//22
+		rSquares.add(new Square(3, 5, false,new BlankTile()));//23
+		rSquares.add(new Square(4, 0, true, new LetterTile("A", 2)));//24
+		rSquares.add(new Square(4, 1, true, randomTile()));//25
+		rSquares.add(new Square(4, 2, false,new BlankTile()));//26
+		rSquares.add(new Square(4, 3, false,new BlankTile()));//27
+		rSquares.add(new Square(4, 4, true, new LetterTile("I", 2)));//28
+		rSquares.add(new Square(4, 5, false,new BlankTile()));//29
+		rSquares.add(new Square(5, 0, true, new LetterTile("T", 1)));//30
+		rSquares.add(new Square(5, 1, true, randomTile()));//31
+		rSquares.add(new Square(5, 2, false,new BlankTile()));//32
+		rSquares.add(new Square(5, 3, false,new BlankTile()));//33
+		rSquares.add(new Square(5, 4, false,new BlankTile()));//34
+		rSquares.add(new Square(5, 5, true, new LetterTile("P", 4)));//35
+		
+		fourSquares.add(new Square(0, 0, true, new LetterTile("F", 4)));//0
+		fourSquares.add(new Square(0, 1, true, new LetterTile("O", 2)));//1
+		fourSquares.add(new Square(0, 2, true, randomTile()));//2
+		fourSquares.add(new Square(0, 3, true, randomTile()));//3
+		fourSquares.add(new Square(0, 4, true, new LetterTile("F", 4)));//4
+		fourSquares.add(new Square(0, 5, true, new LetterTile("O", 2)));//5
+		fourSquares.add(new Square(1, 0, true, new LetterTile("U", 3)));//6
+		fourSquares.add(new Square(1, 1, true, new LetterTile("R", 2)));//7
+		fourSquares.add(new Square(1, 2, true, randomTile()));//8
+		fourSquares.add(new Square(1, 3, true, randomTile()));//9
+		fourSquares.add(new Square(1, 4, true, new LetterTile("U", 3)));//10
+		fourSquares.add(new Square(1, 5, true, new LetterTile("R", 2)));//11
+		fourSquares.add(new Square(2, 0, true, randomTile()));//12
+		fourSquares.add(new Square(2, 1, true, randomTile()));//13
+		fourSquares.add(new Square(2, 2, false,new BlankTile()));//14
+		fourSquares.add(new Square(2, 3, false,new BlankTile()));//15
+		fourSquares.add(new Square(2, 4, true, randomTile()));//16
+		fourSquares.add(new Square(2, 5, true, randomTile()));//17
+		fourSquares.add(new Square(3, 0, true, randomTile()));//18
+		fourSquares.add(new Square(3, 1, true, randomTile()));//19
+		fourSquares.add(new Square(3, 2, false,new BlankTile()));//20
+		fourSquares.add(new Square(3, 3, false,new BlankTile()));//21
+		fourSquares.add(new Square(3, 4, true, randomTile()));//22
+		fourSquares.add(new Square(3, 5, true, randomTile()));//23
+		fourSquares.add(new Square(4, 0, true, new LetterTile("F", 4)));//24
+		fourSquares.add(new Square(4, 1, true, new LetterTile("O", 2)));//25
+		fourSquares.add(new Square(4, 2, true, randomTile()));//26
+		fourSquares.add(new Square(4, 3, true, randomTile()));//27
+		fourSquares.add(new Square(4, 4, true, new LetterTile("F", 4)));//28
+		fourSquares.add(new Square(4, 5, true, new LetterTile("O", 2)));//29
+		fourSquares.add(new Square(5, 0, true, new LetterTile("U", 3)));//30
+		fourSquares.add(new Square(5, 1, true, new LetterTile("R", 2)));//31
+		fourSquares.add(new Square(5, 2, true, randomTile()));//32
+		fourSquares.add(new Square(5, 3, true, randomTile()));//33
+		fourSquares.add(new Square(5, 4, true, new LetterTile("U", 3)));//34
+		fourSquares.add(new Square(5, 5, true, new LetterTile("R", 2)));//35
+		
+		duneSquares.add(new Square(0, 0, true, randomTile()));//0
+		duneSquares.add(new Square(0, 1, true, randomTile()));//1
+		duneSquares.add(new Square(0, 2, true, new LetterTile("D", 3)));//2
+		duneSquares.add(new Square(0, 3, true, randomTile()));//3
+		duneSquares.add(new Square(0, 4, true, randomTile()));//4
+		duneSquares.add(new Square(0, 5, true, randomTile()));//5
+		duneSquares.add(new Square(1, 0, true, new LetterTile("U", 3)));//6
+		duneSquares.add(new Square(1, 1, true, new LetterTile("A", 2)));//7
+		duneSquares.add(new Square(1, 2, true, new LetterTile("D", 3)));//8
+		duneSquares.add(new Square(1, 3, true, new LetterTile("I", 2)));//9
+		duneSquares.add(new Square(1, 4, true, new LetterTile("B", 4)));//10
+		duneSquares.add(new Square(1, 5, true, randomTile()));//11
+		duneSquares.add(new Square(2, 0, true, new LetterTile("M", 3)));//12
+		duneSquares.add(new Square(2, 1, true, new LetterTile("S", 2)));//13
+		duneSquares.add(new Square(2, 2, true, new LetterTile("I", 2)));//14
+		duneSquares.add(new Square(2, 3, true, new LetterTile("K", 5)));//15
+		duneSquares.add(new Square(2, 4, true, new LetterTile("A", 2)));//16
+		duneSquares.add(new Square(2, 5, true, new LetterTile("R", 2)));//17
+		duneSquares.add(new Square(3, 0, true, new LetterTile("E", 1)));//18
+		duneSquares.add(new Square(3, 1, true, new LetterTile("L", 3)));//19
+		duneSquares.add(new Square(3, 2, true, new LetterTile("A", 2)));//20
+		duneSquares.add(new Square(3, 3, true, new LetterTile("G", 4)));//21
+		duneSquares.add(new Square(3, 4, true, new LetterTile("A", 2)));//22
+		duneSquares.add(new Square(3, 5, true, new LetterTile("R", 2)));//23
+		duneSquares.add(new Square(4, 0, true, new LetterTile("M", 3)));//24
+		duneSquares.add(new Square(4, 1, false,new BlankTile()));//25
+		duneSquares.add(new Square(4, 2, true, new LetterTile("N", 2)));//26
+		duneSquares.add(new Square(4, 3, false,new BlankTile()));//27
+		duneSquares.add(new Square(4, 4, true, new LetterTile("E", 1)));//28
+		duneSquares.add(new Square(4, 5, false,new BlankTile()));//29
+		duneSquares.add(new Square(5, 0, false,new BlankTile()));//30
+		duneSquares.add(new Square(5, 1, false,new BlankTile()));//31
+		duneSquares.add(new Square(5, 2, false,new BlankTile()));//32
+		duneSquares.add(new Square(5, 3, false,new BlankTile()));//33
+		duneSquares.add(new Square(5, 4, false,new BlankTile()));//34
+		duneSquares.add(new Square(5, 5, false,new BlankTile()));//35
+		
 		Board food = new Board (foodSquares);
+		Board r = new Board (rSquares);
+		Board four = new Board (fourSquares);
+		Board dune = new Board (duneSquares);
 		
 		Board board = new Board(initBoardSquares);
 		
-		for (int i = 1; i <=5; i++) {
-			if (i == 1) {
-			puzzleLevel[i] = new PuzzleLevel(starVal, board, initialTiles, i, numMoves);
-			lightningLevel[i] = new LightningLevel(starVal, board, initialTiles, i, time);
-			themeLevel[i] = new ThemeLevel(starVal, food, initialTiles, i, foodName, foodDic);
-			}
-			else {
-				puzzleLevel[i] = new PuzzleLevel(starVal, board, initialTiles, i, numMoves);
-				lightningLevel[i] = new LightningLevel(starVal, board, initialTiles, i, time);
-				themeLevel[i] = new ThemeLevel(starVal, board, initialTiles, i, themeName, themeDic);
-			}
-		}
+				puzzleLevel[1] = new PuzzleLevel(starVal, board, 1, numMoves);
+				lightningLevel[1] = new LightningLevel(starVal, board, 1, time);
+				themeLevel[1] = new ThemeLevel(starVal, food, 1, foodName, foodDic);
+
+				puzzleLevel[2] = new PuzzleLevel(starVal, board, 2, numMoves);
+				lightningLevel[2] = new LightningLevel(starVal, board, 2, time);
+				themeLevel[2] = new ThemeLevel(starVal, r, 2, rName, rDic);	
+				
+				puzzleLevel[3] = new PuzzleLevel(starVal, board, 3, numMoves);
+				lightningLevel[3] = new LightningLevel(starVal, board, 3, time);
+				themeLevel[3] = new ThemeLevel(starVal, four, 3, fourName, fourDic);
+
+				puzzleLevel[4] = new PuzzleLevel(starVal, board, 4, numMoves);
+				lightningLevel[4] = new LightningLevel(starVal, board, 4, time);
+				themeLevel[4] = new ThemeLevel(starVal, dune, 4, duneName, duneDic);
+
 		for (int i = 1; i <= 5; i++) {
 			level[i] = puzzleLevel[i];
 			level[i+5] = lightningLevel[i];

@@ -17,8 +17,8 @@ public class PuzzleLevel extends Level {
 	 * @param levelNumber int
 	 * @param numMoves int
 	 */
-	public PuzzleLevel(int[] starVal, Board board, ArrayList<Tile> initialTiles, int levelNumber, int numMoves) {
-		super(starVal, board, initialTiles, levelNumber);
+	public PuzzleLevel(int[] starVal, Board board, int levelNumber, int numMoves) {
+		super(starVal, board, levelNumber);
 		this.movesLeft = numMoves;
 		this.lvlNumMoves = numMoves;
 		setLevelType();
@@ -42,7 +42,7 @@ public class PuzzleLevel extends Level {
 	
 	@Override
 	public int addScore(Word word) {
-		this.score = score + word.calculateScore();
+		this.score = this.wordList.size();
 		return this.score;
 	}
 
