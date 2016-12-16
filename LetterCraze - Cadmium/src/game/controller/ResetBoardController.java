@@ -36,9 +36,7 @@ public class ResetBoardController implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		this.level = this.m.getSpecificLevel(levType, levNum);
 		UndoManager mgr = UndoManager.instance();
-		for (int i = 0; i < mgr.getSizeOfStack(); i++) {
-			mgr.removeLastMove();
-		}
+		mgr.getUndoStack().clear();
 		level.resetLevel();
 		levPanel.refresh();
 		levPanel.repaint();

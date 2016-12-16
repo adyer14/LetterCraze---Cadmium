@@ -44,7 +44,12 @@ public class TilePanel extends JPanel {
 		
 		tileButton = new JButton();
 		tileButton.setText(letter);
-		tileButton.setFont(new Font("OCR A Extended", Font.PLAIN, 30));
+		int font;
+		if (this.letter == "Qu")
+			font = 25;
+		else
+			font = 30;
+		tileButton.setFont(new Font("OCR A Extended", Font.PLAIN, font));
 		tileButton.setBounds(5, 5, 30, 30);
 		tileButton.setBackground(color);
 		tileButton.setBorder(null);
@@ -76,6 +81,13 @@ public class TilePanel extends JPanel {
 		else
 			this.letter = "";
 		tileButton.setText(letter);
+		int font;
+		if (this.letter == "Qu") {
+			font = 25;
+		}
+		else
+			font = 30;
+		tileButton.setFont(new Font("OCR A Extended", Font.PLAIN, font));
 	}
 /**
  * get/set

@@ -280,6 +280,7 @@ public class Model {
 			this.loadIn("puzzle", i);
 			puzzleLevel[i] = new PuzzleLevel(starVal, board, i, numMoves);
 			this.loadIn("lightning", i);
+			System.out.println("time:" + time);
 			lightningLevel[i] = new LightningLevel(starVal, board, i, time);
 			this.loadIn("theme", i);
 			themeLevel[i] = new ThemeLevel(starVal, themeBoards[i-1], i, themeNames[i-1], themeDicts[i-1]);
@@ -436,17 +437,17 @@ public class Model {
 		tempStarValues[2] = Integer.parseInt(contents.remove(0));
 		this.starVal = tempStarValues;
 		
-		if(levType.equals("PUZZLE")){
+		if(levType.equals("puzzle")){
 			this.numMoves = Integer.parseInt(contents.remove(0));
 		}else{
 			contents.remove(0);
 		}
-		if(levType.equals("LIGHTNING")){
+		if(levType.equals("lightning")){
 			this.time = Integer.parseInt(contents.remove(0));
 		}else{
 			contents.remove(0);
 		}
-		if(levType.equals("THEME")){
+		if(levType.equals("theme")){
 			contents.remove(0);
 			contents.remove(0);
 		}

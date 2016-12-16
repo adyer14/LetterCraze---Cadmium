@@ -18,12 +18,16 @@ public class ScoreMessagePanel extends JPanel {
 	 * Keep Eclipse happy
 	 */
 	private static final long serialVersionUID = 5745793052857452253L;
+	
+	private Level level;
 
+	private JLabel starsAchievedLabel;
+	
 	/**
 	 * Create the panel.
 	 */
 	public ScoreMessagePanel(Level level, ChooseWordController CWControl) {
-		int starsAchieved = level.getCurrentStars();
+		this.level = level;
 		addMouseListener(CWControl);
 		setBounds(202,220, 366, 220);
 		setBackground(new Color(230,230,250));
@@ -36,14 +40,19 @@ public class ScoreMessagePanel extends JPanel {
 		timesUpLabel.setFont(new Font("OCR A Extended", Font.BOLD, 50));
 		add(timesUpLabel);
 
-		JLabel starsAchievedLabel = new JLabel("");
+		starsAchievedLabel = new JLabel("");
 		starsAchievedLabel.setBounds(0, 113, 366, 62);
-		starsAchievedLabel.setIcon(new ImageIcon(ScoreMessagePanel.class.getResource("/images/" + starsAchieved + "GameStars.png")));
+		starsAchievedLabel.setIcon(new ImageIcon(ScoreMessagePanel.class.getResource("/images/0GameStars.png")));
 		starsAchievedLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		add(starsAchievedLabel);
 
 		setVisible(false);
 
+	}
+	
+	public void updateStars() {
+		int starsAchieved = level.getCurrentStars();
+		starsAchievedLabel.setIcon(new ImageIcon(ScoreMessagePanel.class.getResource("/images/" + starsAchieved + "GameStars.png")));
 	}
 
 }

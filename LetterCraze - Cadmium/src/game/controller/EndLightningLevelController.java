@@ -21,7 +21,7 @@ public class EndLightningLevelController implements ActionListener {
 	public EndLightningLevelController(LightningPanel lightPanel, LightningLevel lightLevel) {
 		this.ll = lightLevel;
 		this.lp = lightPanel;
-		this.time = 10; //TODO ll.getTime();
+		this.time = ll.getTime();
 	}
 
 	@Override

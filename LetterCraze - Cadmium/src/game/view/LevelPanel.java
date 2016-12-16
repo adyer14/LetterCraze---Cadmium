@@ -332,4 +332,7 @@ public abstract class LevelPanel extends JPanel {
 		return levNum;
 	}
 
+	public JLabel getStarLabel() {
+		return starLabel;
+	}
 }

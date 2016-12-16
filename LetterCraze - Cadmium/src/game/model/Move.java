@@ -35,10 +35,10 @@ public class Move {
 		if (this.isValid()) {
 			
 			int wordSize = this.word.getSelectedSquares().size();
+			this.level.addWord(this.word);
 			for (int i = 0; i < wordSize; i++) {
 				this.word.getSelectedSquares().get(i).removeTile();
 			}
-			this.level.addWord(this.word);
 			this.level.checkStarProgress();
 			this.board.floatTilesUp();
 			this.level.repopulate(board);
@@ -78,6 +78,10 @@ public class Move {
 		if (this.board.isValidSelection()) {
 			if (this.level.getLevelType().equalsIgnoreCase("theme")) {
 				return ((ThemeLevel)this.level).themeWords.containsWord(this.word.getActualString());
+			}
+			if (this.level.getLevelType().equalsIgnoreCase("puzzle")) {
+				if ((((PuzzleLevel)this.level).getMovesLeft() == 0) || (word.getSelectedSquares().size() < 3))
+					return false;
 			}
 			if (this.word.isValidWord(this.level.getDictionary())) {
 				return true;

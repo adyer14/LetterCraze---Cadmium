@@ -1,6 +1,5 @@
 package game.model;
 
-import java.util.ArrayList;
 /**
  *The Puzzle version of the Level class
  */
@@ -42,7 +41,9 @@ public class PuzzleLevel extends Level {
 	
 	@Override
 	public int addScore(Word word) {
-		this.score = this.wordList.size();
+		this.score += word.calculateScore();
+		
+		//this.score = this.wordList.size();
 		return this.score;
 	}
 
@@ -70,11 +71,13 @@ public class PuzzleLevel extends Level {
 
 
 	public int didMove() {
-		return this.movesLeft - 1;
+		this.movesLeft = this.movesLeft - 1;
+		return this.movesLeft;
 	}
 	
 	public int undidMove () {
-		return this.movesLeft + 1;
+		this.movesLeft = this.movesLeft + 1;
+		return this.movesLeft;
 	}
 /**
  * get/set

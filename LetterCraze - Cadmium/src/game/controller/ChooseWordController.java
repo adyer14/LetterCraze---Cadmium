@@ -58,6 +58,7 @@ public class ChooseWordController implements MouseListener {
 			// add the square that was pressed
 			if (tp.getSquare().getTile() instanceof LetterTile)
 				squaresBeingSelected.add(tp.getSquare());
+			System.out.println(tp.getLetter());
 		}
 	}
 /**
@@ -92,6 +93,7 @@ public class ChooseWordController implements MouseListener {
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		wordBeingCreated.setSelectedSquares(squaresBeingSelected);
+		
 		isWordBeingCreated = false;
 		lp.refresh();
 		lp.repaint();

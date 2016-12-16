@@ -32,7 +32,7 @@ public class LightningPanel extends LevelPanel{
 		titlePanel.add(titleLabel);
 		
 		// Get the time for the level and initialize the Swing Time with EndLightningLevelController
-		initialTime = 10; //TODO this.level.getTime();
+		initialTime = ((LightningLevel) this.level).getTime();
 		initTimer();
 		
 		JLabel tLabel = new JLabel("TIMER");
@@ -73,6 +73,7 @@ public class LightningPanel extends LevelPanel{
 	}
 	
 	public void endLevel() {
+		this.smp.updateStars();
 		this.smp.setVisible(true);
 		this.getBoardPanel().turnOffBoard();
 		resetButton.setEnabled(false);

@@ -41,6 +41,10 @@ public class UndoManager {
 		return undoStack.pop();
 	}
 	
+	public Stack<Move> getUndoStack() {
+		return undoStack;
+	}
+	
 	public int getSizeOfStack() {
 		return undoStack.size();
 	}
