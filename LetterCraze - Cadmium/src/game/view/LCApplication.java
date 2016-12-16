@@ -8,7 +8,11 @@ import javax.swing.JPanel;
 import game.controller.LevelSelectController;
 import game.model.Model;
 import game.view.SplashScreenWindow;
-
+/**
+ * The Letter Craze Application
+ * @author Cadmium - Monika, Alex M, Alex, Juan, Erin
+ *
+ */
 public class LCApplication extends JFrame {
 
 	/**
@@ -40,7 +44,9 @@ public class LCApplication extends JFrame {
 		setTitle("LetterCraze");
 
 	}
-	
+	/**
+	 * Introduces the application
+	 */
 	public void splashWindow() {
 		SplashScreenWindow splashWindow = new SplashScreenWindow();
 
