@@ -1,10 +1,16 @@
 package builder.model;
-
+/**
+ *This is the board where the squares can be made active or inactive 
+ *
+ *
+ */
 public class Board {
 	
 	Square[] squares = new Square[36];
 	BlankTile blank;
-	 
+	/**
+	 * Constructor for blank board
+	 */
 	public Board () {
 		int k = 0;
 		for (int i = 0; i < 6; i++) {
@@ -14,7 +20,10 @@ public class Board {
 			}
 		}
 	}
-
+	/**
+	 * Constructor for a populated board
+	 * @param sqs 
+	 */
 	public Board(String sqs) {
 		int k = 0;
 		for(int i = 0; i < 6; i++){
@@ -31,11 +40,16 @@ public class Board {
 			}
 		}
 	}
-
+/**
+ * Change a square from active to inactive or vice versa
+ * @param buttonNumber
+ */
 	public void toggleSquare(int buttonNumber) {
 		this.squares[buttonNumber].toggleInPlay();
 	}
-
+/**
+ * resets all squares to inactive
+ */
 	public void resetSquares() {
 		for(int i = 0; i < 36; i++){
 			if(squares[i].getSquareInPlay()){
@@ -44,7 +58,7 @@ public class Board {
 		}
 		
 	}
-	
+
 	public String toString(){
 		String out ="";
 		int k = 0;

@@ -1,3 +1,7 @@
+/**This is the Cadmium Builder main class
+ * @author Team Cadmium
+ */
+
 package builder;
 
 import javax.swing.*;

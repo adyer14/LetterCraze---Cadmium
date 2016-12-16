@@ -15,12 +15,19 @@ import javax.swing.JTextField;
 public class InputStarValueController1 implements ActionListener {
 	Level lvl;
 	LevelCreatorPanel levelCreatorView;
+	/**
+	 * Constructor
+	 * @param lvl
+	 * @param levelCreatorView
+	 */
 	
 	public InputStarValueController1(Level lvl, LevelCreatorPanel levelCreatorView){
 		this.lvl = lvl;
 		this.levelCreatorView = levelCreatorView;
 	}
-	
+	/**
+	 * Action performed override to access values from a text field
+	 */
 	@Override
 	public void actionPerformed(ActionEvent ae){
 		JTextField tf = (JTextField) ae.getSource();

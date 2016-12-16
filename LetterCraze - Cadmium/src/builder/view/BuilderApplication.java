@@ -5,14 +5,18 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import builder.model.*;
-
+/**
+ * Builder Application, this is the entire container for the builder. It includes the logic which displays
+ * an initial splash screen as well as a menu screen with buttons to chose your next step.
+ * @author Cadmium : Alex M, Alex, Monika, Juan, Erin
+ */
 public class BuilderApplication extends JFrame {
 	
 	/**
 	 * Keep Eclipse happy
 	 */
 	private static final long serialVersionUID = 7707913344008839015L;
-
+	
 	private MainMenuPanel mmp;
 	private LevelCreatorPanel lcp;
 
@@ -50,7 +54,9 @@ public class BuilderApplication extends JFrame {
 	public LevelCreatorPanel getLevelCreatorPanel() {
 		return lcp;
 	}
-	
+	/**
+	 * Splash window is a window which is displayed for a moment to introduce the group and the application
+	 */
 	public void splashWindow() {
 		SplashScreenWindow splashWindow = new SplashScreenWindow();
 

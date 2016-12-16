@@ -15,12 +15,18 @@ import javax.swing.JTextPane;
 public class InputThemeWordsController implements KeyListener {
 	Level lvl;
 	LevelCreatorPanel levelCreatorView;
-	
+	/**
+	 * Constructor
+	 * @param lvl
+	 * @param levelCreatorView
+	 */
 	public InputThemeWordsController(Level lvl, LevelCreatorPanel levelCreatorView){
 		this.lvl = lvl;
 		this.levelCreatorView = levelCreatorView;
 	}
-	
+	/**
+	 * Key event override
+	 */
 	@Override
 	public void keyPressed(KeyEvent ke){
 		if(ke.getKeyChar() == KeyEvent.VK_ENTER){

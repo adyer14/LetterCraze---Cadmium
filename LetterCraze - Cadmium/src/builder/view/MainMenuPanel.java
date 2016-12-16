@@ -9,7 +9,11 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import builder.controller.NewLevelController;
-
+/**
+ * MainMenuPanel is the display of the main menu for the builder
+ *
+ *
+ */
 public class MainMenuPanel extends JPanel {
 
 	/**
@@ -39,7 +43,9 @@ public class MainMenuPanel extends JPanel {
 	public JPanel getContentPane() {
 		return contentPane;
 	}
-	
+	/**
+	 * Initialize all components within the main menu
+	 */
 	public void initComponents() {
 		JPanel titlePanel = new JPanel();
 		titlePanel.setBounds(0, 0, 800, 160);
@@ -78,7 +84,9 @@ public class MainMenuPanel extends JPanel {
 		deleteLevelButton.setBorder(new LineBorder(new Color(119, 136, 153), 3));
 		add(deleteLevelButton);
 	}
-
+	/**
+	 * initialize all controllers within the main menu
+	 */
 	public void initControllers() {
 		NewLevelController nlcontrol = new NewLevelController(this);
 		newLevelButton.addActionListener(nlcontrol);

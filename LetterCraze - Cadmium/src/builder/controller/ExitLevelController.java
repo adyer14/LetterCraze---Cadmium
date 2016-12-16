@@ -10,7 +10,7 @@ import builder.view.*;
 
 /**
  * Controller for navigating from the level creator view to the main menu
- *
+ * @param lcp Level Creator Panel to display once a level is exited
  */
 public class ExitLevelController  implements ActionListener {
 	LevelCreatorPanel lcp;

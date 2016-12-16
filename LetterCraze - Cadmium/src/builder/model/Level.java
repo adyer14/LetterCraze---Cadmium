@@ -6,7 +6,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-
+/**
+ * The Level that the builder is working on.
+ * 
+ *
+ */
 public class Level {
 
 	Board board;
@@ -17,7 +21,16 @@ public class Level {
 	String themeWords;
 	String themeName;
 	int time;
-	
+	/**
+	 * Constructor
+	 * @param board The board portion of the active level
+	 * @param levelType can be set later
+	 * @param levelNum 
+	 * @param numMoves
+	 * @param themeWords
+	 * @param themeName
+	 * @param time
+	 */
 	public Level(){
 		//initializing all attributes to zero or default
 		board = new Board();
@@ -28,7 +41,10 @@ public class Level {
 		themeName = "";
 		time = 0;
 	}
-	
+	/**
+	 * resetLevel clears values 
+	 * @return boolean
+	 */
 	public boolean resetLevel(){
 		try {
 			starValues = new int[3];
@@ -47,7 +63,10 @@ public class Level {
 		}
 		
 	}
-	
+	/**
+	 * Saves file information into a text file so it can be loaded when the application runs again
+	 * @return boolean
+	 */
 	public boolean saveLevel(){
 		String pathName = "src/levels/";
 		pathName = pathName + this.levelType;
@@ -72,6 +91,11 @@ public class Level {
 			return false;
 		}
 	}
+	/**
+	 * Loads a previously saved level into the editor
+	 * @param pathName
+	 * @return boolean
+	 */
 	public Level loadLevel(String pathName){
 		
 		ArrayList<String> contents = new ArrayList<String>();
@@ -109,7 +133,11 @@ public class Level {
 		return lvl;
 		
 	}
-	
+	/**
+	 * Takes all the relevant information from a created and saved level , converts it to a string, and 
+	 * saves it in a text file
+	 * @return levelText
+	 */
 	private ArrayList<String> levelToText() {
 		ArrayList<String> levelText = new ArrayList<String>();
 		
