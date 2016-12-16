@@ -50,11 +50,10 @@ public class PuzzleLevel extends Level {
 			if (this.board.boardSquares.get(j).getSquareInPlay()) {
 				if (this.board.boardSquares.get(j).getTile() == null) {
 					this.board.boardSquares.get(j).setTile(this.randomTile());
-					return true;
 				}
 			}
 		}
-		return false;
+		return true;
 	}
 
 	@Override

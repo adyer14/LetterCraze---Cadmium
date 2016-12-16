@@ -62,11 +62,10 @@ public class ThemeLevel extends Level {
 			if (this.board.boardSquares.get(j).getSquareInPlay()) {
 				if (this.board.boardSquares.get(j).getTile() == null) {
 					this.board.boardSquares.get(j).setTile(new BlankTile());
-					return true;
 				}
 			}
 		}
-		return false;
+		return true;
 	}
 	
 	@Override
