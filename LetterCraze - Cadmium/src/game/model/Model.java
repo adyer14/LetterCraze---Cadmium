@@ -26,7 +26,7 @@ public class Model {
 		int[] starVal = {1,2,3};
 		//Board board = new Board(null);
 		int numMoves = 5;
-		int time = 34;
+		int time = 102;
 		//String list [] = {"yes", "no", "maybe"};
 		//List<String> themeWords = new ArrayList<String>(Arrays.asList(list));
 		//ThemeDictionary themeDic = new ThemeDictionary(themeWords);
