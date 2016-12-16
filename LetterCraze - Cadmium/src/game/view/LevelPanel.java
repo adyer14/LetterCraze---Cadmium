@@ -269,27 +269,7 @@ public abstract class LevelPanel extends JPanel {
 			}
 		});
 	}
-	
-	public JPanel getContentPane() {
-		return contentPane;
-	}
-	
-	public JPanel getConstraintPanel() {
-		return constraintPanel;
-	}
-	
-	public JPanel getTitlePanel() {
-		return titlePanel;
-	}
-	
-	public JLabel getTitleLabel() {
-		return titleLabel;
-	}
-	
-	public BoardPanel getBoardPanel() {
-		return boardPanel;
-	}
-	
+
 	protected void levelRefresh() {
 		this.level = this.model.getSpecificLevel(levType, levNum);
 		boardPanel.refresh();
@@ -311,6 +291,30 @@ public abstract class LevelPanel extends JPanel {
 	}
 	
 	public abstract void refresh();
+	/**
+	 * get/set
+	 *
+	 */
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+	
+	public JPanel getConstraintPanel() {
+		return constraintPanel;
+	}
+	
+	public JPanel getTitlePanel() {
+		return titlePanel;
+	}
+	
+	public JLabel getTitleLabel() {
+		return titleLabel;
+	}
+	
+	public BoardPanel getBoardPanel() {
+		return boardPanel;
+	}
+	
 
 	public String getLevelType() {
 		return levType;

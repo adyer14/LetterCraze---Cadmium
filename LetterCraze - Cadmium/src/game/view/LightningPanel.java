@@ -83,7 +83,10 @@ public class LightningPanel extends LevelPanel{
 	public ScoreMessagePanel getScoreMessagePanel() {
 		return smp;
 	}
-	
+	/**
+	 * get/set
+	 * 
+	 */
 	public Timer getTimer() {
 		return this.timer;
 	}

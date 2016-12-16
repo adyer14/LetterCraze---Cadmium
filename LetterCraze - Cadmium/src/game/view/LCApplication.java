@@ -94,7 +94,10 @@ public class LCApplication extends JFrame {
 		
 		setContentPane(contentPane);
 	}
-
+/**
+ * Get/set
+ * 
+ */
 	public LevelSelectPanel getLevelSelectPanel() {
 		return lsp;
 	}

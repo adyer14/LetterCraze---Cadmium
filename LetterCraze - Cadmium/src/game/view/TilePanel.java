@@ -77,7 +77,10 @@ public class TilePanel extends JPanel {
 			this.letter = "";
 		tileButton.setText(letter);
 	}
-
+/**
+ * get/set
+ * 
+ */
 	public Square getSquare() {
 		return square;
 	}

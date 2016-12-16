@@ -63,6 +63,10 @@ public class Word {
 		return this.actualWord;
 	}
 	
+	/**
+	 * get/set
+	 * 
+	 */
 	public String getActualString() {
 		return actualWord;
 	}

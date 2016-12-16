@@ -416,7 +416,10 @@ public class Model {
 			return new BlankTile ();
 		}
 	}
-
+/**
+ * get/set
+ *
+ */
 	public Level[] getLevels() {
 		return level;
 	}

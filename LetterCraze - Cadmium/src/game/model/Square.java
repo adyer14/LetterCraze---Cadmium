@@ -81,7 +81,10 @@ public class Square {
 			return false;
 		}
 	}
-
+/**
+ * get/set
+ * 
+ */
 	public Tile getTile() {
 		return tile;
 	}

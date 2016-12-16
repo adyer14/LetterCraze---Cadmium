@@ -15,7 +15,10 @@ public class LetterTile extends Tile {
 		this.letter = letter;
 		this.scoreValue = scoreValue;
 	}
-
+/**
+ * 
+ * get/set
+ */
 	public String getLetter() {
 		return letter;
 	}

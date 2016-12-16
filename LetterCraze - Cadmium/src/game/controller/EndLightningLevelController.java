@@ -34,7 +34,9 @@ public class EndLightningLevelController implements ActionListener {
 		}
 		
 	}
-	
+	/**
+	 * get set
+	 */
 	public int getTime() {
 		return time;
 	}
