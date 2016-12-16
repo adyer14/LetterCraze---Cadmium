@@ -31,7 +31,7 @@ public class PuzzleLevel extends Level {
 	
 	@Override
 	public int addScore(Word word) {
-		this.score = score + word.calculateScore();
+		this.score = this.wordList.size();
 		return this.score;
 	}
 
