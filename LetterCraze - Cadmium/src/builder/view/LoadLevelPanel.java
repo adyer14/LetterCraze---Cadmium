@@ -20,7 +20,7 @@ public class LoadLevelPanel extends SelectLevelPanel {
 		
 		this.getTitleLabel().setText("LOAD LEVEL");
 		
-		for (int i = 1; i <= 5; i++) {
+		for (int i = 1; i < 6; i++) {
 			LoadLevelController PLLcontrol = new LoadLevelController(this, "puzzle", i);
 			LoadLevelController LLLcontrol = new LoadLevelController(this, "lightning", i);
 			LoadLevelController TLLcontrol = new LoadLevelController(this, "theme", i);
