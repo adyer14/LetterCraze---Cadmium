@@ -11,8 +11,8 @@ public class ThemeLevel extends Level {
 	ArrayList<Square> beingUsed = new ArrayList<Square>();
 	ArrayList<Square> initBoardSquares = new ArrayList<Square>(36);
 	
-	public ThemeLevel(int[] starVal, Board board, ArrayList<Tile> initialTiles, int levelNumber, String themeName, ThemeDictionary themeWords) {
-		super(starVal, board, initialTiles, levelNumber);
+	public ThemeLevel(int[] starVal, Board board, int levelNumber, String themeName, ThemeDictionary themeWords) {
+		super(starVal, board, levelNumber);
 		this.setThemeName(themeName);
 		this.initBoardSquares = board.getBoardSquares();
 		this.themeWords = themeWords;
@@ -62,11 +62,10 @@ public class ThemeLevel extends Level {
 			if (this.board.boardSquares.get(j).getSquareInPlay()) {
 				if (this.board.boardSquares.get(j).getTile() == null) {
 					this.board.boardSquares.get(j).setTile(new BlankTile());
-					return true;
 				}
 			}
 		}
-		return false;
+		return true;
 	}
 	
 	@Override

@@ -4,12 +4,20 @@ import java.awt.event.ActionListener;
 
 import game.model.*;
 import game.view.LightningPanel;
-
+/**
+ * This controlls how a lightning level ends. It relies on the timer to call the exit level 
+ * functionality
+ *
+ */
 public class EndLightningLevelController implements ActionListener {
 	LightningLevel ll;
 	LightningPanel lp;
 	int time;
-
+/**
+ * Constructor
+ * @param lightPanel Container
+ * @param lightLevel Level
+ */
 	public EndLightningLevelController(LightningPanel lightPanel, LightningLevel lightLevel) {
 		this.ll = lightLevel;
 		this.lp = lightPanel;

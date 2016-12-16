@@ -4,7 +4,11 @@ import javax.swing.JFrame;
 
 import game.model.Model;
 import game.view.LCApplication;
-
+/**
+ * Launder for the LetterCraze application. Initializes a model and the application
+ * 
+ *
+ */
 public class LaunchLetterCraze {
 	
 	public static void main (String args []) {

@@ -1,18 +1,27 @@
 package game.model;
 
 import java.util.ArrayList;
-
+/**
+ *A word is made up of the letter values collected from tiles on selected squares.
+ *The letters are contained in an ArrayList to form word squares
+ */
 public class Word {
 	
 	private ArrayList<Square> selectedSquares = new ArrayList<Square>();
 	private int wordScore;
 	private String actualWord;
-	
+	/**
+	 * Constructor
+	 * @param wordSquares
+	 */
 	public Word (ArrayList<Square> wordSquares) {
 		this.selectedSquares = wordSquares;
 		this.actualWord = "";
 	}
-	
+	/**
+	 * Counts the number of tiles which have been selected
+	 * @return count
+	 */
 	public int numOfSTiles () {
 		int count = 0;
 		for (int i = 0; i < selectedSquares.size(); i++) {
@@ -26,7 +35,10 @@ public class Word {
 	public boolean isValidWord (Dictionary d) {
 		return d.isWord(this.actualWord);
 	}
-	
+	/**
+	 * Calculates the score from the values associated with each selected tile
+	 * @return score
+	 */
 	public int calculateScore () {
 		int score = 0;
 		int count = this.numOfSTiles();
@@ -39,7 +51,10 @@ public class Word {
 		score = score*(this.numOfSTiles()-2);
 		return score;	
 	}
-	
+	/**
+	 * Creates a string from the letters
+	 * @return
+	 */
 	public String makeString () {
 		int count = this.numOfSTiles();
 		for (int j = 0; j < count; j++) {

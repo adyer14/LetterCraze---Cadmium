@@ -1,22 +1,33 @@
 package game.model;
 import java.util.ArrayList;
-
+/**
+ *Lightning Level extention of level has a timer and a few overrides
+ */
 public class LightningLevel extends Level {
 	
 	private boolean isOver;
 	private int time;
 	//public Timer timer;
 	int i = 0;
-
-	public LightningLevel(int[] starVal, Board board, ArrayList<Tile> initialTiles, int levelNumber, int time) {
-		super(starVal, board, initialTiles, levelNumber);
+/**
+ * Constructor
+ * @param starVal
+ * @param board
+ * @param initialTiles
+ * @param levelNumber
+ * @param time
+ */
+	public LightningLevel(int[] starVal, Board board, int levelNumber, int time) {
+		super(starVal, board, levelNumber);
 		this.time = time;
 		setLevelType();
 		//Timer timer = new Timer();
 		//timer.schedule(new EndLightningLevelController(this), time);
 	//	EndLightningLevelController llc = new EndLightningLevelController(this, null);
 	}
-
+/**
+ * Reset level does not reset time
+ */
 	@Override
 	public boolean resetLevel () {
 		int row,col;

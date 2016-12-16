@@ -80,10 +80,10 @@ public class TestBoard extends TestCase {
 				b.getSelectedSquares().add(new Square(i, j, true, t.get(j)));
 			}
 		}
-		b.selectedSquares.add(s);
-		s.removeTile();
+		//b.selectedSquares.add(s);
+		b.getSelectedSquares().remove(0);
 		b.floatTilesUp();
-		assertTrue( s.containsTile(t2) );
+		assertEquals(t2, s.getTile() );
 		
 	}
 

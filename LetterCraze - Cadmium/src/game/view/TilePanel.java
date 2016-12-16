@@ -25,6 +25,7 @@ public class TilePanel extends JPanel {
 	private Color selectedColor = new Color(255, 153, 153);
 	private ChooseWordController CWControl;
 	
+	//TODO Change font size
 	/**
 	 * Create the panel.
 	 */

@@ -14,7 +14,12 @@ import game.undo.UndoManager;
 import game.view.LevelPanel;
 import game.view.TilePanel;
 import game.view.ScoreMessagePanel;
-
+/**
+ * The Controller in charge of creating a word out of the tiles contained in the squares that have been hovered over
+ * by the mouse.
+ * 
+ *
+ */
 public class ChooseWordController implements MouseListener {
 
 	Level level;
@@ -22,12 +27,19 @@ public class ChooseWordController implements MouseListener {
 	Word wordBeingCreated;
 	ArrayList<Square> squaresBeingSelected = new ArrayList<Square>();
 	private boolean isWordBeingCreated = false;
-
+/**
+ * Constructor
+ * @param l the active level
+ * @param lp the panel of the active level
+ */
 	public ChooseWordController(Level l, LevelPanel lp){
 		this.level = l;
 		this.lp = lp;
 	}
-
+/**
+ * When mouse is pressed a word is being created
+ * It calls to the container to get the letter and adds it to a string
+ */
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		if (arg0.getSource() instanceof ScoreMessagePanel) {}
@@ -48,7 +60,10 @@ public class ChooseWordController implements MouseListener {
 				squaresBeingSelected.add(tp.getSquare());
 		}
 	}
-
+/**
+ * If a word is being created then the letter from a tile is collected when the
+ * mouse enters a square
+ */
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		if (arg0.getSource() instanceof ScoreMessagePanel) {
@@ -71,7 +86,9 @@ public class ChooseWordController implements MouseListener {
 		}
 
 	}
-
+/**
+ * mouse is released and collects the final letter to add to the word being made
+ */
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
 		wordBeingCreated.setSelectedSquares(squaresBeingSelected);

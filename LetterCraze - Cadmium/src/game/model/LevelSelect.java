@@ -3,7 +3,9 @@ package game.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+/**
+ * Select a level to play
+ */
 public class LevelSelect {
 
 	Level playableLevel[] = new Level [16];

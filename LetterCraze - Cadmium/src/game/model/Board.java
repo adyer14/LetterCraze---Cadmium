@@ -2,7 +2,10 @@ package game.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
+/**
+ * The Board class takes care of the functionality that goes with the board in the game
+ * 
+ */
 public class Board {
 	
 	ArrayList<Square> boardSquares = new ArrayList<Square>(36);
@@ -10,12 +13,18 @@ public class Board {
 	Word selectedWord;
 	BlankTile blankTile;
 	private static HashMap<String, Integer> letterScores = new HashMap<String, Integer>();
-	
+	/**
+	 * Constructor
+	 * @param squares
+	 */
 	public Board (ArrayList<Square> squares) {
 		this.boardSquares = squares;
 		assignLevelScores();
 	}
-	
+	/**
+	 * This is the number of tiles selected
+	 * @return count The number of selected tiles
+	 */
 	public int numOfSTiles () {
 		int count = 0;
 		if (selectedSquares == null) {
@@ -28,7 +37,10 @@ public class Board {
 		}
 			return count;
 	}
-	
+	/**
+	 * make sure two-letter words not permissable (are they in Theme?)
+	 * @return int
+	 */
 	// TODO make sure two-letter words not permissable (are they in Theme?)
 	public boolean isValidSelection () {
 		int numOfAdj = 0;
@@ -49,7 +61,10 @@ public class Board {
 		}
 	return true;
 }
-	
+	/**
+	 * When a word is successfully removed from the board the remaining tiles must move upward into empty, active squares
+	 * @return
+	 */
 	public boolean floatTilesUp () {
 		/*for (int i = 0; i < 36; i++) {
 			if (this.boardSquares.get(i).getSquareInPlay() && 
@@ -93,7 +108,9 @@ public class Board {
 		}
 		return (numEmptyTiles == selectedSquares.size());
 	}
-	
+	/**
+	 * Associates letters with tile scores
+	 */
 	private static void assignLevelScores() {
 		String[] letters = new String[]{"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 		Integer[] scores = new Integer[]{2,  4,  3,  3,  1,  4,  4,  2,  2,  7,  5,  3,  3,  2,  2,  4,  8,  2,  2,  1,  3,  5,  3,  7,  4,  8};
