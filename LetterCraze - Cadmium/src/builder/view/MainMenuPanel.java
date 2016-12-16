@@ -7,7 +7,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-
+import builder.controller.GoToDeleteLevelController;
+import builder.controller.GoToLoadLevelController;
 import builder.controller.NewLevelController;
 /**
  * MainMenuPanel is the display of the main menu for the builder
@@ -88,7 +89,11 @@ public class MainMenuPanel extends JPanel {
 	 * initialize all controllers within the main menu
 	 */
 	public void initControllers() {
-		NewLevelController nlcontrol = new NewLevelController(this);
-		newLevelButton.addActionListener(nlcontrol);
+		NewLevelController NLcontrol = new NewLevelController(this);
+		newLevelButton.addActionListener(NLcontrol);
+		GoToLoadLevelController LLcontrol = new GoToLoadLevelController(this);
+		loadLevelButton.addActionListener(LLcontrol);
+		GoToDeleteLevelController DLcontrol = new GoToDeleteLevelController(this);
+		deleteLevelButton.addActionListener(DLcontrol);
 	}
 }

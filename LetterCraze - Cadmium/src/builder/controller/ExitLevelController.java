@@ -22,9 +22,8 @@ public class ExitLevelController  implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		JPanel contentPane = lcp.getContentPane();
-            CardLayout cardLayout = (CardLayout) contentPane.getLayout();
-            cardLayout.next(contentPane);
-
+        CardLayout cardLayout = (CardLayout) contentPane.getLayout();
+        cardLayout.show(contentPane, "mainMenuPanel");
 	}
   
 }

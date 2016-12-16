@@ -1,16 +1,12 @@
 package builder.model;
 
 import java.util.ArrayList;
-/**
- * Main Menu with the functionality of the buttons displayed
- * 
- *
- */
-public class MainMenu {
+
+public class Model {
 
 	ArrayList<Level> levels;
 	
-	public MainMenu(){
+	public Model(){
 		
 	}
 	
