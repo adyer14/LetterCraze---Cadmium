@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 import builder.controller.ReturnToMainMenuController;
 import builder.model.Model;
@@ -62,8 +63,8 @@ public abstract class SelectLevelPanel extends JPanel {
 
 	public void initButtons() {	
 		for (int puzzNum = 1; puzzNum <= 5; puzzNum++) {
-			puzzleButton[puzzNum] = new JButton(Integer.toString(puzzNum));
-			puzzleButton[puzzNum].setIcon(new ImageIcon(SelectLevelPanel.class.getResource("/images/" + puzzNum + "level.png")));
+			puzzleButton[puzzNum] = new JButton("");
+			puzzleButton[puzzNum].setIcon(new ImageIcon(SelectLevelPanel.class.getResource("/images/" + puzzNum + "builder.png")));
 			puzzleButton[puzzNum].setBounds(buttonDist + ((puzzNum-1)*100), puzzHeight, buttWidth, buttHeight);
 			puzzleButton[puzzNum].setEnabled(false);
 			levelButtons.put("puzzleButton" + puzzNum, puzzleButton[puzzNum]);
@@ -72,15 +73,16 @@ public abstract class SelectLevelPanel extends JPanel {
 		
 		for (int litNum = 1; litNum <= 5; litNum++) {
 			lightningButton[litNum] = new JButton("");
-			lightningButton[litNum].setIcon(new ImageIcon(SelectLevelPanel.class.getResource("/images/" + litNum + "level.png")));
+			lightningButton[litNum].setIcon(new ImageIcon(SelectLevelPanel.class.getResource("/images/" + litNum + "builder.png")));
 			lightningButton[litNum].setBounds(buttonDist + ((litNum-1)*100), lightHeight, buttWidth, buttHeight);
 			lightningButton[litNum].setEnabled(false);
 			levelButtons.put("lightningButton" + litNum, lightningButton[litNum]);
 			add(lightningButton[litNum]);
 		}
+		
 		for (int thmNum = 1; thmNum <= 5; thmNum++) {
 			themeButton[thmNum] = new JButton("");
-			themeButton[thmNum].setIcon(new ImageIcon(SelectLevelPanel.class.getResource("/images/" + thmNum + "level.png")));
+			themeButton[thmNum].setIcon(new ImageIcon(SelectLevelPanel.class.getResource("/images/" + thmNum + "builder.png")));
 			themeButton[thmNum].setBounds(buttonDist + ((thmNum-1)*100), themeHeight, buttWidth, buttHeight);
 			themeButton[thmNum].setEnabled(false);
 			levelButtons.put("themeButton" + thmNum, themeButton[thmNum]);
@@ -151,4 +153,7 @@ public abstract class SelectLevelPanel extends JPanel {
 		return themeButton[levNum];
 	}
 	
+	public JLabel getTitleLabel() {
+		return titleLabel;
+	}
 }

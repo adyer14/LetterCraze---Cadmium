@@ -2,7 +2,7 @@ package builder.view;
 
 import javax.swing.JPanel;
 
-import builder.controller.ReturnToMainMenuController;
+import builder.controller.DeleteLevelController;
 import builder.model.Model;
 
 public class DeleteLevelPanel extends SelectLevelPanel {
@@ -17,6 +17,18 @@ public class DeleteLevelPanel extends SelectLevelPanel {
 	 */
 	public DeleteLevelPanel(Model m, JPanel contentPane) {
 		super(m, contentPane);
+
+		this.getTitleLabel().setText("DELETE LEVEL");
+		
+		for (int i = 0; i < 5; i++) {
+			DeleteLevelController PDLcontrol = new DeleteLevelController(this, "puzzle", i);
+			DeleteLevelController LDLcontrol = new DeleteLevelController(this, "lightning", i);
+			DeleteLevelController TDLcontrol = new DeleteLevelController(this, "theme", i);
+			
+			this.getPuzzleButton(i).addActionListener(PDLcontrol);
+			this.getLightningButton(i).addActionListener(LDLcontrol);
+			this.getThemeButton(i).addActionListener(TDLcontrol);
+		}
 	}
 
 }
