@@ -2,6 +2,7 @@ package builder.view;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.io.File;
 import java.util.HashMap;
 
 import javax.swing.ImageIcon;
@@ -61,11 +62,12 @@ public abstract class SelectLevelPanel extends JPanel {
 	}
 
 	public void initButtons() {	
+		
 		for (int puzzNum = 1; puzzNum <= 5; puzzNum++) {
 			puzzleButton[puzzNum] = new JButton("");
 			puzzleButton[puzzNum].setIcon(new ImageIcon(SelectLevelPanel.class.getResource("/images/" + puzzNum + "builder.png")));
 			puzzleButton[puzzNum].setBounds(buttonDist + ((puzzNum-1)*100), puzzHeight, buttWidth, buttHeight);
-			puzzleButton[puzzNum].setEnabled(false);
+			puzzleButton[puzzNum].setEnabled(doesFileExist("PUZZLE", puzzNum));
 			levelButtons.put("puzzleButton" + puzzNum, puzzleButton[puzzNum]);
 			add(puzzleButton[puzzNum]);
 		}
@@ -74,7 +76,7 @@ public abstract class SelectLevelPanel extends JPanel {
 			lightningButton[litNum] = new JButton("");
 			lightningButton[litNum].setIcon(new ImageIcon(SelectLevelPanel.class.getResource("/images/" + litNum + "builder.png")));
 			lightningButton[litNum].setBounds(buttonDist + ((litNum-1)*100), lightHeight, buttWidth, buttHeight);
-			lightningButton[litNum].setEnabled(false);
+			lightningButton[litNum].setEnabled(doesFileExist("LIGHTNING", litNum));
 			levelButtons.put("lightningButton" + litNum, lightningButton[litNum]);
 			add(lightningButton[litNum]);
 		}
@@ -83,7 +85,7 @@ public abstract class SelectLevelPanel extends JPanel {
 			themeButton[thmNum] = new JButton("");
 			themeButton[thmNum].setIcon(new ImageIcon(SelectLevelPanel.class.getResource("/images/" + thmNum + "builder.png")));
 			themeButton[thmNum].setBounds(buttonDist + ((thmNum-1)*100), themeHeight, buttWidth, buttHeight);
-			themeButton[thmNum].setEnabled(false);
+			themeButton[thmNum].setEnabled(doesFileExist("THEME", thmNum));
 			levelButtons.put("themeButton" + thmNum, themeButton[thmNum]);
 			add(themeButton[thmNum]);
 		}
@@ -154,5 +156,14 @@ public abstract class SelectLevelPanel extends JPanel {
 	
 	public JLabel getTitleLabel() {
 		return titleLabel;
+	}
+
+	public boolean doesFileExist(String levType, int levNum) {
+		String pathName = "src/levels/" + levType + levNum + ".txt";
+		File file = new File(pathName);
+		
+		if(file.exists())
+			return true;
+		else return false;
 	}
 }

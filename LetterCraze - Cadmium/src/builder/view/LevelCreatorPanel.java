@@ -313,6 +313,22 @@ public class LevelCreatorPanel extends JPanel {
 		levelTypeCB.setSelectedItem("LEVEL TYPE");
 	}
 	
+	public void loadIn(Level level) {
+		this.level = level;
+		
+		levelNumCB.setSelectedItem(Integer.toString(level.getLevelNum()));
+		levelTypeCB.setSelectedItem(level.getLevelType());
+		
+		star1TextField.setText(Integer.toString(level.getStarValues()[0]));
+		star2TextField.setText(Integer.toString(level.getStarValues()[1]));
+		star3TextField.setText(Integer.toString(level.getStarValues()[2]));
+		movesTextField.setText(Integer.toString(level.getNumMoves()));
+		timeTextField.setText(Integer.toString(level.getTime()));
+		themeNameTextField.setText(level.getThemeName());
+		themeWordsTextPane.setText(level.getThemeWords());
+		
+	}
+	
 	/**
 	 * Make valid only the fields to be used for puzzle levels.
 	 */

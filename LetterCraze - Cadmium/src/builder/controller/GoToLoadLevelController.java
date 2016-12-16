@@ -10,15 +10,21 @@ import builder.model.*;
 import builder.view.*;
 
 public class GoToLoadLevelController implements ActionListener{
-	MainMenuPanel mmp;
+	BuilderApplication app;
 	
-	public GoToLoadLevelController(MainMenuPanel mainMenuView){
-		this.mmp = mainMenuView;
+	public GoToLoadLevelController(BuilderApplication app){
+		this.app = app;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		JPanel contentPane = mmp.getContentPane();
+		for (int i = 1; i < 6; i++) {
+			app.getLoadLevelPanel().getPuzzleButton(i).setEnabled(app.getLoadLevelPanel().doesFileExist("PUZZLE", i));
+			app.getLoadLevelPanel().getLightningButton(i).setEnabled(app.getLoadLevelPanel().doesFileExist("LIGHTNING", i));
+			app.getLoadLevelPanel().getThemeButton(i).setEnabled(app.getLoadLevelPanel().doesFileExist("THEME", i));
+		}
+		
+		JPanel contentPane = app.getMainMenuPanel().getContentPane();
         CardLayout cardLayout = (CardLayout) contentPane.getLayout();
         cardLayout.show(contentPane, "loadLevelPanel");
 	}

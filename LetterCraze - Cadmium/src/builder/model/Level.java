@@ -105,6 +105,9 @@ public class Level {
 		try{
 			Path filePath = Paths.get(pathName+".txt");
 			contents = (ArrayList<String>) Files.readAllLines(filePath);
+			for (int i = 0; i < contents.size(); i++) {
+				System.out.println(contents.get(i));
+			}
 			System.out.println("The level has been read");
 		}catch(IOException e){
 			//TODO
@@ -116,7 +119,11 @@ public class Level {
 		lvl.setLevelType(contents.remove(0));
 		lvl.setLevelNum( Integer.parseInt(contents.remove(0)));
 		lvl.setBoard(new Board(contents.remove(0)));
-		lvl.fakeSetStarValues(contents.remove(0));
+		int[] tempStarValues = new int[3];
+		tempStarValues[0] = Integer.parseInt(contents.remove(0));
+		tempStarValues[1] = Integer.parseInt(contents.remove(0));
+		tempStarValues[2] = Integer.parseInt(contents.remove(0));
+		lvl.setStarValues(tempStarValues);
 		
 		if(lvl.levelType.equals("PUZZLE")){
 			lvl.setNumMoves(Integer.parseInt(contents.remove(0)));

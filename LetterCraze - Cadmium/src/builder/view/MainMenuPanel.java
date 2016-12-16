@@ -37,7 +37,6 @@ public class MainMenuPanel extends JPanel {
 		setLayout(null);
 		
 		initComponents();
-		initControllers();
 		
 	}
 	
@@ -85,15 +84,16 @@ public class MainMenuPanel extends JPanel {
 		deleteLevelButton.setBorder(new LineBorder(new Color(119, 136, 153), 3));
 		add(deleteLevelButton);
 	}
-	/**
-	 * initialize all controllers within the main menu
-	 */
-	public void initControllers() {
-		NewLevelController NLcontrol = new NewLevelController(this);
-		newLevelButton.addActionListener(NLcontrol);
-		GoToLoadLevelController LLcontrol = new GoToLoadLevelController(this);
-		loadLevelButton.addActionListener(LLcontrol);
-		GoToDeleteLevelController DLcontrol = new GoToDeleteLevelController(this);
-		deleteLevelButton.addActionListener(DLcontrol);
+	
+	public JButton getNewLevelButton() {
+		return newLevelButton;
+	}
+	
+	public JButton getLoadLevelButton() {
+		return loadLevelButton;
+	}
+	
+	public JButton getDeleteLevelButton() {
+		return deleteLevelButton;
 	}
 }

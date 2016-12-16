@@ -21,9 +21,9 @@ public class DeleteLevelPanel extends SelectLevelPanel {
 		this.getTitleLabel().setText("DELETE LEVEL");
 		
 		for (int i = 1; i < 6; i++) {
-			DeleteLevelController PDLcontrol = new DeleteLevelController(this, "puzzle", i);
-			DeleteLevelController LDLcontrol = new DeleteLevelController(this, "lightning", i);
-			DeleteLevelController TDLcontrol = new DeleteLevelController(this, "theme", i);
+			DeleteLevelController PDLcontrol = new DeleteLevelController(this, "PUZZLE", i);
+			DeleteLevelController LDLcontrol = new DeleteLevelController(this, "LIGHTNING", i);
+			DeleteLevelController TDLcontrol = new DeleteLevelController(this, "THEME", i);
 			
 			this.getPuzzleButton(i).addActionListener(PDLcontrol);
 			this.getLightningButton(i).addActionListener(LDLcontrol);
