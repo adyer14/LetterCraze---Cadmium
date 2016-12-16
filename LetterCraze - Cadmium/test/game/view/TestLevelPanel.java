@@ -16,7 +16,7 @@ public class TestLevelPanel extends TestCase {
 		m = new Model();
 		contentPane = new JPanel();
 		lsp = new LevelSelectPanel(m, contentPane);
-		lp = new LightningPanel (m, contentPane, 1, lsp);
+		lp = new LightningPanel (m, contentPane,"LIGHTNING", 1 , lsp);
 	}
 	
 	public void testInitialize(){
