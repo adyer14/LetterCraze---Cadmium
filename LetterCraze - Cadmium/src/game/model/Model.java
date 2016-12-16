@@ -1,9 +1,14 @@
 package game.model;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+
 /**
  * Model is the base for the game
  */
@@ -23,10 +28,10 @@ public class Model {
 	
 	
 	// THESE ARE TEST VARIABLES, DELETE WHEN WE GET FILE UPLOAD WORKING
-		int[] starVal = {1,2,3};
+		private int[] starVal;
 		//Board board = new Board(null);
-		int numMoves = 5;
-		int time = 102;
+		private int numMoves;
+		private int time;
 		//String list [] = {"yes", "no", "maybe"};
 		//List<String> themeWords = new ArrayList<String>(Arrays.asList(list));
 		//ThemeDictionary themeDic = new ThemeDictionary(themeWords);
@@ -58,6 +63,7 @@ public class Model {
 		List<String> latinWords = new ArrayList<String>(Arrays.asList(latinList));
 		ThemeDictionary latinDic = new ThemeDictionary(latinWords);
 		String latinName = "Latin Bros";
+		private Board board;
 		
 		
 	public Model() {
@@ -265,33 +271,19 @@ public class Model {
 		Board four = new Board (fourSquares);
 		Board dune = new Board (duneSquares);
 		Board latin = new Board (latinSquares);
+		Board[] themeBoards = {food, r, four, dune, latin};
+		String[] themeNames = {foodName, rName, fourName, duneName, latinName};
+		ThemeDictionary[] themeDicts = {foodDic, rDic, fourDic, duneDic, latinDic};
+		board = new Board(initBoardSquares);
 		
-		Board board = new Board(initBoardSquares);
-		
-				puzzleLevel[1] = new PuzzleLevel(starVal, board, 1, numMoves);
-				lightningLevel[1] = new LightningLevel(starVal, board, 1, time);
-				themeLevel[1] = new ThemeLevel(starVal, food, 1, foodName, foodDic);
-
-				puzzleLevel[2] = new PuzzleLevel(starVal, board, 2, numMoves);
-				lightningLevel[2] = new LightningLevel(starVal, board, 2, time);
-				themeLevel[2] = new ThemeLevel(starVal, r, 2, rName, rDic);	
-				
-				puzzleLevel[3] = new PuzzleLevel(starVal, board, 3, numMoves);
-				lightningLevel[3] = new LightningLevel(starVal, board, 3, time);
-				themeLevel[3] = new ThemeLevel(starVal, four, 3, fourName, fourDic);
-
-				puzzleLevel[4] = new PuzzleLevel(starVal, board, 4, numMoves);
-				lightningLevel[4] = new LightningLevel(starVal, board, 4, time);
-				themeLevel[4] = new ThemeLevel(starVal, dune, 4, duneName, duneDic);
-				
-				puzzleLevel[5] = new PuzzleLevel(starVal, board, 5, numMoves);
-				lightningLevel[5] = new LightningLevel(starVal, board, 5, time);
-				themeLevel[5] = new ThemeLevel(starVal, latin, 5, latinName, latinDic);
-
 		for (int i = 1; i <= 5; i++) {
-			level[i] = puzzleLevel[i];
-			level[i+5] = lightningLevel[i];
-			level[i+10] = themeLevel[i];
+			this.loadIn("puzzle", i);
+			puzzleLevel[i] = new PuzzleLevel(starVal, board, i, numMoves);
+			this.loadIn("lightning", i);
+			lightningLevel[i] = new LightningLevel(starVal, board, i, time);
+			this.loadIn("theme", i);
+			themeLevel[i] = new ThemeLevel(starVal, themeBoards[i-1], i, themeNames[i-1], themeDicts[i-1]);
+			
 		}
 	}
 	
@@ -417,6 +409,50 @@ public class Model {
 		}
 	}
 
+	public void loadIn(String levType, int levNum) {
+		ArrayList<String> contents = new ArrayList<String>();
+		String pathName = "src/levels/" + levType.toUpperCase() + levNum + ".txt";
+		try{
+			Path filePath = Paths.get(pathName);
+			contents = (ArrayList<String>) Files.readAllLines(filePath);
+			for (int i = 0; i < contents.size(); i++) {
+				System.out.println(contents.get(i));
+			}
+			System.out.println("The level has been read");
+		}catch(IOException e){
+			//TODO
+			System.out.println("could not find file");
+		}
+		
+		contents.remove(0);
+		contents.remove(0);
+		this.board.loadInBoard(contents.remove(0));
+		int[] tempStarValues = new int[3];
+		tempStarValues[0] = Integer.parseInt(contents.remove(0));
+		tempStarValues[1] = Integer.parseInt(contents.remove(0));
+		tempStarValues[2] = Integer.parseInt(contents.remove(0));
+		this.starVal = tempStarValues;
+		
+		if(levType.equals("PUZZLE")){
+			this.numMoves = Integer.parseInt(contents.remove(0));
+		}else{
+			contents.remove(0);
+		}
+		if(levType.equals("LIGHTNING")){
+			this.time = Integer.parseInt(contents.remove(0));
+		}else{
+			contents.remove(0);
+		}
+		if(levType.equals("THEME")){
+			contents.remove(0);
+			contents.remove(0);
+		}
+	}
+	
+	
+	/**
+	 * Get/set methods
+	 */
 	public Level[] getLevels() {
 		return level;
 	}

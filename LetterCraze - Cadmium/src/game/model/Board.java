@@ -21,6 +21,24 @@ public class Board {
 		this.boardSquares = squares;
 		assignLevelScores();
 	}
+	
+	public void loadInBoard(String sqs) {
+		int k = 0;
+		for(int i = 0; i < 6; i++){
+			for(int j = 0; j < 6; j++){
+				if(sqs.substring(0,1).equals("0")){
+					this.boardSquares.get(k).setSquareInPlay(false);
+					k++;
+					sqs = sqs.substring(1);
+				}else{
+					this.boardSquares.get(k).setSquareInPlay(true);
+					k++;
+					sqs = sqs.substring(1);
+				}
+			}
+		}
+	}
+	
 	/**
 	 * This is the number of tiles selected
 	 * @return count The number of selected tiles
@@ -37,6 +55,7 @@ public class Board {
 		}
 			return count;
 	}
+	
 	/**
 	 * make sure two-letter words not permissable (are they in Theme?)
 	 * @return int
