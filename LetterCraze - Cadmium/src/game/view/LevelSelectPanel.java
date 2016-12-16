@@ -78,7 +78,7 @@ public class LevelSelectPanel extends JPanel {
 			puzzleButton[puzzNum].setIcon(new ImageIcon(LevelSelectPanel.class.getResource("/images/" + puzzNum + "level.png")));
 			puzzleButton[puzzNum].setBounds(buttonDist + ((puzzNum-1)*100), puzzHeight, buttWidth, buttHeight);
 			if (puzzNum > 1)
-				puzzleButton[puzzNum].setEnabled(true);
+				puzzleButton[puzzNum].setEnabled(false);
 			levelButtons.put("puzzleButton" + puzzNum, puzzleButton[puzzNum]);
 			add(puzzleButton[puzzNum]);
 		}
@@ -88,7 +88,7 @@ public class LevelSelectPanel extends JPanel {
 			lightningButton[litNum].setIcon(new ImageIcon(LevelSelectPanel.class.getResource("/images/" + litNum + "level.png")));
 			lightningButton[litNum].setBounds(buttonDist + ((litNum-1)*100), lightHeight, buttWidth, buttHeight);
 			if (litNum > 1)
-				lightningButton[litNum].setEnabled(true);
+				lightningButton[litNum].setEnabled(false);
 			levelButtons.put("lightningButton" + litNum, lightningButton[litNum]);
 			add(lightningButton[litNum]);
 		}
@@ -97,7 +97,7 @@ public class LevelSelectPanel extends JPanel {
 			themeButton[thmNum].setIcon(new ImageIcon(LevelSelectPanel.class.getResource("/images/" + thmNum + "level.png")));
 			themeButton[thmNum].setBounds(buttonDist + ((thmNum-1)*100), themeHeight, buttWidth, buttHeight);
 			if (thmNum > 1)
-				themeButton[thmNum].setEnabled(true);
+				themeButton[thmNum].setEnabled(false);
 			levelButtons.put("themeButton" + thmNum, themeButton[thmNum]);
 			add(themeButton[thmNum]);
 		}

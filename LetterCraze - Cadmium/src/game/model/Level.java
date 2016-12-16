@@ -100,20 +100,21 @@ public abstract class Level {
 		}
 		if (this.score >= starValues[0] && this.score < starValues[1]) {
 			this.currentStars = 1;
-			return this.currentStars;
 		}
-		if (this.score >= starValues[1] && this.score < starValues[2]) {
+		else if (this.score >= starValues[1] && this.score < starValues[2]) {
 			this.currentStars = 2;
-			return this.currentStars;
 		}
-		if (this.score >= starValues[2]) {
-			this.currentStars = 3;
-			return this.currentStars;
+		else if (this.score >= starValues[2]) {
+			
 		}
 		else {
 			this.currentStars = 0;
-			return 0;
 		}
+		
+		if (this.currentStars > this.mostStars) {
+			this.mostStars = this.currentStars;
+		}
+		return this.currentStars;
 	}
 /**
  * Creates a random tile

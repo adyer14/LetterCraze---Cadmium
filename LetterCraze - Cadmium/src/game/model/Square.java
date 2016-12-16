@@ -98,6 +98,10 @@ public class Square {
 		return squareInPlay;
 	}
 
+	public void setSquareInPlay(boolean inPlay) {
+		this.squareInPlay = inPlay;
+	}
+	
 	public int getSquareRow() {
 		return squareRow;
 	}

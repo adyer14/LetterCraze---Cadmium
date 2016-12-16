@@ -41,19 +41,24 @@ public class ExitLevelController  implements ActionListener {
 	 */
 	public void actionPerformed(ActionEvent e) {
 		this.level = this.m.getSpecificLevel(levType, levNum);
-
 		JPanel contentPane = lp.getContentPane();
         CardLayout cardLayout = (CardLayout) contentPane.getLayout();
         cardLayout.show(contentPane, "levelSelectPanel");
         
-        lsp.updateStars(level);
-        if ((level.getMostStars() > 0) && (level.getLevelNumber() < 5)) 
-        	lsp.unlockNext(level);
+        if (level.getMostStars() > 0) {
+        	lsp.updateStars(level);
+        	level.setIsUnlocked(true);
+        	if (level.getLevelNumber() < 5) {
+        		Level nextLevel = this.m.getSpecificLevel(levType, levNum+1);
+        		if (!nextLevel.getIsUnlocked())
+        			lsp.unlockNext(level);
+        	}
+        }
         
     	if (levType == "lightning") {
     		((LightningPanel) lp).resetLightning();
     	}
-        
+    	
 	}
 
 }
