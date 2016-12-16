@@ -9,13 +9,13 @@ import builder.view.SelectLevelPanel;
 public class LoadLevelController implements ActionListener{
 
 	Level level = new Level();
-	SelectLevelPanel slp;
+	SelectLevelPanel levelSelectView;
 	String pathName;
 	
 	
 	public LoadLevelController(SelectLevelPanel levelSelect, String levelName, int levelNum){
-		this.slp = levelSelect;
-		this.pathName = levelName + levelNum;
+		this.levelSelectView = levelSelect;
+		this.pathName = "src/levels/"+ levelName + levelNum;
 	}
 	
 	@Override

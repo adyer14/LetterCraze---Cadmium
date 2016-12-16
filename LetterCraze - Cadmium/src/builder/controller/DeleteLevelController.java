@@ -8,19 +8,19 @@ import builder.view.SelectLevelPanel;
 
 public class DeleteLevelController implements ActionListener{
 
-	Level level;
-	SelectLevelPanel slp;
+	Level level = new Level();
+	SelectLevelPanel levelSelectView;
 	String pathName;
 	
 	
 	public DeleteLevelController(SelectLevelPanel levelSelect, String levelName, int levelNum){
-		this.slp = levelSelect;
-		this.pathName = levelName + levelNum;
+		this.levelSelectView = levelSelect;
+		this.pathName = "src/levels/" + levelName + levelNum;
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		level.loadLevel(this.pathName);
+		level.deleteLevel(this.pathName);
 		
 	}
 
