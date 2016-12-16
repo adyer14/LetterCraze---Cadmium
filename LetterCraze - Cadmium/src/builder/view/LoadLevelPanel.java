@@ -1,9 +1,5 @@
 package builder.view;
 
-import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 import javax.swing.JPanel;
 
 import builder.controller.LoadLevelController;
