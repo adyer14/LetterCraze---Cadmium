@@ -22,7 +22,9 @@ public class SelectLevelNumController implements ActionListener {
 		this.lvl = lvl;
 		this.levelCreatorView = levelCreatorView;
 	}
-	
+	/**
+	 * Displays the number of the level selected
+	 */
 	@Override
 	public void actionPerformed(ActionEvent ae){
 		JComboBox<String> cb = (JComboBox<String>) ae.getSource();

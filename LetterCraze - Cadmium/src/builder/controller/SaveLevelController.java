@@ -33,7 +33,10 @@ public class SaveLevelController implements ActionListener {
 			System.out.println(e);
 		}
 	}
-
+/**
+ * updateAllValues takes values from the creator and ensures that they are valid
+ * Sets star values, titles and so on
+ */
 	public void updateAllValues() {
 		int[] tempStarValues = new int[3];
 		String levType = lvl.getLevelType();

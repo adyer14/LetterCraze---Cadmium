@@ -8,7 +8,11 @@ import javax.swing.border.LineBorder;
 
 import builder.model.*;
 import builder.controller.*;
-
+/**
+ * This is the Panel that is in charge of displaying the Board in the builder
+ * 
+ *
+ */
 public class BoardPanel extends JPanel {
 
 	/**
@@ -58,7 +62,10 @@ public class BoardPanel extends JPanel {
 
 		}
 	}
-
+	
+/**
+ * Resets the squares on the Board
+ */
 	public void reset() {
 		for (int i = 0; i < 36; i++) {
 			squareButton[i].setSelected(false);

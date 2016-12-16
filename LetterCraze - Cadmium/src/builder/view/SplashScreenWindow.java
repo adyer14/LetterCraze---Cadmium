@@ -7,7 +7,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
+/**
+ * 
+ * This is the window that displays the splash screen
+ *
+ */
 public class SplashScreenWindow extends JFrame {
 
 	/**
