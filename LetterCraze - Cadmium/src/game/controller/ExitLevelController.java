@@ -56,6 +56,7 @@ public class ExitLevelController  implements ActionListener {
         }
         
     	if (levType == "lightning") {
+    		((LightningPanel) lp).endLevel();
     		((LightningPanel) lp).resetLightning();
     	}
     	

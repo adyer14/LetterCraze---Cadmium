@@ -63,7 +63,7 @@ public class LightningPanel extends LevelPanel{
 	}
 
 	public void resetLightning() {
-		getScoreMessagePanel().setVisible(false);
+		this.smp.setVisible(false);
 		this.getBoardPanel().resetBoard();
 		resetButton.setEnabled(true);
 		undoButton.setEnabled(true);

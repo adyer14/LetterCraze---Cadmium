@@ -17,8 +17,8 @@ public class LightningLevel extends Level {
  * @param levelNumber
  * @param time
  */
-	public LightningLevel(int[] starVal, Board board, int levelNumber, int time) {
-		super(starVal, board, levelNumber);
+	public LightningLevel(int[] starVal, String sqsInPlay, Board board, int levelNumber, int time) {
+		super(starVal, sqsInPlay, board, levelNumber);
 		this.time = time;
 		setLevelType();
 		//Timer timer = new Timer();
@@ -34,20 +34,23 @@ public class LightningLevel extends Level {
 		for (int i=0;i<36;i++){
 			row = (int) Math.floor(i/6);
 			col = i%6;
-			initBoardSquares.add(i, new Square(row,col,true,this.randomTile()));//initialTiles.get(i)));
+			initBoardSquares.add(i, new Square(row,col,this.isSqInPlay(i),this.randomTile()));//initialTiles.get(i)));
 		}
+		this.board.setBoardSquares(this.initBoardSquares);
 		return this.levelResetLevel();
 		
 	}
 	
 	@Override
-	public int addScore (Word word) {
-		return this.score = wordList.size();
+	public int addScore (Word word) { 
+		this.score = wordList.size();
+		return this.score;
 	}
 	
 	@Override
 	public int removeScore () {
-		return this.score = wordList.size();
+		this.score = wordList.size();
+		return this.score;
 	}
 	
 	@Override

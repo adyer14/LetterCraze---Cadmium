@@ -1,6 +1,10 @@
 package game.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
+import java.util.Stack;
 
 import game.undo.UndoManager;
 
@@ -9,20 +13,23 @@ public class ThemeLevel extends Level {
 	ThemeDictionary themeWords;
 	private String themeName;
 	private int wordsLeft;
+	private int initWordsLeft;
 	int i = 0;
 	ArrayList<Square> beingUsed = new ArrayList<Square>();
 	ArrayList<Square> initBoardSquares = new ArrayList<Square>(36);
-	int numberOfMoves = 0;
+	List<Tile> initialTiles = new ArrayList<Tile>();
 	
-	public ThemeLevel(int[] starVal, Board board, int levelNumber, String themeName, ThemeDictionary themeWords) {
-		super(starVal, board, levelNumber);
+	public ThemeLevel(int[] starVal, String sqsInPlay, List<Tile> tiles, Board board, int levelNumber, String themeName, ThemeDictionary themeWords) {
+		super(starVal, sqsInPlay, board, levelNumber);
 		this.setThemeName(themeName);
-		this.initBoardSquares = board.getBoardSquares();
+		//this.initBoardSquares = board.getBoardSquares();
 		this.themeWords = themeWords;
-		this.wordsLeft = 0;
-		for (int i=0;i<36;i++){
-			this.initialTiles.add(i, this.boardSquares.get(i).getTile());
-		}
+		this.wordsLeft = themeWords.words.size();
+		this.initWordsLeft = themeWords.words.size();
+		//for (int i=0;i<36;i++){
+			//this.initialTiles.add(i, this.boardSquares.get(i).getTile());
+		//}
+		this.initialTiles = tiles;
 		
 		//TODO HACK super hacks
 		themeWords.words.add("PIE");
@@ -36,10 +43,19 @@ public class ThemeLevel extends Level {
 	
 	@Override
 	public boolean resetLevel() {
+		this.wordsLeft = initWordsLeft;
+		
+		int row,col;
+		for (int i=0;i<36;i++){
+			row = (int) Math.floor(i/6);
+			col = i%6;
+			initBoardSquares.add(i, new Square(row,col,this.isSqInPlay(i),initialTiles.get(i)));
+		}
+		this.board.setBoardSquares(this.initBoardSquares);/*
 		UndoManager mgr = UndoManager.instance();
 
 		// see if there is anything that can be undone
-		for(int k = 0; k < this.numberOfMoves; k++) {
+		for(int k = 0; k < mgr.getUndoStack().size(); k++) {
 			Move m = mgr.removeLastMove();
 			if (m == null) { return false; }
 		
@@ -47,23 +63,21 @@ public class ThemeLevel extends Level {
 			if (!m.undoMove()) {
 				return false;
 			}
-		}
+		}*/
 		
-		this.wordList = new ArrayList<Word> ();
 
-		return true;
+		return this.levelResetLevel();
 	}
 
 	@Override
 	public int addScore(Word word) {
-		this.wordsLeft++;
-		this.numberOfMoves++;
+		this.wordsLeft--;
 		return this.score = wordList.size();
 	}
 
 	@Override
 	public int removeScore() {
-		this.wordsLeft--;
+		this.wordsLeft++;
 		return this.score = wordList.size();
 	}
 	
@@ -114,6 +128,90 @@ public class ThemeLevel extends Level {
 		}
 	}
 		
+	
+	public void themeWordsPlacement() {
+		ArrayList<Square> tempBoardSquares = new ArrayList<Square>();
+		HashMap<Integer, Tile> tileLocations = new HashMap<Integer, Tile>();
+		int row, col;
+		for (int i = 0; i < 36; i++) {
+			row = (int) Math.floor(i/6);
+			col = i%6;
+			tileLocations.put(i, new LetterTile("Z", 0));
+			tempBoardSquares.add(new Square(row, col, this.isSqInPlay(i), tileLocations.get(i)));
+		}
+		Board tempBoard = new Board(tempBoardSquares);
+		
+		//placeWordRecursion();
+	}
+	
+	public void placeWordRecursion(Board b, ArrayList<LetterTile> word) {
+		String[] wordLetters = new String[word.size()];
+		int size = word.size();
+		for (int i = 0; i < size; i++) {
+			wordLetters[i] = word.get(i).getLetter();
+		}
+		
+		//randomlyPlaceLetter(Board b);
+	}
+	
+	public Square randomlyPlaceFirstLetter(Board b, String letter) {
+		Random rand = new Random(); 
+		int randVal = rand.nextInt(36);
+		Square sq = b.getBoardSquares().get(randVal);
+		
+		if (sq.getSquareInPlay()) {
+			((LetterTile)sq.getTile()).setLetter(letter);
+			return sq;
+		}	
+		else
+			return randomlyPlaceFirstLetter(b, letter);
+	}
+	
+	public void randomlyPlaceLetter(Board b, String[] word, Stack<Square> filledSquares, int currentLetter, Square sq, ArrayList<Square> unavailableSquares) {
+		Random rand = new Random(); 
+		int randVal = rand.nextInt(36);
+		int sqNum = sq.getSquareRow()*6 + sq.getSquareColumn();
+		int[] neighVal = {-7, -6, -5, -1, 1, 5, 6, 7};
+		//boolean isAvailable = true;
+		ArrayList<Square> goodNeighbors = new ArrayList<Square>();
+		
+		for (int i = 0; i < neighVal.length; i++) {
+			int neighSqNum = sqNum + neighVal[i];
+			if (neighSqNum < 36 && neighSqNum >= 0) {
+				Square neighSq = b.getBoardSquares().get(neighSqNum);
+				if (neighSq.getSquareInPlay() && neighSq.getTile() instanceof LetterTile && !unavailableSquares.contains(neighSq)) {
+					goodNeighbors.add(neighSq);
+				}
+			}
+		}
+		
+		// if I'm the last letter in the word, place myself and finish
+		if (currentLetter == (word.length-1)) {
+			((LetterTile)sq.getTile()).setLetter(word[currentLetter]);
+			filledSquares.push(sq);
+			//return true; sq;
+		}
+		
+		// if I'm not the last letter, but there are no available neighbors,
+		// add myself to unavailable list, rerun on previous letter
+		if (goodNeighbors.isEmpty() ) {
+			if (!unavailableSquares.contains(sq))
+				unavailableSquares.add(sq);
+			Square previousSquare = filledSquares.pop();
+			randomlyPlaceLetter(b, word, filledSquares, currentLetter-1, previousSquare, unavailableSquares);
+		}
+		
+		// if I'm not the last letter and there are available neighbors,
+		// place myself, add myself to unavailable list, run on next letter
+		else {
+			//get a random neighbor
+			//add myself to unavailable list
+			//run this on that random neighbor
+			//give myself as source
+		}
+	}
+	
+	
 		/*
 
 		for (int p = 0; p < listOfThemeWordLetters.size(); p++) {

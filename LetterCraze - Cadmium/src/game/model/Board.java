@@ -24,7 +24,17 @@ public class Board {
 	
 	public void loadInBoard(String sqs) {
 		int k = 0;
-		for(int i = 0; i < 6; i++){
+		int n = 0;
+		for (int m = 0; m < 36; m++) {
+			char sqsChar = sqs.charAt(m);
+			if (sqsChar == '1') {
+				this.boardSquares.get(m).setSquareInPlay(true);
+			}
+			if (sqsChar == '0') {
+				this.boardSquares.get(m).setSquareInPlay(false);
+			}
+		}
+		/*for(int i = 0; i < 6; i++){
 			for(int j = 0; j < 6; j++){
 				if(sqs.substring(0,1).equals("0")){
 					this.boardSquares.get(k).setSquareInPlay(false);
@@ -36,7 +46,7 @@ public class Board {
 					sqs = sqs.substring(1);
 				}
 			}
-		}
+		}*/
 	}
 	
 	/**
@@ -85,26 +95,7 @@ public class Board {
 	 * @return
 	 */
 	public boolean floatTilesUp () {
-		/*for (int i = 0; i < 36; i++) {
-			if (this.boardSquares.get(i).getSquareInPlay() && 
-					this.boardSquares.get(i).getTile() == null) {
-				for (int j = this.boardSquares.get(i).getSquareColumn(); j < 36; j++) {
-					if (this.boardSquares.get(j).getSquareInPlay() &&
-							this.boardSquares.get(j).getTile() == null &&
-							this.boardSquares.get(j).getSquareColumn() == this.boardSquares.get(i).getSquareColumn()) {
-						for (int k = (this.boardSquares.get(j).getSquareColumn() + 6*this.boardSquares.get(j).getSquareRow()); k < 36; k++) {
-							if (this.boardSquares.get(k).getSquareInPlay() &&
-									this.boardSquares.get(k).getTile() != null &&
-									this.boardSquares.get(k).getSquareColumn() == this.boardSquares.get(j).getSquareColumn()) {
-								this.boardSquares.get(j).setTile(this.boardSquares.get(k).getTile());
-								this.boardSquares.get(k).removeTile();
-							}
-						}
-					}
-				}
-			}
-		}
-		return new Board (this.boardSquares);*/
+	
 		Square current, nextWithLetter;
 		boolean haveNotTaken;
 		int numEmptyTiles = 0;

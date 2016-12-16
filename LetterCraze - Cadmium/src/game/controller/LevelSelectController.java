@@ -47,6 +47,7 @@ public class LevelSelectController implements ActionListener {
         this.level = this.m.getSpecificLevel(lvlType, lvlNum);
 
 		level.resetLevel();
+		
 		switch (lvlType) {
 		case "puzzle":
 			app.getPuzzlePanel(lvlNum).refresh();

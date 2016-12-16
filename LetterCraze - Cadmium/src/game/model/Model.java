@@ -19,7 +19,7 @@ public class Model {
 	LightningLevel lightningLevel[] = new LightningLevel[6];
 	ThemeLevel themeLevel[] = new ThemeLevel[6];
 	LevelSelect ls = new LevelSelect (getLevels());
-	
+	ArrayList<Square> randomBoardSquares = new ArrayList<Square>(36);
 	ArrayList<Square> foodSquares = new ArrayList<Square>();
 	ArrayList<Square> rSquares = new ArrayList<Square>();
 	ArrayList<Square> fourSquares = new ArrayList<Square>();
@@ -64,21 +64,13 @@ public class Model {
 		ThemeDictionary latinDic = new ThemeDictionary(latinWords);
 		String latinName = "Latin Bros";
 		private Board board;
+		private String squaresInPlay;
 		
 		
 	public Model() {
-		ArrayList<Square> initBoardSquares = new ArrayList<Square>(36);
+		board = new Board(null);
+		randomBoardSquares = new ArrayList<Square>(36);
 		ArrayList<Tile> initialTiles = new ArrayList<Tile>();
-		int row, col;
-		for (int i = 0; i < 36; i++) {
-			row = (int) Math.floor(i/6);
-			col = i%6;
-			//TODO HACK right now all squares are getting random tiles
-			Tile tile = randomTile();
-			initialTiles.add(tile);
-			Square square = new Square(row, col, true, tile);
-			initBoardSquares.add(i, square);
-		}
 		
 		// Generate Theme Letters
 		foodSquares.add(new Square(0, 0, true, randomTile()));//0
@@ -274,16 +266,38 @@ public class Model {
 		Board[] themeBoards = {food, r, four, dune, latin};
 		String[] themeNames = {foodName, rName, fourName, duneName, latinName};
 		ThemeDictionary[] themeDicts = {foodDic, rDic, fourDic, duneDic, latinDic};
-		board = new Board(initBoardSquares);
+		List<List<Tile>> themeTiles = new ArrayList<List<Tile>>(5);
+		int row, col;
+		for (int i = 0; i < 36; i++) {
+			row = (int) Math.floor(i/6);
+			col = i%6;
+			
+			for (int j = 0; j < 5; j++){
+				themeTiles.add(new ArrayList<Tile>());
+				themeTiles.get(j).add(themeBoards[j].getBoardSquares().get(i).getTile());
+			}
+			Tile tile = randomTile();
+			Square square = new Square(row, col, true, tile);
+			randomBoardSquares.add(i, square);
+			
+		}
 		
+		board = new Board(randomBoardSquares);
+
 		for (int i = 1; i <= 5; i++) {
 			this.loadIn("puzzle", i);
-			puzzleLevel[i] = new PuzzleLevel(starVal, board, i, numMoves);
+			
+			//board.loadInBoard(squaresInPlay);
+			for (int j = 0; j < 36; j++) {
+				System.out.print(board.getBoardSquares().get(i).getSquareInPlay());
+			}
+			System.out.println("");
+			puzzleLevel[i] = new PuzzleLevel(starVal, squaresInPlay, board, i, numMoves);
 			this.loadIn("lightning", i);
 			System.out.println("time:" + time);
-			lightningLevel[i] = new LightningLevel(starVal, board, i, time);
+			lightningLevel[i] = new LightningLevel(starVal, squaresInPlay, board, i, time);
 			this.loadIn("theme", i);
-			themeLevel[i] = new ThemeLevel(starVal, themeBoards[i-1], i, themeNames[i-1], themeDicts[i-1]);
+			themeLevel[i] = new ThemeLevel(starVal, squaresInPlay, themeTiles.get(i-1), themeBoards[i-1], i, themeNames[i-1], themeDicts[i-1]);
 			
 		}
 	}
@@ -430,7 +444,17 @@ public class Model {
 		
 		contents.remove(0);
 		contents.remove(0);
-		this.board.loadInBoard(contents.remove(0));
+		squaresInPlay = contents.remove(0);
+		for (int m = 0; m < 36; m++) {
+			
+			char sqsChar = squaresInPlay.charAt(m);
+			if (sqsChar == '1') {
+				this.randomBoardSquares.get(m).setSquareInPlay(true);
+			}
+			if (sqsChar == '0') {
+				this.randomBoardSquares.get(m).setSquareInPlay(false);
+			}
+		}
 		int[] tempStarValues = new int[3];
 		tempStarValues[0] = Integer.parseInt(contents.remove(0));
 		tempStarValues[1] = Integer.parseInt(contents.remove(0));

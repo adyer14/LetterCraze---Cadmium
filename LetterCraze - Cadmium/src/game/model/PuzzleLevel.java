@@ -16,8 +16,8 @@ public class PuzzleLevel extends Level {
 	 * @param levelNumber int
 	 * @param numMoves int
 	 */
-	public PuzzleLevel(int[] starVal, Board board, int levelNumber, int numMoves) {
-		super(starVal, board, levelNumber);
+	public PuzzleLevel(int[] starVal, String sqsInPlay, Board board, int levelNumber, int numMoves) {
+		super(starVal, sqsInPlay, board, levelNumber);
 		this.movesLeft = numMoves;
 		this.lvlNumMoves = numMoves;
 		setLevelType();
@@ -34,16 +34,15 @@ public class PuzzleLevel extends Level {
 		for (int i=0;i<36;i++){
 			row = (int) Math.floor(i/6);
 			col = i%6;
-			initBoardSquares.add(i, new Square(row,col,true,this.randomTile()));//initialTiles.get(i)));
+			initBoardSquares.add(i, new Square(row,col,this.isSqInPlay(i),this.randomTile()));//initialTiles.get(i)));
 		}
+		this.board.setBoardSquares(this.initBoardSquares);
 		return this.levelResetLevel();
 	}
 	
 	@Override
 	public int addScore(Word word) {
 		this.score += word.calculateScore();
-		
-		//this.score = this.wordList.size();
 		return this.score;
 	}
 
@@ -67,8 +66,6 @@ public class PuzzleLevel extends Level {
 		}
 		return true;
 	}
-
-
 
 	public int didMove() {
 		this.movesLeft = this.movesLeft - 1;

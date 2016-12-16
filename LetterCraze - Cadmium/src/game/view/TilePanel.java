@@ -88,6 +88,13 @@ public class TilePanel extends JPanel {
 		else
 			font = 30;
 		tileButton.setFont(new Font("OCR A Extended", Font.PLAIN, font));
+		if (!square.getSquareInPlay()) {
+			tileButton.setEnabled(false);
+			tileButton.setText("");
+			unselectedColor = new Color(176, 196, 222);
+			this.setBackground(unselectedColor);
+			tileButton.removeMouseListener(CWControl);
+		}
 	}
 /**
  * get/set
