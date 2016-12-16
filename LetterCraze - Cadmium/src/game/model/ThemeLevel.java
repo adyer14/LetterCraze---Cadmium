@@ -2,6 +2,8 @@ package game.model;
 
 import java.util.ArrayList;
 
+import game.undo.UndoManager;
+
 public class ThemeLevel extends Level {
 
 	ThemeDictionary themeWords;
@@ -10,6 +12,7 @@ public class ThemeLevel extends Level {
 	int i = 0;
 	ArrayList<Square> beingUsed = new ArrayList<Square>();
 	ArrayList<Square> initBoardSquares = new ArrayList<Square>(36);
+	int numberOfMoves = 0;
 	
 	public ThemeLevel(int[] starVal, Board board, int levelNumber, String themeName, ThemeDictionary themeWords) {
 		super(starVal, board, levelNumber);
@@ -33,14 +36,28 @@ public class ThemeLevel extends Level {
 	
 	@Override
 	public boolean resetLevel() {
-		this.levelResetLevel();
-		this.board.setBoardSquares(this.initBoardSquares);
+		UndoManager mgr = UndoManager.instance();
+
+		// see if there is anything that can be undone
+		for(int k = 0; k < this.numberOfMoves; k++) {
+			Move m = mgr.removeLastMove();
+			if (m == null) { return false; }
+		
+			// now complete the request, if possible, and update GUI and model
+			if (!m.undoMove()) {
+				return false;
+			}
+		}
+		
+		this.wordList = new ArrayList<Word> ();
+
 		return true;
 	}
 
 	@Override
 	public int addScore(Word word) {
 		this.wordsLeft++;
+		this.numberOfMoves++;
 		return this.score = wordList.size();
 	}
 
