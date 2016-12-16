@@ -264,7 +264,6 @@ public class LevelCreatorPanel extends JPanel {
 	public void initControllers() {
 		
 		ExitLevelController elcontrol = new ExitLevelController(this);
-		InputThemeNameController itmcontrol = new InputThemeNameController(level ,this);
 		InputNumMovesController nmcontrol = new InputNumMovesController(level, this);
 		ResetLevelController rlcontrol = new ResetLevelController(level, this);
 		SelectLevelTypeController ltcontrol = new SelectLevelTypeController(level, this);
