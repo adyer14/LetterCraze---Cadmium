@@ -44,6 +44,8 @@ public abstract class SelectLevelPanel extends JPanel {
 	int starWidth = 26;
 
 	private JButton backButton;
+
+	private JLabel titleLabel;
 	/**
 	 * Create the panel.
 	 */
@@ -93,12 +95,12 @@ public abstract class SelectLevelPanel extends JPanel {
 		titlePanel.setLayout(null);
 		add(titlePanel);
 		
-		JLabel levelSelectLabel = new JLabel("Level Select");
-		levelSelectLabel.setForeground(Color.BLACK);
-		levelSelectLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		levelSelectLabel.setBounds(0, 0, 800, 110);
-		levelSelectLabel.setFont(new Font("OCR A Extended", Font.BOLD, 60));
-		titlePanel.add(levelSelectLabel);
+		titleLabel = new JLabel("");
+		titleLabel.setForeground(Color.BLACK);
+		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		titleLabel.setBounds(0, 0, 800, 110);
+		titleLabel.setFont(new Font("OCR A Extended", Font.BOLD, 60));
+		titlePanel.add(titleLabel);
 		
 		JLabel puzzleLabel = new JLabel("Puzzle");
 		puzzleLabel.setFont(new Font("OCR A Extended", Font.BOLD, 35));
@@ -148,4 +150,5 @@ public abstract class SelectLevelPanel extends JPanel {
 	public JButton getThemeButton(int levNum) {
 		return themeButton[levNum];
 	}
+	
 }

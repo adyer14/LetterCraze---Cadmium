@@ -9,10 +9,10 @@ import javax.swing.JPanel;
 import builder.model.*;
 import builder.view.*;
 
-public class LoadLevelController implements ActionListener{
+public class GoToLoadLevelController implements ActionListener{
 	MainMenuPanel mmp;
 	
-	public LoadLevelController(MainMenuPanel mainMenuView){
+	public GoToLoadLevelController(MainMenuPanel mainMenuView){
 		this.mmp = mainMenuView;
 	}
 

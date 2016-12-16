@@ -9,10 +9,10 @@ import javax.swing.JPanel;
 import builder.model.*;
 import builder.view.*;
 
-public class DeleteLevelController implements ActionListener{
+public class GoToDeleteLevelController implements ActionListener{
 	MainMenuPanel mmp;
 	
-	public DeleteLevelController(MainMenuPanel mainMenuPanel){
+	public GoToDeleteLevelController(MainMenuPanel mainMenuPanel){
 		this.mmp = mainMenuPanel;
 	}
 	
