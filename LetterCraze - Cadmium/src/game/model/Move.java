@@ -1,14 +1,20 @@
 package game.model;
 
 import java.util.ArrayList;
-
+/**
+ * Move contains all the functionality of mones within a board
+ */
 public class Move {
 	
 	Word word;
 	Level level;
 	Board board;
 	ArrayList<Tile> oldTiles = new ArrayList<Tile>();
-	
+	/**
+	 * Constructor
+	 * @param theWord Word
+	 * @param theLevel Level
+	 */
 	public Move (Word theWord, Level theLevel) {
 		this.word = theWord;
 		this.level = theLevel;
@@ -20,7 +26,10 @@ public class Move {
 			oldTiles.add(board.getBoardSquares().get(i).getTile());
 		}
 	}
-	
+	/**
+	 * executes the move
+	 * @return boolean
+	 */
 	public boolean doMove () {
 		
 		if (this.isValid()) {
@@ -45,7 +54,10 @@ public class Move {
 			return false;
 		}
 	}
-	
+	/**
+	 * Undoes a move
+	 * @return boolean
+	 */
 	public boolean undoMove () {
 		if (this.level.getLevelType().equalsIgnoreCase("puzzle")) {
 			((PuzzleLevel) this.level).undidMove();
@@ -58,7 +70,10 @@ public class Move {
 		this.level.setBoard(this.board);
 		return true;
 	} 
-	
+	/**
+	 * checks if a move is valid
+	 * @return boolean
+	 */
 	public boolean isValid () {
 		if (this.board.isValidSelection()) {
 			if (this.level.getLevelType().equalsIgnoreCase("theme")) {
@@ -71,7 +86,10 @@ public class Move {
 		}
 		return false;
 	}
-	
+	/**
+	 * Prints the board as it is
+	 * @param b Board
+	 */
 	public void printBoard(Board b ) {
 		System.out.print(b.toString());
 		int isLetter = 0;
@@ -84,7 +102,11 @@ public class Move {
 		}
 		System.out.println("");
 	}
-	
+	/**
+	 * Counts selected tiles
+	 * @param sSquares
+	 * @return count
+	 */
 	public int numOfSTiles (Square sSquares []) {
 		int count = 0;
 		for (int i = 0; i < 36; i++) {

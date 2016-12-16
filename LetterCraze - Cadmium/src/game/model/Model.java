@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-
+/**
+ * Model is the base for the game
+ */
 public class Model {
 	
 	private Level level [] = new Level [16];
@@ -30,7 +32,9 @@ public class Model {
 		List<String> foodWords = new ArrayList<String>(Arrays.asList(list));
 		ThemeDictionary foodDic = new ThemeDictionary(foodWords);
 		String foodName = "Food";
-	
+	/**
+	 * Constructor
+	 */
 	public Model() {
 		ArrayList<Square> initBoardSquares = new ArrayList<Square>(36);
 		ArrayList<Tile> initialTiles = new ArrayList<Tile>();

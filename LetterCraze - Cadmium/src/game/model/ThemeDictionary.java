@@ -2,7 +2,9 @@ package game.model;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Specific dictionary for theme levels
+ */
 public class ThemeDictionary {
 	
 	List<String> words = new ArrayList<String>();
