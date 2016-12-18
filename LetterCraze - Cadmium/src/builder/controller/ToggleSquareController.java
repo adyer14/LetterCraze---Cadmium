@@ -21,8 +21,10 @@ public class ToggleSquareController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent ae){
 		board.toggleSquare(buttonNumber);
-		
 	}
 	
+	public void setBoard(Board b) {
+		this.board = b;
+	}
 	
 }

@@ -77,7 +77,10 @@ public class Move {
 	public boolean isValid () {
 		if (this.board.isValidSelection()) {
 			if (this.level.getLevelType().equalsIgnoreCase("theme")) {
-				return ((ThemeLevel)this.level).themeWords.containsWord(this.word.getActualString());
+				
+				boolean b = ((ThemeLevel)this.level).themeWords.containsWord(this.word.getActualString());
+				System.out.println("Theme is...." + b);
+				return b;
 			}
 			if (this.level.getLevelType().equalsIgnoreCase("puzzle")) {
 				if ((((PuzzleLevel)this.level).getMovesLeft() == 0) || (word.getSelectedSquares().size() < 3))

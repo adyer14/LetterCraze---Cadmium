@@ -16,4 +16,8 @@ public class ThemeDictionary {
 	public boolean containsWord (String word) {
 		return this.words.contains(word);
 	}
+
+	public List<String> getWords() {
+		return words;
+	}
 }

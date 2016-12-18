@@ -73,6 +73,13 @@ public class BoardPanel extends JPanel {
 		board.resetSquares();
 		System.out.println("The Board has been reset.");
 	}
+	
+	public void update(Level level) {
+		for (int i = 0; i < 36; i++) {
+			if (!level.getBoard().getSquare(i).getSquareInPlay() )
+				this.squareButton[i].doClick(0);
+		}
+	}
 
 	public JToggleButton getSquare(int i) {
 		return squareButton[i];

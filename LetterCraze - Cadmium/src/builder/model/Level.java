@@ -137,7 +137,15 @@ public class Level {
 		}
 		if(lvl.levelType.equals("THEME")){
 			lvl.setThemeName(contents.remove(0));
-			lvl.setThemeWords(contents.remove(0));
+			String allWords = "";
+			ArrayList<String> wordArray = new ArrayList<String>();
+			for (int i = 0; i < lvl.getStarValues()[2]; i++) {
+				allWords = allWords.concat(contents.remove(0));
+				allWords = allWords.concat("\n");
+			}
+			System.out.println("HERE" + allWords);
+			lvl.setThemeWords(allWords);
+			
 		}
 		return lvl;
 		
@@ -178,6 +186,35 @@ public class Level {
 		return false;
 	}
 
+	public void deleteLevel(String pathName) {
+		
+		try{
+			Path filePath = Paths.get(pathName+".txt");
+			ArrayList<String> contents = new ArrayList<String>();
+			Charset charset = Charset.forName("US-ASCII");
+			Files.write(filePath, contents, charset);
+		}catch(IOException e){
+			//TODO
+		}
+		
+		try{
+			Path filePath = Paths.get(pathName + ".txt");
+			Files.delete(filePath);
+		} catch (NoSuchFileException x) {
+			
+		} catch (DirectoryNotEmptyException x) {
+			
+		} catch (IOException x) {
+		    // File permission problems are caught here.
+		    System.err.println(x);
+		}
+		
+	}
+
+	
+	/**
+	 * Get/set Methods
+	 */
 	public int getTime() {
 		return time;
 	}
@@ -266,13 +303,6 @@ public class Level {
 		levelNum = i;
 	}
 	
-	private void fakeSetStarValues(String values) {
-		String[] tokens = values.split("[,]");
-		for(int i = 0; i < 3; i++){
-			this.starValues[i] = Integer.parseInt(tokens[i]);
-		}
-	}
-	
 	public int[] getStarValues() {
 		return starValues;
 	}
@@ -297,28 +327,4 @@ public class Level {
 		this.themeWords = themeWords;
 	}
 	
-	public void deleteLevel(String pathName) {
-		
-		try{
-			Path filePath = Paths.get(pathName+".txt");
-			ArrayList<String> contents = new ArrayList<String>();
-			Charset charset = Charset.forName("US-ASCII");
-			Files.write(filePath, contents, charset);
-		}catch(IOException e){
-			//TODO
-		}
-		
-		try{
-			Path filePath = Paths.get(pathName + ".txt");
-			Files.delete(filePath);
-		} catch (NoSuchFileException x) {
-			
-		} catch (DirectoryNotEmptyException x) {
-			
-		} catch (IOException x) {
-		    // File permission problems are caught here.
-		    System.err.println(x);
-		}
-		
-	}
 }

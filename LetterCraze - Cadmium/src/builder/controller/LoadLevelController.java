@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
 import builder.model.Level;
+import builder.model.Square;
 import builder.view.BuilderApplication;
 import builder.view.SelectLevelPanel;
 
@@ -29,6 +30,9 @@ public class LoadLevelController implements ActionListener{
         cardLayout.show(contentPane, "levelCreatorPanel");
 		
 		level = level.loadLevel(this.pathName);
+		for (int i = 0; i < 36; i++) {
+			level.getBoard().toggleSquare(i);
+		}
 		app.getLevelCreatorPanel().loadIn(level);
 		
 	}

@@ -65,6 +65,8 @@ public class Model {
 		String latinName = "Latin Bros";
 		private Board board;
 		private String squaresInPlay;
+		private String themeName;
+		private String themeWords;
 		
 		
 	public Model() {
@@ -297,8 +299,10 @@ public class Model {
 			System.out.println("time:" + time);
 			lightningLevel[i] = new LightningLevel(starVal, squaresInPlay, board, i, time);
 			this.loadIn("theme", i);
-			themeLevel[i] = new ThemeLevel(starVal, squaresInPlay, themeTiles.get(i-1), themeBoards[i-1], i, themeNames[i-1], themeDicts[i-1]);
-			
+			//themeWords = "SADNESS\nWORRY\nANXIETY";
+			ThemeDictionary themeDict = new ThemeDictionary(Arrays.asList(themeWords.split("\\n")));
+			//themeLevel[i] = new ThemeLevel(starVal, squaresInPlay, themeTiles.get(i-1), themeBoards[i-1], i, themeNames[i-1], themeDicts[i-1]);
+			themeLevel[i] = new ThemeLevel(starVal, squaresInPlay, null, board, i, themeName, themeDict);
 		}
 	}
 	
@@ -472,8 +476,14 @@ public class Model {
 			contents.remove(0);
 		}
 		if(levType.equals("theme")){
-			contents.remove(0);
-			contents.remove(0);
+			this.themeName = contents.remove(0);
+			String allWords = "";
+			for (int i = 0; i < this.starVal[2]; i++) {
+				allWords = allWords.concat(contents.remove(0));
+				allWords = allWords.concat("\n");
+			}
+			System.out.println("HERE" + allWords);
+			this.themeWords = allWords;
 		}
 	}
 	

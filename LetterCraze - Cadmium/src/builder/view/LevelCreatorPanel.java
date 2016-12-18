@@ -317,9 +317,8 @@ public class LevelCreatorPanel extends JPanel {
 		
 		levelNumCB.setSelectedItem(Integer.toString(level.getLevelNum()));
 		levelTypeCB.setSelectedItem(level.getLevelType());
-		for (int i = 0; i < 36; i++) {
-			boardPanel.getSquare(i).setSelected(level.getBoard().getSquare(i).getSquareInPlay());
-		}
+		boardPanel.update(level);
+		
  		star1TextField.setText(Integer.toString(level.getStarValues()[0]));
 		star2TextField.setText(Integer.toString(level.getStarValues()[1]));
 		star3TextField.setText(Integer.toString(level.getStarValues()[2]));

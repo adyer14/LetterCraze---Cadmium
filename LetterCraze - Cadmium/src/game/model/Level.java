@@ -87,8 +87,14 @@ public abstract class Level {
 		if (wordList.isEmpty()) 
 			return false;
 		Word word = wordList.get(wordList.size()-1);
-		wordList.remove(wordList.size()-1);
-		this.removeScore();
+		if (this.levelType == "puzzle") {
+			this.removeScore();
+			wordList.remove(wordList.size()-1);
+		}
+		else {
+			wordList.remove(wordList.size()-1);
+			this.removeScore();
+		}
 		return !wordList.contains(word);
 	}
 	/**
@@ -348,6 +354,12 @@ public abstract class Level {
 		this.initBoardSquares = s;
 	}
 
+	public String getSqsInPlay() {
+		return sqsInPlay;
+	}
+	public void setSqsInPlay(String inPlay) {
+		this.sqsInPlay = inPlay;
+	}
 	/* End of Get/Set Methods */
 
 }
